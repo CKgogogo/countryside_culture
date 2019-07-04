@@ -2,6 +2,7 @@ package com.countryside_culture.controller;
 
 import com.countryside_culture.entity.museum;
 import com.countryside_culture.service.museumService;
+import com.zlzkj.core.util.Fn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +25,8 @@ public class museumController {
     public String showAllMuseum(HttpServletResponse response, Model model) {
         List<museum> museum = museumservice.showall();
         model.addAttribute("museum", museum);
-        return "yueju_museum";
+        Fn.ajaxReturn(response,museum);
+        return "";
     }
 
     //    越剧博物馆具体信息
@@ -33,6 +35,7 @@ public class museumController {
         int id=Integer.parseInt(request.getParameter("id"));
         museum museum = museumservice.selectOne(id);
         model.addAttribute("museum", museum);
+        Fn.ajaxReturn(response,museum);
         return "";
     }
 }

@@ -2,6 +2,7 @@ package com.countryside_culture.controller;
 
 import com.countryside_culture.entity.news;
 import com.countryside_culture.service.newsService;
+import com.zlzkj.core.util.Fn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +25,8 @@ public class newsController {
     public String showAllNews(HttpServletResponse response, Model model) {
     List<news> news = newsservice.showall();
     model.addAttribute("news", news);
-    return "yueju_infomation";
+        Fn.ajaxReturn(response,news);
+    return "";
     }
 
 //    具体资讯
@@ -32,8 +34,10 @@ public class newsController {
     public String selectOne(HttpServletResponse response, Model model, HttpServletRequest request) {
         int id=Integer.parseInt(request.getParameter("id"));
         news news = newsservice.selectOne(id);
+        news.setClickNum(news.getClickNum()+1);
         model.addAttribute("news", news);
-        return "blog_single";
+        Fn.ajaxReturn(response,news);
+        return "";
     }
 
 }

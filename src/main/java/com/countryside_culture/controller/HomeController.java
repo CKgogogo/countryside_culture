@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.text.AttributedString;
@@ -34,34 +35,38 @@ public class HomeController {
     @Autowired
     private headlinesService headlinesservice;
 //    首页越剧名家
-    @RequestMapping(value = "/museum",method = RequestMethod.POST)
+    @RequestMapping("/museum")
     public String showMuseum(HttpServletResponse response, Model model) {
         List<museum> museum = museumservice.show();
         model.addAttribute("museum", museum);
+        Fn.ajaxReturn(response,museum);
         return "index";
     }
 
 //    首页最新资讯
-    @RequestMapping(value = "/news",method = RequestMethod.POST)
+    @RequestMapping("/news")
     public String showNews(HttpServletResponse response, Model model){
         List<news> news = newsservice.show();
         model.addAttribute("news", news);
+        Fn.ajaxReturn(response,news);
         return "index";
     }
 
 //    首页越剧团
-    @RequestMapping(value = "/troupe",method = RequestMethod.POST)
+    @RequestMapping("/troupe")
     public String showTrouope(HttpServletResponse response, Model model){
         List<troupe> troupe = troupeservice.show();
         model.addAttribute("troupe", troupe);
+        Fn.ajaxReturn(response,troupe);
         return "index";
     }
 
 //    首页轮播图
-    @RequestMapping(value = "/headlines",method = RequestMethod.POST)
+    @RequestMapping("/headlines")
     public String showHeadlines(HttpServletResponse response, Model model){
         List<headlines> headlines = headlinesservice.show();
         model.addAttribute("headlines", headlines);
+        Fn.ajaxReturn(response,headlines);
         return "index";
     }
 

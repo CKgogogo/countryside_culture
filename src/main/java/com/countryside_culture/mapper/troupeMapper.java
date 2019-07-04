@@ -12,13 +12,4 @@ public interface troupeMapper {
     public troupe selectOne(int id);
     int deleteByPrimaryKey(Integer troupeId);
 
-    int insert(troupe record);
-
-    int insertSelective(troupe record);
-
-    int updateByPrimaryKeySelective(troupe record);
-
-    int updateByPrimaryKeyWithBLOBs(troupe record);
-
-    int updateByPrimaryKey(troupe record);
 }

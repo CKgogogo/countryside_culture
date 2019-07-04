@@ -2,6 +2,7 @@ package com.countryside_culture.controller;
 
 import com.countryside_culture.entity.troupe;
 import com.countryside_culture.service.troupeService;
+import com.zlzkj.core.util.Fn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +25,8 @@ public class troupeController {
     public String showAllTroupe(HttpServletResponse response, Model model) {
         List<troupe> troupe = troupeservice.showall();
         model.addAttribute("troupe", troupe);
-        return "yueju_museum_troupe";
+        Fn.ajaxReturn(response,troupe);
+        return "";
     }
 
     //    剧团具体信息
@@ -33,6 +35,7 @@ public class troupeController {
         int id=Integer.parseInt(request.getParameter("id"));
         troupe troupe = troupeservice.selectOne(id);
         model.addAttribute("troupe", troupe);
+        Fn.ajaxReturn(response,troupe);
         return "";
     }
 }

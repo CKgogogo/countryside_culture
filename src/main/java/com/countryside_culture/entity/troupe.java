@@ -11,6 +11,15 @@ public class troupe {
 
     private String content;
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    private String picture;
     public Integer getTroupeId() {
         return troupeId;
     }
