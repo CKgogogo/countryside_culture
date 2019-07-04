@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.countryside_culture.mapper.troupeMapper" >
+  <resultMap id="BaseResultMap" type="com.countryside_culture.entity.troupe" >
+    <id column="troupe_id" property="troupeId" jdbcType="INTEGER" />
+    <result column="troupe_name" property="troupeName" jdbcType="VARCHAR" />
+    <result column="member" property="member" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.countryside_culture.entity.troupe" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    troupe_id, troupe_name, member, remark
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="show" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select *
+    from troupe
+    ORDER BY troupe_id asc
+    LIMIT 5
+  </select>
+  <select id="showall" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select *
+    from troupe
+  </select>
+  <select id="selectOne" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select *
+    from troupe
+    where troupe_id = #{troupeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from troupe
+    where troupe_id = #{troupeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.countryside_culture.entity.troupe" >
+    insert into troupe (troupe_id, troupe_name, member, 
+      remark, content)
+    values (#{troupeId,jdbcType=INTEGER}, #{troupeName,jdbcType=VARCHAR}, #{member,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.countryside_culture.entity.troupe" >
+    insert into troupe
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="troupeId != null" >
+        troupe_id,
+      </if>
+      <if test="troupeName != null" >
+        troupe_name,
+      </if>
+      <if test="member != null" >
+        member,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="troupeId != null" >
+        #{troupeId,jdbcType=INTEGER},
+      </if>
+      <if test="troupeName != null" >
+        #{troupeName,jdbcType=VARCHAR},
+      </if>
+      <if test="member != null" >
+        #{member,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.countryside_culture.entity.troupe" >
+    update troupe
+    <set >
+      <if test="troupeName != null" >
+        troupe_name = #{troupeName,jdbcType=VARCHAR},
+      </if>
+      <if test="member != null" >
+        member = #{member,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where troupe_id = #{troupeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.countryside_culture.entity.troupe" >
+    update troupe
+    set troupe_name = #{troupeName,jdbcType=VARCHAR},
+      member = #{member,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where troupe_id = #{troupeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.countryside_culture.entity.troupe" >
+    update troupe
+    set troupe_name = #{troupeName,jdbcType=VARCHAR},
+      member = #{member,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where troupe_id = #{troupeId,jdbcType=INTEGER}
+  </update>
+</mapper>

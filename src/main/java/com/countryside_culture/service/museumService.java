@@ -13,4 +13,10 @@ public class museumService {
     public List<museum> show(){
         return museummapper.show();
     }
+    public List<museum> showall(){
+        return museummapper.showall();
+    }
+    public museum selectOne(int id){
+        return museummapper.selectOne(id);
+    }
 }

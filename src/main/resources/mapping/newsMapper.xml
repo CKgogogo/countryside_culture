@@ -24,11 +24,20 @@
   <sql id="Blob_Column_List" >
     content
   </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
+  <select id="show" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select *
+    from news
+    where is_publish=1
+    ORDER BY publish_time DESC
+    LIMIT 4
+  </select>
+  <select id="showall" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select *
+    from news
+    where is_publish=1
+  </select>
+  <select id="selectOne" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select *
     from news
     where id = #{id,jdbcType=INTEGER}
   </select>

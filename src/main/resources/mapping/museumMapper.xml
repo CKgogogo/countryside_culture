@@ -23,11 +23,12 @@
     from museum
     where kind = 1
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
+  <select id="showall" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select *
+    from museum
+  </select>
+  <select id="selectOne" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select *
     from museum
     where id = #{id,jdbcType=INTEGER}
   </select>

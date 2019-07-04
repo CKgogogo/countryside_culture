@@ -7,13 +7,13 @@ import java.util.List;
 @Repository
 public interface museumMapper {
     public List<museum> show();
+    public List<museum> showall();
+    public museum selectOne(int id);
     int deleteByPrimaryKey(Integer id);
 
     int insert(museum record);
 
     int insertSelective(museum record);
-
-    museum selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(museum record);
 

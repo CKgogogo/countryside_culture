@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 </head>
 <body>
-<div th:each="a:${museum}">
-    <h2 th:text="${a.getContent()}"></h2>
-    <h2 th:text="${a.getTitle()}"></h2>
+<div th:each="a:${news}">
+    <h2 th:text="${a.getId()}"></h2>
+    <h2 th:text="${a.getPublishTime()}"></h2>
 </div>
 
 
