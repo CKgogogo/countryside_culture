@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface museumMapper {
-    public List<museum> show();
+    public List<museum> showfamous();
+    public List<museum> showtroupe();
     public List<museum> showall();
     public museum selectOne(int id);
     int deleteByPrimaryKey(Integer id);

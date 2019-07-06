@@ -18,10 +18,17 @@
   <sql id="Blob_Column_List" >
     content
   </sql>
-  <select id="show" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="showfamous" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *
     from museum
     where kind = 1
+    LIMIT 4
+  </select>
+  <select id="showtroupe" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select *
+    from museum
+    where kind = 6
+    LIMIT 5
   </select>
   <select id="showall" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *

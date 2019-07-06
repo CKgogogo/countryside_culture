@@ -35,11 +35,11 @@ public class HomeController {
     @Autowired
     private headlinesService headlinesservice;
 //    首页越剧名家
-    @RequestMapping("/museum")
+    @RequestMapping("/famous")
     public String showMuseum(HttpServletResponse response, Model model) {
-        List<museum> museum = museumservice.show();
-        model.addAttribute("museum", museum);
-        Fn.ajaxReturn(response,museum);
+        List<museum> famous = museumservice.showfamous();
+        model.addAttribute("famous", famous);
+        Fn.ajaxReturn(response,famous);
         return "index";
     }
 
@@ -55,7 +55,7 @@ public class HomeController {
 //    首页越剧团
     @RequestMapping("/troupe")
     public String showTrouope(HttpServletResponse response, Model model){
-        List<troupe> troupe = troupeservice.show();
+        List<museum> troupe = museumservice.showtroupe();
         model.addAttribute("troupe", troupe);
         Fn.ajaxReturn(response,troupe);
         return "index";

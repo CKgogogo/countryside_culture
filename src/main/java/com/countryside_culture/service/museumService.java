@@ -10,8 +10,11 @@ import java.util.List;
 public class museumService {
     @Autowired
     museumMapper museummapper;
-    public List<museum> show(){
-        return museummapper.show();
+    public List<museum> showfamous(){
+        return museummapper.showfamous();
+    }
+    public List<museum> showtroupe(){
+        return museummapper.showtroupe();
     }
     public List<museum> showall(){
         return museummapper.showall();
