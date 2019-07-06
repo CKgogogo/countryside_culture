@@ -16,8 +16,8 @@ public class museumService {
     public List<museum> showtroupe(){
         return museummapper.showtroupe();
     }
-    public List<museum> showall(){
-        return museummapper.showall();
+    public List<museum> showkind(int kind){
+        return museummapper.showkind(kind);
     }
     public museum selectOne(int id){
         return museummapper.selectOne(id);

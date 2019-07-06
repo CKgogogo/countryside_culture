@@ -8,7 +8,7 @@ import java.util.List;
 public interface museumMapper {
     public List<museum> showfamous();
     public List<museum> showtroupe();
-    public List<museum> showall();
+    public List<museum> showkind(int kind);
     public museum selectOne(int id);
     int deleteByPrimaryKey(Integer id);
 

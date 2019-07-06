@@ -3,17 +3,17 @@ package com.countryside_culture.entity;
 public class museum {
     private Integer id;
 
-    private Integer kind;
+    private Integer kind;//种类
 
-    private String title;
+    private String title;//标题或名字或剧名
 
-    private String remark;
+    private String remark;//备注、简介
 
-    private String picture;
+    private String picture;//图片路径
 
-    private String source;
+    private String source;//来源、作者
 
-    private String content;
+    private String content;//内容
 
     public Integer getId() {
         return id;

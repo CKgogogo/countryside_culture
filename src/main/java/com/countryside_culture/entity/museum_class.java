@@ -3,9 +3,9 @@ package com.countryside_culture.entity;
 public class museum_class {
     private Integer id;
 
-    private Integer kind;
+    private Integer kind;//种类
 
-    private String name;
+    private String name;//种类名
 
     public Integer getId() {
         return id;

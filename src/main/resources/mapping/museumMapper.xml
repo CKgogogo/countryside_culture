@@ -30,9 +30,10 @@
     where kind = 6
     LIMIT 5
   </select>
-  <select id="showall" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="showkind" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *
     from museum
+    where kind=#{kind,jdbcType=INTEGER}
   </select>
   <select id="selectOne" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *

@@ -3,12 +3,10 @@ package com.countryside_culture.controller;
 import com.countryside_culture.entity.headlines;
 import com.countryside_culture.entity.museum;
 import com.countryside_culture.entity.news;
-import com.countryside_culture.entity.troupe;
 import com.countryside_culture.mapper.museumMapper;
 import com.countryside_culture.service.headlinesService;
 import com.countryside_culture.service.museumService;
 import com.countryside_culture.service.newsService;
-import com.countryside_culture.service.troupeService;
 import com.zlzkj.core.util.Fn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,8 +28,6 @@ public class HomeController {
     private museumService museumservice;
     @Autowired
     private newsService newsservice;
-    @Autowired
-    private troupeService troupeservice;
     @Autowired
     private headlinesService headlinesservice;
 //    首页越剧名家

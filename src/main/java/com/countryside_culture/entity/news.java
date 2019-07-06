@@ -3,19 +3,19 @@ package com.countryside_culture.entity;
 public class news {
     private Integer id;
 
-    private String title;
+    private String title;//标题
 
-    private String author;
+    private String author;//来源、作者
 
-    private String publishTime;
+    private String publishTime;//发布时间
 
-    private String picture;
+    private String picture;//图片路径
 
-    private Integer isHot;
+    private Integer isHot;//是否热门
 
-    private Integer isPublish;
+    private Integer isPublish;//是否发布
 
-    private Integer clickNum;
+    private Integer clickNum;//点击量
 
     private Integer examStatus;
 
