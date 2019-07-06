@@ -2,6 +2,8 @@ package com.countryside_culture.controller;
 
 import com.countryside_culture.entity.news;
 import com.countryside_culture.service.newsService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zlzkj.core.util.Fn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,10 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @CrossOrigin(origins = "*",maxAge = 3600)
@@ -22,10 +26,12 @@ public class newsController {
     private newsService newsservice;
 //    所有资讯
     @RequestMapping(value = "/showall",method = RequestMethod.POST)
-    public String showAllNews(HttpServletResponse response, Model model) {
-    List<news> news = newsservice.showall();
-    model.addAttribute("news", news);
-        Fn.ajaxReturn(response,news);
+    public String showAllNews(@RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn, HttpServletResponse response, Model model) {
+        PageHelper.startPage(pn,6);//第pn页，6条记录
+        List<news> news = newsservice.showall();
+//      model.addAttribute("news", news);
+        PageInfo pageInfo = new PageInfo<>(news,5);
+        Fn.ajaxReturn(response,pageInfo);
     return "";
     }
 

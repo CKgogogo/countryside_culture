@@ -7,11 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 </head>
 <body>
-<div th:each="a:${news}">
-    <h2 th:text="${a.getId()}"></h2>
-    <h2 th:text="${a.getPublishTime()}"></h2>
+<div th:each="a:${pageInfo.list}">
+    <p th:text="${a.title}"></p>
+
 </div>
 
+
+<h2 th:text="${pageInfo.pages}"></h2>
 
 </body>
 </html>
