@@ -6,6 +6,15 @@ public class museum_class {
     private Integer kind;//种类
 
     private String name;//种类名
+    private String url;//路径
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
 
     public Integer getId() {
         return id;

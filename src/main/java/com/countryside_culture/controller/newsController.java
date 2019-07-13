@@ -26,8 +26,8 @@ public class newsController {
     private newsService newsservice;
 //    所有资讯
     @RequestMapping(value = "/showall",method = RequestMethod.POST)
-    public String showAllNews(@RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn, HttpServletResponse response, Model model) {
-        PageHelper.startPage(pn,6);//第pn页，6条记录
+    public String showAllNews(@RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn,@RequestParam(required = false,defaultValue = "6",value = "pagesize")Integer pagesize, HttpServletResponse response, Model model) {
+        PageHelper.startPage(pn,pagesize);//第pn页，6条记录
         List<news> news = newsservice.showall();
 //      model.addAttribute("news", news);
         PageInfo pageInfo = new PageInfo<>(news,5);
