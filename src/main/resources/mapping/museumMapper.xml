@@ -8,12 +8,14 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="picture" property="picture" jdbcType="VARCHAR" />
     <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.countryside_culture.entity.museum" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, kind, title, remark, picture, source
+    id, kind, title, remark, picture, source,time,num
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -22,13 +24,13 @@
     select *
     from museum
     where kind = 1
-    LIMIT 4
+    LIMIT #{amount}
   </select>
   <select id="showtroupe" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *
     from museum
     where kind = 6
-    LIMIT 5
+    LIMIT #{amount}
   </select>
   <select id="showkind" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *
@@ -40,108 +42,5 @@
     from museum
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from museum
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.countryside_culture.entity.museum" >
-    insert into museum (id, kind, title, 
-      remark, picture, source, 
-      content)
-    values (#{id,jdbcType=INTEGER}, #{kind,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
-      #{content,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.countryside_culture.entity.museum" >
-    insert into museum
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="kind != null" >
-        kind,
-      </if>
-      <if test="title != null" >
-        title,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-      <if test="picture != null" >
-        picture,
-      </if>
-      <if test="source != null" >
-        source,
-      </if>
-      <if test="content != null" >
-        content,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="kind != null" >
-        #{kind,jdbcType=INTEGER},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="picture != null" >
-        #{picture,jdbcType=VARCHAR},
-      </if>
-      <if test="source != null" >
-        #{source,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.countryside_culture.entity.museum" >
-    update museum
-    <set >
-      <if test="kind != null" >
-        kind = #{kind,jdbcType=INTEGER},
-      </if>
-      <if test="title != null" >
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="picture != null" >
-        picture = #{picture,jdbcType=VARCHAR},
-      </if>
-      <if test="source != null" >
-        source = #{source,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.countryside_culture.entity.museum" >
-    update museum
-    set kind = #{kind,jdbcType=INTEGER},
-      title = #{title,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR},
-      picture = #{picture,jdbcType=VARCHAR},
-      source = #{source,jdbcType=VARCHAR},
-      content = #{content,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.countryside_culture.entity.museum" >
-    update museum
-    set kind = #{kind,jdbcType=INTEGER},
-      title = #{title,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR},
-      picture = #{picture,jdbcType=VARCHAR},
-      source = #{source,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
 </mapper>

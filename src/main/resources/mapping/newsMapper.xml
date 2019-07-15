@@ -11,7 +11,7 @@
     <result column="is_publish" property="isPublish" jdbcType="INTEGER" />
     <result column="click_num" property="clickNum" jdbcType="INTEGER" />
     <result column="exam_status" property="examStatus" jdbcType="INTEGER" />
-    <result column="expansion1" property="expansion1" jdbcType="VARCHAR" />
+    <result column="kind" property="kind" jdbcType="INTEGER" />
     <result column="expansion2" property="expansion2" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.countryside_culture.entity.news" extends="BaseResultMap" >
@@ -19,7 +19,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, title, author, publish_time, picture, is_hot, is_publish, click_num, exam_status, 
-    expansion1, expansion2
+    kind, expansion2
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -29,7 +29,7 @@
     from news
     where is_publish=1
     ORDER BY publish_time DESC
-    LIMIT 4
+    LIMIT #{amount}
   </select>
   <select id="showall" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *
@@ -41,167 +41,18 @@
     from news
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from news
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.countryside_culture.entity.news" >
-    insert into news (id, title, author, 
-      publish_time, picture, is_hot, 
-      is_publish, click_num, exam_status, 
-      expansion1, expansion2, content
-      )
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
-      #{publishTime,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{isHot,jdbcType=INTEGER}, 
-      #{isPublish,jdbcType=INTEGER}, #{clickNum,jdbcType=INTEGER}, #{examStatus,jdbcType=INTEGER}, 
-      #{expansion1,jdbcType=VARCHAR}, #{expansion2,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.countryside_culture.entity.news" >
-    insert into news
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="title != null" >
-        title,
-      </if>
-      <if test="author != null" >
-        author,
-      </if>
-      <if test="publishTime != null" >
-        publish_time,
-      </if>
-      <if test="picture != null" >
-        picture,
-      </if>
-      <if test="isHot != null" >
-        is_hot,
-      </if>
-      <if test="isPublish != null" >
-        is_publish,
-      </if>
-      <if test="clickNum != null" >
-        click_num,
-      </if>
-      <if test="examStatus != null" >
-        exam_status,
-      </if>
-      <if test="expansion1 != null" >
-        expansion1,
-      </if>
-      <if test="expansion2 != null" >
-        expansion2,
-      </if>
-      <if test="content != null" >
-        content,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="author != null" >
-        #{author,jdbcType=VARCHAR},
-      </if>
-      <if test="publishTime != null" >
-        #{publishTime,jdbcType=VARCHAR},
-      </if>
-      <if test="picture != null" >
-        #{picture,jdbcType=VARCHAR},
-      </if>
-      <if test="isHot != null" >
-        #{isHot,jdbcType=INTEGER},
-      </if>
-      <if test="isPublish != null" >
-        #{isPublish,jdbcType=INTEGER},
-      </if>
-      <if test="clickNum != null" >
-        #{clickNum,jdbcType=INTEGER},
-      </if>
-      <if test="examStatus != null" >
-        #{examStatus,jdbcType=INTEGER},
-      </if>
-      <if test="expansion1 != null" >
-        #{expansion1,jdbcType=VARCHAR},
-      </if>
-      <if test="expansion2 != null" >
-        #{expansion2,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.countryside_culture.entity.news" >
-    update news
-    <set >
-      <if test="title != null" >
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="author != null" >
-        author = #{author,jdbcType=VARCHAR},
-      </if>
-      <if test="publishTime != null" >
-        publish_time = #{publishTime,jdbcType=VARCHAR},
-      </if>
-      <if test="picture != null" >
-        picture = #{picture,jdbcType=VARCHAR},
-      </if>
-      <if test="isHot != null" >
-        is_hot = #{isHot,jdbcType=INTEGER},
-      </if>
-      <if test="isPublish != null" >
-        is_publish = #{isPublish,jdbcType=INTEGER},
-      </if>
-      <if test="clickNum != null" >
-        click_num = #{clickNum,jdbcType=INTEGER},
-      </if>
-      <if test="examStatus != null" >
-        exam_status = #{examStatus,jdbcType=INTEGER},
-      </if>
-      <if test="expansion1 != null" >
-        expansion1 = #{expansion1,jdbcType=VARCHAR},
-      </if>
-      <if test="expansion2 != null" >
-        expansion2 = #{expansion2,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.countryside_culture.entity.news" >
-    update news
-    set title = #{title,jdbcType=VARCHAR},
-      author = #{author,jdbcType=VARCHAR},
-      publish_time = #{publishTime,jdbcType=VARCHAR},
-      picture = #{picture,jdbcType=VARCHAR},
-      is_hot = #{isHot,jdbcType=INTEGER},
-      is_publish = #{isPublish,jdbcType=INTEGER},
-      click_num = #{clickNum,jdbcType=INTEGER},
-      exam_status = #{examStatus,jdbcType=INTEGER},
-      expansion1 = #{expansion1,jdbcType=VARCHAR},
-      expansion2 = #{expansion2,jdbcType=VARCHAR},
-      content = #{content,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.countryside_culture.entity.news" >
-    update news
-    set title = #{title,jdbcType=VARCHAR},
-      author = #{author,jdbcType=VARCHAR},
-      publish_time = #{publishTime,jdbcType=VARCHAR},
-      picture = #{picture,jdbcType=VARCHAR},
-      is_hot = #{isHot,jdbcType=INTEGER},
-      is_publish = #{isPublish,jdbcType=INTEGER},
-      click_num = #{clickNum,jdbcType=INTEGER},
-      exam_status = #{examStatus,jdbcType=INTEGER},
-      expansion1 = #{expansion1,jdbcType=VARCHAR},
-      expansion2 = #{expansion2,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<update id="update" parameterType="com.countryside_culture.entity.news" >
+  update news
+  set title = #{title},
+  author = #{author},
+  publish_time = #{publishTime},
+  picture = #{picture},
+  is_hot = #{isHot},
+  is_publish = #{isPublish},
+  click_num = #{clickNum},
+  exam_status = #{examStatus},
+  kind = #{kind},
+  expansion2 = #{expansion2}
+  WHERE id=#{id}
+</update>
 </mapper>

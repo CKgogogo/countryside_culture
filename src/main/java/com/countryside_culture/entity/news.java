@@ -19,7 +19,15 @@ public class news {
 
     private Integer examStatus;
 
-    private String expansion1;
+    public Integer getKind() {
+        return kind;
+    }
+
+    public void setKind(Integer kind) {
+        this.kind = kind;
+    }
+
+    private Integer kind;
 
     private String expansion2;
 
@@ -95,14 +103,6 @@ public class news {
 
     public void setExamStatus(Integer examStatus) {
         this.examStatus = examStatus;
-    }
-
-    public String getExpansion1() {
-        return expansion1;
-    }
-
-    public void setExpansion1(String expansion1) {
-        this.expansion1 = expansion1 == null ? null : expansion1.trim();
     }
 
     public String getExpansion2() {

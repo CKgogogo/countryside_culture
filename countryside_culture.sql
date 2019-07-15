@@ -139,7 +139,7 @@ INSERT INTO `museum` VALUES ('16', '1', '单仰萍', '单仰萍，浙江桐庐�
 INSERT INTO `museum` VALUES ('17', '1', '单仰萍', '单仰萍，浙江桐庐（也有说法为建德）人，浙江省桐庐中学毕业。|1972年1月进入桐庐艺训班学戏，工旦角，后为桐庐越剧团主要演员。1984年7月，随桐庐越剧团首次到上海，主演《春江月》。1985年11月，随杭州市越剧二团再次到上海，主演《桐江雨》。后该两剧拍摄成戏曲艺术影片（片名为《绣花女传奇》和《桐江雨》），仍由她主演，表演上宗王（文娟）派。|1988年至1993年进入上海越剧院红楼团演戏。1998年再次进入红楼团。', '越剧一级演员', 'team5.jpg', null);
 
 -- ----------------------------
--- Table structure for `museum_class`
+-- Table structure for `article_class`
 -- ----------------------------
 DROP TABLE IF EXISTS `museum_class`;
 CREATE TABLE `museum_class` (
@@ -151,7 +151,7 @@ CREATE TABLE `museum_class` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of museum_class
+-- Records of article_class
 -- ----------------------------
 INSERT INTO `museum_class` VALUES ('1', '1', '越剧名家', 'yueju_museum.html');
 INSERT INTO `museum_class` VALUES ('2', '2', '戏服展示', 'yueju_museum_clothing.html');

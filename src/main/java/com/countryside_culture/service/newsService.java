@@ -11,15 +11,14 @@ import java.util.List;
 public class newsService {
     @Autowired
     newsMapper newsmapper;
-    public List<news> show(){
-        return newsmapper.show();
+    public List<news> show(int amount){
+        return newsmapper.show(amount);
     }
-
     public List<news> showall(){
         return newsmapper.showall();
     }
-
     public news selectOne(int id){
         return newsmapper.selectOne(id);
     }
+    public int update(news news){return newsmapper.update(news);}
 }

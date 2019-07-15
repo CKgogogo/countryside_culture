@@ -10,11 +10,11 @@ import java.util.List;
 public class museumService {
     @Autowired
     museumMapper museummapper;
-    public List<museum> showfamous(){
-        return museummapper.showfamous();
+    public List<museum> showfamous(int amount){
+        return museummapper.showfamous(amount);
     }
-    public List<museum> showtroupe(){
-        return museummapper.showtroupe();
+    public List<museum> showtroupe(int amount){
+        return museummapper.showtroupe(amount);
     }
     public List<museum> showkind(int kind){
         return museummapper.showkind(kind);

@@ -1,6 +1,15 @@
 package com.countryside_culture.entity;
 
 public class museum {
+    public Integer getIs_focus() {
+        return is_focus;
+    }
+
+    public void setIs_focus(Integer is_focus) {
+        this.is_focus = is_focus;
+    }
+
+    private Integer is_focus=0;
     private Integer id;
 
     private Integer kind;//种类
@@ -14,6 +23,26 @@ public class museum {
     private String source;//来源、作者
 
     private String content;//内容
+
+    private String time;//时间
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
+    private Integer num;//关注数
 
     public Integer getId() {
         return id;

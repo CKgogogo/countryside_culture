@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.countryside_culture.mapper.videoMapper" >
+  <resultMap id="BaseResultMap" type="com.countryside_culture.entity.video" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="actor" property="actor" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="play_num" property="playNum" jdbcType="INTEGER" />
+    <result column="collect_num" property="collectNum" jdbcType="INTEGER" />
+    <result column="publish_time" property="publishTime" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="kind" property="kind" jdbcType="INTEGER" />
+    <result column="like_num" property="likeNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, url, actor,picture, author, remark, play_num, collect_num, publish_time, status,
+   kind, like_num
+  </sql>
+  <select id="allhot" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from video
+    ORDER BY play_num DESC
+    LIMIT 8
+  </select>
+  <select id="hot" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from video
+    where kind=#{kind,jdbcType=INTEGER} and status=1
+    ORDER BY play_num DESC
+    LIMIT #{amount}
+  </select>
+  <select id="newest" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from video
+    where kind=#{kind,jdbcType=INTEGER} and status=1
+    ORDER BY publish_time DESC
+    LIMIT #{amount}
+  </select>
+  <select id="tkind" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from video
+    where kind=#{kind,jdbcType=INTEGER} and status=1
+    ORDER BY publish_time DESC
+  </select>
+  <select id="pkind" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from video
+    where kind=#{kind,jdbcType=INTEGER} and status=1
+    ORDER BY play_num DESC
+  </select>
+  <select id="selectone" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from video
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <update id="update" parameterType="com.countryside_culture.entity.video" >
+    update video
+    set status = #{status,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=VARCHAR},
+      actor = #{actor,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      play_num = #{playNum,jdbcType=INTEGER},
+      collect_num = #{collectNum,jdbcType=INTEGER},
+      kind = #{kind,jdbcType=INTEGER},
+      like_num = #{likeNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

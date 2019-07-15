@@ -1,7 +1,5 @@
 package com.countryside_culture.entity;
 
-import java.util.Date;
-
 public class userinfo {
     private Integer userId;
 
@@ -15,11 +13,15 @@ public class userinfo {
 
     private String nickname;
 
-    private Date lastLoginTime;
+    private String lastLoginTime;
 
-    private Date lastLoginIp;
+    private String lastLoginIp;
 
     private String email;
+
+    private String picture;
+
+    private Integer status;
 
     public Integer getUserId() {
         return userId;
@@ -69,20 +71,20 @@ public class userinfo {
         this.nickname = nickname == null ? null : nickname.trim();
     }
 
-    public Date getLastLoginTime() {
+    public String getLastLoginTime() {
         return lastLoginTime;
     }
 
-    public void setLastLoginTime(Date lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
+    public void setLastLoginTime(String lastLoginTime) {
+        this.lastLoginTime = lastLoginTime == null ? null : lastLoginTime.trim();
     }
 
-    public Date getLastLoginIp() {
+    public String getLastLoginIp() {
         return lastLoginIp;
     }
 
-    public void setLastLoginIp(Date lastLoginIp) {
-        this.lastLoginIp = lastLoginIp;
+    public void setLastLoginIp(String lastLoginIp) {
+        this.lastLoginIp = lastLoginIp == null ? null : lastLoginIp.trim();
     }
 
     public String getEmail() {
@@ -91,5 +93,21 @@ public class userinfo {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture == null ? null : picture.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

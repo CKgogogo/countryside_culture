@@ -1,8 +1,8 @@
 package com.countryside_culture.controller;
 
+import com.countryside_culture.entity.article_class;
 import com.countryside_culture.entity.museum;
-import com.countryside_culture.entity.museum_class;
-import com.countryside_culture.mapper.museum_classMapper;
+import com.countryside_culture.mapper.article_classMapper;
 import com.countryside_culture.service.museumService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -26,10 +26,12 @@ public class museumController {
     @Autowired
     private museumService museumservice;
     @Autowired
-    private museum_classMapper museum_classmapper;
+    private article_classMapper article_classmapper;
     //    越剧博物馆各个种类所有信息
     @RequestMapping(value = "/showkind",method = RequestMethod.POST)
-    public String showAllMuseum(@RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn,@RequestParam(required = false,defaultValue = "6",value = "pagesize")Integer pagesize, HttpServletResponse response, Model model,int kind) {
+    public String showAllMuseum(@RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn,
+                                @RequestParam(required = false,defaultValue = "6",value = "pagesize")Integer pagesize,
+                                HttpServletResponse response, Model model,int kind) {
         PageHelper.startPage(pn,pagesize);//第pn页，每页pagesize记录
         List<museum> museum = museumservice.showkind(kind);
         model.addAttribute("museum", museum);
@@ -39,8 +41,8 @@ public class museumController {
     }
     //越剧博物馆所有分类
     @RequestMapping(value = "/showclass",method = RequestMethod.POST)
-    public String showAllKind( HttpServletResponse response, Model model) {
-        List<museum_class> museum_class=museum_classmapper.selectall();
+    public String showAllKind( HttpServletResponse response) {
+        List<article_class> museum_class=article_classmapper.selectmuseum();
         Fn.ajaxReturn(response,museum_class);
         return "";
     }
