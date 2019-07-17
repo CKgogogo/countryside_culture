@@ -1,11 +1,41 @@
 package com.countryside_culture.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class review {
+    public List<review> getList() {
+        return list;
+    }
+
+    public void setList(List<review> list) {
+        this.list = list;
+    }
+
+    private List<review> list=new ArrayList<review>();
     private Integer id;
 
-    private Integer tid;
+    public Integer getIs_delete() {
+        return is_delete;
+    }
 
-    private Integer rid;
+    public void setIs_delete(Integer is_delete) {
+        this.is_delete = is_delete;
+    }
+
+    private Integer is_delete=0;
+    public Integer getIs_like() {
+        return is_like;
+    }
+
+    public void setIs_like(Integer is_like) {
+        this.is_like = is_like;
+    }
+
+    private Integer is_like=0;
+    private Integer uid;
+
+    private Integer pid;
 
     private Integer vid;
 
@@ -19,6 +49,8 @@ public class review {
 
     private Integer likeNum;
 
+    private Integer status;
+
     private String content;
 
     public Integer getId() {
@@ -29,20 +61,20 @@ public class review {
         this.id = id;
     }
 
-    public Integer getTid() {
-        return tid;
+    public Integer getUid() {
+        return uid;
     }
 
-    public void setTid(Integer tid) {
-        this.tid = tid;
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
-    public Integer getRid() {
-        return rid;
+    public Integer getPid() {
+        return pid;
     }
 
-    public void setRid(Integer rid) {
-        this.rid = rid;
+    public void setPid(Integer pid) {
+        this.pid = pid;
     }
 
     public Integer getVid() {
@@ -91,6 +123,14 @@ public class review {
 
     public void setLikeNum(Integer likeNum) {
         this.likeNum = likeNum;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getContent() {

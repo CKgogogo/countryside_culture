@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 public class userinfoService {
     @Autowired
     userinfoMapper userinfomapper;
-    public int checkLogin(userinfo userinfo){
-        return userinfomapper.checkLogin(userinfo);
+    public userinfo checkLogin(String username,String password){
+        return userinfomapper.checkLogin(username,password);
     }
 
     public int register(userinfo userinfo){
         return userinfomapper.register(userinfo);
     }
+    public int update(userinfo userinfo){return userinfomapper.update(userinfo);}
 }

@@ -29,7 +29,15 @@ public class news {
 
     private Integer kind;
 
-    private String expansion2;
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    private String remark;
 
     private String content;
 
@@ -103,14 +111,6 @@ public class news {
 
     public void setExamStatus(Integer examStatus) {
         this.examStatus = examStatus;
-    }
-
-    public String getExpansion2() {
-        return expansion2;
-    }
-
-    public void setExpansion2(String expansion2) {
-        this.expansion2 = expansion2 == null ? null : expansion2.trim();
     }
 
     public String getContent() {

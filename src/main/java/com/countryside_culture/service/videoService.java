@@ -4,7 +4,6 @@ import com.countryside_culture.entity.video;
 import com.countryside_culture.entity.video_collect;
 import com.countryside_culture.mapper.reviewMapper;
 import com.countryside_culture.mapper.videoMapper;
-import com.countryside_culture.mapper.video_classMapper;
 import com.countryside_culture.mapper.video_collectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +15,6 @@ public class videoService {
     @Autowired
     videoMapper videomapper;
     @Autowired
-    video_classMapper video_classmapper;
-    @Autowired
     video_collectMapper video_collectmapper;
     @Autowired
     reviewMapper reviewmapper;
@@ -26,6 +23,7 @@ public class videoService {
     public List<video> newest(int kind,int amount){return videomapper.newest(kind,amount);}
     public List<video> tkind(int kind){return videomapper.tkind(kind);}
     public List<video> pkind(int kind){return videomapper.pkind(kind);}
+    public List<video> selectall(){return videomapper.selectall();}
     public video selectone(int id){return videomapper.selectone(id);}
     public int update(video video){return videomapper.update(video);}
 

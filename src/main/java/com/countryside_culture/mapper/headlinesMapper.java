@@ -7,19 +7,11 @@ import java.util.List;
 
 @Repository
 public interface headlinesMapper {
-    public List<headlines> show();
-
+    public  List<headlines> show(int amount);
+    public headlines selectid(int id);
     int deleteByPrimaryKey(Integer id);
 
     int insert(headlines record);
-
-    int insertSelective(headlines record);
-
-    headlines selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(headlines record);
-
-    int updateByPrimaryKeyWithBLOBs(headlines record);
 
     int updateByPrimaryKey(headlines record);
 }

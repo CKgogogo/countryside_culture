@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.countryside_culture.mapper.video_classMapper" >
-  <resultMap id="BaseResultMap" type="com.countryside_culture.entity.video_class" >
+<mapper namespace="com.countryside_culture.mapper.typeMapper" >
+  <resultMap id="BaseResultMap" type="com.countryside_culture.entity.type" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="pid" property="pid" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -10,24 +10,36 @@
   <sql id="Base_Column_List" >
     id, pid, name, url
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+  <select id="selectname" resultMap="BaseResultMap"  >
+    select
     <include refid="Base_Column_List" />
-    from video_class
+    from type
+    where name = #{name}
+  </select>
+  <select id="selectpid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from type
+    where pid = #{pid}
+  </select>
+  <select id="selectid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from type
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from video_class
+    delete from type
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.countryside_culture.entity.video_class" >
-    insert into video_class (id, pid, name, 
+  <insert id="insert" parameterType="com.countryside_culture.entity.type" >
+    insert into type (id, pid, name, 
       url)
     values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.countryside_culture.entity.video_class" >
-    insert into video_class
+  <insert id="insertSelective" parameterType="com.countryside_culture.entity.type" >
+    insert into type
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -57,8 +69,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.countryside_culture.entity.video_class" >
-    update video_class
+  <update id="updateByPrimaryKeySelective" parameterType="com.countryside_culture.entity.type" >
+    update type
     <set >
       <if test="pid != null" >
         pid = #{pid,jdbcType=INTEGER},
@@ -72,8 +84,8 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.countryside_culture.entity.video_class" >
-    update video_class
+  <update id="updateByPrimaryKey" parameterType="com.countryside_culture.entity.type" >
+    update type
     set pid = #{pid,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR}

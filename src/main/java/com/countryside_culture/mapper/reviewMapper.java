@@ -3,19 +3,14 @@ package com.countryside_culture.mapper;
 import com.countryside_culture.entity.review;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface reviewMapper {
-    int deleteByPrimaryKey(Integer id);
+    public List<review> selectvid(int vid);
+    public List<review> selectpid(int pid);
+    public review selectid(int id);
+    public int update(review review);
+    public int insert(review review);
 
-    int insert(review record);
-
-    int insertSelective(review record);
-
-    review selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(review record);
-
-    int updateByPrimaryKeyWithBLOBs(review record);
-
-    int updateByPrimaryKey(review record);
 }

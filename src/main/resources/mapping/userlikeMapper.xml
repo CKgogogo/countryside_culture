@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.countryside_culture.mapper.userlikeMapper" >
+  <resultMap id="BaseResultMap" type="com.countryside_culture.entity.userlike" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="rid" property="rid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, rid, status
+  </sql>
+  <select id="selectlike" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from userlike
+    where uid = #{arg0} and rid = #{arg1}
+  </select>
+  <update id="update" parameterType="com.countryside_culture.entity.userlike" >
+    update userlike
+    set uid = #{uid,jdbcType=INTEGER},
+      rid = #{rid,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.countryside_culture.entity.userlike" >
+    insert into userlike (id, uid, rid, 
+      status)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER})
+  </insert>
+</mapper>

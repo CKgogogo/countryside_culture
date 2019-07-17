@@ -1,6 +1,6 @@
 package com.countryside_culture.entity;
 
-public class article_class {
+public class type {
     private Integer id;
 
     private Integer pid;

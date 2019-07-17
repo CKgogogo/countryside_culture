@@ -33,7 +33,7 @@ public class videoControlle {
     private museumService museumservice;
     @Autowired
     private focusService focusservice;
-    //ËùÓĞÊÓÆµÖĞÈÈÃÅµÄ6¸ö
+    //æ‰€æœ‰è§†é¢‘ä¸­çƒ­é—¨çš„6ä¸ª
     @RequestMapping("/allhot")
     public String showAllhot(HttpServletResponse response){
         List<video> video = videoservice.allhot();
@@ -41,7 +41,7 @@ public class videoControlle {
         return "";
     }
 
-    //¸÷¸öÖÖÀà×îĞÂµÄÊÓÆµ
+    //å„ä¸ªç§ç±»æœ€æ–°çš„è§†é¢‘
     @RequestMapping("/newest")
     public String showNewest(HttpServletResponse response,int kind
             ,@RequestParam(required = false,defaultValue = "10",value = "amount")Integer amount){
@@ -50,7 +50,7 @@ public class videoControlle {
         return "";
     }
 
-    //¸÷¸öÖÖÀà²¥·ÅÁ¿¸ßµÄÊÓÆµ
+    //å„ä¸ªç§ç±»æ’­æ”¾é‡é«˜çš„è§†é¢‘
     @RequestMapping("/hot")
     public String showHot(HttpServletResponse response,int kind
             ,@RequestParam(required = false,defaultValue = "5",value = "amount")Integer amount){
@@ -59,31 +59,31 @@ public class videoControlle {
         return "";
     }
 
-    //¸÷¸öÖÖÀàËùÓĞÊÓÆµ  °´Ê±¼äÅÅĞò
+    //å„ä¸ªç§ç±»æ‰€æœ‰è§†é¢‘  æŒ‰æ—¶é—´æ’åº
     @RequestMapping("/tkind")
     public String showTkind(HttpServletResponse response, int kind,
                             @RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn,
                             @RequestParam(required = false,defaultValue = "8",value = "pagesize")Integer pagesize){
-        PageHelper.startPage(pn,pagesize);//µÚpnÒ³£¬Ã¿Ò³pagesize¼ÇÂ¼
+        PageHelper.startPage(pn,pagesize);//ç¬¬pné¡µï¼Œæ¯é¡µpagesizeè®°å½•
         List<video> video = videoservice.tkind(kind);
         PageInfo pageInfo = new PageInfo<>(video,5);
         Fn.ajaxReturn(response,pageInfo);
         return "";
     }
 
-    //¸÷¸öÖÖÀàËùÓĞÊÓÆµ  °´²¥·ÅÁ¿ÅÅĞò
+    //å„ä¸ªç§ç±»æ‰€æœ‰è§†é¢‘  æŒ‰æ’­æ”¾é‡æ’åº
     @RequestMapping("/pkind")
     public String showPkind(HttpServletResponse response, int kind,
                             @RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn,
                             @RequestParam(required = false,defaultValue = "8",value = "pagesize")Integer pagesize){
-        PageHelper.startPage(pn,pagesize);//µÚpnÒ³£¬Ã¿Ò³pagesize¼ÇÂ¼
+        PageHelper.startPage(pn,pagesize);//ç¬¬pné¡µï¼Œæ¯é¡µpagesizeè®°å½•
         List<video> video = videoservice.pkind(kind);
         PageInfo pageInfo = new PageInfo<>(video,5);
         Fn.ajaxReturn(response,pageInfo);
         return "";
     }
 
-    //Ä³¸öÊÓÆµ
+    //æŸä¸ªè§†é¢‘
     @RequestMapping("/selectone")
     public String showSelectone(HttpServletResponse response,HttpServletRequest request,int id){
         video video = videoservice.selectone(id);
@@ -100,7 +100,7 @@ public class videoControlle {
         return "";
     }
 
-    //ÊÕ²ØÊÓÆµ
+    //æ”¶è—æˆ–å–æ¶ˆæ”¶è—è§†é¢‘
     @ResponseBody
     @RequestMapping("/collect")
     public String showCollect(HttpServletRequest request, int id, int status){
@@ -127,20 +127,7 @@ public class videoControlle {
         return "ok";
     }
 
-    //²é¿´µ±Ç°ÓÃ»§ËùÓĞÊÕ²ØÊÓÆµ
-    @RequestMapping("/showcollect")
-    public String showAllCollect(HttpServletRequest request,HttpServletResponse response
-            ,@RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn
-            ,@RequestParam(required = false,defaultValue = "8",value = "pagesize")Integer pagesize){
-        int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
-        PageHelper.startPage(pn,pagesize);//µÚpnÒ³£¬Ã¿Ò³pagesize¼ÇÂ¼
-        List<video_collect> video_collect=videoservice.showcollect(uid);
-        PageInfo pageInfo = new PageInfo<>(video_collect,5);
-        Fn.ajaxReturn(response,pageInfo);
-        return "";
-    }
-
-    //ÏÔÊ¾ÊÓÆµÑİÔ±±í
+    //æ˜¾ç¤ºè§†é¢‘æ¼”å‘˜è¡¨
     @RequestMapping("/actor")
     public String showActor(HttpServletRequest request,HttpServletResponse response,String actor){
         String[] a=request.getParameter("actor").split("-");
@@ -160,7 +147,7 @@ public class videoControlle {
         return "";
     }
 
-    //¹Ø×¢ÑİÔ±
+    //å…³æ³¨æˆ–å–æ¶ˆå…³æ³¨æ¼”å‘˜
     @ResponseBody
     @RequestMapping("/focus")
     public String Focus(HttpServletRequest request,int id,int status){
@@ -184,6 +171,27 @@ public class videoControlle {
             focusservice.insert(ans);
         }
         return "ok";
+    }
+
+    //æ˜¾ç¤ºæŸä¸ªæ¼”å‘˜å‚æ¼”çš„æ‰€æœ‰è§†é¢‘
+    @RequestMapping("actorplay")
+    public String showAllFocus(int id, HttpServletResponse response
+            , @RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn
+            , @RequestParam(required = false,defaultValue = "8",value = "pagesize")Integer pagesize){
+        PageHelper.startPage(pn,pagesize);//ç¬¬pné¡µï¼Œæ¯é¡µpagesizeè®°å½•
+        List<video> videos=videoservice.selectall();
+        List<video> ans=new ArrayList<>();
+        for (int i=0;i<videos.size();i++){
+            String[] actor=videos.get(i).getActor().split("-");
+            for (int j=0;j<actor.length;j++){
+                if (id==Integer.parseInt(actor[j])) {
+                    ans.add(videos.get(i));
+                }
+            }
+        }
+        PageInfo pageInfo = new PageInfo<>(ans,5);
+        Fn.ajaxReturn(response,pageInfo);
+        return "";
     }
 
 

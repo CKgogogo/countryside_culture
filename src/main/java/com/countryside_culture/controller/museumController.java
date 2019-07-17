@@ -1,9 +1,9 @@
 package com.countryside_culture.controller;
 
-import com.countryside_culture.entity.article_class;
 import com.countryside_culture.entity.museum;
-import com.countryside_culture.mapper.article_classMapper;
+import com.countryside_culture.entity.type;
 import com.countryside_culture.service.museumService;
+import com.countryside_culture.service.typeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zlzkj.core.util.Fn;
@@ -26,7 +26,7 @@ public class museumController {
     @Autowired
     private museumService museumservice;
     @Autowired
-    private article_classMapper article_classmapper;
+    private typeService typeservice;
     //    越剧博物馆各个种类所有信息
     @RequestMapping(value = "/showkind",method = RequestMethod.POST)
     public String showAllMuseum(@RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn,
@@ -42,7 +42,8 @@ public class museumController {
     //越剧博物馆所有分类
     @RequestMapping(value = "/showclass",method = RequestMethod.POST)
     public String showAllKind( HttpServletResponse response) {
-        List<article_class> museum_class=article_classmapper.selectmuseum();
+        type type=typeservice.selectname("博物馆");
+        List<type> museum_class=typeservice.selectpid(type.getId());
         Fn.ajaxReturn(response,museum_class);
         return "";
     }

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2019-07-13 15:47:21
+Date: 2019-07-17 18:07:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,6 +26,10 @@ CREATE TABLE `activity` (
   `content` text,
   `eorganizer` varchar(255) DEFAULT NULL,
   `eventdate` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `picture` varchar(255) DEFAULT NULL,
+  `kind` int(11) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -55,31 +59,40 @@ CREATE TABLE `address_info` (
 -- ----------------------------
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
-  `uid` int(22) NOT NULL,
-  `username` varchar(22) NOT NULL,
-  `password` varchar(22) NOT NULL,
+  `id` int(22) NOT NULL AUTO_INCREMENT,
+  `username` varchar(22) DEFAULT NULL,
+  `password` varchar(22) DEFAULT NULL,
   `add_time` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `status` int(22) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
+INSERT INTO `admin` VALUES ('1', 'admin', '123456', '1563330252', '1', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif');
+INSERT INTO `admin` VALUES ('2', 'editor', '123456', '1563330252', '1', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif');
 
 -- ----------------------------
--- Table structure for `admin_role`
+-- Table structure for `focus`
 -- ----------------------------
-DROP TABLE IF EXISTS `admin_role`;
-CREATE TABLE `admin_role` (
-  `id` int(22) NOT NULL,
-  `uid` int(22) NOT NULL,
-  `rid` int(22) NOT NULL,
-  `status` int(22) NOT NULL,
+DROP TABLE IF EXISTS `focus`;
+CREATE TABLE `focus` (
+  `id` int(22) NOT NULL AUTO_INCREMENT,
+  `uid` int(22) DEFAULT NULL,
+  `mid` int(22) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  `picture` varchar(255) DEFAULT NULL,
+  `num` int(22) DEFAULT NULL,
+  `status` int(22) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of admin_role
+-- Records of focus
 -- ----------------------------
 
 -- ----------------------------
@@ -89,12 +102,11 @@ DROP TABLE IF EXISTS `headlines`;
 CREATE TABLE `headlines` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` int(11) DEFAULT NULL,
-  `rank` int(11) DEFAULT NULL,
+  `kind` int(11) DEFAULT NULL,
   `picture` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `publish_time` varchar(255) DEFAULT NULL,
-  `content` text,
-  `introduction` varchar(255) DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  `pid` int(22) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -114,52 +126,31 @@ CREATE TABLE `museum` (
   `remark` varchar(255) DEFAULT NULL,
   `picture` varchar(255) DEFAULT NULL,
   `source` varchar(255) DEFAULT NULL,
+  `time` varchar(255) DEFAULT NULL,
+  `num` int(22) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of museum
 -- ----------------------------
-INSERT INTO `museum` VALUES ('1', '1', '单仰萍', '单仰萍，浙江桐庐（也有说法为建德）人，浙江省桐庐中学毕业。|1972年1月进入桐庐艺训班学戏，工旦角，后为桐庐越剧团主要演员。1984年7月，随桐庐越剧团首次到上海，主演《春江月》。1985年11月，随杭州市越剧二团再次到上海，主演《桐江雨》。后该两剧拍摄成戏曲艺术影片（片名为《绣花女传奇》和《桐江雨》），仍由她主演，表演上宗王（文娟）派。|1988年至1993年进入上海越剧院红楼团演戏。1998年再次进入红楼团。', '越剧一级演员', 'team5.jpg', 'id');
-INSERT INTO `museum` VALUES ('2', '6', 'QQ', '绍兴女子文戏科班。1933年7月由嵊县杜联等人合股举办。班址在嵊县四明乡后城村(后移至上江村)。学艺期限定为三年半。招徒30余人，由钟加昌、金荣水为教戏师傅，开蒙戏为《仁义缘》、《红桃山》。六个月后，以尹树春(生)、吴梅珍(旦)、叶樟老(老生)、丁兆丰(丑)为“四柱头”，到浦口镇里东山区和绍兴水乡边演边学艺。后又教了《御碑亭》、《玉连环》、《四香缘》、《碧玉簪》、《二度梅》、《梁山伯与祝英台》等。在绍兴孙端镇时，适遇大王舞台、四季春科班同在一地演出，互相斗台竞艺，阳春舞台获得盛誉。1935年因股东不和，金荣水被迫离去，科班转卖给嵊县华堂镇王伯根，1936年下半年满师后散班。', null, 'project1.jpg', null);
-INSERT INTO `museum` VALUES ('3', '2', '越剧服装·箭衣', '箭衣，式样参考清朝官服。圆领大襟，马蹄袖，前后开叉齐腰。分为龙箭衣、花箭衣、素箭衣三种。龙箭衣为帝王、将帅的军便服，绣团龙、海水等纹饰，颜色有红、黄、白、黑、绿、紫等多种；花箭衣为一般英雄好汉和武将的便服，绣团花和其他纹样；素箭衣为公差、老军所穿，分黑、蓝两色。|', null, 'clo1.png', null);
-INSERT INTO `museum` VALUES ('4', '2', '越剧服装·箭衣', '箭衣，式样参考清朝官服。圆领大襟，马蹄袖，前后开叉齐腰。分为龙箭衣、花箭衣、素箭衣三种。龙箭衣为帝王、将帅的军便服，绣团龙、海水等纹饰，颜色有红、黄、白、黑、绿、紫等多种；花箭衣为一般英雄好汉和武将的便服，绣团花和其他纹样；素箭衣为公差、老军所穿，分黑、蓝两色。', null, 'clo2.jpg', null);
-INSERT INTO `museum` VALUES ('5', '3', '越剧道具·刀枪把子', '刀枪把子，指越剧舞台上武打兵器。它来自于古代的兵器，但经过艺术加工，更适合在舞台上使用。越剧的刀枪把子有可分为枪、刀、剑、戟、斧、杈、鞭、锏、锤、棍棒、弓箭及其他等12类。|枪，越剧武打戏中经常使用的一种道具，属于长兵器，大多适用于马戏武打。分为大枪、二枪、单枪、荷包样枪、霸王枪、哪吒枪等。|刀，越剧武打戏中经常使用的一种道具。分大刀类和短刀类。大刀类属于长兵器，有大刀、象鼻刀、青龙刀、三耳大刀、坤大刀、开门刀等；短刀类属于短兵器，有单刀、双刀、扑刀、坤刀、腰刀、狼牙刀、鬼头刀等。|剑，在越剧舞台上使用很广泛，可做战场上的兵器，也可配带在贤人志士身上做驱邪惩恶的圣物，在王公贵族手中则是权利的象征。属于短兵器，有单剑、双剑、人字剑、鱼皮剑、尚方宝剑、蛇剑等。|戟，大多为长兵器，只有少量短兵器。有单戟、双戟、方天画戟、双头大戟等。|斧，越剧舞台上为威猛的花脸一类角色使用。有长柄斧、短柄斧、越斧等。', null, 'prop1.jpg', null);
-INSERT INTO `museum` VALUES ('6', '4', '崔莺莺', '王实甫《西厢记》里的崔莺莺是相国小姐，她深沉、含蓄，既有外在的凝重，又有内在的激情。封建家庭的教养，无法完全窒息她内心的青春情感。她不由自主的对张生（即张珙，字君瑞）一见倾心，月下隔墙吟诗，大胆地对张生吐露心声，陷入情网之中而不能自拔，饱尝着相思的痛苦。同时她也越来越不满于老夫人的约束，并迁怒于红娘的跟随。老夫人当众许婚，后来又出尔反尔，既赋于崔，张的婚事以外在的合理性，又赋于崔、张爱情以内在的合理性。正是这种内在和外在的合理性，成为莺莺敢于冲破老夫人的约束，决心对张君瑞以身相许的潜在动力。但是，冲破内在心理的樊笼毕竟比冲破外在人为的约束还在艰难，于是就有了莺莺的“闹简”和“赖简”，其中莺莺所表现的“假意儿”，不仅是为了试探红娘是否可靠，张生是否真心，更重要的是披露出崔莺莺战胜传统的教养、女性的禁忌所应有的反复和艰难。长亭送别时，莺莺既忧虑张生考试落第，婚事终成泡影，更担心张生考取后变心，另就高门，自己被弃置，承担着如此沉重的精神重压。|《西厢记》深刻地揭示了崔莺莺的恋爱心理，即想爱而不敢爱，不敢爱却不由得不爱；并且细致地展现了她内心的强烈要求逐步压倒、战胜外部的压抑、传统的禁锢和心理的樊笼的全过程。|老夫人毁约后，张生一撅不振，此时莺莺明明思念张生，让红娘去探望，但当见到红娘带回张生的简贴时，又“忽的波低垂了粉颈，改变了朱颜”，怒斥红娘说要告过夫人，打下你个小贱人下截来。”待红娘说要将简贴儿交与老夫人时，她又道:“我逗你耍来”，并急切地询问张生的情况。这种有辱于小姐身份的言行，是“欲”与“礼”的斗争。她在红娘面前遮掩，而内心又忍不住牵挂张生。|但她对张生的爱恋，一开始却是胆怯和动摇不定的，一方面她具有少女的情感和欲求；另一方面，她作为一个相国小姐又是在那样的母亲的管教下成长起来的，同时又接受过较多的封建道德教育，这就构成了她思想和行动上的矛盾。她回答张生的那首诗“兰闺久寂寞，无事度芳春：料得行吟者，应怜长叹人。”，表达了她不甘寂寞的苦闷心情，同时也流露了她对异性的渴望。在“听琴”的时候，她被张生琴中热切的呼唤深深地感动着，以致于泪水涟涟，但是她又没有勇气与张生见面。此时在她的心中，封建礼教的束缚和对张生的爱恋激烈地冲突着，最后爱情终于战胜了礼教。因此当她接到张生的情诗时，终于大着胆子写了一首题为《明月三五夜》的回诗，约定张生于十五日晚上相会。“待月西厢下，迎风户半开：拂墙花影动，凝是玉人来。”短短二十个字，标志着莺莺决然走上了叛逆的道路。', '相国小姐', 'team5.jpg', null);
-INSERT INTO `museum` VALUES ('7', '5', '西厢记', '《崔莺莺待月西厢记》故事虽本唐代元稹《莺莺传》，实际却是脱胎于金代董解元的《西厢记诸宫调》。 [3]  王实甫曾任陕西县令、陕西行台监察御史。后来由于他不满当时官场的龌龊，愤而辞官，决心以写戏抒发心中之郁懑。于是他回到出生地中山府，开始了杂剧创作。金代的一位姓董的读书人，依据唐代元稹的传奇小说《莺莺传》改编成《诸宫调西厢记》，把原来故事中的主人公莺莺写成是博陵郡人。定州在隋代就称博陵郡，所以在博陵一带莺莺和张生的故事流传相当广泛。相传在定州崔沿士一带曾有过崔莺莺的墓冢。王实甫正是根据这一点，在中山府开始了他的杂剧《崔莺莺待月西厢记》的写作。 [5]  该剧大约写于元贞、大德年间（1295~1307年）。|张生在普救寺相遇相国小姐崔莺莺，一见钟情，而无计亲近。恰遇叛将孙飞虎率兵围寺，要强索莺莺为压寨夫人；张生在崔母亲口许婚下，依靠友人白马将军的帮助，解除了危难。不料崔母却食言赖婚，张生相思成疾。莺莺心爱张生而不愿正面表白；几经波折，在红娘的帮助下，莺莺终于至张生住处私会。崔母觉察迹象，拷问红娘，反被红娘几句话点中要害，勉强答应了婚事，却又以门第为由，令张生立即上京应试。十里长亭送别之后，张生到京考中状元；而郑恒借机编造谎言，说张生已在京另娶，老夫人又一次赖婚，要莺莺嫁于郑恒。后张生赶来，郑恒撞死，崔、张完婚。', null, 'reper1.png', null);
-INSERT INTO `museum` VALUES ('8', '6', '阳春舞台', '绍兴女子文戏科班。1933年7月由嵊县杜联等人合股举办。班址在嵊县四明乡后城村(后移至上江村)。学艺期限定为三年半。招徒30余人，由钟加昌、金荣水为教戏师傅，开蒙戏为《仁义缘》、《红桃山》。六个月后，以尹树春(生)、吴梅珍(旦)、叶樟老(老生)、丁兆丰(丑)为“四柱头”，到浦口镇里东山区和绍兴水乡边演边学艺。后又教了《御碑亭》、《玉连环》、《四香缘》、《碧玉簪》、《二度梅》、《梁山伯与祝英台》等。在绍兴孙端镇时，适遇大王舞台、四季春科班同在一地演出，互相斗台竞艺，阳春舞台获得盛誉。1935年因股东不和，金荣水被迫离去，科班转卖给嵊县华堂镇王伯根，1936年下半年满师后散班。|', null, 'project1.jpg', null);
-INSERT INTO `museum` VALUES ('9', '7', 'xxx', null, null, 'photo1.jpg', null);
-INSERT INTO `museum` VALUES ('10', '6', 'xxx', 'xxx', null, 'project1.jpg', null);
-INSERT INTO `museum` VALUES ('11', '6', 'xxx', 'xxx', null, 'project2.jpg', null);
-INSERT INTO `museum` VALUES ('12', '6', 'xxx', 'xxxx', null, 'project3.jpg', null);
-INSERT INTO `museum` VALUES ('13', '6', 'xxx', 'xxx', null, 'project4.jpg', null);
-INSERT INTO `museum` VALUES ('14', '6', 'xxx', 'xxx', null, 'project5.jpg', null);
-INSERT INTO `museum` VALUES ('15', '1', '单仰萍', '单仰萍，浙江桐庐（也有说法为建德）人，浙江省桐庐中学毕业。|1972年1月进入桐庐艺训班学戏，工旦角，后为桐庐越剧团主要演员。1984年7月，随桐庐越剧团首次到上海，主演《春江月》。1985年11月，随杭州市越剧二团再次到上海，主演《桐江雨》。后该两剧拍摄成戏曲艺术影片（片名为《绣花女传奇》和《桐江雨》），仍由她主演，表演上宗王（文娟）派。|1988年至1993年进入上海越剧院红楼团演戏。1998年再次进入红楼团。', '越剧一级演员', 'team5.jpg', null);
-INSERT INTO `museum` VALUES ('16', '1', '单仰萍', '单仰萍，浙江桐庐（也有说法为建德）人，浙江省桐庐中学毕业。|1972年1月进入桐庐艺训班学戏，工旦角，后为桐庐越剧团主要演员。1984年7月，随桐庐越剧团首次到上海，主演《春江月》。1985年11月，随杭州市越剧二团再次到上海，主演《桐江雨》。后该两剧拍摄成戏曲艺术影片（片名为《绣花女传奇》和《桐江雨》），仍由她主演，表演上宗王（文娟）派。|1988年至1993年进入上海越剧院红楼团演戏。1998年再次进入红楼团。', '越剧一级演员', 'team5.jpg', null);
-INSERT INTO `museum` VALUES ('17', '1', '单仰萍', '单仰萍，浙江桐庐（也有说法为建德）人，浙江省桐庐中学毕业。|1972年1月进入桐庐艺训班学戏，工旦角，后为桐庐越剧团主要演员。1984年7月，随桐庐越剧团首次到上海，主演《春江月》。1985年11月，随杭州市越剧二团再次到上海，主演《桐江雨》。后该两剧拍摄成戏曲艺术影片（片名为《绣花女传奇》和《桐江雨》），仍由她主演，表演上宗王（文娟）派。|1988年至1993年进入上海越剧院红楼团演戏。1998年再次进入红楼团。', '越剧一级演员', 'team5.jpg', null);
-
--- ----------------------------
--- Table structure for `article_class`
--- ----------------------------
-DROP TABLE IF EXISTS `museum_class`;
-CREATE TABLE `museum_class` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `kind` int(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of article_class
--- ----------------------------
-INSERT INTO `museum_class` VALUES ('1', '1', '越剧名家', 'yueju_museum.html');
-INSERT INTO `museum_class` VALUES ('2', '2', '戏服展示', 'yueju_museum_clothing.html');
-INSERT INTO `museum_class` VALUES ('3', '3', '道具百科', 'yueju_museum_prop.html');
-INSERT INTO `museum_class` VALUES ('4', '4', '经典人物', 'yueju_museum_characters.html');
-INSERT INTO `museum_class` VALUES ('5', '5', '经典剧目', 'yueju_museum_repertoire.html');
-INSERT INTO `museum_class` VALUES ('6', '6', '越剧艺术团', 'yueju_museum_troupe.html');
-INSERT INTO `museum_class` VALUES ('7', '7', '剧照', 'yueju_museum_photo.html');
+INSERT INTO `museum` VALUES ('1', '5', '单仰萍', '单仰萍，浙江桐庐（也有说法为建德）人，浙江省桐庐中学毕业。|1972年1月进入桐庐艺训班学戏，工旦角，后为桐庐越剧团主要演员。1984年7月，随桐庐越剧团首次到上海，主演《春江月》。1985年11月，随杭州市越剧二团再次到上海，主演《桐江雨》。后该两剧拍摄成戏曲艺术影片（片名为《绣花女传奇》和《桐江雨》），仍由她主演，表演上宗王（文娟）派。|1988年至1993年进入上海越剧院红楼团演戏。1998年再次进入红楼团。', '越剧一级演员', 'team5.jpg', 'id', null, null);
+INSERT INTO `museum` VALUES ('2', '5', 'QQ', '绍兴女子文戏科班。1933年7月由嵊县杜联等人合股举办。班址在嵊县四明乡后城村(后移至上江村)。学艺期限定为三年半。招徒30余人，由钟加昌、金荣水为教戏师傅，开蒙戏为《仁义缘》、《红桃山》。六个月后，以尹树春(生)、吴梅珍(旦)、叶樟老(老生)、丁兆丰(丑)为“四柱头”，到浦口镇里东山区和绍兴水乡边演边学艺。后又教了《御碑亭》、《玉连环》、《四香缘》、《碧玉簪》、《二度梅》、《梁山伯与祝英台》等。在绍兴孙端镇时，适遇大王舞台、四季春科班同在一地演出，互相斗台竞艺，阳春舞台获得盛誉。1935年因股东不和，金荣水被迫离去，科班转卖给嵊县华堂镇王伯根，1936年下半年满师后散班。', null, 'project1.jpg', null, null, null);
+INSERT INTO `museum` VALUES ('3', '6', '越剧服装·箭衣', '箭衣，式样参考清朝官服。圆领大襟，马蹄袖，前后开叉齐腰。分为龙箭衣、花箭衣、素箭衣三种。龙箭衣为帝王、将帅的军便服，绣团龙、海水等纹饰，颜色有红、黄、白、黑、绿、紫等多种；花箭衣为一般英雄好汉和武将的便服，绣团花和其他纹样；素箭衣为公差、老军所穿，分黑、蓝两色。|', null, 'clo1.png', null, null, null);
+INSERT INTO `museum` VALUES ('4', '6', '越剧服装·箭衣', '箭衣，式样参考清朝官服。圆领大襟，马蹄袖，前后开叉齐腰。分为龙箭衣、花箭衣、素箭衣三种。龙箭衣为帝王、将帅的军便服，绣团龙、海水等纹饰，颜色有红、黄、白、黑、绿、紫等多种；花箭衣为一般英雄好汉和武将的便服，绣团花和其他纹样；素箭衣为公差、老军所穿，分黑、蓝两色。', null, 'clo2.jpg', null, null, null);
+INSERT INTO `museum` VALUES ('5', '7', '越剧道具·刀枪把子', '刀枪把子，指越剧舞台上武打兵器。它来自于古代的兵器，但经过艺术加工，更适合在舞台上使用。越剧的刀枪把子有可分为枪、刀、剑、戟、斧、杈、鞭、锏、锤、棍棒、弓箭及其他等12类。|枪，越剧武打戏中经常使用的一种道具，属于长兵器，大多适用于马戏武打。分为大枪、二枪、单枪、荷包样枪、霸王枪、哪吒枪等。|刀，越剧武打戏中经常使用的一种道具。分大刀类和短刀类。大刀类属于长兵器，有大刀、象鼻刀、青龙刀、三耳大刀、坤大刀、开门刀等；短刀类属于短兵器，有单刀、双刀、扑刀、坤刀、腰刀、狼牙刀、鬼头刀等。|剑，在越剧舞台上使用很广泛，可做战场上的兵器，也可配带在贤人志士身上做驱邪惩恶的圣物，在王公贵族手中则是权利的象征。属于短兵器，有单剑、双剑、人字剑、鱼皮剑、尚方宝剑、蛇剑等。|戟，大多为长兵器，只有少量短兵器。有单戟、双戟、方天画戟、双头大戟等。|斧，越剧舞台上为威猛的花脸一类角色使用。有长柄斧、短柄斧、越斧等。', null, 'prop1.jpg', null, null, null);
+INSERT INTO `museum` VALUES ('6', '8', '崔莺莺', '王实甫《西厢记》里的崔莺莺是相国小姐，她深沉、含蓄，既有外在的凝重，又有内在的激情。封建家庭的教养，无法完全窒息她内心的青春情感。她不由自主的对张生（即张珙，字君瑞）一见倾心，月下隔墙吟诗，大胆地对张生吐露心声，陷入情网之中而不能自拔，饱尝着相思的痛苦。同时她也越来越不满于老夫人的约束，并迁怒于红娘的跟随。老夫人当众许婚，后来又出尔反尔，既赋于崔，张的婚事以外在的合理性，又赋于崔、张爱情以内在的合理性。正是这种内在和外在的合理性，成为莺莺敢于冲破老夫人的约束，决心对张君瑞以身相许的潜在动力。但是，冲破内在心理的樊笼毕竟比冲破外在人为的约束还在艰难，于是就有了莺莺的“闹简”和“赖简”，其中莺莺所表现的“假意儿”，不仅是为了试探红娘是否可靠，张生是否真心，更重要的是披露出崔莺莺战胜传统的教养、女性的禁忌所应有的反复和艰难。长亭送别时，莺莺既忧虑张生考试落第，婚事终成泡影，更担心张生考取后变心，另就高门，自己被弃置，承担着如此沉重的精神重压。|《西厢记》深刻地揭示了崔莺莺的恋爱心理，即想爱而不敢爱，不敢爱却不由得不爱；并且细致地展现了她内心的强烈要求逐步压倒、战胜外部的压抑、传统的禁锢和心理的樊笼的全过程。|老夫人毁约后，张生一撅不振，此时莺莺明明思念张生，让红娘去探望，但当见到红娘带回张生的简贴时，又“忽的波低垂了粉颈，改变了朱颜”，怒斥红娘说要告过夫人，打下你个小贱人下截来。”待红娘说要将简贴儿交与老夫人时，她又道:“我逗你耍来”，并急切地询问张生的情况。这种有辱于小姐身份的言行，是“欲”与“礼”的斗争。她在红娘面前遮掩，而内心又忍不住牵挂张生。|但她对张生的爱恋，一开始却是胆怯和动摇不定的，一方面她具有少女的情感和欲求；另一方面，她作为一个相国小姐又是在那样的母亲的管教下成长起来的，同时又接受过较多的封建道德教育，这就构成了她思想和行动上的矛盾。她回答张生的那首诗“兰闺久寂寞，无事度芳春：料得行吟者，应怜长叹人。”，表达了她不甘寂寞的苦闷心情，同时也流露了她对异性的渴望。在“听琴”的时候，她被张生琴中热切的呼唤深深地感动着，以致于泪水涟涟，但是她又没有勇气与张生见面。此时在她的心中，封建礼教的束缚和对张生的爱恋激烈地冲突着，最后爱情终于战胜了礼教。因此当她接到张生的情诗时，终于大着胆子写了一首题为《明月三五夜》的回诗，约定张生于十五日晚上相会。“待月西厢下，迎风户半开：拂墙花影动，凝是玉人来。”短短二十个字，标志着莺莺决然走上了叛逆的道路。', '相国小姐', 'team5.jpg', null, null, null);
+INSERT INTO `museum` VALUES ('7', '9', '西厢记', '《崔莺莺待月西厢记》故事虽本唐代元稹《莺莺传》，实际却是脱胎于金代董解元的《西厢记诸宫调》。 [3]  王实甫曾任陕西县令、陕西行台监察御史。后来由于他不满当时官场的龌龊，愤而辞官，决心以写戏抒发心中之郁懑。于是他回到出生地中山府，开始了杂剧创作。金代的一位姓董的读书人，依据唐代元稹的传奇小说《莺莺传》改编成《诸宫调西厢记》，把原来故事中的主人公莺莺写成是博陵郡人。定州在隋代就称博陵郡，所以在博陵一带莺莺和张生的故事流传相当广泛。相传在定州崔沿士一带曾有过崔莺莺的墓冢。王实甫正是根据这一点，在中山府开始了他的杂剧《崔莺莺待月西厢记》的写作。 [5]  该剧大约写于元贞、大德年间（1295~1307年）。|张生在普救寺相遇相国小姐崔莺莺，一见钟情，而无计亲近。恰遇叛将孙飞虎率兵围寺，要强索莺莺为压寨夫人；张生在崔母亲口许婚下，依靠友人白马将军的帮助，解除了危难。不料崔母却食言赖婚，张生相思成疾。莺莺心爱张生而不愿正面表白；几经波折，在红娘的帮助下，莺莺终于至张生住处私会。崔母觉察迹象，拷问红娘，反被红娘几句话点中要害，勉强答应了婚事，却又以门第为由，令张生立即上京应试。十里长亭送别之后，张生到京考中状元；而郑恒借机编造谎言，说张生已在京另娶，老夫人又一次赖婚，要莺莺嫁于郑恒。后张生赶来，郑恒撞死，崔、张完婚。', null, 'reper1.png', null, null, null);
+INSERT INTO `museum` VALUES ('8', '9', '阳春舞台', '绍兴女子文戏科班。1933年7月由嵊县杜联等人合股举办。班址在嵊县四明乡后城村(后移至上江村)。学艺期限定为三年半。招徒30余人，由钟加昌、金荣水为教戏师傅，开蒙戏为《仁义缘》、《红桃山》。六个月后，以尹树春(生)、吴梅珍(旦)、叶樟老(老生)、丁兆丰(丑)为“四柱头”，到浦口镇里东山区和绍兴水乡边演边学艺。后又教了《御碑亭》、《玉连环》、《四香缘》、《碧玉簪》、《二度梅》、《梁山伯与祝英台》等。在绍兴孙端镇时，适遇大王舞台、四季春科班同在一地演出，互相斗台竞艺，阳春舞台获得盛誉。1935年因股东不和，金荣水被迫离去，科班转卖给嵊县华堂镇王伯根，1936年下半年满师后散班。|', null, 'project1.jpg', null, null, null);
+INSERT INTO `museum` VALUES ('9', '6', 'xxx', null, null, 'photo1.jpg', null, null, null);
+INSERT INTO `museum` VALUES ('10', '6', 'xxx', 'xxx', null, 'project1.jpg', null, null, null);
+INSERT INTO `museum` VALUES ('11', '6', 'xxx', 'xxx', null, 'project2.jpg', null, null, null);
+INSERT INTO `museum` VALUES ('12', '6', 'xxx', 'xxxx', null, 'project3.jpg', null, null, null);
+INSERT INTO `museum` VALUES ('13', '6', 'xxx', 'xxx', null, 'project4.jpg', null, null, null);
+INSERT INTO `museum` VALUES ('14', '6', 'xxx', 'xxx', null, 'project5.jpg', null, null, null);
+INSERT INTO `museum` VALUES ('15', '5', '单仰萍', '单仰萍，浙江桐庐（也有说法为建德）人，浙江省桐庐中学毕业。|1972年1月进入桐庐艺训班学戏，工旦角，后为桐庐越剧团主要演员。1984年7月，随桐庐越剧团首次到上海，主演《春江月》。1985年11月，随杭州市越剧二团再次到上海，主演《桐江雨》。后该两剧拍摄成戏曲艺术影片（片名为《绣花女传奇》和《桐江雨》），仍由她主演，表演上宗王（文娟）派。|1988年至1993年进入上海越剧院红楼团演戏。1998年再次进入红楼团。', '越剧一级演员', 'team5.jpg', null, null, null);
+INSERT INTO `museum` VALUES ('16', '5', '单仰萍', '单仰萍，浙江桐庐（也有说法为建德）人，浙江省桐庐中学毕业。|1972年1月进入桐庐艺训班学戏，工旦角，后为桐庐越剧团主要演员。1984年7月，随桐庐越剧团首次到上海，主演《春江月》。1985年11月，随杭州市越剧二团再次到上海，主演《桐江雨》。后该两剧拍摄成戏曲艺术影片（片名为《绣花女传奇》和《桐江雨》），仍由她主演，表演上宗王（文娟）派。|1988年至1993年进入上海越剧院红楼团演戏。1998年再次进入红楼团。', '越剧一级演员', 'team5.jpg', null, null, null);
+INSERT INTO `museum` VALUES ('17', '5', '单仰萍', '单仰萍，浙江桐庐（也有说法为建德）人，浙江省桐庐中学毕业。|1972年1月进入桐庐艺训班学戏，工旦角，后为桐庐越剧团主要演员。1984年7月，随桐庐越剧团首次到上海，主演《春江月》。1985年11月，随杭州市越剧二团再次到上海，主演《桐江雨》。后该两剧拍摄成戏曲艺术影片（片名为《绣花女传奇》和《桐江雨》），仍由她主演，表演上宗王（文娟）派。|1988年至1993年进入上海越剧院红楼团演戏。1998年再次进入红楼团。', '越剧一级演员', 'team5.jpg', null, null, null);
 
 -- ----------------------------
 -- Table structure for `news`
@@ -176,8 +167,8 @@ CREATE TABLE `news` (
   `is_publish` int(11) DEFAULT NULL,
   `click_num` int(11) DEFAULT NULL,
   `exam_status` int(11) DEFAULT NULL,
-  `expansion1` varchar(20) DEFAULT NULL,
-  `expansion2` varchar(20) DEFAULT NULL,
+  `kind` int(20) DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
@@ -194,18 +185,20 @@ INSERT INTO `news` VALUES ('7', 'Seeing The Big Picture Of Information And Infor
 INSERT INTO `news` VALUES ('8', '8', null, null, null, null, null, '1', '1', null, null, null);
 
 -- ----------------------------
--- Table structure for `permission`
+-- Table structure for `node`
 -- ----------------------------
-DROP TABLE IF EXISTS `permission`;
-CREATE TABLE `permission` (
-  `pid` int(22) NOT NULL,
-  `premission` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
-  PRIMARY KEY (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `node`;
+CREATE TABLE `node` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '所属父节点',
+  `name` varchar(10) CHARACTER SET utf8 NOT NULL COMMENT '导航节点的名称',
+  `url` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '导航的url',
+  `status` int(1) unsigned NOT NULL DEFAULT '1' COMMENT '菜单是否显示',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=268 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT COMMENT='后台操作节点';
 
 -- ----------------------------
--- Records of permission
+-- Records of node
 -- ----------------------------
 
 -- ----------------------------
@@ -213,12 +206,17 @@ CREATE TABLE `permission` (
 -- ----------------------------
 DROP TABLE IF EXISTS `review`;
 CREATE TABLE `review` (
-  `id` int(22) NOT NULL,
-  `vid` int(22) DEFAULT NULL,
+  `id` int(22) NOT NULL AUTO_INCREMENT,
   `uid` int(22) DEFAULT NULL,
+  `pid` int(22) DEFAULT NULL,
+  `vid` int(22) DEFAULT NULL,
+  `rname` varchar(255) DEFAULT NULL,
+  `plname` varchar(255) DEFAULT NULL,
   `content` text,
   `picture` varchar(255) DEFAULT NULL,
   `time` varchar(255) DEFAULT NULL,
+  `like_num` int(22) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -231,8 +229,9 @@ CREATE TABLE `review` (
 -- ----------------------------
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
-  `rid` int(22) NOT NULL,
+  `rid` int(22) NOT NULL AUTO_INCREMENT,
   `role` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`rid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -241,19 +240,59 @@ CREATE TABLE `role` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `role_permission`
+-- Table structure for `role_node`
 -- ----------------------------
-DROP TABLE IF EXISTS `role_permission`;
-CREATE TABLE `role_permission` (
-  `id` int(22) NOT NULL,
+DROP TABLE IF EXISTS `role_node`;
+CREATE TABLE `role_node` (
+  `id` int(22) NOT NULL AUTO_INCREMENT,
   `rid` int(22) NOT NULL,
   `pid` int(22) NOT NULL,
-  `status` int(22) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of role_permission
+-- Records of role_node
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `type`
+-- ----------------------------
+DROP TABLE IF EXISTS `type`;
+CREATE TABLE `type` (
+  `id` int(22) NOT NULL AUTO_INCREMENT,
+  `pid` int(22) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of type
+-- ----------------------------
+INSERT INTO `type` VALUES ('1', '0', '博物馆', null);
+INSERT INTO `type` VALUES ('2', '0', '视频', 'video_play.html');
+INSERT INTO `type` VALUES ('3', '0', '新闻', 'news_single.html');
+INSERT INTO `type` VALUES ('4', '0', '活动', null);
+INSERT INTO `type` VALUES ('5', '1', '越剧名家', 'yueju_museum.html');
+INSERT INTO `type` VALUES ('6', '1', '戏服展示', 'yueju_museum_clothing.html');
+INSERT INTO `type` VALUES ('7', '1', '道具百科', 'yueju_museum_prop.html');
+INSERT INTO `type` VALUES ('8', '1', '经典人物', 'yueju_museum_characters.html');
+INSERT INTO `type` VALUES ('9', '1', '经典剧目', 'yueju_museum_repertoire.html');
+INSERT INTO `type` VALUES ('10', '1', '越剧艺术团', 'yueju_museum_troupe.html');
+
+-- ----------------------------
+-- Table structure for `user_role`
+-- ----------------------------
+DROP TABLE IF EXISTS `user_role`;
+CREATE TABLE `user_role` (
+  `id` int(22) NOT NULL AUTO_INCREMENT,
+  `user_id` int(22) DEFAULT NULL,
+  `role_id` int(22) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user_role
 -- ----------------------------
 
 -- ----------------------------
@@ -267,17 +306,36 @@ CREATE TABLE `userinfo` (
   `phone` varchar(20) DEFAULT NULL,
   `user_real_name` varchar(20) DEFAULT NULL,
   `nickname` varchar(50) DEFAULT NULL,
-  `last_login_time` datetime DEFAULT NULL,
-  `last_login_ip` datetime DEFAULT NULL,
+  `last_login_time` varchar(255) DEFAULT NULL,
+  `last_login_ip` varchar(255) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
+  `picture` varchar(255) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of userinfo
 -- ----------------------------
-INSERT INTO `userinfo` VALUES ('1', '123', '123', '13565675637', '小明', '明明', null, null, '111111@qq.com');
-INSERT INTO `userinfo` VALUES ('2', '1', '1', '18958956789', '小陈', '陈陈', null, null, '222222@qq.com');
+INSERT INTO `userinfo` VALUES ('1', '123', '123', '13565675637', '小明', '明明', null, null, '111111@qq.com', null, null);
+INSERT INTO `userinfo` VALUES ('2', '1', '1', '18958956789', '小陈', '陈陈', null, null, '222222@qq.com', null, null);
+
+-- ----------------------------
+-- Table structure for `userlike`
+-- ----------------------------
+DROP TABLE IF EXISTS `userlike`;
+CREATE TABLE `userlike` (
+  `id` int(25) NOT NULL AUTO_INCREMENT,
+  `uid` int(25) DEFAULT NULL,
+  `rid` int(25) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of userlike
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `video`
@@ -287,35 +345,21 @@ CREATE TABLE `video` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
-  `type` int(11) DEFAULT NULL,
+  `actor` varchar(255) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL,
+  `picture` varchar(255) DEFAULT NULL,
   `remark` varchar(255) DEFAULT NULL,
   `play_num` int(20) DEFAULT NULL,
   `collect_num` int(20) DEFAULT NULL,
   `publish_time` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
-  `review_id` int(22) DEFAULT NULL,
   `kind` int(22) DEFAULT NULL,
+  `like_num` int(22) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of video
--- ----------------------------
-
--- ----------------------------
--- Table structure for `video_class`
--- ----------------------------
-DROP TABLE IF EXISTS `video_class`;
-CREATE TABLE `video_class` (
-  `id` varchar(10) NOT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `url` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of video_class
 -- ----------------------------
 
 -- ----------------------------
@@ -326,6 +370,12 @@ CREATE TABLE `video_collect` (
   `id` int(22) NOT NULL AUTO_INCREMENT,
   `uid` int(22) DEFAULT NULL,
   `vid` int(22) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `pictue` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `play_num` int(22) DEFAULT NULL,
+  `collect_num` int(22) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

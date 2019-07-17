@@ -12,6 +12,7 @@ public interface videoMapper {
     public List<video> newest(int kind,int amount);
     public List<video> tkind(int kind);
     public List<video> pkind(int kind);
+    public List<video> selectall();
     public video selectone(int id);
     public int update(video video);
 

@@ -63,6 +63,12 @@
     from video
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectall" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from video
+    where status=1
+  </select>
   <update id="update" parameterType="com.countryside_culture.entity.video" >
     update video
     set status = #{status,jdbcType=INTEGER},

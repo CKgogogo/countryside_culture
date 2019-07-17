@@ -20,6 +20,12 @@
     from focus
     where uid = #{arg0} and mid=#{arg1}
   </select>
+  <select id="showfocus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from focus
+    where uid = #{uid} and status=1
+  </select>
   <update id="update" parameterType="com.countryside_culture.entity.focus" >
     update focus
     set uid = #{uid,jdbcType=INTEGER},

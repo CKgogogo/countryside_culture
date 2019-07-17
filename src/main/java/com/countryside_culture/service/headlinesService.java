@@ -11,8 +11,8 @@ import java.util.List;
 public class headlinesService {
     @Autowired
     headlinesMapper headlinesmapper;
-    public List<headlines> show(){
-        return headlinesmapper.show();
+    public List<headlines> show(int amount){
+        return headlinesmapper.show(amount);
     }
-
+    public headlines selectid(int id){return headlinesmapper.selectid(id);}
 }

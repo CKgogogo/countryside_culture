@@ -3,19 +3,24 @@ package com.countryside_culture.entity;
 public class headlines {
     private Integer id;
 
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+
+    private Integer pid;
     private Integer status;
 
-    private Integer rank;
+    private Integer kind;
 
     private String picture;
 
     private String title;
 
-    private String publishTime;
-
-    private String introduction;
-
-    private String content;
+    private String remark;
 
     public Integer getId() {
         return id;
@@ -33,12 +38,12 @@ public class headlines {
         this.status = status;
     }
 
-    public Integer getRank() {
-        return rank;
+    public Integer getKind() {
+        return kind;
     }
 
-    public void setRank(Integer rank) {
-        this.rank = rank;
+    public void setKind(Integer kind) {
+        this.kind = kind;
     }
 
     public String getPicture() {
@@ -57,27 +62,11 @@ public class headlines {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getPublishTime() {
-        return publishTime;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setPublishTime(String publishTime) {
-        this.publishTime = publishTime == null ? null : publishTime.trim();
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction == null ? null : introduction.trim();
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 }

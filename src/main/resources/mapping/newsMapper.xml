@@ -12,14 +12,14 @@
     <result column="click_num" property="clickNum" jdbcType="INTEGER" />
     <result column="exam_status" property="examStatus" jdbcType="INTEGER" />
     <result column="kind" property="kind" jdbcType="INTEGER" />
-    <result column="expansion2" property="expansion2" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.countryside_culture.entity.news" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, title, author, publish_time, picture, is_hot, is_publish, click_num, exam_status, 
-    kind, expansion2
+    kind, remark
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -52,7 +52,7 @@
   click_num = #{clickNum},
   exam_status = #{examStatus},
   kind = #{kind},
-  expansion2 = #{expansion2}
+  remark = #{remark}
   WHERE id=#{id}
 </update>
 </mapper>

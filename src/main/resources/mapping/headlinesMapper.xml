@@ -4,31 +4,26 @@
   <resultMap id="BaseResultMap" type="com.countryside_culture.entity.headlines" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
-    <result column="rank" property="rank" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="kind" property="kind" jdbcType="INTEGER" />
     <result column="picture" property="picture" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="publish_time" property="publishTime" jdbcType="VARCHAR" />
-    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.countryside_culture.entity.headlines" extends="BaseResultMap" >
-    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, status, rank, picture, title, publish_time, introduction
+    id, status,pid, kind, picture, title, remark
   </sql>
-  <sql id="Blob_Column_List" >
-    content
-  </sql>
-  <select id="show" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select *
+  <select id="show" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
     from headlines
     where status=1
+    ORDER BY id DESC
+    LIMIT #{amount}
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from headlines
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -37,114 +32,21 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.countryside_culture.entity.headlines" >
-    insert into headlines (id, status, rank, 
-      picture, title, publish_time, 
-      introduction, content)
-    values (#{id,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{rank,jdbcType=INTEGER}, 
-      #{picture,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{publishTime,jdbcType=VARCHAR}, 
-      #{introduction,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+    insert into headlines (id, status,pid, kind,
+      picture, title, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},#{pid}, #{kind,jdbcType=INTEGER},
+      #{picture,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.countryside_culture.entity.headlines" >
-    insert into headlines
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="status != null" >
-        status,
-      </if>
-      <if test="rank != null" >
-        rank,
-      </if>
-      <if test="picture != null" >
-        picture,
-      </if>
-      <if test="title != null" >
-        title,
-      </if>
-      <if test="publishTime != null" >
-        publish_time,
-      </if>
-      <if test="introduction != null" >
-        introduction,
-      </if>
-      <if test="content != null" >
-        content,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="rank != null" >
-        #{rank,jdbcType=INTEGER},
-      </if>
-      <if test="picture != null" >
-        #{picture,jdbcType=VARCHAR},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="publishTime != null" >
-        #{publishTime,jdbcType=VARCHAR},
-      </if>
-      <if test="introduction != null" >
-        #{introduction,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.countryside_culture.entity.headlines" >
-    update headlines
-    <set >
-      <if test="status != null" >
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="rank != null" >
-        rank = #{rank,jdbcType=INTEGER},
-      </if>
-      <if test="picture != null" >
-        picture = #{picture,jdbcType=VARCHAR},
-      </if>
-      <if test="title != null" >
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="publishTime != null" >
-        publish_time = #{publishTime,jdbcType=VARCHAR},
-      </if>
-      <if test="introduction != null" >
-        introduction = #{introduction,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.countryside_culture.entity.headlines" >
-    update headlines
-    set status = #{status,jdbcType=INTEGER},
-      rank = #{rank,jdbcType=INTEGER},
-      picture = #{picture,jdbcType=VARCHAR},
-      title = #{title,jdbcType=VARCHAR},
-      publish_time = #{publishTime,jdbcType=VARCHAR},
-      introduction = #{introduction,jdbcType=VARCHAR},
-      content = #{content,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
   <update id="updateByPrimaryKey" parameterType="com.countryside_culture.entity.headlines" >
     update headlines
     set status = #{status,jdbcType=INTEGER},
-      rank = #{rank,jdbcType=INTEGER},
+      pid = #{pid},
+      kind = #{kind,jdbcType=INTEGER},
       picture = #{picture,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
-      publish_time = #{publishTime,jdbcType=VARCHAR},
-      introduction = #{introduction,jdbcType=VARCHAR}
+      remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
