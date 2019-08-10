@@ -1,13 +1,18 @@
 package com.countryside_culture.controller;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.countryside_culture.entity.focus;
 import com.countryside_culture.entity.museum;
 import com.countryside_culture.entity.video;
 import com.countryside_culture.entity.video_collect;
 import com.countryside_culture.service.focusService;
+import com.countryside_culture.service.history;
 import com.countryside_culture.service.museumService;
 import com.countryside_culture.service.videoService;
+import com.countryside_culture.util.RedisUtil;
+import com.countryside_culture.util.SpringUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zlzkj.core.util.Fn;
@@ -20,7 +25,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -96,6 +103,37 @@ public class videoControlle {
             }
         }
         videoservice.update(video);
+
+
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
+        video.setHistorytime(sdf.format(d));
+        if(request.getAttribute("user_id").toString()!=null){
+            String readhistoryValue = null;
+            RedisUtil redisUtil = null;
+            history readhistory=null;
+            redisUtil = (RedisUtil) SpringUtil.applicationContext.getBean("redisUtil");//从spring容器里面得到一个对象
+            readhistoryValue = redisUtil.get(request.getAttribute("user_id").toString());
+            if (readhistoryValue==null){
+                readhistory=new history();
+                readhistory.addItem(video);
+            }else {
+                readhistory = JSON.parseObject(readhistoryValue, new TypeReference<history>() {});
+                for (int i=0;i<readhistory.getItems().size();i++){
+                    if (id==readhistory.getItems().get(i).getId()) {
+                        readhistory.removeItem(i);
+                        readhistory.addItem(video);
+                        break;
+                    }else {
+                        readhistory.addItem(video);
+                    }
+                }
+            }
+            //序列化成字符串。
+            String fromObject = JSON.toJSONString(readhistory);
+            redisUtil.set(request.getAttribute("user_id").toString(), fromObject.toString());
+        }
+
         Fn.ajaxReturn(response,video);
         return "";
     }

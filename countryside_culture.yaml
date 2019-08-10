@@ -1,0 +1,1126 @@
+swagger: '2.0'
+info:
+  title: 越动嵊州城接口
+  description: 越动嵊州城接口文档
+  version: 1.0.0
+host: 127.0.0.1
+schemes:
+  - http
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /user/login:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 用户
+      description: 1.1登录
+      parameters:
+        - name: username
+          in: formData
+          description: 用户名
+          required: true
+          type: string
+        - name: password
+          in: formData
+          description: 密码
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 成功返回ok，否则no
+          schema:
+            $ref: '#/definitions/common'
+            
+  /user/register:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 用户
+      description: 1.2注册
+      parameters:
+        - name: email
+          in: formData
+          description: 邮箱
+          required: true
+          type: string
+        - name: username
+          in: formData
+          description: 用户名
+          required: true
+          type: string
+        - name: password
+          in: formData
+          description: 密码
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 成功返回ok，否则no
+          schema:
+            $ref: '#/definitions/common'
+            
+  /user/modifypwd:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 用户
+      description: 1.3修改密码
+      parameters:
+        - name: oldpassword
+          in: formData
+          description: 旧密码
+          required: true
+          type: string
+        - name: newpassword
+          in: formData
+          description: 新密码
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 修改结果
+          schema:
+            $ref: '#/definitions/common'
+            
+  /user/showcollect:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 用户
+      description: 1.4查看当前用户所有收藏视频
+      parameters:
+        - name: pagesize
+          in: formData
+          description: 分页每页几条数据  默认8
+          required: false
+          type: integer
+        - name: pn
+          in: formData
+          description: 分页第几页  默认1
+          required: false
+          type: integer 
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/video'         
+              
+  /user/showfocus:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 用户
+      description: 1.5查看当前用户所关注的所有演员
+      parameters:
+        - name: pagesize
+          in: formData
+          description: 分页每页几条数据  默认8
+          required: false
+          type: integer
+        - name: pn
+          in: formData
+          description: 分页第几页  默认1
+          required: false
+          type: integer 
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/focus' 
+              
+            
+            
+  /home/headlines:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 首页
+      description: 2.1 轮播图
+      parameters:
+        - name: amount
+          in: formData
+          description: 请求的信息数量 默认5条
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: 轮播图返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/headlines'
+              
+  /home/famous:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 首页
+      description: 2.2 越剧名家
+      parameters:
+        - name: amount
+          in: formData
+          description: 请求的信息数量 默认4条
+          required: false
+          type: integer
+        - name: kind
+          in: formData
+          description: 越剧博物馆类型（1 越剧名家；2 越剧流派；3 经典剧目；4 经典人物；。。。）
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: 越剧博物馆返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/famous'
+              
+  /home/troupe:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 首页
+      description: 2.3 越剧团
+      parameters:
+        - name: amount
+          in: formData
+          description: 请求的信息数量 默认5条
+          required: false
+          type: integer
+        - name: kind
+          in: formData
+          description: 越剧博物馆类型（1 越剧名家；2 越剧流派；3 经典剧目；4 经典人物；。。。）
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: 越剧博物馆返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/troupe'
+              
+  /home/news:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 首页
+      description: 2.4 最新资讯
+      parameters:
+        - name: amount
+          in: formData
+          description: 请求的信息数量 默认4条
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/news'
+              
+  /home/goto:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 首页
+      description: 2.5 点击轮播图跳转
+      parameters:
+        - name: id
+          in: formData
+          description: 轮播图id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 返回数据存在ans中 轮播图包含视频、新闻等等  返回参数可以看其他接口的
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/common'            
+              
+              
+              
+  /news/showall:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 资讯
+      description: 3.1 所有资讯
+      parameters:
+        - name: pagesize
+          in: formData
+          description: 分页每页几条数据  默认6
+          required: false
+          type: integer
+        - name: pn
+          in: formData
+          description: 分页第几页  默认1
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/news'
+              
+  /news/selectone:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 资讯
+      description: 3.2 某个资讯内容
+      parameters:
+        - name: id
+          in: formData
+          description: 资讯id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/news'
+              
+              
+              
+  /museum/showkind:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 越剧博物馆
+      description: 4.1 越剧博物馆各个种类内容
+      parameters:
+        - name: kind
+          in: formData
+          description: 越剧博物馆的种类（1越剧名家；2戏服展示；3道具百科；4经典人物；5经典剧目；6越剧艺术团；7剧照）
+          required: true
+          type: integer
+        - name: pagesize
+          in: formData
+          description: 分页每页几条数据  默认6
+          required: false
+          type: integer
+        - name: pn
+          in: formData
+          description: 分页第几页  默认1
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/museum'
+              
+  /museum/showclass:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 越剧博物馆
+      description: 4.2 越剧博物馆所有种类
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/class'
+              
+  /museum/selectone:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 越剧博物馆
+      description: 4.3 某个越剧博物馆内容
+      parameters:
+        - name: id
+          in: formData
+          description: 越剧博物馆id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/museum'
+              
+              
+  /video/allhot:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频
+      description: 5.1 所有视频中热门的6个
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/video'
+              
+  /video/newest:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频
+      description: 5.2 各类视频中最新的视频
+      parameters:
+        - name: amount
+          in: formData
+          description: 请求的视频数量 默认10个
+          required: false
+          type: integer
+        - name: kind
+          in: formData
+          description: 视频种类
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/video'            
+              
+  /video/hot:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频
+      description: 5.3 各类视频中播放量高的视频
+      parameters:
+        - name: amount
+          in: formData
+          description: 请求的信息数量 默认5条
+          required: false
+          type: integer
+        - name: kind
+          in: formData
+          description: 视频种类
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/video'             
+              
+  /video/tkind:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频
+      description: 5.4 各个种类所有视频  按时间排序
+      parameters:
+        - name: kind
+          in: formData
+          description: 视频种类
+          required: true
+          type: integer
+        - name: pagesize
+          in: formData
+          description: 分页每页几条数据  默认8
+          required: false
+          type: integer
+        - name: pn
+          in: formData
+          description: 分页第几页  默认1
+          required: false
+          type: integer 
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/video'            
+              
+  /video/pkind:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频
+      description: 5.5 各个种类所有视频  按播放量排序
+      parameters:
+        - name: kind
+          in: formData
+          description: 视频种类
+          required: true
+          type: integer
+        - name: pagesize
+          in: formData
+          description: 分页每页几条数据  默认8
+          required: false
+          type: integer
+        - name: pn
+          in: formData
+          description: 分页第几页  默认1
+          required: false
+          type: integer 
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/video' 
+  
+  /video/selectone:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频
+      description: 5.6 某个视频
+      parameters:
+        - name: id
+          in: formData
+          description: 视频id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/video' 
+              
+  /video/collect:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频
+      description: 5.7 收藏或取消收藏视频
+      parameters:
+        - name: id
+          in: formData
+          description: 视频id
+          required: true
+          type: integer
+        - name: status
+          in: formData
+          description: 收藏状态  1为已收藏  0为未收藏
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 成功返回ok  失败返回no（未登录） 
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/common'
+              
+  /video/actor:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频
+      description: 5.8 显示视频演员表
+      parameters:
+        - name: actor
+          in: formData
+          description: 所有演员id拼凑字段
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 返回数据 
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/museum'
+              
+  /video/focus:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频
+      description: 5.9 关注或取消关注演员
+      parameters:
+        - name: id
+          in: formData
+          description: 该演员在博物馆中的id
+          required: true
+          type: integer
+        - name: status
+          in: formData
+          description: 关注状态  1为关注 0为未关注
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 成功返回ok  失败返回no（未登录） 
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/common'
+              
+  /video/actorplay:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频
+      description: 5.10 显示某个演员参演的所有视频
+      parameters:
+        - name: id
+          in: formData
+          description: 该演员在博物馆的id
+          required: true
+          type: integer
+        - name: pagesize
+          in: formData
+          description: 分页每页几条数据  默认8
+          required: false
+          type: integer
+        - name: pn
+          in: formData
+          description: 分页第几页  默认1
+          required: false
+          type: integer 
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/video'   
+              
+              
+              
+  /activity/showall:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 活动
+      description: 6.1 所有活动
+      parameters:
+        - name: pagesize
+          in: formData
+          description: 分页每页几条数据  默认6
+          required: false
+          type: integer
+        - name: pn
+          in: formData
+          description: 分页第几页  默认1
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/activity'
+              
+  /activity/selectone:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 活动
+      description: 6.2 某个活动内容
+      parameters:
+        - name: id
+          in: formData
+          description: 活动id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/activity'            
+              
+              
+              
+  /review/show:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频评论
+      description: 7.1 显示某个视频的评论区
+      parameters:
+        - name: id
+          in: formData
+          description: 视频id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 返回数据
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/review'
+              
+  /review/like:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频评论
+      description: 7.2 取消或点赞评论
+      parameters:
+        - name: id
+          in: formData
+          description: 评论id
+          required: true
+          type: integer
+        - name: status
+          in: formData
+          description: 点赞状态  1点赞  0未点赞
+          required: true
+          type: integer
+        - name: likenum
+          in: formData
+          description: 点赞总数
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: ok修改成功  no用户未登录
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/common'            
+              
+  /review/delete:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频评论
+      description: 7.3 删除评论
+      parameters:
+        - name: id
+          in: formData
+          description: 评论id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: ok删除成功  
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/common'
+              
+  /review/publish:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频评论
+      description: 7.4 发表评论
+      parameters:
+        - name: vid
+          in: formData
+          description: 视频id
+          required: true
+          type: integer
+        - name: content
+          in: formData
+          description: 内容
+          required: true
+          type: string
+      responses:
+        '200':
+          description: ok发表成功  no未登录  
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/common'
+              
+  /review/reply:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - 视频评论
+      description: 7.5 回复评论
+      parameters:
+        - name: id
+          in: formData
+          description: 评论id
+          required: true
+          type: integer
+        - name: content
+          in: formData
+          description: 内容
+          required: true
+          type: string
+      responses:
+        '200':
+          description: ok回复成功  no未登录  
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/common'   
+              
+definitions:
+  common:
+    type: object
+    description: 通用格式
+    properties:
+      msg:
+        description: 返回成功失败信息
+        type: string
+  
+  famous:
+    type: object
+    description: 返回越剧名家的json数据,也可以在famous集合中取
+    properties:
+      picture:
+        description: 图片路径
+        type: string
+      title:
+        description: 名家姓名
+        type: string
+      remake:
+        description: 备注  简介
+        type: string
+      id:
+        description: 主键id
+        type: integer
+      kind:
+        description: 类别id
+        type: integer
+      num:
+        description: 关注人数
+        type: integer
+        
+  headlines:
+    type: object
+    description: 返回状态为1的轮播图数据存在headlines集合里，同时传回json数据
+    properties:
+      id:
+        description: id
+        type: integer
+      pid:
+        description: 其他表的id
+        type: integer
+      kind:
+        description: 字典表id
+        type: integer
+      picture:
+        description: 图片路径
+        type: string
+      title:
+        description: 头条标题
+        type: string
+      remark:
+        description: 头条简介
+        type: string
+        
+  troupe:
+    type: object
+    description: 返回越剧团数据存在troupe集合里，同时传回json数据
+    properties:
+      picture:
+        description: 图片路径
+        type: string
+      title:
+        description: 剧团名
+        type: string
+      remake:
+        description: 备注  简介
+        type: string
+      id:
+        description: 主键id
+        type: integer
+      kind:
+        description: 类别id
+        type: integer
+        
+  news:
+    type: object
+    description: 返回已经发布的最新的资讯数据存在news集合里，同时传回json数据
+    properties:
+      picture:
+        description: 图片路径
+        type: string
+      title:
+        description: 标题
+        type: string
+      publishTime:
+        description: 发布时间
+        type: string
+      lastestTime:
+        description: 最后更新时间
+        type: string
+      author:
+        description: 发布人或来源
+        type: string
+      content:
+        description: 资讯内容
+        type: string
+      clickNum:
+        description: 点击量
+        type: integer
+      remake:
+        description: 简介
+        type: string
+      isHot:
+        description: 是否热门
+        type: integer
+      id:
+        description: 主键id
+        type: integer
+      source:
+        description: 来源
+        type: string
+      auditor:
+        description: 审核者
+        type: string
+      auditorId:
+        description: 审核者id
+        type: integer
+      editor:
+        description: 编辑者
+        type: string
+      editorId:
+        description: 编辑者id
+        type: integer
+        
+  museum:
+    type: object
+    description: 以json形式返回越剧博物馆数据
+    properties:
+      picture:
+        description: 图片路径
+        type: string
+      title:
+        description: 标题|剧团名|名字
+        type: string
+      source:
+        description: 发布人或来源
+        type: string
+      remark:
+        description: 简介
+        type: string
+      kind:
+        description: 种类
+        type: integer
+      id:
+        description: 主键id
+        type: integer
+      content:
+        description: 内容
+        type: string
+      time:
+        description: 发表时间
+        type: string
+      is_focus:
+        description: 是否关注状态  1已关注  0未关注  显示视频演员时有用
+        type: integer
+        
+  class:
+    type: object
+    description: 以json形式返回越剧博物馆所有分类
+    properties:
+      id:
+        description: 种类id
+        type: integer
+      pid:
+        description: 种类子id
+        type: integer
+      name:
+        description: 种类名称
+        type: string
+      url:
+        description: 路径
+        type: string
+        
+  video:
+    type: object
+    description: 以json形式返回视频信息
+    properties:
+      id:
+        description: 视频id
+        type: integer
+      title:
+        description: 视频名
+        type: string
+      url:
+        description: 路径
+        type: string
+      actor:
+        description: 所有演员id拼凑
+        type: string
+      author:
+        description: 上传人
+        type: string
+      picture:
+        description: 图片
+        type: string
+      remark:
+        description: 视频简介
+        type: string
+      playNum:
+        description: 播放量
+        type: integer
+      collectNum:
+        description: 收藏量
+        type: integer
+      publishTime:
+        description: 发布时间
+        type: string
+      status:
+        description: 视频状态
+        type: integer
+      kind:
+        description: 视频种类
+        type: integer
+      likeNum:
+        description: 点赞数
+        type: integer
+      is_collect:
+        description: 收藏状态 1为已收藏  0为未收藏   进入某个具体的视频界面才有用
+        type: integer
+        
+  focus:
+    type: object
+    description: 返回关注的名家信息
+    properties:
+      picture:
+        description: 图片
+        type: string
+      name:
+        description: 名家姓名
+        type: string
+      remake:
+        description: 备注  简介
+        type: string
+      id:
+        description: 主键id
+        type: integer
+      status:
+        description: 关注状态 1已关注 0未关注
+        type: integer
+      mid:
+        description: 名家的id
+        type: integer
+      num:
+        description: 关注量
+        type: integer
+        
+  activity:
+    type: object
+    description: 返回活动信息
+    properties:
+      picture:
+        description: 图片
+        type: string
+      id:
+        description: 主键id
+        type: integer
+      title:
+        description: 活动名
+        type: string
+      content:
+        description: 活动内容
+        type: string
+      eorganizer:
+        description: 举办方
+        type: string
+      eventdate:
+        description: 活动时间
+        type: string
+      url:
+        description: 报名地址
+        type: string
+      kind:
+        description: 活动种类id
+        type: integer
+        
+  review:
+    type: object
+    description: 返回评论信息
+    properties:
+      id:
+        description: 评论id
+        type: integer
+      uid:
+        description: 用户id
+        type: integer
+      pid:
+        description: 评论子id
+        type: integer
+      vid:
+        description: 视频id
+        type: integer
+      rname:
+        description: 被回复者名字
+        type: string
+      plname:
+        description: 评论者名字
+        type: string
+      content:
+        description: 评论内容
+        type: string
+      picture:
+        description: 评论者头像
+        type: string
+      time:
+        description: 评论时间
+        type: string
+      likeNum:
+        description: 点赞数
+        type: integer
+      is_delete:
+        description: 能否删除评论  1能  0不能
+        type: integer
+      is_like:
+        description: 是否点赞  1是  0否
+        type: integer
+      list:
+        description: 是一个review集合  里面是第二层的评论
+        

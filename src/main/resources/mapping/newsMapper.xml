@@ -4,8 +4,14 @@
   <resultMap id="BaseResultMap" type="com.countryside_culture.entity.news" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="auditor_id" property="auditorId" jdbcType="INTEGER" />
     <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="editor_id" property="editorId" jdbcType="INTEGER" />
+    <result column="editor" property="editor" jdbcType="VARCHAR" />
+    <result column="auditor" property="auditor" jdbcType="VARCHAR" />
     <result column="publish_time" property="publishTime" jdbcType="VARCHAR" />
+    <result column="lastest_time" property="lastestTime" jdbcType="VARCHAR" />
     <result column="picture" property="picture" jdbcType="VARCHAR" />
     <result column="is_hot" property="isHot" jdbcType="INTEGER" />
     <result column="is_publish" property="isPublish" jdbcType="INTEGER" />
@@ -18,8 +24,8 @@
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, title, author, publish_time, picture, is_hot, is_publish, click_num, exam_status, 
-    kind, remark
+    id, title, source, auditor_id, author, editor_id, editor, auditor, publish_time, 
+    lastest_time, picture, is_hot, is_publish, click_num, exam_status, kind, remark
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -41,18 +47,24 @@
     from news
     where id = #{id,jdbcType=INTEGER}
   </select>
-<update id="update" parameterType="com.countryside_culture.entity.news" >
-  update news
-  set title = #{title},
-  author = #{author},
-  publish_time = #{publishTime},
-  picture = #{picture},
-  is_hot = #{isHot},
-  is_publish = #{isPublish},
-  click_num = #{clickNum},
-  exam_status = #{examStatus},
-  kind = #{kind},
-  remark = #{remark}
-  WHERE id=#{id}
-</update>
+  <update id="update" parameterType="com.countryside_culture.entity.news" >
+    update news
+    set title = #{title,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      auditor_id = #{auditorId,jdbcType=INTEGER},
+      author = #{author,jdbcType=VARCHAR},
+      editor_id = #{editorId,jdbcType=INTEGER},
+      editor = #{editor,jdbcType=VARCHAR},
+      auditor = #{auditor,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=VARCHAR},
+      lastest_time = #{lastestTime,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      is_hot = #{isHot,jdbcType=INTEGER},
+      is_publish = #{isPublish,jdbcType=INTEGER},
+      click_num = #{clickNum,jdbcType=INTEGER},
+      exam_status = #{examStatus,jdbcType=INTEGER},
+      kind = #{kind,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

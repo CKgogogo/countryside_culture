@@ -4,15 +4,17 @@ import com.countryside_culture.util.SpringUtil;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.bind.annotation.RestController;
 
 @MapperScan("com.countryside_culture.mapper") //扫描的mapper
+@EnableCaching  //开启缓存功能，为redis服务。
+@RestController
 @SpringBootApplication
-public class CountrysideCultureApplication {
+public class CountrysideCultureApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
 //        SpringApplication.run(CountrysideCultureApplication.class, args);
@@ -21,17 +23,9 @@ public class CountrysideCultureApplication {
         SpringUtil.setApplicationContext(applicationContext);
 
     }
-    @Configuration
-    public class EncodingFilterConfig {
-        @Bean
-        public FilterRegistrationBean filterRegistrationBean() {
-            FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-            CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-            characterEncodingFilter.setForceEncoding(true);
-            characterEncodingFilter.setEncoding("UTF-8");
-            registrationBean.setFilter(characterEncodingFilter);
-            return registrationBean;
-        }
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(CountrysideCultureApplication.class);
     }
 
 

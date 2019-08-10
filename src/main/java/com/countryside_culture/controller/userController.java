@@ -1,11 +1,16 @@
 package com.countryside_culture.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.countryside_culture.entity.focus;
 import com.countryside_culture.entity.userinfo;
 import com.countryside_culture.entity.video_collect;
 import com.countryside_culture.service.focusService;
+import com.countryside_culture.service.history;
 import com.countryside_culture.service.userinfoService;
 import com.countryside_culture.service.videoService;
+import com.countryside_culture.util.RedisUtil;
+import com.countryside_culture.util.SpringUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zlzkj.core.util.Fn;
@@ -100,4 +105,22 @@ public class userController {
         return "";
     }
 
+    //历史记录
+    @RequestMapping("history")
+    public String  History(HttpServletRequest request, HttpServletResponse response) {
+        history history = null;
+        String historyValue = null;
+        RedisUtil redisUtil = null;
+        redisUtil = (RedisUtil) SpringUtil.applicationContext.getBean("redisUtil");//从spring容器里面得到一个对象
+        historyValue = redisUtil.get(request.getAttribute("user_id").toString());
+        if(historyValue == null){//需要测试一下哪个不出错。
+            history = new history();
+        }
+        else{
+            history = JSON.parseObject(historyValue, new TypeReference<history>(){});
+        }
+       // model.addAttribute("history", history);
+        Fn.ajaxReturn(response,history);
+        return "";
+    }
 }

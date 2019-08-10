@@ -3,39 +3,35 @@ package com.countryside_culture.entity;
 public class news {
     private Integer id;
 
-    private String title;//标题
+    private String title;
 
-    private String author;//来源、作者
+    private String source;
 
-    private String publishTime;//发布时间
+    private Integer auditorId;
 
-    private String picture;//图片路径
+    private String author;
 
-    private Integer isHot;//是否热门
+    private Integer editorId;
 
-    private Integer isPublish;//是否发布
+    private String editor;
 
-    private Integer clickNum;//点击量
+    private String auditor;
+
+    private String publishTime;
+
+    private String lastestTime;
+
+    private String picture;
+
+    private Integer isHot;
+
+    private Integer isPublish;
+
+    private Integer clickNum;
 
     private Integer examStatus;
 
-    public Integer getKind() {
-        return kind;
-    }
-
-    public void setKind(Integer kind) {
-        this.kind = kind;
-    }
-
     private Integer kind;
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
 
     private String remark;
 
@@ -57,6 +53,22 @@ public class news {
         this.title = title == null ? null : title.trim();
     }
 
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source == null ? null : source.trim();
+    }
+
+    public Integer getAuditorId() {
+        return auditorId;
+    }
+
+    public void setAuditorId(Integer auditorId) {
+        this.auditorId = auditorId;
+    }
+
     public String getAuthor() {
         return author;
     }
@@ -65,12 +77,44 @@ public class news {
         this.author = author == null ? null : author.trim();
     }
 
+    public Integer getEditorId() {
+        return editorId;
+    }
+
+    public void setEditorId(Integer editorId) {
+        this.editorId = editorId;
+    }
+
+    public String getEditor() {
+        return editor;
+    }
+
+    public void setEditor(String editor) {
+        this.editor = editor == null ? null : editor.trim();
+    }
+
+    public String getAuditor() {
+        return auditor;
+    }
+
+    public void setAuditor(String auditor) {
+        this.auditor = auditor == null ? null : auditor.trim();
+    }
+
     public String getPublishTime() {
         return publishTime;
     }
 
     public void setPublishTime(String publishTime) {
         this.publishTime = publishTime == null ? null : publishTime.trim();
+    }
+
+    public String getLastestTime() {
+        return lastestTime;
+    }
+
+    public void setLastestTime(String lastestTime) {
+        this.lastestTime = lastestTime == null ? null : lastestTime.trim();
     }
 
     public String getPicture() {
@@ -111,6 +155,22 @@ public class news {
 
     public void setExamStatus(Integer examStatus) {
         this.examStatus = examStatus;
+    }
+
+    public Integer getKind() {
+        return kind;
+    }
+
+    public void setKind(Integer kind) {
+        this.kind = kind;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 
     public String getContent() {

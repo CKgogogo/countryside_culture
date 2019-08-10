@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2019-07-17 18:07:59
+Date: 2019-07-18 10:32:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -61,6 +61,7 @@ DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `id` int(22) NOT NULL AUTO_INCREMENT,
   `username` varchar(22) DEFAULT NULL,
+  `nickname` varchar(255) DEFAULT NULL,
   `password` varchar(22) DEFAULT NULL,
   `add_time` varchar(255) DEFAULT NULL,
   `status` int(22) DEFAULT NULL,
@@ -72,8 +73,8 @@ CREATE TABLE `admin` (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('1', 'admin', '123456', '1563330252', '1', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif');
-INSERT INTO `admin` VALUES ('2', 'editor', '123456', '1563330252', '1', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif');
+INSERT INTO `admin` VALUES ('1', 'admin', '主编', '123456', '1563330252', '1', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif');
+INSERT INTO `admin` VALUES ('2', 'editor', '编辑小王', '123456', '1563330252', '1', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif');
 
 -- ----------------------------
 -- Table structure for `focus`
@@ -113,6 +114,21 @@ CREATE TABLE `headlines` (
 -- ----------------------------
 -- Records of headlines
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `hibernate_sequence`
+-- ----------------------------
+DROP TABLE IF EXISTS `hibernate_sequence`;
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hibernate_sequence
+-- ----------------------------
+INSERT INTO `hibernate_sequence` VALUES ('1');
+INSERT INTO `hibernate_sequence` VALUES ('1');
+INSERT INTO `hibernate_sequence` VALUES ('1');
 
 -- ----------------------------
 -- Table structure for `museum`
@@ -159,8 +175,14 @@ DROP TABLE IF EXISTS `news`;
 CREATE TABLE `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
+  `source` varchar(255) DEFAULT NULL,
+  `auditor_id` int(255) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL,
+  `editor_id` int(11) DEFAULT NULL,
+  `editor` varchar(255) DEFAULT NULL,
+  `auditor` varchar(255) DEFAULT NULL,
   `publish_time` varchar(255) DEFAULT NULL,
+  `lastest_time` varchar(255) DEFAULT NULL,
   `content` text,
   `picture` varchar(255) DEFAULT NULL,
   `is_hot` int(11) DEFAULT NULL,
@@ -175,14 +197,14 @@ CREATE TABLE `news` (
 -- ----------------------------
 -- Records of news
 -- ----------------------------
-INSERT INTO `news` VALUES ('1', '第十七届越剧大展演昨晚闭幕 越剧“金兰”最佳演员诞生', 'admin', '2011-01-02', '7月7日晚上，为期一个月的“同唱一台戏”2019(中国·绍兴)第十七届越剧大展演落下帷幕，5位越剧“金兰”最佳演员随之诞生。|据了解，今年的越剧大展演为期32天，全国11个剧院联动，进行了43场演出和14场网络直播，共有5万人次走进剧院，近10万人观看了网上直播，70多万人参与了网络票选。“今年是我们首次尝试多城联动的模式，将活动从以前相对单一的城市，辐射到周边更广泛的地区和剧院，大幅提升了大展演的规模和影响力，也为更多的观众带去便利。”绍兴越剧艺术发展有限公司相关负责人介绍。|当晚既是本届大展演的闭幕式，也是越剧“金兰”最佳演员竞演专场。记者在现场看到，本次竞演以“青春的舞台越剧的未来”为主题，13个剧团推选的28名青年演员经过初赛时专业评委的打分和网络人气的综合考量，10位演员脱颖而出，参与到当晚的越剧“金兰”最佳演员的角逐中。|选手们依次上场，经过一番较量，最终得分前5位的选手获得了越剧“金兰”最佳演员。得分最高的选手是来自南京市越剧院的李晓旭，她说这是一次含金量非常高的比赛，他们团里从上到下都非常重视，反复练习彩排，只为把最好的一面展示出来。', 'assets/images/blog/bl2.jpg', null, '1', '1', null, null, null);
-INSERT INTO `news` VALUES ('2', '“越美中华·越剧青年演员大汇演”拉开帷幕', 'admin', '2012-02-02', '著名越剧表演艺术家沈月凤(中)亮相“永联杯·越美中华·越剧青年演员大汇演”新闻发布会。|中新网上海6月28日电(王笈) “永联杯·越美中华·越剧青年演员大汇演”新闻发布会28日在海上梨园举行。越剧名家孟莉英、张伟忠、金静、徐铭、陈丽宇以及昆曲表演艺术家汪世瑜代表评委接过聘书，24家参演团体的各行当青年演员代表进行了宣誓仪式，汇演活动主题曲《追梦·青春》同时首发。|“越美中华·越剧青年演员大汇演”继承了越剧大奖赛的优良传统，旨在展现当下最年轻一代越剧青年的整体风采。活动共分为越秀组(25周岁—35周岁)、新蕾组(25周岁以下)两组进行，通过首轮汇演、晋级竞演、两轮复活、终级竞演等展示环节，最终将诞生金奖选手以及单项荣誉若干名。|据统计，此次汇演共有来自24家专业团体、艺术学校的近200名青年演员参加，其中越秀组80人、新蕾组116人，参加演员及参与院团均创下历史之最。除女子越剧特色外，汇演也为越剧青年男演员提供了展示平台，来自上海越剧院、浙江越剧团、绍兴小百花越剧团等多家单位的15名越剧男演员亦参与其中。|与往届大奖赛不同的是，此次汇演在晋级展示阶段将采用团队对抗的方式一较风采；活动还将在戏曲界首次采用“台网联动”传播，《东方大剧院》将现场转播活动全程，包括首轮汇演、晋级竞演、复活对决和终级竞演，两场复活展示则将通过网络进行投票。|永联杯·越美中华·越剧青年演员大汇演”由上海市戏剧家协会、浙江省戏剧家协会、江苏省戏剧家协会、福建省戏剧家协会担任指导单位，中国广播电视网络有限公司、东方卫视中心公益媒体中心、国广东方网络(北京)有限公司共同主办。', 'assets/images/blog/bl2.jpg', null, '1', '1', null, null, null);
-INSERT INTO `news` VALUES ('3', 'Seeing The Big Picture Of Information And Information Management', 'admin', '2013-11-21', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.|qqqqqqqqqqqqqqq', 'assets/images/blog/bl2.jpg', null, '1', '1', null, null, null);
-INSERT INTO `news` VALUES ('4', 'Seeing The Big Picture Of Information And Information Management', 'admin', '1999-12-12', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.|qqqqqqqqqqqqqqq', 'assets/images/blog/bl2.jpg', null, '1', '1', null, null, null);
-INSERT INTO `news` VALUES ('5', 'Seeing The Big Picture Of Information And Information Management', 'admin', '1998-12-12', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.|qqqqqqqqqqqqqqq', 'assets/images/blog/bl2.jpg', null, '1', '1', null, null, null);
-INSERT INTO `news` VALUES ('6', 'Seeing The Big Picture Of Information And Information Management', 'admin', '1997-12-12', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.|qqqqqqqqqqqqqqq', 'assets/images/blog/bl2.jpg', null, '1', '1', null, null, null);
-INSERT INTO `news` VALUES ('7', 'Seeing The Big Picture Of Information And Information Management', 'admin', '1996-12-12', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.|qqqqqqqqqqqqqqq', 'assets/images/blog/bl2.jpg', null, '1', '1', null, null, null);
-INSERT INTO `news` VALUES ('8', '8', null, null, null, null, null, '1', '1', null, null, null);
+INSERT INTO `news` VALUES ('1', '第十七届越剧大展演昨晚闭幕 越剧“金兰”最佳演员诞生', null, null, 'admin', null, null, null, '2011-01-02', null, '7月7日晚上，为期一个月的“同唱一台戏”2019(中国·绍兴)第十七届越剧大展演落下帷幕，5位越剧“金兰”最佳演员随之诞生。|据了解，今年的越剧大展演为期32天，全国11个剧院联动，进行了43场演出和14场网络直播，共有5万人次走进剧院，近10万人观看了网上直播，70多万人参与了网络票选。“今年是我们首次尝试多城联动的模式，将活动从以前相对单一的城市，辐射到周边更广泛的地区和剧院，大幅提升了大展演的规模和影响力，也为更多的观众带去便利。”绍兴越剧艺术发展有限公司相关负责人介绍。|当晚既是本届大展演的闭幕式，也是越剧“金兰”最佳演员竞演专场。记者在现场看到，本次竞演以“青春的舞台越剧的未来”为主题，13个剧团推选的28名青年演员经过初赛时专业评委的打分和网络人气的综合考量，10位演员脱颖而出，参与到当晚的越剧“金兰”最佳演员的角逐中。|选手们依次上场，经过一番较量，最终得分前5位的选手获得了越剧“金兰”最佳演员。得分最高的选手是来自南京市越剧院的李晓旭，她说这是一次含金量非常高的比赛，他们团里从上到下都非常重视，反复练习彩排，只为把最好的一面展示出来。', 'assets/images/blog/bl2.jpg', null, '1', '1', null, null, null);
+INSERT INTO `news` VALUES ('2', '“越美中华·越剧青年演员大汇演”拉开帷幕', null, null, 'admin', null, null, null, '2012-02-02', null, '著名越剧表演艺术家沈月凤(中)亮相“永联杯·越美中华·越剧青年演员大汇演”新闻发布会。|中新网上海6月28日电(王笈) “永联杯·越美中华·越剧青年演员大汇演”新闻发布会28日在海上梨园举行。越剧名家孟莉英、张伟忠、金静、徐铭、陈丽宇以及昆曲表演艺术家汪世瑜代表评委接过聘书，24家参演团体的各行当青年演员代表进行了宣誓仪式，汇演活动主题曲《追梦·青春》同时首发。|“越美中华·越剧青年演员大汇演”继承了越剧大奖赛的优良传统，旨在展现当下最年轻一代越剧青年的整体风采。活动共分为越秀组(25周岁—35周岁)、新蕾组(25周岁以下)两组进行，通过首轮汇演、晋级竞演、两轮复活、终级竞演等展示环节，最终将诞生金奖选手以及单项荣誉若干名。|据统计，此次汇演共有来自24家专业团体、艺术学校的近200名青年演员参加，其中越秀组80人、新蕾组116人，参加演员及参与院团均创下历史之最。除女子越剧特色外，汇演也为越剧青年男演员提供了展示平台，来自上海越剧院、浙江越剧团、绍兴小百花越剧团等多家单位的15名越剧男演员亦参与其中。|与往届大奖赛不同的是，此次汇演在晋级展示阶段将采用团队对抗的方式一较风采；活动还将在戏曲界首次采用“台网联动”传播，《东方大剧院》将现场转播活动全程，包括首轮汇演、晋级竞演、复活对决和终级竞演，两场复活展示则将通过网络进行投票。|永联杯·越美中华·越剧青年演员大汇演”由上海市戏剧家协会、浙江省戏剧家协会、江苏省戏剧家协会、福建省戏剧家协会担任指导单位，中国广播电视网络有限公司、东方卫视中心公益媒体中心、国广东方网络(北京)有限公司共同主办。', 'assets/images/blog/bl2.jpg', null, '1', '1', null, null, null);
+INSERT INTO `news` VALUES ('3', 'Seeing The Big Picture Of Information And Information Management', null, null, 'admin', null, null, null, '2013-11-21', null, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.|qqqqqqqqqqqqqqq', 'assets/images/blog/bl2.jpg', null, '1', '1', null, null, null);
+INSERT INTO `news` VALUES ('4', 'Seeing The Big Picture Of Information And Information Management', null, null, 'admin', null, null, null, '1999-12-12', null, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.|qqqqqqqqqqqqqqq', 'assets/images/blog/bl2.jpg', null, '1', '1', null, null, null);
+INSERT INTO `news` VALUES ('5', 'Seeing The Big Picture Of Information And Information Management', null, null, 'admin', null, null, null, '1998-12-12', null, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.|qqqqqqqqqqqqqqq', 'assets/images/blog/bl2.jpg', null, '1', '1', null, null, null);
+INSERT INTO `news` VALUES ('6', 'Seeing The Big Picture Of Information And Information Management', null, null, 'admin', null, null, null, '1997-12-12', null, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.|qqqqqqqqqqqqqqq', 'assets/images/blog/bl2.jpg', null, '1', '1', null, null, null);
+INSERT INTO `news` VALUES ('7', 'Seeing The Big Picture Of Information And Information Management', null, null, 'admin', null, null, null, '1996-12-12', null, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.|qqqqqqqqqqqqqqq', 'assets/images/blog/bl2.jpg', null, '1', '1', null, null, null);
+INSERT INTO `news` VALUES ('8', '8', null, null, null, null, null, null, null, null, null, null, null, '1', '1', null, null, null);
 
 -- ----------------------------
 -- Table structure for `node`
@@ -229,15 +251,17 @@ CREATE TABLE `review` (
 -- ----------------------------
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
-  `rid` int(22) NOT NULL AUTO_INCREMENT,
+  `id` int(22) NOT NULL AUTO_INCREMENT,
   `role` varchar(255) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`rid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of role
 -- ----------------------------
+INSERT INTO `role` VALUES ('1', 'admin', '');
+INSERT INTO `role` VALUES ('2', 'editor', '');
 
 -- ----------------------------
 -- Table structure for `role_node`
@@ -289,11 +313,14 @@ CREATE TABLE `user_role` (
   `user_id` int(22) DEFAULT NULL,
   `role_id` int(22) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_role
 -- ----------------------------
+INSERT INTO `user_role` VALUES ('1', '1', '1');
+INSERT INTO `user_role` VALUES ('2', '1', '2');
+INSERT INTO `user_role` VALUES ('3', '2', '2');
 
 -- ----------------------------
 -- Table structure for `userinfo`

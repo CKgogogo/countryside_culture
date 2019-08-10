@@ -12,6 +12,15 @@ public class video {
     private Integer is_collect=0;
     private Integer id;
 
+    public String getHistorytime() {
+        return historytime;
+    }
+
+    public void setHistorytime(String historytime) {
+        this.historytime = historytime;
+    }
+
+    private String historytime;
     private String title;
 
     private String url;
