@@ -39,18 +39,18 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         // System.out.println("配置队列中");
         // 主机自带内存消息队列
-        /*.enableSimpleBroker("/topic","/queue");*/
+        registry.enableSimpleBroker("/topic","/queue");
         //假如需要第三方消息队列，比如rabitMQ,activeMq，在这里配置
-        registry.setApplicationDestinationPrefixes("/app")
-                .enableStompBrokerRelay("/topic", "/queue")
-                .setRelayHost("127.0.0.1")
-                .setRelayPort(61613)
-                .setClientLogin("guest")
-                .setClientPasscode("guest")
-                .setSystemLogin("guest")
-                .setSystemPasscode("guest")
-                .setSystemHeartbeatSendInterval(5000)
-                .setSystemHeartbeatReceiveInterval(4000);
+        registry.setApplicationDestinationPrefixes("/app");
+//                .enableStompBrokerRelay("/topic", "/queue")
+//                .setRelayHost("127.0.0.1")
+//                .setRelayPort(61613)
+//                .setClientLogin("guest")
+//                .setClientPasscode("guest")
+//                .setSystemLogin("guest")
+//                .setSystemPasscode("guest")
+//                .setSystemHeartbeatSendInterval(5000)
+//                .setSystemHeartbeatReceiveInterval(4000);
     }
 
     @Override

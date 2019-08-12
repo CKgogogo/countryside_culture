@@ -4,19 +4,19 @@
   <resultMap id="BaseResultMap" type="com.countryside_culture.entity.activity" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="endtime" property="endtime" jdbcType="VARCHAR" />
     <result column="eorganizer" property="eorganizer" jdbcType="VARCHAR" />
-    <result column="eventdate" property="eventdate" jdbcType="VARCHAR" />
-    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="starttime" property="starttime" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="picture" property="picture" jdbcType="VARCHAR" />
     <result column="kind" property="kind" jdbcType="INTEGER" />
-    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="hits" property="hits" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.countryside_culture.entity.activity" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, title, keyword, eorganizer, eventdate, url, picture, kind, status
+    id, title, endtime, eorganizer, starttime, status, picture, kind, hits
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -29,136 +29,18 @@
   <select id="showall" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *
     from activity
-    where status=1
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from activity
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.countryside_culture.entity.activity" >
-    insert into activity (id, title, keyword, 
-      eorganizer, eventdate, url, 
-      picture, kind, status, 
-      content)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR}, 
-      #{eorganizer,jdbcType=VARCHAR}, #{eventdate,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{picture,jdbcType=VARCHAR}, #{kind,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
-      #{content,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.countryside_culture.entity.activity" >
-    insert into activity
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="title != null" >
-        title,
-      </if>
-      <if test="keyword != null" >
-        keyword,
-      </if>
-      <if test="eorganizer != null" >
-        eorganizer,
-      </if>
-      <if test="eventdate != null" >
-        eventdate,
-      </if>
-      <if test="url != null" >
-        url,
-      </if>
-      <if test="picture != null" >
-        picture,
-      </if>
-      <if test="kind != null" >
-        kind,
-      </if>
-      <if test="status != null" >
-        status,
-      </if>
-      <if test="content != null" >
-        content,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="keyword != null" >
-        #{keyword,jdbcType=VARCHAR},
-      </if>
-      <if test="eorganizer != null" >
-        #{eorganizer,jdbcType=VARCHAR},
-      </if>
-      <if test="eventdate != null" >
-        #{eventdate,jdbcType=VARCHAR},
-      </if>
-      <if test="url != null" >
-        #{url,jdbcType=VARCHAR},
-      </if>
-      <if test="picture != null" >
-        #{picture,jdbcType=VARCHAR},
-      </if>
-      <if test="kind != null" >
-        #{kind,jdbcType=INTEGER},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.countryside_culture.entity.activity" >
-    update activity
-    <set >
-      <if test="title != null" >
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="keyword != null" >
-        keyword = #{keyword,jdbcType=VARCHAR},
-      </if>
-      <if test="eorganizer != null" >
-        eorganizer = #{eorganizer,jdbcType=VARCHAR},
-      </if>
-      <if test="eventdate != null" >
-        eventdate = #{eventdate,jdbcType=VARCHAR},
-      </if>
-      <if test="url != null" >
-        url = #{url,jdbcType=VARCHAR},
-      </if>
-      <if test="picture != null" >
-        picture = #{picture,jdbcType=VARCHAR},
-      </if>
-      <if test="kind != null" >
-        kind = #{kind,jdbcType=INTEGER},
-      </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.countryside_culture.entity.activity" >
-    update activity
-    set title = #{title,jdbcType=VARCHAR},
-      keyword = #{keyword,jdbcType=VARCHAR},
-      eorganizer = #{eorganizer,jdbcType=VARCHAR},
-      eventdate = #{eventdate,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR},
-      picture = #{picture,jdbcType=VARCHAR},
-      kind = #{kind,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
-      content = #{content,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.countryside_culture.entity.activity" >
+  <select id="showhot" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select *
+    from activity
+    where hits>100 and status="正在进行"
+  </select>
+  <select id="showdoing" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select *
+    from activity
+    where  status=#{status}
+  </select>
+  <update id="update" parameterType="com.countryside_culture.entity.activity" >
     update activity
     set title = #{title,jdbcType=VARCHAR},
       keyword = #{keyword,jdbcType=VARCHAR},

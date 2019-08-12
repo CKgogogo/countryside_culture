@@ -14,5 +14,7 @@ public class activityService {
 
     public activity selectid(int id){return activitymapper.selectid(id);}
     public List<activity> showall(){return activitymapper.showall();}
-
+    public List<activity> showhot(){return activitymapper.showhot();}
+    public List<activity> showdoing(String status){return activitymapper.showdoing(status);}
+    public int update(activity activity){return activitymapper.update(activity);}
 }

@@ -9,15 +9,7 @@ import java.util.List;
 public interface activityMapper {
     public activity selectid(int id);
     public List<activity> showall();
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(activity record);
-
-    int insertSelective(activity record);
-
-    int updateByPrimaryKeySelective(activity record);
-
-    int updateByPrimaryKeyWithBLOBs(activity record);
-
-    int updateByPrimaryKey(activity record);
+    public List<activity> showhot();
+    public List<activity> showdoing(String status);
+    int update(activity record);
 }

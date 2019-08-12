@@ -33,12 +33,13 @@ public class userController {
     private focusService focusservice;
     //    用户登录
     @ResponseBody
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login")
     public String checkLogin(HttpServletRequest request){
         String username=request.getParameter("username").toString();
         String password=request.getParameter("password").toString();
         userinfo  userinfo = userinfoservice.checkLogin(username,password);
         if (userinfo!=null) {//设置用户信息到session里面。
+            request.getSession().setAttribute("user",userinfo);
             request.getSession().setAttribute("picture", userinfo.getPicture());
             request.getSession().setAttribute("user_id", userinfo.getUserId());
             request.getSession().setAttribute("nickname",userinfo.getNickname());
@@ -50,7 +51,7 @@ public class userController {
 
     //    用户注册
     @ResponseBody
-    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    @RequestMapping(value = "/register")
     public String Register(HttpServletRequest request){
         userinfo userinfo = new userinfo();
         userinfo.setPassword(request.getParameter("password").toString());

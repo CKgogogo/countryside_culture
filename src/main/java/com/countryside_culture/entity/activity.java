@@ -5,19 +5,52 @@ public class activity {
 
     private String title;
 
-    private String keyword;
+    private String endtime;
 
     private String eorganizer;
 
-    private String eventdate;
+    public String getEndtime() {
+        return endtime;
+    }
 
-    private String url;
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
+    }
+
+    public String getStarttime() {
+        return starttime;
+    }
+
+    public void setStarttime(String starttime) {
+        this.starttime = starttime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+    private String starttime;
+
+    public Integer getHits() {
+        return hits;
+    }
+
+    public void setHits(Integer hits) {
+        this.hits = hits;
+    }
+
+    private String status;
 
     private String picture;
 
     private Integer kind;
 
-    private Integer status;
+    private Integer hits;
 
     private String content;
 
@@ -37,13 +70,6 @@ public class activity {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public void setKeyword(String keyword) {
-        this.keyword = keyword == null ? null : keyword.trim();
-    }
 
     public String getEorganizer() {
         return eorganizer;
@@ -53,21 +79,6 @@ public class activity {
         this.eorganizer = eorganizer == null ? null : eorganizer.trim();
     }
 
-    public String getEventdate() {
-        return eventdate;
-    }
-
-    public void setEventdate(String eventdate) {
-        this.eventdate = eventdate == null ? null : eventdate.trim();
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
-    }
 
     public String getPicture() {
         return picture;
@@ -83,14 +94,6 @@ public class activity {
 
     public void setKind(Integer kind) {
         this.kind = kind;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 
     public String getContent() {
