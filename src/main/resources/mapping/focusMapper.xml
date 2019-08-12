@@ -18,7 +18,7 @@
     select
     <include refid="Base_Column_List" />
     from focus
-    where uid = #{arg0} and mid=#{arg1}
+    where uid = #{uid} and mid=#{mid}
   </select>
   <select id="showfocus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select

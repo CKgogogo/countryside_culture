@@ -19,7 +19,7 @@
     select
     <include refid="Base_Column_List" />
     from video_collect
-    where uid = #{arg0} and vid=#{arg1}
+    where uid = #{uid} and vid=#{vid}
   </select>
 
   <select id="showcollect" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

@@ -21,7 +21,7 @@
 
   <select id="checkLogin"  resultMap="BaseResultMap" >
         select * from userinfo
-        where username = #{arg0} and password = #{arg1}
+        where username = #{username} and password = #{password}
   </select>
   <insert id="register" parameterType="com.countryside_culture.entity.userinfo" >
     insert into userinfo (user_id, password, username, email,status)

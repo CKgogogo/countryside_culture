@@ -14,7 +14,7 @@
     select
     <include refid="Base_Column_List" />
     from userlike
-    where uid = #{arg0} and rid = #{arg1}
+    where uid = #{uid} and rid = #{rid}
   </select>
   <update id="update" parameterType="com.countryside_culture.entity.userlike" >
     update userlike
