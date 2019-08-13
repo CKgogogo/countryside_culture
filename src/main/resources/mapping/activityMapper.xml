@@ -43,13 +43,13 @@
   <update id="update" parameterType="com.countryside_culture.entity.activity" >
     update activity
     set title = #{title,jdbcType=VARCHAR},
-      keyword = #{keyword,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=VARCHAR},
       eorganizer = #{eorganizer,jdbcType=VARCHAR},
-      eventdate = #{eventdate,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR},
+      endtime = #{endtime,jdbcType=VARCHAR},
+      hits = #{hits,jdbcType=INTEGER},
       picture = #{picture,jdbcType=VARCHAR},
       kind = #{kind,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER}
+      status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

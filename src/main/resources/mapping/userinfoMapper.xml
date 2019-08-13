@@ -23,6 +23,10 @@
         select * from userinfo
         where username = #{username} and password = #{password}
   </select>
+  <select id="select"  resultMap="BaseResultMap" >
+        select * from userinfo
+        where user_id=#{id}
+  </select>
   <insert id="register" parameterType="com.countryside_culture.entity.userinfo" >
     insert into userinfo (user_id, password, username, email,status)
     values (#{userId,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},

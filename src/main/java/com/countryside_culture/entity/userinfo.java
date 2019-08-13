@@ -23,6 +23,23 @@ public class userinfo {
 
     private Integer status;
 
+    public userinfo() {
+    }
+
+    public userinfo(Integer userId, String password, String username, String phone, String userRealName, String nickname, String lastLoginTime, String lastLoginIp, String email, String picture, Integer status) {
+        this.userId = userId;
+        this.password = password;
+        this.username = username;
+        this.phone = phone;
+        this.userRealName = userRealName;
+        this.nickname = nickname;
+        this.lastLoginTime = lastLoginTime;
+        this.lastLoginIp = lastLoginIp;
+        this.email = email;
+        this.picture = picture;
+        this.status = status;
+    }
+
     public Integer getUserId() {
         return userId;
     }

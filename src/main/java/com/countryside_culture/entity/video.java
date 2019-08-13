@@ -45,6 +45,24 @@ public class video {
 
     private String picture;
 
+    public String getAuditor() {
+        return auditor;
+    }
+
+    public void setAuditor(String auditor) {
+        this.auditor = auditor;
+    }
+
+    public Integer getAuditorId() {
+        return auditorId;
+    }
+
+    public void setAuditorId(Integer auditorId) {
+        this.auditorId = auditorId;
+    }
+
+    private String auditor;
+    private Integer auditorId;
     private String author;
 
     private String remark;

@@ -12,7 +12,7 @@ public class userinfoService {
     public userinfo checkLogin(String username,String password){
         return userinfomapper.checkLogin(username,password);
     }
-
+    public userinfo select(int id){return userinfomapper.select(id);}
     public int register(userinfo userinfo){
         return userinfomapper.register(userinfo);
     }

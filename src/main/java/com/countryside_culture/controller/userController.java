@@ -9,6 +9,7 @@ import com.countryside_culture.service.focusService;
 import com.countryside_culture.service.history;
 import com.countryside_culture.service.userinfoService;
 import com.countryside_culture.service.videoService;
+import com.countryside_culture.util.IpUtil;
 import com.countryside_culture.util.RedisUtil;
 import com.countryside_culture.util.SpringUtil;
 import com.github.pagehelper.PageHelper;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -39,6 +42,14 @@ public class userController {
         String password=request.getParameter("password").toString();
         userinfo  userinfo = userinfoservice.checkLogin(username,password);
         if (userinfo!=null) {//设置用户信息到session里面。
+            Date d = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
+            String ip = IpUtil.getIp(request);
+            userinfo.setLastLoginTime(sdf.format(d));
+            userinfo.setLastLoginIp(ip);
+            userinfoservice.update(userinfo);
+
+
             request.getSession().setAttribute("user",userinfo);
             request.getSession().setAttribute("picture", userinfo.getPicture());
             request.getSession().setAttribute("user_id", userinfo.getUserId());
@@ -122,6 +133,15 @@ public class userController {
         }
        // model.addAttribute("history", history);
         Fn.ajaxReturn(response,history);
+        return "";
+    }
+
+    //用户信息
+    @RequestMapping("userinfo")
+    public String  Userinfo(HttpServletRequest request, HttpServletResponse response) {
+        int id=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
+        userinfo userinfo=userinfoservice.select(id);
+        Fn.ajaxReturn(response,userinfo);
         return "";
     }
 }
