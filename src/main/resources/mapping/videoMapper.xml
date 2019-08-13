@@ -8,7 +8,7 @@
     <result column="actor" property="actor" jdbcType="VARCHAR" />
     <result column="picture" property="picture" jdbcType="VARCHAR" />
     <result column="author" property="author" jdbcType="VARCHAR" />
-    <result column="auditorId" property="auditorId" jdbcType="INTEGER" />
+    <result column="auditor_id" property="auditorId" jdbcType="INTEGER" />
     <result column="auditor" property="auditor" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="play_num" property="playNum" jdbcType="INTEGER" />
@@ -19,7 +19,7 @@
     <result column="like_num" property="likeNum" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, title, url, actor,picture,auditorId,auditor, author, remark, play_num, collect_num, publish_time, status,
+    id, title, url, actor,picture,auditor_id,auditor, author, remark, play_num, collect_num, publish_time, status,
    kind, like_num
   </sql>
   <select id="allhot" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
