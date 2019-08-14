@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+    <link rel="shortcut icon" href="assets/image/logo/logo3.png"  />
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <style>
+        .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+            color: #fff;
+            background-color: #999;
+        }
+        p{
+            font-family: SimSun;
+        }
+    </style>
+</head>
+<body class="animated fadeIn">
+<div class="container-fluid p-0 ">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
+        <a href="index.html" class="navbar-brand p-0" style="width: 88px;">
+            <img src="assets/image/logo/logo2.png"  width="100%" alt="">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav daohang">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">知越
+                    </a>
+                    <div class="dropdown-menu text-center">
+                        <a href="famousPeople.html" class="dropdown-item ">越剧名人</a>
+                        <a href="active.html?pn=1" class="dropdown-item ">精彩活动</a>
+                        <a href="yueJuTown.html" class="dropdown-item">越剧小镇</a>
+                        <a href="costume.html" class="dropdown-item">戏服</a>
+                        <a href="prop.html" class="dropdown-item">表演道具</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html?pn=1" class="nav-link">资讯</a>
+                </li>
+                <li class="nav-item">
+                    <a href="culture.html" class="nav-link">嵊州风情</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="video.html" class="nav-link">在线视频</a>
+                </li>
+                <li class="nav-item">
+                    <a href="live.html" class="nav-link">直播</a>
+                </li>
+            </ul>
+            <a href="" class=" nav-link ml-auto" style="font-size: 24px;color:white;width: 75px;">
+                <img src="assets/image/user/default.jpg" width="100%" class="rounded-circle" alt="">
+
+            </a>
+            <!--<a href="" class=" nav-link ml-auto" style="font-size: 24px;color:white;width: 100px;font-family: MyNewFont">-->
+                <!--&lt;!&ndash;<img src="assets/image/user/default.jpg" width="100%" class="rounded-circle" alt="">&ndash;&gt;-->
+              <!--登录-->
+            <!--</a>-->
+        </div>
+    </nav>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-3 offset-1 p-0" style="background-color: #dae0e5">
+            <div class="col-12 p-0 " style="background: url('assets/image/bg.jpg') no-repeat;height:273px; ">
+                <div class="col-5  m-auto text-center">
+                    <img src="assets/image/test.jpg" class="img-fluid rounded-circle mt-5 userImg" alt="">
+                    <p class="mt-4 font-weight-bold userName">游客123</p>
+                </div>
+            </div>
+            <div class="nav nav-pills flex-column text-left mt-3" style="height: 250px;">
+                <a href="#tab1" class="nav-link active " data-toggle="tab" data-target="#tab1" style="color: #343a40;">浏览记录</a>
+                <a href="#tab2" class="nav-link" data-toggle="tab" data-target="#tab2" style="color: #343a40;">我的收藏</a>
+                <a href="#tab3" class="nav-link " data-toggle="tab" data-target="#tab3" style="color: #343a40;">我的关注</a>
+                <a href="#tab4" class="nav-link " data-toggle="tab" data-target="#tab4" style="color: #343a40;">个人资料</a>
+                <a href="#tab5" class="nav-link " data-toggle="tab" data-target="#tab5" style="color: #343a40;">修改密码</a>
+            </div>
+        </div>
+        <div class="col-7">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="tab1">
+                    <div class="col-12 row ml-1">
+                        <div class="col-12">
+                            <p style="font-size: 23px;font-weight: 900;">今天</p>
+                        </div>
+                        <div class="col-4 pl-0">
+                            <a href="videoPlay.html">
+                                <div class="box">
+                                    <img style="" class="img-fluid rounded"
+                                         src="assets/image/video/video3.jpg">
+                                    <div class="box-content">
+                                        <span class="title fa fa-play-circle-o"
+                                              style="color: white;font-size: 55px;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="videoPlay.html" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            </a>
+                        </div>
+                        <div class="col-4 pl-0">
+                            <a href="videoPlay.html">
+                                <div class="box">
+                                    <img style="" class="img-fluid rounded"
+                                         src="assets/image/video/video3.jpg">
+                                    <div class="box-content">
+                                        <span class="title fa fa-play-circle-o"
+                                              style="color: white;font-size: 55px;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="videoPlay.html" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            </a>
+                        </div>
+                    </div>
+<br>
+                    <div class="col-12 row ml-1">
+                        <div class="col-12">
+                            <p style="font-size: 23px;font-weight: 900;">昨天</p>
+                        </div>
+                        <div class="col-4 pl-0">
+                            <a href="videoPlay.html">
+                                <div class="box">
+                                    <img style="" class="img-fluid rounded"
+                                         src="assets/image/video/video3.jpg">
+                                    <div class="box-content">
+                                        <span class="title fa fa-play-circle-o"
+                                              style="color: white;font-size: 55px;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="videoPlay.html" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            </a>
+                        </div>
+                        <div class="col-4 pl-0">
+                            <a href="videoPlay.html">
+                                <div class="box">
+                                    <img style="" class="img-fluid rounded"
+                                         src="assets/image/video/video3.jpg">
+                                    <div class="box-content">
+                                        <span class="title fa fa-play-circle-o"
+                                              style="color: white;font-size: 55px;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="videoPlay.html" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            </a>
+                        </div>
+                        <div class="col-4 pl-0">
+                            <a href="videoPlay.html">
+                                <div class="box">
+                                    <img style="" class="img-fluid rounded"
+                                         src="assets/image/video/video3.jpg">
+                                    <div class="box-content">
+                                        <span class="title fa fa-play-circle-o"
+                                              style="color: white;font-size: 55px;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="videoPlay.html" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            </a>
+                        </div>
+                        <div class="col-4 pl-0">
+                            <a href="videoPlay.html">
+                                <div class="box">
+                                    <img style="" class="img-fluid rounded"
+                                         src="assets/image/video/video3.jpg">
+                                    <div class="box-content">
+                                        <span class="title fa fa-play-circle-o"
+                                              style="color: white;font-size: 55px;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="videoPlay.html" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            </a>
+                        </div>
+                    </div>
+<br>
+                    <div class="col-12 row ml-1">
+                        <div class="col-12">
+                            <p style="font-size: 23px;font-weight: 900;">更早</p>
+                        </div>
+                        <div class="col-4 pl-0">
+                            <a href="videoPlay.html">
+                                <div class="box">
+                                    <img style="" class="img-fluid rounded"
+                                         src="assets/image/video/video3.jpg">
+                                    <div class="box-content">
+                                        <span class="title fa fa-play-circle-o"
+                                              style="color: white;font-size: 55px;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="videoPlay.html" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            </a>
+                        </div>
+                        <div class="col-4 pl-0">
+                            <a href="videoPlay.html">
+                                <div class="box">
+                                    <img style="" class="img-fluid rounded"
+                                         src="assets/image/video/video3.jpg">
+                                    <div class="box-content">
+                                        <span class="title fa fa-play-circle-o"
+                                              style="color: white;font-size: 55px;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="videoPlay.html" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            </a>
+                        </div>
+                        <div class="col-4 pl-0">
+                            <a href="videoPlay.html">
+                                <div class="box">
+                                    <img style="" class="img-fluid rounded"
+                                         src="assets/image/video/video3.jpg">
+                                    <div class="box-content">
+                                        <span class="title fa fa-play-circle-o"
+                                              style="color: white;font-size: 55px;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="videoPlay.html" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            </a>
+                        </div>
+                        <div class="col-4 pl-0">
+                            <a href="videoPlay.html">
+                                <div class="box">
+                                    <img style="" class="img-fluid rounded"
+                                         src="assets/image/video/video3.jpg">
+                                    <div class="box-content">
+                                        <span class="title fa fa-play-circle-o"
+                                              style="color: white;font-size: 55px;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="videoPlay.html" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            </a>
+                        </div>
+                        <div class="col-4 pl-0">
+                            <a href="videoPlay.html">
+                                <div class="box">
+                                    <img style="" class="img-fluid rounded"
+                                         src="assets/image/video/video3.jpg">
+                                    <div class="box-content">
+                                        <span class="title fa fa-play-circle-o"
+                                              style="color: white;font-size: 55px;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="videoPlay.html" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            </a>
+                        </div>
+                        <div class="col-4 pl-0">
+                            <a href="videoPlay.html">
+                                <div class="box">
+                                    <img style="" class="img-fluid rounded"
+                                         src="assets/image/video/video3.jpg">
+                                    <div class="box-content">
+                                        <span class="title fa fa-play-circle-o"
+                                              style="color: white;font-size: 55px;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="videoPlay.html" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            </a>
+                        </div>
+                        <div class="col-4 pl-0">
+                            <a href="videoPlay.html">
+                                <div class="box">
+                                    <img style="" class="img-fluid rounded"
+                                         src="assets/image/video/video3.jpg">
+                                    <div class="box-content">
+                                        <span class="title fa fa-play-circle-o"
+                                              style="color: white;font-size: 55px;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="videoPlay.html" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="tab2">
+                    <div class="col-12 text-center">
+                        <h4>我的收藏</h4>
+                    </div>
+                    <br>
+                    <div class="col-12 row ml-1 collect">
+                        <div class="col-4 pl-0" v-for="collectList in rows.list">
+                            <a  v-bind:href="'videoPlay.html?id='+collectList.id">
+                                <div class="box">
+                                    <img style="" class="img-fluid rounded"
+                                        v-bind:src="'assets/image/video/'+collectList.pictue">
+                                    <div class="box-content">
+                                        <span class="title fa fa-play-circle-o"
+                                              style="color: white;font-size: 55px;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="videoPlay.html" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="">{{collectList.title}}</p>
+                            </a>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="tab3">
+                    <div class="col-12 text-center">
+                        <h4>我的关注</h4>
+                    </div>
+                    <br>
+                    <div class="col-12 row focus">
+                        <div class="col-3 ml-5 mt-5" v-for="myFocus in rows2.list">
+                            <img v-bind:src="'assets/image/people/'+myFocus.picture"
+                                 class="img-fluid rounded-circle" alt="">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="tab4">
+                    <div class="col-12 text-center">
+                        <h5>个人资料</h5>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-3 m-auto">
+                            <img src="assets/image/test.jpg" class="img-fluid rounded-circle" alt="">
+                        </div>
+                        <div class="col-7 offset-2">
+                            <form action="" class="mt-5">
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-3 col-form-label">用户名</label>
+                                    <div class="col-9">
+                                        <input type="password" class="form-control" id="username"
+                                               placeholder="username">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-3 col-form-label">性别</label>
+                                    <div class="col-9">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                   id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">男</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                   id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2">女</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-3 col-form-label">邮箱</label>
+                                    <div class="col-9">
+                                        <input type="password" class="form-control" id="email"
+                                               placeholder="email">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-3 col-form-label">个人介绍</label>
+                                    <div class="col-9">
+                                        <textarea name="" id="" class="container-fluid" rows="4" ></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="button" class="btn btn-light">修改</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab5">
+                    <div class="col-12 text-center">
+                        <h5>修改密码</h5>
+                    </div>
+                    <div class="col-7 offset-2">
+                        <form class="mt-5">
+                            <!--<div class="form-group row">-->
+                            <!--<label for="staticEmail" class="col-3 col-form-label">原密码</label>-->
+                            <!--<div class="col-9">-->
+                            <!--<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <div class="form-group row">
+                                <label for="inputPassword" class="col-3 col-form-label">原密码</label>
+                                <div class="col-9">
+                                    <input type="password" class="form-control" id="inputPassword3"
+                                           placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputPassword" class="col-3 col-form-label">新密码</label>
+                                <div class="col-9">
+                                    <input type="password" class="form-control" id="inputPassword"
+                                           placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputPassword" class="col-3 col-form-label">确认密码</label>
+                                <div class="col-9">
+                                    <input type="password" class="form-control" id="inputPassword2"
+                                           placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="button" class="btn btn-light">确认修改</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="assets/js/jquery-2.2.4.js"></script>
+<script src="assets/js/bootstrap.bundle.js"></script>
+<script src="assets/js/vue.js"></script>
+<script>
+    var path = "http://47.95.218.93:8090";
+    $.ajax({
+        type: "POST",
+        url: path +"/user/userinfo",
+        data: '',
+        xhrFields: {
+            withCredentials: true
+        },
+        contentType: "application/json",
+        dataType: "json",
+        success: function (msg) {
+            $('.userImg').attr('src','assets/image/user/'+msg.picture);
+            $('.userName').html(msg.nickname);
+        },
+        error: function (err) {
+            alert("请先登录");
+        }
+    });
+    var collect = new Vue({
+        el: '.collect',
+        data: {
+            rows: {},
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: path +"/user/showcollect",
+        data: '',
+        xhrFields: {
+            withCredentials: true
+        },
+        contentType: "application/json",
+        dataType: "json",
+        success: function (msg) {
+            collect.rows=msg;
+        },
+        error: function (err) {
+
+        }
+    });
+    var focus = new Vue({
+        el: '.focus',
+        data: {
+            rows2: {},
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: path +"/user/showfocus",
+        data: '',
+        xhrFields: {
+            withCredentials: true
+        },
+        contentType: "application/json",
+        dataType: "json",
+        success: function (msg) {
+            focus.rows2=msg;
+
+        },
+        error: function (err) {
+
+        }
+    });
+
+</script>
+</body>
+</html>

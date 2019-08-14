@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <link href="assets/css2/videojs.css" rel="stylesheet">
+    <script src="assets/js2/videojs.js"></script>
+    <!--<script src="http://vjs.zencdn.net/ie8/1.1.1/videojs-ie8.min.js"></script>-->
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css2/bootstrap.css" rel="stylesheet"/>
+    <script src="http://cdn.bootcss.com/sockjs-client/1.1.1/sockjs.min.js"></script>
+    <script src="http://cdn.bootcss.com/stomp.js/2.3.3/stomp.js"></script>
+    <script src="assets/js2/jquery-2.1.0.min.js"></script>
+    <script src="assets/js2/bootstrap.js"></script>
+    <script src="assets/js2/vue.js"></script>
+    <script src="assets/js2/jquery.danmu.min.js"></script>
+
+    <style>
+        .col-center-block {
+            float: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tab-content > .active {
+            border: 1px solid #ddd;
+            height: 360px;
+            /*border-top: none;*/
+            overflow: auto;
+        }
+
+        .nav-pills > li > a {
+            border-radius: 0px;
+        }
+
+        #chatinput .form-control {
+            border-radius: 0px;
+        }
+
+        #chatinput .btn {
+            border-radius: 0px;
+        }
+
+        .anchorNotice {
+            width: 15px;
+            font-size: 15px;
+            word-wrap: break-word;
+            letter-spacing: 0px;
+            margin-left: 20px;
+            color: white;
+        }
+        #danmu {
+            width: 100% !important;
+        }
+    </style>
+</head>
+<body>
+<!--/*@thymesVar id="online_guests" /-->
+<!--/*@thymesVar id="history_guests" */-->
+<div class="container" id="chatroom">
+    <div class="row">
+
+    </div>
+    <div class="row">
+
+        <!--
+            描述：左侧栏目开始
+        -->
+        <!--controls preload="auto" autoplay="true" data-setup='{}' width="640px" height="439px" controls-->
+        <div class="col-md-8">
+            <div style="position:relative; background-color: black ; height: 439px; width: 100%;">
+                <div id="danmu" style=""></div>
+                <video id="v-player"
+                       class="video-js col-center-block">
+
+                    <!--<source src="rtmp://58.200.131.2:1935/livetv/hunantv"  type="rtmp/flv"></source>-->
+                </video>
+            </div>
+        </div>
+        <!--
+            描述：左侧栏目结束
+        -->
+        <!--
+            描述：右侧讨论区开始
+        -->
+        <div class="col-md-4">
+            <!--tabs-->
+            <ul id="menuTabs" class="nav nav-pills nav-justified">
+                <li class="active">
+                    <a href="#discussion" data-toggle="tab"><i class="fa fa-comments"></i>互动聊天</a>
+                </li>
+                <li>
+                    <a href="#members" data-toggle="tab"><i class="fa fa-user"></i>现场嘉宾({{number}})</a>
+                </li>
+                <li>
+                    <a href="#guests" data-toggle="tab"><i class="fa fa-home"></i>最近访问</a>
+                </li>
+            </ul>
+            <!--内容滚动区域开始-->
+            <div id="tabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="discussion" style="padding:10px;">
+                    <div v-for="message in messages">
+                        <span style="color: cornflowerblue;">{{message.creator}}:</span>
+                        <span>{{message.msgBody}}</span>
+                    </div>
+                </div>
+                <!--内容滚动区域结束-->
+                <!--现场观众统计开始-->
+                <div class="tab-pane fade in guanzhong" style="padding-top: 10px;" id="members" >
+                    <div th:each="user:${online_guests}">
+                        <span style="color: cornflowerblue;" th:text="${user.nickname}"></span>
+                        <span th:text="${user.lastLoginIp}"></span>
+                    </div>
+                </div>
+                <!--现场观众统计结束-->
+                <!--最近访问统计总数-->
+                <div class="tab-pane fade in fangwen" style="padding-top: 10px;" id="guests" >
+                    <div th:each="guest : ${history_guests}">
+                        <span style="color: cornflowerblue;" th:text="${guest.userEntity.nickname}"></span>
+                        <span th:text="${guest.userEntity.lastLoginIp}"></span>
+                        <span th:text="${#calendars.format(guest.accessTime,'yyyy-MM-dd mm:ss')}"></span>
+                    </div>
+                </div>
+            </div>
+            <div id="chatinput" class="input-group" style="margin-top: 5px;">
+                <input type="text" class="form-control" v-model="messageinput" @keyup.13="sendMessage"
+                       placeholder="参与话题讨论">
+                <span class="input-group-btn">
+				        	<button class="btn btn-success" type="button" @click="sendMessage">发送!</button>
+				      </span>
+            </div>
+        </div>
+        <!--
+            描述：右侧讨论区结束
+        -->
+    </div>
+</div>
+<div class="footer" style="margin-top: 60px;background:rgb(71, 213, 175);">
+    <script>
+        var chatroom = new Vue({
+            el: '#chatroom',
+            data: {
+                stompClient: null,
+                messages: [],
+                messageinput: null,
+                rtmpSource: null,
+                videoPlayer: null,
+                number: 0,
+                danmu:null,
+                danmuColor:['#666666','blue','white','red','pink']
+            },
+            methods: {
+                connecttosocket: function () {
+                    this.messages.push({
+                        creator: '系统消息',
+                        msgBody: '连接中...'
+                    })
+                    var socket = new SockJS("/live")
+                    this.stompClient = Stomp.over(socket)
+                    this.stompClient.connect({}, function (frame) {
+                        chatroom.messages.push({
+                            creator: '系统消息',
+                            msgBody: '连接成功！'
+                        })
+                        //接收聊天室消息
+                        chatroom.stompClient.subscribe('/topic/online_user', function (data) {
+                            chatroom.number = JSON.parse(data.body).length
+                        });
+                        chatroom.stompClient.subscribe('/topic/group', function (data) {
+                            //console.log(JSON.parse(data.body))
+                            chatroom.messages.push(JSON.parse(data.body))
+                            let time = $('#danmu').data("nowTime")+3;
+                            let aDanmu={
+                                text:JSON.parse(data.body).msgBody,
+                                color:chatroom.danmuColor[parseInt(Math.random()*4, 10)],
+                                size:1,
+                                position:0,
+                                "time":time
+                            }
+                            $('#danmu').danmu("addDanmu",aDanmu)
+                        });
+
+
+                    });
+                },
+                sendMessage: function () {
+                    if (chatroom.messageinput != null && chatroom.userid != '') {
+                        this.stompClient.send("/app/chat", {atytopic: "topic"}, chatroom.messageinput);
+                        this.messageinput = null;
+                    } else if (chatroom.messageinput == null) {
+                        chatroom.messageinput = "请输入内容!!!";
+                    }
+                },
+                videoInit(){
+                    this.videoPlayer = videojs('v-player', {
+                            //初始化数据
+                            height: '439px',
+                            width: '640px',
+                            "techOrder": ["html5", "flash"],
+                            controls: true,
+                            "autoplay": true,
+                            sources: [{
+                                /*rtmp://58.200.131.2:1935/livetv/hunantv*/
+                                // src: 'rtmp://101.132.117.190:1935/hls/cv',
+                                src: 'rtmp://58.200.131.2:1935/livetv/hunantv',
+                                type: 'rtmp/flv'
+                            }]
+                        },
+                        function () {
+                            this.on('loadeddata', function () {
+                                // console.log(this)
+                            })
+
+                            this.on('pause', function () {
+                                //alert('pause')
+                            })
+                        }
+                    )
+                }
+
+            },
+            mounted: function () {
+                //聊天室初始化
+                this.connecttosocket()
+                //视频初始化
+                this.videoInit()
+                //弹幕初始化
+                this.danmu = $("#danmu").danmu({
+                    right: 0,
+                    top: 0 ,
+                    height: 400,  //弹幕区高度
+                    zindex :1,   //弹幕区域z-index属性
+                    speed:7000,      //滚动弹幕的默认速度，这是数值值得是弹幕滚过每672像素所需要的时间（毫秒）
+                    sumTime:65535,   //弹幕流的总时间
+                    danmuLoop:true,   //是否循环播放弹幕
+                    defaultFontColor:"#FFFFFF",   //弹幕的默认颜色
+                    fontSizeSmall:16,     //小弹幕的字号大小
+                    FontSizeBig:24,       //大弹幕的字号大小
+                    opacity:"0.9",			//默认弹幕透明度
+                    topBottonDanmuTime:6000,   // 顶部底部弹幕持续时间（毫秒）
+                    SubtitleProtection:false,     //是否字幕保护
+                    positionOptimize:false,         //是否位置优化，位置优化是指像AB站那样弹幕主要漂浮于区域上半部分
+                    maxCountInScreen: 40,   //屏幕上的最大的显示弹幕数目,弹幕数量过多时,优先加载最新的。
+                    maxCountPerSec: 10      //每分秒钟最多的弹幕数目,弹幕数量过多时,优先加载最新的。
+                });
+                $('#danmu').danmu('danmuStart');
+            }
+        });
+        /*function changeSrc(){
+            alert("请使用推流软件(OBS等)，推送到rtmp://139.199.82.213/live/demo,即可在本直播间看到您的直播内容!")
+            chatroom.videoPlayer.src('rtmp://101.132.117.190/hls/cv')
+            chatroom.videoPlayer.load('rtmp://101.132.117.190/hls/cv');
+            chatroom.videoPlayer.play()
+        }*/
+    </script>
+
+</div>
+
+</body>
+</html>

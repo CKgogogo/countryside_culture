@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="shortcut icon" href="assets/image/logo/logo3.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/common.css">
+    <style>
+        .nav .active{
+            color: black;
+        }
+        .nav a{
+            color: #666;
+        }
+
+
+    </style>
+</head>
+<body class="animated fadeIn">
+<div class="container-fluid p-0 ">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
+        <a href="index.html" class="navbar-brand p-0" style="width: 88px;">
+            <img src="assets/image/logo/logo2.png" width="100%" alt="">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav daohang">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">知越
+                    </a>
+                    <div class="dropdown-menu text-center">
+                        <a href="famousPeople.html" class="dropdown-item ">越剧名人</a>
+                        <a href="active.html?pn=1" class="dropdown-item ">精彩活动</a>
+                        <a href="yueJuTown.html" class="dropdown-item">越剧小镇</a>
+                        <a href="costume.html" class="dropdown-item">戏服</a>
+                        <a href="prop.html" class="dropdown-item">表演道具</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html?pn=1" class="nav-link">资讯</a>
+                </li>
+                <li class="nav-item">
+                    <a href="culture.html" class="nav-link">嵊州风情</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="video.html" class="nav-link active">在线视频</a>
+                </li>
+                <li class="nav-item">
+                    <a href="live.html" class="nav-link">直播</a>
+                </li>
+            </ul>
+            <a href="" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+        </div>
+    </nav>
+</div>
+<div class="container-fluid p-0">
+    <img src="assets/image/video/video2.jpg" class="img-fluid " alt="">
+</div>
+<div class="container mt-5">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light .fixed-top col-10 offset-1">
+        <div class="collapse navbar-collapse" id="">
+            <div class="nav" >
+                    <a href="#tab1" class="nav-link active" data-toggle="tab" data-target="#tab1">经典剧目</a>
+                    <a href="#tab2" class="nav-link" data-toggle="tab" data-target="#tab2" >纪录片</a>
+                    <a href="#tab3" class="nav-link" data-toggle="tab" data-target="#tab3" >教学</a>
+                    <a href="#tab4" class="nav-link" data-toggle="tab" data-target="#tab4">活动</a>
+            </div>
+        </div>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+</div>
+<div class="container ">
+    <div class="tab-content">
+        <!--经典剧目-->
+        <div class="tab-pane fade show active " id="tab1">
+            <div class="col-10 offset-1 p-0 mt-5 row jumu">
+                <div class="col-3" v-for="jumuinfo in rows.list">
+                    <a v-bind:href="'videoPlay.html?id='+jumuinfo.id">
+                        <div class="box">
+                            <img style="width: 201px;height:151px;" class="img-fluid rounded"
+                             v-bind:src="'assets/image/video/'+jumuinfo.picture" >
+                            <div class="box-content">
+                                <span class="title fa fa-play-circle-o" style="color: white;font-size: 55px;"></span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="videoPlay.html" class="text-muted nav-link">
+                        <p class="text-break text-left videoTitle" style="">{{jumuinfo.title}}</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 paging">
+                <nav aria-label="Page navigation example " class="col-5 m-auto ">
+                    <ul class="pagination col-5 m-auto fenye paging" >
+                        <li class="page-item">
+                            <a class="page-link" onclick="page2(this)" style="color: #007bff;cursor:pointer;">
+                                <span aria-hidden="true">top</span>
+                                <span class="sr-only">{{rows2.firstPage}}</span>
+                            </a>
+                        </li>
+                        <li class="page-item " v-if="rows2.hasPreviousPage">
+                            <a class="page-link" onclick="page2(this)" aria-label="Previous" style="color: #007bff;cursor:pointer;">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">{{rows2.prePage}}</span>
+                            </a>
+                        </li>
+                        <li class="page-item" v-for="page_num in rows2.navigatepageNums">
+                            <a  class="page-link " style="color: #007bff;cursor:pointer;background-color: #dae0e5;" v-if="page_num==rows2.pageNum"  v-text="page_num"
+                               onclick="page1(this)"></a>
+                            <a class="page-link " style="color: #007bff;cursor:pointer;" v-if="page_num!=rows2.pageNum" v-text="page_num"
+                               onclick="page1(this)"></a>
+                        </li>
+                        <!--<li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                        <li class="page-item" v-if="rows2.hasNextPage">
+                            <a class="page-link" onclick="page2(this)" aria-label="Next" style="color: #007bff;cursor:pointer;">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">{{rows2.nextPage}}</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" onclick="page2(this)" style="color: #007bff;cursor:pointer;" >
+                                <span aria-hidden="true">tail</span>
+                                <span class="sr-only">{{rows2.lastPage}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!--纪录片-->
+        <div class="tab-pane fade " id="tab2">
+            <div class="col-10 offset-1 p-0 mt-5 row julu">
+                <div class="col-3" v-for="jiluinfo in rows.list">
+                    <a v-bind:href="'videoPlay.html?id='+jiluinfo.id">
+                        <div class="box">
+                            <img style="width: 201px;height:151px;" class="img-fluid rounded"
+                                 v-bind:src="'assets/image/video/'+jiluinfo.picture" >
+                            <div class="box-content">
+                                <span class="title fa fa-play-circle-o" style="color: white;font-size: 55px;"></span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="videoPlay.html" class="text-muted nav-link">
+                        <p class="text-break text-left videoTitle" style="">{{jiluinfo.title}}</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12">
+                <nav aria-label="Page navigation example" class="col-5 m-auto">
+                    <ul class="pagination col-4 m-auto fenye julupage">
+                        <li class="page-item">
+                            <a class="page-link" onclick="page4(this)" style="color: #007bff;cursor:pointer;">
+                                <span aria-hidden="true">top</span>
+                                <span class="sr-only">{{rows2.firstPage}}</span>
+                            </a>
+                        </li>
+                        <li class="page-item " v-if="rows2.hasPreviousPage">
+                            <a class="page-link" onclick="page4(this)" aria-label="Previous" style="color: #007bff;cursor:pointer;">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">{{rows2.prePage}}</span>
+                            </a>
+                        </li>
+                        <li class="page-item" v-for="page_num in rows2.navigatepageNums">
+                            <a  class="page-link " style="color: #007bff;cursor:pointer;background-color: #dae0e5;" v-if="page_num==rows2.pageNum"  v-text="page_num"
+                                onclick="page3(this)"></a>
+                            <a class="page-link " style="color: #007bff;cursor:pointer;" v-if="page_num!=rows2.pageNum" v-text="page_num"
+                               onclick="page3(this)"></a>
+                        </li>
+                        <!--<li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                        <li class="page-item" v-if="rows2.hasNextPage">
+                            <a class="page-link" onclick="page4(this)" aria-label="Next" style="color: #007bff;cursor:pointer;">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">{{rows2.nextPage}}</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" onclick="page4(this)" style="color: #007bff;cursor:pointer;" >
+                                <span aria-hidden="true">tail</span>
+                                <span class="sr-only">{{rows2.lastPage}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!--教学-->
+        <div class="tab-pane fade" id="tab3">
+            <div class="col-10 offset-1 p-0 mt-5 row jiaoxue">
+                <div class="col-3" v-for="jiaoxueinfo in rows.list">
+                    <a v-bind:href="'videoPlay.html?id='+jiaoxueinfo.id">
+                        <div class="box">
+                            <img style="width: 201px;height:151px;" class="img-fluid rounded"
+                                 v-bind:src="'assets/image/video/'+jiaoxueinfo.picture" >
+                            <div class="box-content">
+                                <span class="title fa fa-play-circle-o" style="color: white;font-size: 55px;"></span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="videoPlay.html" class="text-muted nav-link">
+                        <p class="text-break text-left videoTitle" style="">{{jiaoxueinfo.title}}</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12">
+                <nav aria-label="Page navigation example" class="col-5 m-auto">
+                    <ul class="pagination col-4 m-auto fenye jiaoxuepage">
+                        <li class="page-item">
+                            <a class="page-link" onclick="page6(this)" style="color: #007bff;cursor:pointer;">
+                                <span aria-hidden="true">top</span>
+                                <span class="sr-only">{{rows2.firstPage}}</span>
+                            </a>
+                        </li>
+                        <li class="page-item " v-if="rows2.hasPreviousPage">
+                            <a class="page-link" onclick="page6(this)" aria-label="Previous" style="color: #007bff;cursor:pointer;">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">{{rows2.prePage}}</span>
+                            </a>
+                        </li>
+                        <li class="page-item" v-for="page_num in rows2.navigatepageNums">
+                            <a  class="page-link " style="color: #007bff;cursor:pointer;background-color: #dae0e5;" v-if="page_num==rows2.pageNum"  v-text="page_num"
+                                onclick="page5(this)"></a>
+                            <a class="page-link " style="color: #007bff;cursor:pointer;" v-if="page_num!=rows2.pageNum" v-text="page_num"
+                               onclick="page5(this)"></a>
+                        </li>
+                        <!--<li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                        <li class="page-item" v-if="rows2.hasNextPage">
+                            <a class="page-link" onclick="page6(this)" aria-label="Next" style="color: #007bff;cursor:pointer;">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">{{rows2.nextPage}}</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" onclick="page6(this)" style="color: #007bff;cursor:pointer;" >
+                                <span aria-hidden="true">tail</span>
+                                <span class="sr-only">{{rows2.lastPage}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!--活动-->
+        <div class="tab-pane fade" id="tab4">
+            <div class="col-10 offset-1 p-0 mt-5 row huodong">
+                <div class="col-3" v-for="huodonginfo in rows.list">
+                    <a v-bind:href="'videoPlay.html?id='+huodonginfo.id">
+                        <div class="box">
+                            <img style="width: 201px;height:151px;" class="img-fluid rounded"
+                                 v-bind:src="'assets/image/video/'+huodonginfo.picture">
+                            <div class="box-content">
+                                <span class="title fa fa-play-circle-o" style="color: white;font-size: 55px;"></span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="videoPlay.html" class="text-muted nav-link">
+                        <p class="text-break text-left videoTitle" style="">{{huodonginfo.title}}</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12">
+                <nav aria-label="Page navigation example" class="col-5 m-auto">
+                    <ul class="pagination col-4 m-auto fenye huodongpage">
+                        <li class="page-item">
+                            <a class="page-link" onclick="page8(this)" style="color: #007bff;cursor:pointer;">
+                                <span aria-hidden="true">top</span>
+                                <span class="sr-only">{{rows2.firstPage}}</span>
+                            </a>
+                        </li>
+                        <li class="page-item " v-if="rows2.hasPreviousPage">
+                            <a class="page-link" onclick="page8(this)" aria-label="Previous" style="color: #007bff;cursor:pointer;">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">{{rows2.prePage}}</span>
+                            </a>
+                        </li>
+                        <li class="page-item" v-for="page_num in rows2.navigatepageNums">
+                            <a  class="page-link " style="color: #007bff;cursor:pointer;background-color: #dae0e5;" v-if="page_num==rows2.pageNum"  v-text="page_num"
+                                onclick="page7(this)"></a>
+                            <a class="page-link " style="color: #007bff;cursor:pointer;" v-if="page_num!=rows2.pageNum" v-text="page_num"
+                               onclick="page7(this)"></a>
+                        </li>
+                        <!--<li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                        <li class="page-item" v-if="rows2.hasNextPage">
+                            <a class="page-link" onclick="page8(this)" aria-label="Next" style="color: #007bff;cursor:pointer;">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">{{rows2.nextPage}}</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" onclick="page8(this)" style="color: #007bff;cursor:pointer;" >
+                                <span aria-hidden="true">tail</span>
+                                <span class="sr-only">{{rows2.lastPage}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/vue.js"></script>
+<script>
+    var path = "http://47.95.218.93:8090";
+    var jingdianjumu=new Vue({
+        el: '.jumu',
+        data: {
+            rows:{},
+        }
+    });
+    var page=new Vue({
+        el: '.paging',
+        data: {
+            rows2:{},
+        }
+    });
+    var jilupian=new Vue({
+        el: '.julu',
+        data: {
+            rows:{},
+        }
+    });
+    var jilupianpage=new Vue({
+        el: '.julupage',
+        data: {
+            rows2:{},
+        }
+    });
+    var jiaoxue=new Vue({
+        el: '.jiaoxue',
+        data: {
+            rows:{},
+        }
+    });
+    var jiaoxuepage=new Vue({
+        el: '.jiaoxuepage',
+        data: {
+            rows2:{},
+        }
+    });
+    var huodong=new Vue({
+        el: '.huodong',
+        data: {
+            rows:{},
+        }
+    });
+    var huodongpage=new Vue({
+        el: '.huodongpage',
+        data: {
+            rows2:{},
+        }
+    });
+    $(function () {
+        (function ($) {
+            $.getUrlParam = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]); return null;
+            }
+        })(jQuery);
+        // var currentpage = $.getUrlParam('pn');
+        //alert(currentpage);
+        //经典剧目
+        $.ajax({
+            type: "POST",
+            url: path + "/video/pkind?kind=15&pagesize=1&pn=1",
+            data: '',
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                jingdianjumu.rows=msg;
+                page.rows2=msg;
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+        //纪录片
+        $.ajax({
+            type: "POST",
+            url: path + "/video/pkind?kind=16&pagesize=1&pn=1",
+            data: '',
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                jilupian.rows=msg;
+                jilupianpage.rows2=msg;
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+        //教学
+        $.ajax({
+            type: "POST",
+            url: path + "/video/pkind?kind=17&pagesize=1&pn=1",
+            data: '',
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                jiaoxue.rows=msg;
+                jiaoxuepage.rows2=msg;
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+        // 活动
+        $.ajax({
+            type: "POST",
+            url: path + "/video/pkind?kind=18&pagesize=1&pn=1",
+            data: '',
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                huodong.rows=msg;
+                huodongpage.rows2=msg;
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+    });
+
+
+    // 剧目
+    //具体页数
+    function page1(e) {
+        var pagesize=$(e).text();
+        $.ajax({
+            type: "POST",
+            url: path + "/video/pkind?kind=15&pagesize=1&pn="+pagesize,
+            data: '',
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                jingdianjumu.rows=msg;
+                page.rows2=msg;
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+    }
+    //首尾页，前后页
+    function page2(e) {
+        //alert($(e).children().next().text());
+        var pagesize=$(e).children().next().text();
+        $.ajax({
+            type: "POST",
+            url: path + "/video/pkind?kind=15&pagesize=1&pn="+pagesize,
+            data: '',
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                jingdianjumu.rows=msg;
+                page.rows2=msg;
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+    }
+
+    //纪录片
+    //具体页数
+    function page3(e) {
+        var pagesize=$(e).text();
+        $.ajax({
+            type: "POST",
+            url: path + "/video/pkind?kind=16&pagesize=1&pn="+pagesize,
+            data: '',
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                jilupian.rows=msg;
+                jilupianpage.rows2=msg;
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+    }
+    //首尾页，前后页
+    function page4(e) {
+        //alert($(e).children().next().text());
+        var pagesize=$(e).children().next().text();
+        $.ajax({
+            type: "POST",
+            url: path + "/video/pkind?kind=16&pagesize=1&pn="+pagesize,
+            data: '',
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                jilupian.rows=msg;
+                jilupianpage.rows2=msg;
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+    }
+
+    //教学
+    //具体页数
+    function page5(e) {
+        var pagesize=$(e).text();
+        $.ajax({
+            type: "POST",
+            url: path + "/video/pkind?kind=17&pagesize=1&pn="+pagesize,
+            data: '',
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                jiaoxue.rows=msg;
+                jiaoxuepage.rows2=msg;
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+    }
+    //首尾页，前后页
+    function page6(e) {
+        //alert($(e).children().next().text());
+        var pagesize=$(e).children().next().text();
+        $.ajax({
+            type: "POST",
+            url: path + "/video/pkind?kind=17&pagesize=1&pn="+pagesize,
+            data: '',
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                jiaoxue.rows=msg;
+                jiaoxuepage.rows2=msg;
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+    }
+
+    //活动
+    //具体页数
+    function page7(e) {
+        var pagesize=$(e).text();
+        $.ajax({
+            type: "POST",
+            url: path + "/video/pkind?kind=18&pagesize=1&pn="+pagesize,
+            data: '',
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                huodong.rows=msg;
+                huodongpage.rows2=msg;
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+    }
+    //首尾页，前后页
+    function page8(e) {
+        //alert($(e).children().next().text());
+        var pagesize=$(e).children().next().text();
+        $.ajax({
+            type: "POST",
+            url: path + "/video/pkind?kind=18&pagesize=1&pn="+pagesize,
+            data: '',
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                huodong.rows=msg;
+                huodongpage.rows2=msg;
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+    }
+</script>
+</body>
+</html>

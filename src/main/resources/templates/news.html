@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>近期资讯</title>
+    <link rel="shortcut icon" href="../assets/image/logo/logo3.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+
+</head>
+<body class="animated fadeIn">
+<div class="container-fluid p-0 ">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
+        <a href="/index" class="navbar-brand p-0" style="width: 88px;">
+            <img src="../assets/image/logo/logo2.png"  width="100%" alt="">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav daohang">
+                <li class="nav-item">
+                    <a href="/index" class="nav-link  active">首页</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">知越
+                    </a>
+                    <div class="dropdown-menu text-center">
+                        <a href="/famousPeople" class="dropdown-item"  >越剧名人</a>
+                        <a href="/active.html?pn=1" class="dropdown-item ">精彩活动</a>
+                        <a href="/yueJuTown" class="dropdown-item">越剧小镇</a>
+                        <a href="/costume" class="dropdown-item">戏服</a>
+                        <a href="/prop" class="dropdown-item">表演道具</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="/news/showall?pn=1" class="nav-link">资讯</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/culture" class="nav-link">嵊州风情</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="video.html" class="nav-link">在线视频</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/live" class="nav-link">直播</a>
+                </li>
+            </ul>
+            <a href="/login" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+        </div>
+    </nav>
+
+</div>
+<div class="container-fluid p-0">
+    <img src="../assets/image/t1.jpg" alt="" class="img-fluid">
+</div>
+<div class="container mt-5 row offset-5 col-7">
+    <img src="../assets/image/logo/logo1.png" alt="" class="mr-1" width="40px;" height="40px;">
+    <p class="text-center" style="font-size: 20px;font-family: SimSun;font-weight: 900">近期资讯</p>
+</div>
+
+<div class="container mt-5 newslist" style="font-family: SimSun" >
+    <div class="col-8 offset-2 row"  th:each="news:${ans.list}">
+        <a class="col-8 p-0 nav-link text-muted" th:href="'/news/selectone?id='+${news.id}"><p class="news text-truncate" th:text="${news.title}"></p></a>
+        <p class="col-4 text-right" th:text="${news.publishTime}"></p>
+        <hr class="w-100 mt-0">
+    </div>
+
+
+    <nav aria-label="Page navigation example " class="col-5 m-auto ">
+        <ul class="pagination col-5 m-auto fenye paging" id="">
+            <li class="page-item">
+                <a class="page-link" href="/news/showall?pn=1">top</a>
+            </li>
+            <li class="page-item " th:if="${pageInfo.hasPreviousPage}">
+                <a class="page-link" aria-label="Previous" th:href="@{/news/showall(pn=${pageInfo.pageNum}-1)}">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li class="page-item" th:each="page_num:${pageInfo.navigatepageNums}">
+                <a class="page-link " th:if="${page_num == pageInfo.pageNum}" style="background-color: #dae0e5;" th:text="${page_num}"
+                   th:href="'/news/showall?pn='+${page_num}"></a>
+                <a class="page-link " th:if="${page_num != pageInfo.pageNum}" th:text="${page_num}"
+                   th:href="'/news/showall?pn='+${page_num}"></a>
+            </li>
+            <!--<li class="page-item"><a class="page-link" href="#">2</a></li>-->
+            <li class="page-item" th:if="${pageInfo.hasNextPage}">
+                <a class="page-link" aria-label="Next" th:href="@{/news/showall(pn=${pageInfo.pageNum}+1)}">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" th:href="@{'/news/showall?pn='+${pageInfo.pages}}">tail</a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/vue.js"></script>
+<script>
+
+    // var newspage=new Vue({
+    //     el: '.paging',
+    //     data: {
+    //         rows2:{},
+    //     }
+    // });
+
+    $(function () {
+        (function ($) {
+            $.getUrlParam = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]); return null;
+            }
+        })(jQuery);
+        var currentpage = $.getUrlParam('pn');
+        //alert(currentpage);
+        //显示第一页内容
+        $.ajax({
+            type: "POST",
+            url: path + "/news/showall?pn="+currentpage,
+            data: '',
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                newinfomation.rows=msg;
+
+            },
+            error: function (err) {
+                alert("request failed！");
+
+            }
+        });
+    });
+</script>
+</body>
+</html>

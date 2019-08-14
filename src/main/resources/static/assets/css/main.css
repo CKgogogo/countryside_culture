@@ -1,0 +1,118 @@
+body {
+    font-family: sans-serif;
+}
+
+.top-nav {
+    height: 30px;
+    background: #fff;
+    padding: 0px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.top-nav ul {
+    margin: 0;
+    padding: 0;
+    max-width: 1180px;
+    display: block;
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.top-nav li {
+    list-style: none;
+    display: block;
+    line-height: 30px;
+}
+
+.top-nav li a {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #282828;
+    text-decoration: none;
+}
+
+.top-nav li.active a {
+    color: #F44336;
+}
+
+.nav-fixed {
+    position: fixed;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 0;
+}
+
+.nav-fixed ul {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-fixed li {
+    display: block;
+    text-align: center;
+    height: 51px;
+    width: 60px;
+    line-height: 50px;
+    list-style: none;
+    color: #4CAF50;
+    background: #fff;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.nav-fixed li a {
+    color: #666;
+    text-decoration: none;
+}
+
+.nav-fixed li:last-child {
+    margin-bottom: 0;
+}
+
+.nav-fixed li.active {
+    background: #666;
+}
+
+.nav-fixed li.active a {
+    color: #fff;
+}
+
+.full {
+    display: block;
+    height: 100vh;
+    line-height: 100vh;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 50vh;
+}
+
+.full.one {
+    background: #E74C3C;
+}
+
+.full.two {
+    background: #3498DB;
+}
+
+.full.three {
+    background: #FFCD69;
+}
+
+.full.four {
+    background: #34BC9D;
+}

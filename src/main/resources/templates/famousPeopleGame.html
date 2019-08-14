@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title> 移动拼图 </title>
+
+    <link rel="stylesheet" href="../assets/css/puzzleGame.css" />
+    <link rel="shortcut icon" href="../assets/image/logo/logo3.png"  />
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+    <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+    <!-- 以下两个js文件，一个是面向过程开发(process)，一个是面向对象开发(object)，修改引入文件既可以切换不同开发代码 -->
+    <!-- <script src="js/puzzleGame_process.js"></script> -->
+    <script type="text/javascript" src="../assets/js/puzzleGame_object.js"></script>
+
+</head>
+
+<body>
+<div class="container-fluid p-0 ">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
+        <a href="index" class="navbar-brand p-0" style="width: 88px;">
+            <img src="../assets/image/logo/logo2.png"  width="100%" alt="">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav daohang">
+                <li class="nav-item">
+                    <a href="index" class="nav-link  active">首页</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">知越
+                    </a>
+                    <div class="dropdown-menu text-center">
+                        <a href="famousPeople" class="dropdown-item"  >越剧名人</a>
+                        <a href="/activity/showall?pn=1" class="dropdown-item ">精彩活动</a>
+                        <a href="yueJuTown" class="dropdown-item">越剧小镇</a>
+                        <a href="costume" class="dropdown-item">戏服</a>
+                        <a href="prop" class="dropdown-item">表演道具</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="/news/showall?pn=1" class="nav-link">资讯</a>
+                </li>
+                <li class="nav-item">
+                    <a href="culture" class="nav-link">嵊州风情</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="video.html" class="nav-link">在线视频</a>
+                </li>
+                <li class="nav-item">
+                    <a href="live" class="nav-link">直播</a>
+                </li>
+            </ul>
+            <a href="login" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+        </div>
+    </nav>
+</div>
+
+<div id="wrap">
+
+    <br><br><br><br>
+    <div id="left">
+        <ul>
+            <li id="start">
+                开始游戏:<span>开始</span>
+            </li>
+            <li id="level">
+                难度选择:<span>3x3</span>
+            </li>
+            <li id="gameRule">
+                游戏介绍：
+                <p>1、点击游戏难度以更改</p>
+                <p>2、开始游戏，打乱图片</p>
+                <p>3、交换位置，复原图片</p>
+            </li>
+        </ul>
+    </div>
+    <div id="right">
+        <div id="imgArea"></div>
+    </div>
+</div>
+
+</body>
+</html>

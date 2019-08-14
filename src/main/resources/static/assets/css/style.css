@@ -1,0 +1,784 @@
+
+
+
+.daohang a{
+    font-family: MyNewFont;
+    font-size: 23px;
+}
+
+@font-face {
+    font-family: 'MyNewFont';   /*字体名称*/
+    src: url('../fonts/字魂110号-武林江湖体.ttf');       /*字体源文件*/
+}
+
+/*首页*/
+
+@media (min-width: 1331px) {
+    .quanjing {
+        height: 670px;
+    }
+}
+
+@media (max-width: 1330px) {
+    .quanjing {
+        height: 520px;
+    }
+}
+
+.index p {
+    font-family: SimSun;
+    letter-spacing: 10px;
+}
+
+.dropdown-menu {
+    margin: 0 !important;
+}
+
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.goTop {
+    animation: Updown 1s infinite alternate;
+}
+
+.goTop:hover {
+    cursor: pointer;
+}
+
+@keyframes Updown {
+    from {
+        margin-top: 30px;
+    }
+    to {
+        margin-top: 10px;
+    }
+}
+
+
+/*资讯页面*/
+.fenye li {
+    text-align: center;
+}
+
+.news:hover {
+    color: #b8daff;
+}
+
+.newsContent p {
+    text-indent: 30px;
+    font-family: SimSun;
+    letter-spacing: 5px;
+
+}
+
+.newsHead {
+    font-family: SimSun;
+    font-size: 23px;
+}
+
+.newsinfo p {
+    font-family: SimSun;
+    font-size: 14px;
+}
+
+.newsinfo span {
+    font-family: SimSun;
+    font-size: 14px;
+}
+
+.newsfoot p {
+    font-family: SimSun;
+    font-size: 14px;
+    letter-spacing: 0px;
+}
+
+.newsfoot span {
+    font-family: SimSun;
+    font-size: 14px;
+    letter-spacing: 0px;
+
+}
+
+
+/*越剧名人*/
+
+.famouspeople p {
+    font-family: SimSun;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+/*越剧名人具体介绍页面*/
+.newsdetails p{
+    letter-spacing: 4px;font-family: SimSun;
+}
+.newsdetails small{
+    letter-spacing: 4px;font-family: SimSun;
+}
+/*活动具体页面*/
+
+.activity p{
+    font-family: SimSun;
+}
+.activity h5{
+    font-family: SimSun;
+}
+
+/*视频*/
+
+/*图片遮罩层*/
+/*.demo {*/
+    /*padding: 2em 0;*/
+/*}*/
+.box {
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+.box:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #000;
+    padding: 14px 18px;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    /*transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715) 0s;*/
+    transition: 0.5s;
+}
+.box:hover:before {
+    opacity: 0.5;
+}
+.box img {
+    width: 100%;
+    height: auto;
+}
+.box .box-content {
+    width: 100%;
+    padding: 14px 18px;
+    color: #fff;
+    position: absolute;
+    top: 38%;
+    left: 0;
+}
+.box .title {
+    line-height: 30px;
+    margin: 0;
+    opacity: 0;
+    /*transition: all 0.5s ease 0s;*/
+}
+.box:hover .title,
+.box:hover .post {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+@media only screen and (max-width: 990px) {
+    .box {
+        margin-bottom: 30px;
+    }
+}
+
+.videoTitle{
+    height: 23px;word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+}
+.videoTitle:hover{
+    color: #b8daff;
+}
+
+/*chimee视频插件*/
+.chimee-container{
+    position: relative;
+}
+.time-ad{
+    background-color: transparent;
+    border:0;
+}
+.time-ad img{
+    display: block;
+    width: 30px;
+}
+.time-ad em{
+    position: absolute;
+    right: -7px;
+    top: 35px;
+    width: 60px;
+    text-align: center;
+    font-size: 12px;
+    background-color: rgba(156, 85, 85, 0.66);
+    padding: 0 3px;
+    z-index: -1;
+    border-radius: 5px;
+}
+.time-ad cm-pp-close{
+    display: none;
+}
+.time-ad cm-pp-body{
+    padding: 0;
+}
+
+/*视频css*/
+.save a span:hover{
+    color: #b8daff;
+}
+.share-box {
+    display: none;
+    position: absolute;
+    top: -15px;
+    left: 307px;
+}
+
+.share-pos {
+    position: absolute;
+    right: -160px;
+    top: 41px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 20px;
+    width: 320px;
+    z-index: 30;
+    color: #505050;
+    background: #fff;
+    border: 1px solid #e5e9ef;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .14);
+    border-radius: 2px;
+}
+
+.share-pos .box-a {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.share-pos .box-a .share-down {
+    margin-bottom: 20px;
+}
+
+.share-pos .box-a .share-down .share-btn {
+    margin-right: 10px;
+    display: inline-block;
+    cursor: pointer;
+    color: #505050;
+    transition: all .3s;
+}
+.shareqq:hover{
+    background-position: -975px -848px;
+}
+/*评论点赞回复样式*/
+
+.comment{
+    width: 690px;
+    margin-left: 190px;
+    font-size: 12px;
+    font-family: '微软雅黑';
+    color: #222;
+    margin-top: 50px;
+}
+.comment li{
+    list-style-type: none;
+}
+
+.comment .com_title{
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+}
+
+.comment .com_title span{
+    color: #00A1D6;
+    font-weight: 700;
+    font-size: 18px;
+    border-bottom: 1px solid #00A1D6;
+    padding-bottom: 13px;
+    position: relative;
+}
+
+.comment .com_title span:after{
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-bottom-color: #00A1D6;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+}
+
+.comment .com_self{
+    width: 100%;
+    margin-top: 30px;
+}
+
+.comment .com_self .my_face{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+}
+
+.comment .com_self .my_face img{
+    width: 100%;
+    height: 100%;
+}
+
+.comment .com_self .com_enter{
+    float: right;
+    border-bottom: 1px solid #E5E9EF;
+    padding-bottom: 35px;
+    margin-bottom: 35px;
+}
+
+.comment .com_self .com_enter .com_area{
+    width: 520px;
+    height: 80px;
+    outline: none;
+    border: 1px solid #ccc;
+    background-color: #F4F5F7;
+    margin: 0;
+    padding: 0;
+    resize: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-size: 12px;
+    font-family: '微软雅黑';
+}
+
+.comment .com_self .com_enter .enter_btn{
+    width: 90px;
+    height: 82px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: #00A1D6;
+    color: #fff;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    border-radius: 5px;
+    margin-left: 5px;
+    vertical-align: 43px;
+    cursor: pointer;
+    outline: none;
+}
+
+.comment .com_self .com_enter .enter_btn.mover{
+    background-color: #00ADDA;
+}
+
+.comment .com_self .com_enter .com_area.mover{
+    border-color: #00ADDA;
+    background-color: #fff;
+}
+
+.comment .com_content{
+    width: 100%;
+}
+
+.comment .com_content .user_comment{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.comment .com_content .user_comment .user_face{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+    margin-right: 30px;
+}
+
+.comment .com_content .user_comment .user_face a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.comment .com_content .user_comment .user_face a img{
+    width: 100%;
+    height: 100%;
+}
+
+.comment .com_content .user_comment .user_contxt{
+    float: left;
+    width: 612px;
+    border-bottom: 1px solid #E5E9EF;
+    /* padding-bottom: 10px;*/
+}
+
+.comment .com_content .user_comment .user_contxt .user_txt .userid a{
+    font-size: 12px;
+    font-family: '微软雅黑';
+    font-weight: 400;
+    color: #6d757a;
+}
+
+.comment .com_content .user_comment .user_contxt .user_txt .userid a:hover{
+    color: #00ADDA;
+}
+
+.comment .com_content .user_comment .user_contxt .user_txt .user_maincom{
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    line-height: 20px;
+    word-break: break-all;
+}
+
+.comment .com_content .user_comment .user_contxt  .operation{
+    color: #99A2AC;
+}
+
+.comment .com_content .user_comment .user_contxt  .operation span{
+    margin-right: 20px;
+}
+
+.comment .com_content .user_comment .user_contxt  .operation a{
+    color: #99A2AC;
+
+}
+
+.comment .com_content .user_comment .user_contxt  .operation a.del{
+    visibility: hidden;
+    padding: 5px 5px;
+}
+
+.comment .com_content .user_comment .user_contxt  .operation a.del:hover{
+    color:#00A1D6;
+    background-color: #E5E9EF;
+}
+
+.comment .com_content .user_comment .user_contxt  .operation .like{
+    padding-left: 18px;
+    background: url(../image/icons-comment.png) no-repeat -154px -23px;
+}
+
+.comment .com_content .user_comment .user_contxt  .operation .like:hover{
+    background-position: -218px -23px;
+}
+
+.comment .com_content .user_comment .user_contxt  .operation .like.onlike{
+    background-position: -154px -89px;
+}
+
+
+.comment .com_content .user_comment .user_contxt  .operation .unlike{
+    display: inline-block;
+    width: 12px;
+    height: 14px;
+    background: url(../images/video/icons-comment.png) no-repeat -154px -153px;
+    vertical-align: -3px;
+}
+
+.comment .com_content .user_comment .user_contxt  .operation .unlike:hover{
+    background-position: -218px -153px;
+}
+
+.comment .com_content .user_comment .user_contxt  .operation .unlike.light{
+    background-position: -154px -217px;
+}
+
+.comment .com_content .user_comment .user_contxt  .operation .reply,
+.comment .com_content .user_comment .user_contxt  .operation .report,
+.comment .com_content .user_comment .user_contxt  .operation .backlist{
+    padding: 5px 5px;
+}
+
+.comment .com_content .user_comment .user_contxt  .operation .reply:hover,
+.comment .com_content .user_comment .user_contxt  .operation .report:hover,
+.comment .com_content .user_comment .user_contxt  .operation .backlist:hover{
+    color: #00A1D6;
+    background-color: #E5E9EF;
+}
+
+.comment .com_content .user_comment   .operation .report,
+.comment .com_content .user_comment   .operation .backlist{
+    visibility: hidden;
+}
+
+.comment .com_content .user_comment .user_contxt .reply_com{
+    margin-top: 35px;
+    overflow: hidden;
+}
+
+.comment .com_content .user_comment .user_contxt .reply_com li{
+    margin-bottom: 20px;
+}
+
+.comment .com_content .user_comment .user_contxt .reply_com li .reply_face{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+    margin-right: 20px;
+}
+
+.comment .com_content .user_comment .user_contxt .reply_com li .reply_face a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.comment .com_content .user_comment .user_contxt .reply_com li .reply_face a img{
+    width: 100%;
+    height: 100%;
+}
+
+.comment .com_content .user_comment .user_contxt .reply_com li .reply_con{
+    float: left;
+    width: 568px;
+}
+
+.comment .com_content .user_comment .user_contxt .reply_com li .reply_con p{
+    margin: 5px 0 15px 0;
+    line-height: 18px;
+}
+
+.comment .com_content .user_comment .user_contxt .reply_com li .reply_con .userid{
+    font-size: 12px;
+    font-family: '微软雅黑';
+    font-weight: 400;
+    color: #6d757a;
+    margin-right: 5px;
+}
+
+.comment .com_content .user_comment .user_contxt .reply_com li .reply_con .userid:hover{
+    color: #00ADDA;
+}
+
+.comment .com_content .user_comment .user_contxt .reply_input .com_enter{
+    border-bottom: none;
+}
+
+.comment .com_content .user_comment .user_contxt .reply_input .com_area{
+    width: 455px;
+    height: 70px;
+    color: #6d757a;
+}
+
+.comment .com_content .user_comment .user_contxt .reply_input .com_area:focus{
+    border-color: #00ADDA;
+    background-color: #fff;
+}
+
+.comment .com_content .user_comment .user_contxt .reply_input .com_area:blur{
+    background-color: #fff;
+}
+
+.comment .com_content .user_comment .user_contxt .reply_input .enter_btn{
+    width: 82px;
+    height: 70px;
+    vertical-align: 38px;
+}
+
+.recommend .info{
+    margin-left: -20px;
+}
+.recommend .info .title{
+    height: 44px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    word-wrap: break-word;
+}
+.recommend2 .info a .title:hover{
+    color: #b8daff;
+}
+.recommend2 small{
+    color: #888;
+}
+/*新闻资讯*/
+.newsdetails .title{
+    color: #4d4e54;font-size: 28px;font-weight: 400;
+}
+.newsdetails .newskey{
+    color: #a4a4a4;
+}
+.newscontent p{
+    color: #888;font-size: 16px;text-indent:25px;
+}
+.newscontent img{
+    width: 70%;
+    height: 70%;
+}
+.newscontent .img p{
+    font-size: 12px;
+}
+
+/*嵊州风情 */
+
+/*图片效果*/
+.hovereffect {
+    width: 100%;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: default;
+}
+
+.hovereffect .overlay {
+    position: absolute;
+    overflow: hidden;
+    width: 80%;
+    height: 36%;
+    left: 10%;
+    top:34%;
+    border-bottom: 1px solid #FFF;
+    border-top: 1px solid #FFF;
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: scale(0,1);
+    -ms-transform: scale(0,1);
+    transform: scale(0,1);
+}
+
+.hovereffect:hover .overlay {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+
+.hovereffect img {
+    display: block;
+    position: relative;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+}
+
+.hovereffect:hover img {
+    /*filter: url('data:image/svg+xml;charset=utf-8,&lt;svg xmlns="http://www.w3.org/2000/svg"&gt;&lt;filter id="filter"&gt;&lt;feComponentTransfer color-interpolation-filters="sRGB"&gt;&lt;feFuncR type="linear" slope="0.6" /&gt;&lt;feFuncG type="linear" slope="0.6" /&gt;&lt;feFuncB type="linear" slope="0.6" /&gt;&lt;/feComponentTransfer&gt;&lt;/filter&gt;&lt;/svg&gt;#filter');*/
+    filter: brightness(0.6);
+    -webkit-filter: brightness(0.6);
+}
+
+.hovereffect h2 {
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    font-size: 17px;
+    background-color: transparent;
+    color: #FFF;
+    padding: 1em 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: translate3d(0,-100%,0);
+    transform: translate3d(0,-100%,0);
+    margin-bottom: -2.5rem;
+}
+
+.hovereffect a, .hovereffect p {
+    color: #FFF;
+    padding: 1em 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+}
+
+.hovereffect:hover a, .hovereffect:hover p, .hovereffect:hover h2 {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+
+.people:hover img {
+    /*filter: url('data:image/svg+xml;charset=utf-8,&lt;svg xmlns="http://www.w3.org/2000/svg"&gt;&lt;filter id="filter"&gt;&lt;feComponentTransfer color-interpolation-filters="sRGB"&gt;&lt;feFuncR type="linear" slope="0.6" /&gt;&lt;feFuncG type="linear" slope="0.6" /&gt;&lt;feFuncB type="linear" slope="0.6" /&gt;&lt;/feComponentTransfer&gt;&lt;/filter&gt;&lt;/svg&gt;#filter');*/
+    filter: brightness(0.6);
+    -webkit-filter: brightness(0.6);
+    -webkit-transition: all 0.35s;
+}
+
+/*美食图片效果*/
+.da-thumbs {
+    list-style: none;
+    /*width: 984px;*/
+    /*height: 600px;*/
+    position: relative;
+    margin: 20px auto;
+    padding: 0;
+}
+.da-thumbs li {
+    float: left;
+    margin: 14px;
+    background: #fff;
+    padding: 8px;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.da-thumbs li a,
+.da-thumbs li a img {
+    display: block;
+    position: relative;
+}
+.da-thumbs li a {
+    overflow: hidden;
+}
+.da-thumbs li a div {
+    position: absolute;
+    background: rgba(75,75,75,0.7);
+    width: 100%;
+    height: 100%;
+}
+.da-thumbs li a div.da-animate {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+/* Initial state classes: */
+.da-slideFromTop {
+    left: 0px;
+    top: -100%;
+}
+.da-slideFromBottom {
+    left: 0px;
+    top: 100%;
+}
+.da-slideFromLeft {
+    top: 0px;
+    left: -100%;
+}
+.da-slideFromRight {
+    top: 0px;
+    left: 100%;
+}
+/* Final state classes: */
+.da-slideTop {
+    top: 0px;
+}
+.da-slideLeft {
+    left: 0px;
+}
+.da-thumbs li a div span {
+    display: block;
+    padding: 10px 0;
+    margin: 40px 20px 20px 20px;
+    text-transform: uppercase;
+    font-weight: normal;
+    color: rgba(255,255,255,0.9);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.1), 0 -10px 0 rgba(255,255,255,0.3);
+}

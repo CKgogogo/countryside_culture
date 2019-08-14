@@ -48,9 +48,10 @@ public class LiveController {
 
         model.addAttribute("online_guests",getOnlineUser());
         model.addAttribute("history_guests",getHistoryGuests());
-        return "live";
+        return "live2";
 
     }
+
     @RequestMapping(value = "/online_guests",method = RequestMethod.GET)
     @ResponseBody
     public Set getOnlineUser(){

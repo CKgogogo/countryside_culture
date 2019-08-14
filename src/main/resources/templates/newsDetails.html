@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>资讯</title>
+    <link rel="shortcut icon" href="../assets/image/logo/logo3.png"  />
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/set2.css">
+</head>
+<body class="animated fadeIn">
+<div class="container-fluid p-0 ">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
+        <a href="/index" class="navbar-brand p-0" style="width: 88px;">
+            <img src="../assets/image/logo/logo2.png"  width="100%" alt="">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav daohang">
+                <li class="nav-item">
+                    <a href="/index" class="nav-link  active">首页</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">知越
+                    </a>
+                    <div class="dropdown-menu text-center">
+                        <a href="/famousPeople" class="dropdown-item"  >越剧名人</a>
+                        <a href="active.html?pn=1" class="dropdown-item ">精彩活动</a>
+                        <a href="/yueJuTown" class="dropdown-item">越剧小镇</a>
+                        <a href="/costume" class="dropdown-item">戏服</a>
+                        <a href="/prop" class="dropdown-item">表演道具</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="/news/showall?pn=1" class="nav-link">资讯</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/culture" class="nav-link">嵊州风情</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="video.html" class="nav-link">在线视频</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/live" class="nav-link">直播</a>
+                </li>
+            </ul>
+            <a href="/login" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+        </div>
+    </nav>
+
+</div>
+<div class="container-fluid p-0">
+    <img src="../assets/image/t1.jpg" alt="" class="img-fluid">
+</div>
+
+<div class="container mt-5">
+    <div class="col-12 row">
+        <div class="col-8 row newsdetails">
+            <div class="text-center col-12">
+                <p style="" class="title" th:text="${news.title}"></p>
+                <small style="" class="newskey">作者：</small>
+                <small th:text="${news.author}"></small>
+                <small style="" class="newskey">时间：</small>
+                <small th:text="${news.publishTime}"></small>
+            </div>
+            <div class="mt-2 newscontent ">
+                <div th:utext="${news.content}">
+
+                    <!--<p style="">-->
+                    <!--雅歌春韵，芬芳四季。80年来，已故越剧名家毕春芳所创的毕派艺术为越剧贡献了独树一帜的喜剧表演风格和美学价值。为纪念这样一位德艺双馨的艺术家，今天起，纪念毕春芳先生舞台艺术80周年“-->
+                    <!--深入基层、扎根人民”系列活动在静安区文化馆拉开帷幕，而这里也正是当年戚雅仙、毕春芳携手重建静安越剧团的起点。</p>-->
+                    <!--<p style="">-->
+                        <!--雅歌春韵，芬芳四季。80年来，已故越剧名家毕春芳所创的毕派艺术为越剧贡献了独树一帜的喜剧表演风格和美学价值。为纪念这样一位德艺双馨的艺术家，今天起，纪念毕春芳先生舞台艺术80周年“-->
+                        <!--深入基层、扎根人民”系列活动在静安区文化馆拉开帷幕，而这里也正是当年戚雅仙、毕春芳携手重建静安越剧团的起点。</p>-->
+
+                    <!--&lt;!&ndash;<div class="text-center img">&ndash;&gt;-->
+                        <!--<img style="display: block; margin-left: auto; margin-right: auto;" src="assets/image/active/active1.jpg" class="img-fluid " alt="">-->
+                        <!--<p class="text-center">图片1</p>-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                    <!--<p>雅歌春韵，芬芳四季。80年来，已故越剧名家毕春芳所创的毕派艺术为越剧贡献了独树一帜的喜剧表演风格和美学价值。为纪念这样一位德艺双馨的艺术家，今天起，纪念毕春芳先生舞台艺术80周年“-->
+                        <!--深入基层、扎根人民”系列活动在静安区文化馆拉开帷幕，而这里也正是当年戚雅仙、-->
+                        <!--毕春芳携手重建静安越剧团的起点。</p>-->
+                </div>
+                <div class="text-right">
+                    <small style="" class="newskey">来源：</small>
+                    <small th:text="${news.source}"></small>
+                    <small style="" class="newskey">编辑：</small>
+                    <small th:text="${news.editor}"></small>
+                    <small style="" class="newskey">最后更新于：</small>
+                    <small th:text="${news.lastestTime}"></small>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="col-4 latenews" style="margin-left: 29px;" >
+            <div class="ml-5" >
+                <h5 style="font-family: SimSun;font-weight: 900">近期资讯</h5>
+                <div class=" ml-1 row mt-3" th:each="a:${latestnews}">
+                    <div class="col-5 p-0">
+                        <div class="grid">
+                            <figure class="effect-julia">
+                                <img src="../assets/image/active/active1.jpg"
+                                     th:src="@{'../assets/image/news/'+${a.picture}}" alt="" height="90px;">
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="ml-1 col-6 p-0" style="font-family: SimSun">
+                        <a th:href="'/news/selectone?id='+${a.id}" class="text-muted" style="text-decoration: none;">
+                            <p style="height: 44px;overflow:hidden;text-overflow:ellipsis;word-wrap: break-word;" th:text="${a.title}"></p>
+                        </a>
+                        <small th:text="${a.lastestTime}"></small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/style.js"></script>
+<script src="assets/js/vue.js"></script>
+
+</body>
+</html>

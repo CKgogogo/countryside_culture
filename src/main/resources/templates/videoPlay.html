@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>视频播放</title>
+    <link rel="shortcut icon" href="assets/image/logo/logo3.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/demo.css"/>
+
+</head>
+<body class="animated fadeIn">
+
+<div class="container-fluid p-0 ">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
+        <a href="index.html" class="navbar-brand p-0" style="width: 88px;">
+            <img src="assets/image/logo/logo2.png" width="100%" alt="">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav daohang">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">知越
+                    </a>
+                    <div class="dropdown-menu text-center">
+                        <a href="famousPeople.html" class="dropdown-item ">越剧名人</a>
+                        <a href="active.html?pn=1" class="dropdown-item ">精彩活动</a>
+                        <a href="yueJuTown.html" class="dropdown-item">越剧小镇</a>
+                        <a href="costume.html" class="dropdown-item">戏服</a>
+                        <a href="prop.html" class="dropdown-item">表演道具</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html?pn=1" class="nav-link">资讯</a>
+                </li>
+                <li class="nav-item">
+                    <a href="culture.html" class="nav-link">嵊州风情</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="video.html" class="nav-link">在线视频</a>
+                </li>
+                <li class="nav-item">
+                    <a href="live.html" class="nav-link">直播</a>
+                </li>
+            </ul>
+            <a href="" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+        </div>
+    </nav>
+</div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-7" style="margin-left: 20px;">
+            <div class="videoplay">
+            <div >
+                <h5 class="mt-5 mb-0">{{rows.title}}</h5>
+                <small class="mt-0 ">{{rows.publishTime}}</small>
+                <br>
+                <small class="mt-0"><span>{{rows.playNum}}</span>播放 未经作者授权，禁止转载</small>
+                <div class="chimee-container col-12 p-0">
+                    <video tabindex="-1"></video>
+                </div>
+                <div class="col-12" style="background: #fff;box-shadow: 0 0 8px #e5e9ef;height: 44px;">
+                    <div class="">
+                        <p class="" style="position: relative;top: 15px;">10 <span>人正在观看</span></p>
+                    </div>
+                </div>
+            </div>
+            <!--点赞收藏分享-->
+<!--            <div class="praise">-->
+<!--                <span id="praise"><img src="assets/image/zan.png" id="praise-img" /></span>-->
+<!--                <span id="praise-txt">1455</span>-->
+<!--                <span id="add-num"><em>+1</em></span>-->
+<!--            </div>-->
+            <div class="col-12 save">
+                <div style="height: 55px;width: 640px;background: #fff;margin-top: 25px;">
+
+                    <div style="position: relative;width:100px;" class="opera">
+                            <span id="btn1">
+                                <img src="assets/image/logo/unlikes.png" alt="" width="28px" height="28px">
+                                </span>
+                        <span style="position: relative;top: 4px;">{{rows.likeNum}} <span></span></span>
+                    </div>
+                    <div style="position: relative;top: -28px;left: 100px;width: 100px;">
+                        <span id="btn2">
+                                <img src="assets/image/logo/collect.png" alt="" width="28px" height="28px">
+                                </span>
+                            <span style="position: relative;top: 4px;">6 <span></span></span>
+                    </div>
+                    <div style="position: relative;top: -56px;left: 200px;width: 100px;">
+                        <a class="share text-muted" href="" style="text-decoration: none;">
+                            <img src="assets/image/logo/share.png" alt="" width="28px" height="28px">
+                            <span style="position: relative;top: 4px;">分享</span>
+                        </a>
+                    </div>
+                    <div style="position: relative;top: -76px;left:508px;color: #999;width: 100px;">
+<!--                        <p><a href="" class="nav-link text-muted"><span>稿件投诉</span></a></p>-->
+                    </div>
+                    <div class="share-box">
+                        <div class="share-pos">
+                            <div class="box-a">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="share-address">
+                                    <div class="share-down">
+                                        <div class="shareqq" style="float: left;margin-right: 12px;">
+                                            <a href="">
+                                        <span style="background: url('assets/image/logo/QQ.png');width: 32px;
+                                        height: 32px;display: inline-block;">
+
+                                        </span>
+                                            </a>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="share-address">
+                                    <div class="share-down">
+                                        <div class="shareqq" style="float: left;margin-right: 12px;">
+                                            <a href="">
+                                        <span style="background: url('assets/image/logo/微信.png');width: 32px;
+                                        height: 32px;display: inline-block;">
+
+                                        </span>
+                                            </a>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                <div class="share-address">
+                                    <div class="share-down">
+                                        <div class="shareqq" style="float: left;margin-right: 12px;">
+                                            <a href="">
+                                        <span style="background: url('assets/image/logo/微博.png');width: 32px;
+                                        height: 32px;display: inline-block;">
+
+                                        </span>
+                                            </a>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+            <hr style="margin-top: -10px;" class="col-11">
+            <!--关注-->
+            <h6>著名演员</h6>
+            <br>
+            <div class="col-12 container">
+                <div>
+                    <div class="people"
+                         style="position: relative;float: left;width: 110px;height: 96px;margin-left:87px;">
+                        <img src="assets/image/people/pe5.jpg" alt="" width="60px;" height="60px;"
+                             class="rounded-circle">
+                        <div style="position: relative;top:13px;left: -23px;width: 106px;height: 20px;text-align: center;">
+                            <span class="text-muted">大大大灯泡</span>
+                        </div>
+                        <div style="width: 20px;height: 20px;background: red;position: relative;left: 21px;top: -31px;border-radius: 60px;">
+                            <img src="assets/image/logo/follow.png" alt="" width="10px" height="10px"
+                                 style="position: relative;top: -4px;left: 5px;">
+                        </div>
+                    </div>
+                    <div class="people"
+                         style="position: relative;float: left;width: 110px;height: 96px;margin-left:87px;">
+                        <img src="assets/image/people/pe1.jpg" alt="" width="60px;" height="60px;"
+                             class="rounded-circle">
+                        <div style="position: relative;top:13px;left: -23px;width: 106px;height: 20px;text-align: center;">
+                            <span class="text-muted">大大大灯泡</span>
+                        </div>
+                        <div style="width: 20px;height: 20px;background: red;position: relative;left: 21px;top: -31px;border-radius: 60px;">
+                            <img src="assets/image/logo/follow.png" alt="" width="10px" height="10px"
+                                 style="position: relative;top: -4px;left: 5px;">
+                        </div>
+                    </div>
+                    <div class="people"
+                         style="position: relative;float: left;width: 110px;height: 96px;margin-left:87px;">
+                        <img src="assets/image/people/pe1.jpg" alt="" width="60px;" height="60px;"
+                             class="rounded-circle">
+                        <div style="position: relative;top:13px;left: -23px;width: 106px;height: 20px;text-align: center;">
+                            <span class="text-muted">大大大灯泡</span>
+                        </div>
+                        <div style="width: 20px;height: 20px;background: red;position: relative;left: 21px;top: -31px;border-radius: 60px;">
+                            <img src="assets/image/logo/follow.png" alt="" width="10px" height="10px"
+                                 style="position: relative;top: -4px;left: 5px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="position: relative;top: 103px;" class="col-11">
+            <!--            视频简介-->
+            <div style="width: 640px;margin-top: 102px;margin-left: 0px;">
+                <a data-toggle="collapse" href="#collapseExample" class="text-muted">关于视频</a>
+                <div class="collapse show " id="collapseExample">
+                    <div class="card card-body border-0" style="color: #888;">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                        Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                        proident.
+                    </div>
+                </div>
+            </div>
+            <hr class="col-11 ">
+            <!--评论-->
+            <div>
+                <div class="col-12">
+                    <section class='comment ' style="position: relative;left: -198px;">
+                        <div class='com_title'><span>全部评论</span></div>
+                        <div class='com_self clearfix'>
+                            <div class="my_face"><img class="userimg" src="assets/image/user/x.jpg"></div>
+                            <div class="com_enter" id='comEnter'>
+                        <textarea class='com_area' id='comArea'
+                                  placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"></textarea>
+                                <button class='enter_btn' id='enterBtn' >发表<br>评论</button>
+                            </div>
+                        </div>
+                        <div class='com_content recommend userRecommend' id='comContent' >
+
+                                <div class="user_comment clearfix " v-for="reco in rows2" >
+                                    <div class="user_face"><a href="###"><img  src="assets/image/user/test.jpg"></a></div>
+                                    <div class="user_contxt">
+                                        <div class="user_txt">
+                                            <h5 class='userid'><a href="###">{{reco.plname}}</a></h5>
+                                            <p class='user_maincom'>xxx</p>
+                                            <p class='operation'>
+                                                <span class='floor'>#1</span>
+                                                <span class='time'>2019</span>
+                                                <span><a href='###' class='like' value='409'>(244)</a></span>
+                                                <span><a href='###' class='unlike'></a></span>
+                                                <span><a href="###" class='reply main_reply' onclick="test()">参与回复</a></span>
+                                                <!--<span><a href="###" class='report'>举报</a></span>-->
+                                                <!--<span><a href="###" class='backlist'>加入黑名单</a></span>-->
+                                            </p>
+                                        </div>
+                                        <div class="reply_com">
+                                            <ul id='replyUl'>
+                                                <li class='clearfix other' >
+                                                    <div class="reply_face"><a href="###"><img
+                                                            src="assets/image/test.jpg"></a></div>
+                                                    <div class="reply_con">
+                                                        <p class='reply_txt'>
+                                                            <a href="###" class='userid'>xxx</a>
+                                                            这次听完后，不像以往，若有所思，而是有一个疑问，小野寺律是谁？？这次听完后，不像以往，若有所思，而是有一个疑问，小野寺律是谁？？这次听完后，不像以往，若有所思，而是有一个疑问，小野寺律是谁？？这次听完后，不像以往，若有所思，而是有一个疑问，小野寺律是谁？？这次听完后，不像以往，若有所思，而是有一个疑问，小野寺律是谁？？这次听完后，不像以往，若有所思，而是有一个疑问，小野寺律是谁？？
+                                                        </p>
+                                                        <p class='operation'>
+                                                            <span class='replytime'>2016-11-11 10:21</span>
+                                                            <span><a href="###" class='like' value='0'>(0)</a></span>
+                                                            <span><a href="###" class='reply minor_reply'onclick="test()">回复</a></span>
+                                                            <!--<span><a href="###" class='report'>举报</a></span>-->
+                                                            <!--<span><a href="###" class='backlist'>加入黑名单</a></span>-->
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--相关推荐-->
+        <div class="col-4  mt-5 p-0 recommend" style="margin-left: 48px;">
+            <h5>相关推荐</h5>
+            <div class="mt-5 hotvideo">
+                <div class="row mt-3 recommend2" v-for="hot in rows4">
+                    <div class="col-6">
+                        <a href="">
+                            <div class="box">
+                                <img style="height:128px;" class="img-fluid rounded"
+                                v-bind:src="'assets/image/video/'+hot.picture" >
+                                <div class="box-content" style="padding: 5px 18px;">
+                                    <span class="title fa fa-play-circle-o"
+                                          style="color: white;font-size: 55px;"></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 info">
+                        <a href="" class="nav-link text-muted p-0">
+                            <p class="title">{{hot.title}}</p>
+                        </a>
+                        <small>admin</small>
+                        <br>
+                        <small>{{hot.playNum}}</small>
+                        <small>万播放</small>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/jquery.min.js"></script>
+
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="https://s3.ssl.qhres.com/!fd546749/chimee-player.browser.js" type="text/javascript"></script>
+<script src="assets/js/vue.js"></script>
+<script src="assets/js/mustache.js"></script>
+<script src="assets/js/video.js"></script>
+<script>
+
+
+
+    var path = "http://47.95.218.93:8090";
+    // var path = "http://192.168.43.233:8080";
+    var hotvideo=new Vue({
+        el: '.hotvideo',
+        data: {
+            rows4:{},
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: path +"/video/hot?kind=15",
+        data: '',
+        xhrFields: {
+            withCredentials: true
+        },
+        contentType: "application/json",
+        dataType: "json",
+        success: function (msg) {
+            hotvideo.rows4=msg;
+        },
+        error: function (err) {
+            alert("request failed！");
+        }
+    });
+    $('.shareqq').hover(function () {
+        $('.shareqq span').css("background-position", "0 0");
+    }, function () {
+        $('.shareqq span').css("background-position", "0 0");
+    });
+    // var player = videojs('my_video_1', {
+    //     playbackRates: [0.5, 1, 1.5, 2]
+    // });
+    // 分享
+    $('.share').hover(function () {
+        $('.share a img').css("src", "assets/image/logo/shared.png");
+        $('.share-box').css("display", "flex");
+
+    }, function () {
+        $('.share a img').css("src", "assets/image/logo/share.png");
+        $('.share-box').css("display", "none");
+    });
+    $('.share-box').hover(function () {
+        $('.share-box').css("display", "flex");
+    }, function () {
+        $('.share-box').css("display", "none");
+    });
+
+    var videoplay = new Vue({
+        el: '.videoplay',
+        data: {
+            rows: {},
+        }
+    });
+    var userRecommend2=new Vue({
+        el: '.userRecommend',
+        data: {
+            rows2:{},
+        }
+    });
+    // var allRecommend2=new Vue({
+    //     el: '.allRecommend',
+    //     data: {
+    //         rows3:{},
+    //     }
+    // });
+    $(function () {
+        (function ($) {
+            $.getUrlParam = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]);
+                return null;
+            }
+        })(jQuery);
+
+        var currentpage = $.getUrlParam('id');
+        $.ajax({
+            type: "POST",
+            url: path + "/video/selectone?id=" + currentpage,
+            data: '',
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                videoplay.rows = msg;
+                var te = videoplay.rows.url;
+                var aggdPlugin = ChimeePlayer.popupFactory({
+                    name: 'time-ad',
+                    className: 'time-ad',
+                    title: false,
+                    body: '',
+                    offset: '0px 10px auto auto',
+                    operable: false
+                });
+                ChimeePlayer.install(aggdPlugin);
+                var player = new ChimeePlayer({
+                    box: 'native',
+                    wrapper: '.chimee-container',
+                    src: '../video/' + te,
+                    isLive: false,
+                    autoplay: true,
+                    controls: true,
+                    plugin: [aggdPlugin.name]
+                });
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: path +"/user/userinfo",
+            data: '',
+            xhrFields: {
+                withCredentials: true
+            },
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                $('.userimg').attr('src','assets/image/user/'+msg.picture);
+                $('.repleyimg').attr('src','assets/image/user/'+msg.picture);
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: path +"/review/show?id="+currentpage,
+            data: '',
+            xhrFields: {
+                withCredentials: true
+            },
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                userRecommend2.rows2=msg;
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+
+
+    });
+    // function publish() {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: path +"/user/userinfo",
+    //         data: '',
+    //         xhrFields: {
+    //             withCredentials: true
+    //         },
+    //         contentType: "application/json",
+    //         dataType: "json",
+    //         success: function (msg) {
+    //             $('.userFaceImg').attr('src','assets/image/user/'+msg.picture);
+    //         },
+    //         error: function (err) {
+    //             alert("request failed！");
+    //         }
+    //     });
+    // }
+    function test() {
+        $.ajax({
+            type: "POST",
+            url: path +"/user/userinfo",
+            data: '',
+            xhrFields: {
+                withCredentials: true
+            },
+            contentType: "application/json",
+            dataType: "json",
+            success: function (msg) {
+                $('.repleyimg').attr('src','assets/image/user/'+msg.picture);
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+    }
+
+    // $.ajax({
+    //     type: "POST",
+    //     url: path + "/review/publish",
+    //     data: {
+    //         vid:1,
+    //         content:'xxx'
+    //     },
+    //     contentType: "application/x-www-form-urlencoded",
+    //     crossDomain: true,
+    //     xhrFields: {
+    //         withCredentials: true
+    //     },
+    //     dataType: "json",
+    //     success: function (msg) {
+    //         $recommend.append(Mustache.render(temp,msg));
+    //     },
+    //     error: function (err) {
+    //         alert("request failed！");
+    //     }
+    // });
+
+</script>
+<script type="text/javascript">
+    (function ($) {
+        $.extend({
+            tipsBox: function (options) {
+                options = $.extend({
+                    obj: null,  //jq对象，要在那个html标签上显示
+                    str: "+1",  //字符串，要显示的内容;也可以传一段html，如: "<b style='font-family:Microsoft YaHei;'>+1</b>"
+                    startSize: "12px",  //动画开始的文字大小
+                    endSize: "30px",    //动画结束的文字大小
+                    interval: 600,  //动画时间间隔
+                    color: "red",    //文字颜色
+                    callback: function () {
+                    }    //回调函数
+                }, options);
+                $("body").append("<span class='num'>" + options.str + "</span>");
+                var box = $(".num");
+                var left = options.obj.offset().left + options.obj.width() / 2;
+                var top = options.obj.offset().top - options.obj.height();
+                box.css({
+                    "position": "absolute",
+                    "left": left + "px",
+                    "top": top + "px",
+                    "z-index": 9999,
+                    "font-size": options.startSize,
+                    "line-height": options.endSize,
+                    "color": options.color
+                });
+                box.animate({
+                    "font-size": options.endSize,
+                    "opacity": "0",
+                    "top": top - parseInt(options.endSize) + "px"
+                }, options.interval, function () {
+                    box.remove();
+                    options.callback();
+                });
+            }
+        });
+    })(jQuery);
+
+    function niceIn(prop) {
+        prop.find('i').addClass('niceIn');
+        setTimeout(function () {
+            prop.find('i').removeClass('niceIn');
+        }, 1000);
+    }
+
+    $(function () {
+        $("#btn1").click(function () {
+            $.tipsBox({
+                obj: $(this),
+                str: "+1",
+                callback: function () {
+                }
+            });
+            niceIn($(this));
+        });
+    });
+    $(function () {
+        $("#btn2").click(function () {
+            $.tipsBox({
+                obj: $(this),
+                str: "+1",
+                callback: function () {
+                }
+            });
+            niceIn($(this));
+        });
+    });
+
+</script>
+<script>
+    $(function(){
+        $("#praise").click(function(){
+            var praise_img = $("#praise-img");
+            var text_box = $("#add-num");
+            var praise_txt = $("#praise-txt");
+            var num=parseInt(praise_txt.text());
+            if(praise_img.attr("src") == ("assets/image/yizan.png")){
+                $(this).html("<img src='assets/image/zan.png' id='praise-img' class='animation' />");
+                praise_txt.removeClass("hover");
+                text_box.show().html("<em class='add-animation'>-1</em>");
+                $(".add-animation").removeClass("hover");
+                num -=1;
+                praise_txt.text(num)
+            }else{
+                $(this).html("<img src='assets/image/yizan.png' id='praise-img' class='animation' />");
+                praise_txt.addClass("hover");
+                text_box.show().html("<em class='add-animation'>+1</em>");
+                $(".add-animation").addClass("hover");
+                num +=1;
+                praise_txt.text(num)
+            }
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>美食</title>
+    <link rel="shortcut icon" href="assets/image/logo/logo3.png"  />
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body class="animated fadeIn">
+<div class="container-fluid p-0 ">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
+        <a href="index.html" class="navbar-brand p-0" style="width: 88px;">
+            <img src="assets/image/logo/logo2.png"  width="100%" alt="">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav daohang">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link  active">首页</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">知越
+                    </a>
+                    <div class="dropdown-menu text-center">
+                        <a href="famousPeople.html" class="dropdown-item ">越剧名人</a>
+                        <a href="active.html?pn=1" class="dropdown-item ">精彩活动</a>
+                        <a href="yueJuTown.html" class="dropdown-item">越剧小镇</a>
+                        <a href="costume.html" class="dropdown-item">戏服</a>
+                        <a href="prop.html" class="dropdown-item">表演道具</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html?pn=1" class="nav-link">资讯</a>
+                </li>
+                <li class="nav-item">
+                    <a href="culture.html" class="nav-link">嵊州风情</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="video.html" class="nav-link">在线视频</a>
+                </li>
+                <li class="nav-item">
+                    <a href="live.html" class="nav-link">直播</a>
+                </li>
+            </ul>
+            <a href=""  class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white" ></a>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+    <ul id="filters" style="font-family: SimSun;" class="clearfix">
+        <li><span class="filter active" data-filter="noodles riceNoodles beanProduct other">全部</span></li>
+        <li><span class="filter" data-filter="noodles">面食类</span></li>
+        <li><span class="filter" data-filter="riceNoodles">米粉类</span></li>
+        <li><span class="filter" data-filter="beanProduct">豆制品类</span></li>
+        <li><span class="filter" data-filter="other">其他类</span></li>
+    </ul>
+    <br>
+    <div id="portfoliolist" style="font-family: SimSun;">
+        <div class="portfolio noodles" data-cat="noodles">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/food1.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"><a class="text-title">豆腐馅小笼包</a><span class="text-category">面食类</span></div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio riceNoodles" data-cat="riceNoodles">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/food2.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"><a class="text-title">嵊州炒年糕</a><span class="text-category">米粉类</span></div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio noodles" data-cat="noodles">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/food3.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"><a class="text-title">榨面</a><span class="text-category">面食类</span></div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio noodles" data-cat="card">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/food4.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"><a class="text-title">春饼</a><span class="text-category">面食类</span></div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio noodles" data-cat="app">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/food5.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">汤包</a> <span class="text-category">面食类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio noodles" data-cat="card">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/春饼1.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">春饼</a> <span class="text-category">面食类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio noodles" data-cat="card">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/麦虾汤.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">麦虾汤</a> <span class="text-category">面食类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio noodles" data-cat="logo">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/生炒面.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">生炒面</a> <span class="text-category">面食类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio noodles" data-cat="app">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/小笼包.jpeg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">小笼包</a> <span class="text-category">面食类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio noodles" data-cat="card">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/油条.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">油条</a> <span class="text-category">面食类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio beanProduct" data-cat="logo">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/豆腐脑.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">豆腐脑</a> <span class="text-category">豆制品</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio beanProduct" data-cat="logo">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/豆浆.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">豆浆</a> <span class="text-category">豆制品</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio beanProduct" data-cat="icon">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/兰花豆.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">兰花豆</a> <span class="text-category">豆制品</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio beanProduct" data-cat="web">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/择子豆腐.png" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">择子豆腐</a> <span class="text-category">豆制品</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio riceNoodles" data-cat="icon">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/红糖麻滋.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">红糖麻滋</a> <span class="text-category">米粉类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio riceNoodles" data-cat="web">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/麻球.png" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">麻球</a> <span class="text-category">米粉类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio riceNoodles" data-cat="icon">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/年糕饺.jpeg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">年糕饺</a> <span class="text-category">米粉类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio riceNoodles" data-cat="icon">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/粢饭.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">粢饭</a> <span class="text-category">米粉类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio other" data-cat="web">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/观音豆腐改.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">观音豆腐</a> <span class="text-category">其他类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio other" data-cat="logo">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/荷叶粉蒸肉.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">荷叶粉蒸肉</a> <span class="text-category">其他类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio other" data-cat="logo">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/南瓜饼.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">南瓜饼</a> <span class="text-category">其他类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio other" data-cat="icon">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/煨番薯.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">煨番薯</a> <span class="text-category">其他类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio other" data-cat="card">
+            <div class="portfolio-wrapper">
+                <img src="assets/image/food/窝窝头.jpg" alt="" />
+                <div class="label">
+                    <div class="label-text"> <a class="text-title">窝窝头</a> <span class="text-category">其他类</span> </div>
+                    <div class="label-bg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="assets/js/jquery-2.2.4.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/jquery.easing.min.js"></script>
+<script src="assets/js/jquery.mixitup.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+
+        var filterList = {
+
+            init:function(){
+                // MixItUp plugin
+                $('#portfoliolist').mixitup({
+                    targetSelector: '.portfolio',
+                    filterSelector: '.filter',
+                    effects: ['fade'],
+                    easing: 'snap',
+                    // call the hover effect
+                    onMixEnd: filterList.hoverEffect()
+                });
+
+            },
+
+            hoverEffect:function(){
+                // Simple parallax effect
+                $('#portfoliolist .portfolio').hover(function(){
+                    $(this).find('.label').stop().animate({bottom:0},200,'easeOutQuad');
+                    $(this).find('img').stop().animate({top:-30},500,'easeOutQuad');
+                },function(){
+                    $(this).find('.label').stop().animate({bottom:-40},200,'easeInQuad');
+                    $(this).find('img').stop().animate({top:0},300,'easeOutQuad');
+                });
+            }
+
+        };
+
+        // Run the show!
+        filterList.init();
+
+    });
+</script>
+</body>
+</html>

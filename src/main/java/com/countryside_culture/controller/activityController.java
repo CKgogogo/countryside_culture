@@ -7,8 +7,10 @@ import com.github.pagehelper.PageInfo;
 import com.zlzkj.core.util.Fn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @CrossOrigin(origins = "*",maxAge = 3600,allowCredentials = "true",allowedHeaders = "*")
@@ -26,10 +29,10 @@ public class activityController {
     private activityService activityservice;
 
     //显示所有活动
-    @RequestMapping(value = "/showall")
+    @RequestMapping(value = "/showall",method = RequestMethod.GET)
     public String showAllNews(@RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn,
                               @RequestParam(required = false,defaultValue = "6",value = "pagesize")Integer pagesize,
-                              HttpServletResponse response) throws ParseException {
+                              HttpServletResponse response, Map<String,Object> map, Model model) throws ParseException {
         PageHelper.startPage(pn,pagesize);//第pn页，6条记录
         List<activity> activity = activityservice.showall();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -45,8 +48,11 @@ public class activityController {
             }
         }
         PageInfo pageInfo = new PageInfo<>(activity,5);
-        Fn.ajaxReturn(response,pageInfo);
-        return "";
+        List<activity> activity2 = activityservice.showhot();
+        model.addAttribute("hot",activity2);
+        model.addAttribute("ans",pageInfo);
+        map.put("pageInfo",pageInfo);
+        return "active";
     }
 
     //显示不同的活动
@@ -75,14 +81,15 @@ public class activityController {
     }
 
     //具体活动
-    @RequestMapping(value = "/selectone")
-    public String selectOne(HttpServletResponse response, HttpServletRequest request) {
+    @RequestMapping(value = "/selectone",method = RequestMethod.GET)
+    public String selectOne(HttpServletResponse response, HttpServletRequest request, Model model) {
         int id=Integer.parseInt(request.getParameter("id"));
         activity activity = activityservice.selectid(id);
         activity.setHits(activity.getHits()+1);
         activityservice.update(activity);
-        Fn.ajaxReturn(response,activity);
-        return "";
+        model.addAttribute("ans",activity);
+//        Fn.ajaxReturn(response,activity);
+        return "activeDetails";
     }
 
     //热门活动

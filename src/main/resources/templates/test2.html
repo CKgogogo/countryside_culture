@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap 实例 - 基本的表格</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/common.css">
+    <style>
+        body {
+            background-color: black;
+        }
+        .person-icon {
+            stroke: none;
+        }
+        .plus {
+            transform-origin: 50% 50%;
+            transition: all 0.2s ease-out;
+            -webkit-transform: translate(0px, 0px) rotate(0deg);
+        }
+        .checkmark {
+            width: 40px;
+            height: 40px;
+            border-radius: 0%;
+            display: block;
+            stroke-width: 4;
+            stroke: #000;
+            stroke-miterlimit: 10;
+            margin: 10% auto;
+            box-shadow: inset 0px 0px 0px #fbd901;
+            transition: all 0.5s ease-out;
+        }
+        .checkmark:hover .body-icon {
+            -webkit-animation: move-head 0.3s forwards ease-out;
+        }
+        .checkmark:hover .plus {
+            -webkit-transform: rotate(180deg);
+        }
+        .checkmark__circle {
+            stroke-width: 0;
+            stroke-miterlimit: 10;
+            stroke: #fbd901;
+            fill: #fbd901;
+            transform: scale(0.2, 0.2);
+            transition: all 0.2s ease-in-out;
+            transform-origin: 50% 40%;
+        }
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+        }
+        .checkmark.checked {
+            animation: scale 0.3s ease-in-out 0.9s both;
+        }
+        .checkmark.checked .plus {
+            transform: translate(-10px, 10px);
+        }
+        .checkmark.checked .checkmark__circle {
+            stroke-miterlimit: 10;
+            stroke: #fbd901;
+            transform: scale(1, 1);
+        }
+        .checkmark.checked .checkmark__check {
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0px 0px 0px 30px #fbd901;
+            }
+        }
+        @keyframes rotate-plus {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(90deg);
+            }
+        }
+        @keyframes move-head {
+            0% {
+                -webkit-transform: translateY(0px);
+            }
+            30% {
+                -webkit-transform: translateY(1px);
+            }
+            100% {
+                -webkit-transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <svg class="checkmark" id="follower-icon" x="0px" y="0px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+
+    <g class="person-icon">
+        <g class="body-icon">
+            <circle class="head" fill-rule="evenodd" clip-rule="evenodd" fill="#FBD901" cx="19.6" cy="17.2" r="7.3" />
+            <path id="body" fill-rule="evenodd" clip-rule="evenodd" fill="#FBD901" d="M9.9,31.7c0-2.7,2.2-4.9,4.9-4.9h10.9
+        c2.7,0,4.9,2.2,4.9,4.9c0,1.3-5.2,4-10.3,4C15,35.7,9.9,33.1,9.9,31.7z" />
+        </g>
+        <path class="ring" fill="#FBD901" d="M34.6,15.9c0.3,1.2,0.5,2.4,0.5,3.7c0,8.5-6.9,15.5-15.5,15.5S4.1,28.1,4.1,19.6S11,4.1,19.6,4.1
+                        c2.2,0,4.4,0.5,6.3,1.4c0.2-1,0.7-2,1.2-2.8c-2.3-1-4.9-1.6-7.5-1.6C9.3,1.1,1,9.4,1,19.6c0,10.2,8.3,18.5,18.5,18.5
+                        s18.5-8.3,18.5-18.5c0-1.5-0.2-3-0.5-4.4C36.6,15.6,35.6,15.9,34.6,15.9z" />
+        <polygon class="plus" fill-rule="evenodd" clip-rule="evenodd" fill="#FBD901" points="35.4,6.2 35.4,2.6 32.9,2.6 32.9,6.2 29.3,6.2
+                        29.3,8.7 32.9,8.7 32.9,12.3 35.4,12.3 35.4,8.7 39,8.7 39,6.2    " />
+
+    </g>
+        <g id="checkmark-icon">
+        <circle class="checkmark__circle" fill="none" cx="19.5" cy="19.5" r="18.5" />
+            <path class="checkmark__check" fill="none" d="M10.7,20.4l5.3,5.3l12.4-12.5" />
+    </g>
+</svg>
+</div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script>
+    /*! lunar.js v1.1.0 | (c) 2014 @toddmotto | https://github.com/toddmotto/lunar */
+    (function(root, factory) {
+        if (typeof define === 'function' && define.amd) {
+            define(factory);
+        } else if (typeof exports === 'object') {
+            module.exports = factory;
+        } else {
+            root.lunar = factory();
+        }
+    })(this, function() {
+
+        'use strict';
+
+        var lunar = {};
+
+        lunar.hasClass = function(elem, name) {
+            return new RegExp('(\\s|^)' + name + '(\\s|$)').test(elem.getAttribute('class'));
+        };
+
+        lunar.addClass = function(elem, name) {
+            !lunar.hasClass(elem, name) && elem.setAttribute('class', (!!elem.getAttribute('class') ? elem.getAttribute('class') + ' ' : '') + name);
+        };
+
+        lunar.removeClass = function(elem, name) {
+            var remove = elem.getAttribute('class').replace(new RegExp('(\\s|^)' + name + '(\\s|$)', 'g'), '$2');
+            lunar.hasClass(elem, name) && elem.setAttribute('class', remove);
+        };
+
+        lunar.toggleClass = function(elem, name) {
+            lunar[lunar.hasClass(elem, name) ? 'removeClass' : 'addClass'](elem, name);
+        };
+
+        return lunar;
+
+    });
+
+
+    $('document').ready(function() {
+        var checkmark = $('.checkmark');
+        // var checkmark = document.querySelector('.checkmark');
+
+        checkmark.click(function() {
+            // this.classList.add("checked");
+            lunar.toggleClass(this, 'checked');
+            // $(this).css('transform', 'scale(.5)');
+            // $( this ).addClass( "checked" );
+            console.log('clicked');
+
+        });
+
+    });
+</script>
+</body>
+</html>
