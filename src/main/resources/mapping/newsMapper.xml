@@ -41,6 +41,7 @@
     select *
     from news
     where is_publish=1
+    ORDER BY publish_time DESC
   </select>
   <select id="selectOne" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *

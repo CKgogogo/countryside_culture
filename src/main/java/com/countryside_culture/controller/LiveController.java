@@ -10,6 +10,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +23,7 @@ import java.util.*;
  * Created by Administrator on 2017/6/14.
  */
 @Controller
+@CrossOrigin(origins = "*",maxAge = 3600,allowCredentials = "true",allowedHeaders = "*")
 public class LiveController {
 //    @Autowired
 //    private UserDao userDao;
@@ -29,7 +31,7 @@ public class LiveController {
     private StatDao statDao;
 
     @RequestMapping(value = "/live_room",method = RequestMethod.GET)
-    public String hello(HttpServletRequest request, Model model){
+    public String hello(HttpServletRequest request, Model model ){
         //根据用户ip判断用户是否访问过本站
         String ip = IpUtil.getIp(request);
         Random random = new Random(20);
@@ -47,6 +49,7 @@ public class LiveController {
         model.addAttribute("online_guests",getOnlineUser());
         model.addAttribute("history_guests",getHistoryGuests());
         return "live";
+
     }
     @RequestMapping(value = "/online_guests",method = RequestMethod.GET)
     @ResponseBody

@@ -31,7 +31,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-@CrossOrigin(origins = "*",maxAge = 3600)
+@CrossOrigin(origins = "*",maxAge = 3600,allowCredentials = "true",allowedHeaders = "*")
 @RequestMapping("video")
 public class videoControlle {
     @Autowired
@@ -102,18 +102,18 @@ public class videoControlle {
                 video.setIs_collect(ans.getStatus());
             }
         }
-        videoservice.update(video);
+
 
 
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
         video.setHistorytime(sdf.format(d));
-        if(request.getAttribute("user_id").toString()!=null){
+        if(request.getSession().getAttribute("user_id")!=null){
             String readhistoryValue = null;
             RedisUtil redisUtil = null;
             history readhistory=null;
             redisUtil = (RedisUtil) SpringUtil.applicationContext.getBean("redisUtil");//从spring容器里面得到一个对象
-            readhistoryValue = redisUtil.get(request.getAttribute("user_id").toString());
+            readhistoryValue = redisUtil.get(request.getSession().getAttribute("user_id").toString());
             if (readhistoryValue==null){
                 readhistory=new history();
                 readhistory.addItem(video);
@@ -131,9 +131,9 @@ public class videoControlle {
             }
             //序列化成字符串。
             String fromObject = JSON.toJSONString(readhistory);
-            redisUtil.set(request.getAttribute("user_id").toString(), fromObject.toString());
+            redisUtil.set(request.getSession().getAttribute("user_id").toString(), fromObject.toString());
         }
-
+        videoservice.update(video);
         Fn.ajaxReturn(response,video);
         return "";
     }
@@ -212,7 +212,7 @@ public class videoControlle {
     }
 
     //显示某个演员参演的所有视频
-    @RequestMapping("actorplay")
+    @RequestMapping("/actorplay")
     public String showAllFocus(int id, HttpServletResponse response
             , @RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn
             , @RequestParam(required = false,defaultValue = "8",value = "pagesize")Integer pagesize){

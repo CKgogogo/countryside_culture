@@ -29,16 +29,19 @@
   <select id="showall" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *
     from activity
+    ORDER BY endtime DESC
   </select>
   <select id="showhot" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *
     from activity
     where hits>100 and status="正在进行"
+    ORDER BY endtime DESC
   </select>
   <select id="showdoing" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *
     from activity
     where  status=#{status}
+    ORDER BY endtime DESC
   </select>
   <update id="update" parameterType="com.countryside_culture.entity.activity" >
     update activity

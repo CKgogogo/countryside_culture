@@ -25,7 +25,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*",maxAge = 3600)
+@CrossOrigin(origins = "*",maxAge = 3600,allowCredentials = "true",allowedHeaders = "*")
 @RequestMapping("user")
 public class userController {
     @Autowired
@@ -68,6 +68,7 @@ public class userController {
         userinfo.setPassword(request.getParameter("password").toString());
         userinfo.setUsername(request.getParameter("username").toString());
         userinfo.setEmail(request.getParameter("email").toString());
+        userinfo.setPicture("default.jpg");
         userinfo.setStatus(1);
         int i = userinfoservice.register(userinfo);
         if (i > 0){
@@ -105,7 +106,7 @@ public class userController {
     }
 
     //查看当前用户所关注的所有演员
-    @RequestMapping("showfocus")
+    @RequestMapping("/showfocus")
     public String showAllFocus(HttpServletRequest request, HttpServletResponse response
             , @RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn
             , @RequestParam(required = false,defaultValue = "8",value = "pagesize")Integer pagesize){
@@ -118,7 +119,7 @@ public class userController {
     }
 
     //历史记录
-    @RequestMapping("history")
+    @RequestMapping("/history")
     public String  History(HttpServletRequest request, HttpServletResponse response) {
         history history = null;
         String historyValue = null;
@@ -137,7 +138,7 @@ public class userController {
     }
 
     //用户信息
-    @RequestMapping("userinfo")
+    @RequestMapping("/userinfo")
     public String  Userinfo(HttpServletRequest request, HttpServletResponse response) {
         int id=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
         userinfo userinfo=userinfoservice.select(id);
