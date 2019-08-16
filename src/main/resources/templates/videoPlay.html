@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>视频播放</title>
-    <link rel="shortcut icon" href="assets/image/logo/logo3.png"/>
+    <link rel="shortcut icon" href="../assets/image/logo/logo3.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/demo.css"/>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link type="text/css" rel="stylesheet" href="../assets/css/demo.css"/>
 
 </head>
 <body class="animated fadeIn">
-
 <div class="container-fluid p-0 ">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
         <a href="index.html" class="navbar-brand p-0" style="width: 88px;">
-            <img src="assets/image/logo/logo2.png" width="100%" alt="">
+            <img src="../assets/image/logo/logo2.png" width="100%" alt="">
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav daohang">
@@ -40,7 +39,6 @@
                 <li class="nav-item">
                     <a href="culture.html" class="nav-link">嵊州风情</a>
                 </li>
-
                 <li class="nav-item">
                     <a href="video.html" class="nav-link">在线视频</a>
                 </li>
@@ -53,114 +51,105 @@
     </nav>
 </div>
 <div class="container">
-
     <div class="row">
         <div class="col-7" style="margin-left: 20px;">
             <div class="videoplay">
-            <div >
-                <h5 class="mt-5 mb-0">{{rows.title}}</h5>
-                <small class="mt-0 ">{{rows.publishTime}}</small>
-                <br>
-                <small class="mt-0"><span>{{rows.playNum}}</span>播放 未经作者授权，禁止转载</small>
-                <div class="chimee-container col-12 p-0">
-                    <video tabindex="-1"></video>
-                </div>
-                <div class="col-12" style="background: #fff;box-shadow: 0 0 8px #e5e9ef;height: 44px;">
-                    <div class="">
-                        <p class="" style="position: relative;top: 15px;">10 <span>人正在观看</span></p>
+                <div>
+                    <h5 class="mt-5 mb-0" th:text="${video.title}"></h5>
+                    <small class="mt-0 " th:text="${video.publishTime}"></small>
+                    <br>
+                    <small class="mt-0"><span th:text="${video.playNum}"></span>播放 未经作者授权，禁止转载</small>
+                    <div class="chimee-container col-12 p-0">
+                        <video tabindex="-1"></video>
+                    </div>
+                    <div class="col-12" style="background: #fff;box-shadow: 0 0 8px #e5e9ef;height: 44px;">
+                        <div class="">
+                            <p class="" style="position: relative;top: 15px;">10 <span>人正在观看</span></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--点赞收藏分享-->
-<!--            <div class="praise">-->
-<!--                <span id="praise"><img src="assets/image/zan.png" id="praise-img" /></span>-->
-<!--                <span id="praise-txt">1455</span>-->
-<!--                <span id="add-num"><em>+1</em></span>-->
-<!--            </div>-->
-            <div class="col-12 save">
-                <div style="height: 55px;width: 640px;background: #fff;margin-top: 25px;">
-
-                    <div style="position: relative;width:100px;" class="opera">
+                <!--点赞收藏分享-->
+                <!--            <div class="praise">-->
+                <!--                <span id="praise"><img src="../assets/image/zan.png" id="praise-img" /></span>-->
+                <!--                <span id="praise-txt">1455</span>-->
+                <!--                <span id="add-num"><em>+1</em></span>-->
+                <!--            </div>-->
+                <div class="col-12 save">
+                    <div style="height: 55px;width: 640px;background: #fff;margin-top: 25px;">
+                        <div style="position: relative;width:100px;" class="opera">
                             <span id="btn1">
-                                <img src="assets/image/logo/unlikes.png" alt="" width="28px" height="28px">
+                                <img src="../assets/image/logo/unlikes.png" alt="" width="28px" height="28px">
                                 </span>
-                        <span style="position: relative;top: 4px;">{{rows.likeNum}} <span></span></span>
-                    </div>
-                    <div style="position: relative;top: -28px;left: 100px;width: 100px;">
+                            <span style="position: relative;top: 4px;" th:text="${video.likeNum}"></span>
+                        </div>
+                        <div style="position: relative;top: -28px;left: 100px;width: 100px;">
                         <span id="btn2">
-                                <img src="assets/image/logo/collect.png" alt="" width="28px" height="28px">
+                                <img src="../assets/image/logo/collect.png" alt="" width="28px" height="28px">
                                 </span>
                             <span style="position: relative;top: 4px;">6 <span></span></span>
-                    </div>
-                    <div style="position: relative;top: -56px;left: 200px;width: 100px;">
-                        <a class="share text-muted" href="" style="text-decoration: none;">
-                            <img src="assets/image/logo/share.png" alt="" width="28px" height="28px">
-                            <span style="position: relative;top: 4px;">分享</span>
-                        </a>
-                    </div>
-                    <div style="position: relative;top: -76px;left:508px;color: #999;width: 100px;">
-<!--                        <p><a href="" class="nav-link text-muted"><span>稿件投诉</span></a></p>-->
-                    </div>
-                    <div class="share-box">
-                        <div class="share-pos">
-                            <div class="box-a">
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <div class="share-address">
-                                    <div class="share-down">
-                                        <div class="shareqq" style="float: left;margin-right: 12px;">
-                                            <a href="">
-                                        <span style="background: url('assets/image/logo/QQ.png');width: 32px;
+                        </div>
+                        <div style="position: relative;top: -56px;left: 200px;width: 100px;">
+                            <a class="share text-muted" href="" style="text-decoration: none;">
+                                <img src="../assets/image/logo/share.png" alt="" width="28px" height="28px">
+                                <span style="position: relative;top: 4px;">分享</span>
+                            </a>
+                        </div>
+                        <div style="position: relative;top: -76px;left:508px;color: #999;width: 100px;">
+                            <!--                        <p><a href="" class="nav-link text-muted"><span>稿件投诉</span></a></p>-->
+                        </div>
+                        <div class="share-box">
+                            <div class="share-pos">
+                                <div class="box-a">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div class="share-address">
+                                        <div class="share-down">
+                                            <div class="shareqq" style="float: left;margin-right: 12px;">
+                                                <a href="">
+                                        <span style="background: url('../assets/image/logo/QQ.png');width: 32px;
                                         height: 32px;display: inline-block;">
 
                                         </span>
-                                            </a>
+                                                </a>
+                                            </div>
+
+
                                         </div>
 
-
                                     </div>
-
-                                </div>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <div class="share-address">
-                                    <div class="share-down">
-                                        <div class="shareqq" style="float: left;margin-right: 12px;">
-                                            <a href="">
-                                        <span style="background: url('assets/image/logo/微信.png');width: 32px;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div class="share-address">
+                                        <div class="share-down">
+                                            <div class="shareqq" style="float: left;margin-right: 12px;">
+                                                <a href="">
+                                        <span style="background: url('../assets/image/logo/微信.png');width: 32px;
                                         height: 32px;display: inline-block;">
 
                                         </span>
-                                            </a>
+                                                </a>
+                                            </div>
+
+
                                         </div>
 
-
                                     </div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                                </div>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                                <div class="share-address">
-                                    <div class="share-down">
-                                        <div class="shareqq" style="float: left;margin-right: 12px;">
-                                            <a href="">
-                                        <span style="background: url('assets/image/logo/微博.png');width: 32px;
+                                    <div class="share-address">
+                                        <div class="share-down">
+                                            <div class="shareqq" style="float: left;margin-right: 12px;">
+                                                <a href="">
+                                        <span style="background: url('../assets/image/logo/微博.png');width: 32px;
                                         height: 32px;display: inline-block;">
-
                                         </span>
-                                            </a>
+                                                </a>
+                                            </div>
                                         </div>
-
-
                                     </div>
-
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
             </div>
             <hr style="margin-top: -10px;" class="col-11">
             <!--关注-->
@@ -170,37 +159,37 @@
                 <div>
                     <div class="people"
                          style="position: relative;float: left;width: 110px;height: 96px;margin-left:87px;">
-                        <img src="assets/image/people/pe5.jpg" alt="" width="60px;" height="60px;"
+                        <img src="../assets/image/people/pe5.jpg" alt="" width="60px;" height="60px;"
                              class="rounded-circle">
                         <div style="position: relative;top:13px;left: -23px;width: 106px;height: 20px;text-align: center;">
                             <span class="text-muted">大大大灯泡</span>
                         </div>
                         <div style="width: 20px;height: 20px;background: red;position: relative;left: 21px;top: -31px;border-radius: 60px;">
-                            <img src="assets/image/logo/follow.png" alt="" width="10px" height="10px"
+                            <img src="../assets/image/logo/follow.png" alt="" width="10px" height="10px"
                                  style="position: relative;top: -4px;left: 5px;">
                         </div>
                     </div>
                     <div class="people"
                          style="position: relative;float: left;width: 110px;height: 96px;margin-left:87px;">
-                        <img src="assets/image/people/pe1.jpg" alt="" width="60px;" height="60px;"
+                        <img src="../assets/image/people/pe1.jpg" alt="" width="60px;" height="60px;"
                              class="rounded-circle">
                         <div style="position: relative;top:13px;left: -23px;width: 106px;height: 20px;text-align: center;">
                             <span class="text-muted">大大大灯泡</span>
                         </div>
                         <div style="width: 20px;height: 20px;background: red;position: relative;left: 21px;top: -31px;border-radius: 60px;">
-                            <img src="assets/image/logo/follow.png" alt="" width="10px" height="10px"
+                            <img src="../assets/image/logo/follow.png" alt="" width="10px" height="10px"
                                  style="position: relative;top: -4px;left: 5px;">
                         </div>
                     </div>
                     <div class="people"
                          style="position: relative;float: left;width: 110px;height: 96px;margin-left:87px;">
-                        <img src="assets/image/people/pe1.jpg" alt="" width="60px;" height="60px;"
+                        <img src="../assets/image/people/pe1.jpg" alt="" width="60px;" height="60px;"
                              class="rounded-circle">
                         <div style="position: relative;top:13px;left: -23px;width: 106px;height: 20px;text-align: center;">
                             <span class="text-muted">大大大灯泡</span>
                         </div>
                         <div style="width: 20px;height: 20px;background: red;position: relative;left: 21px;top: -31px;border-radius: 60px;">
-                            <img src="assets/image/logo/follow.png" alt="" width="10px" height="10px"
+                            <img src="../assets/image/logo/follow.png" alt="" width="10px" height="10px"
                                  style="position: relative;top: -4px;left: 5px;">
                         </div>
                     </div>
@@ -225,55 +214,60 @@
                     <section class='comment ' style="position: relative;left: -198px;">
                         <div class='com_title'><span>全部评论</span></div>
                         <div class='com_self clearfix'>
-                            <div class="my_face"><img class="userimg" src="assets/image/user/x.jpg"></div>
+                            <div class="my_face">
+                                <img th:if="${session.user_id!=null}" class="userimg" th:src="@{'../assets/image/user/'+${session.picture}}">
+                                <img th:if="${session.user_id==null}" class="userimg" th:src="@{'../assets/image/user/imlogin.jpg'}">
+                            </div>
                             <div class="com_enter" id='comEnter'>
                         <textarea class='com_area' id='comArea'
                                   placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"></textarea>
-                                <button class='enter_btn' id='enterBtn' >发表<br>评论</button>
+                                <button class='enter_btn' id='enterBtn'>发表<br>评论</button>
                             </div>
                         </div>
-                        <div class='com_content recommend userRecommend' id='comContent' >
-
-                                <div class="user_comment clearfix " v-for="reco in rows2" >
-                                    <div class="user_face"><a href="###"><img  src="assets/image/user/test.jpg"></a></div>
-                                    <div class="user_contxt">
-                                        <div class="user_txt">
-                                            <h5 class='userid'><a href="###">{{reco.plname}}</a></h5>
-                                            <p class='user_maincom'>xxx</p>
-                                            <p class='operation'>
-                                                <span class='floor'>#1</span>
-                                                <span class='time'>2019</span>
-                                                <span><a href='###' class='like' value='409'>(244)</a></span>
-                                                <span><a href='###' class='unlike'></a></span>
-                                                <span><a href="###" class='reply main_reply' onclick="test()">参与回复</a></span>
-                                                <!--<span><a href="###" class='report'>举报</a></span>-->
-                                                <!--<span><a href="###" class='backlist'>加入黑名单</a></span>-->
-                                            </p>
-                                        </div>
-                                        <div class="reply_com">
-                                            <ul id='replyUl'>
-                                                <li class='clearfix other' >
-                                                    <div class="reply_face"><a href="###"><img
-                                                            src="assets/image/test.jpg"></a></div>
-                                                    <div class="reply_con">
-                                                        <p class='reply_txt'>
-                                                            <a href="###" class='userid'>xxx</a>
-                                                            这次听完后，不像以往，若有所思，而是有一个疑问，小野寺律是谁？？这次听完后，不像以往，若有所思，而是有一个疑问，小野寺律是谁？？这次听完后，不像以往，若有所思，而是有一个疑问，小野寺律是谁？？这次听完后，不像以往，若有所思，而是有一个疑问，小野寺律是谁？？这次听完后，不像以往，若有所思，而是有一个疑问，小野寺律是谁？？这次听完后，不像以往，若有所思，而是有一个疑问，小野寺律是谁？？
-                                                        </p>
-                                                        <p class='operation'>
-                                                            <span class='replytime'>2016-11-11 10:21</span>
-                                                            <span><a href="###" class='like' value='0'>(0)</a></span>
-                                                            <span><a href="###" class='reply minor_reply'onclick="test()">回复</a></span>
-                                                            <!--<span><a href="###" class='report'>举报</a></span>-->
-                                                            <!--<span><a href="###" class='backlist'>加入黑名单</a></span>-->
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
+                        <div class='com_content recommend userRecommend' id='comContent'>
+                            <div class="user_comment clearfix " th:each="recommend:${review}" >
+                                <i style="visibility: hidden;font-size: 1px;" th:text="${recommend.id}"></i>
+                                <div class="user_face"><a href="###">
+                                    <img
+                                         th:src="@{'../assets/image/user/'+${recommend.picture}}"></a>
+                                </div>
+                                <div class="user_contxt">
+                                    <div class="user_txt">
+                                        <h5 class='userid'><a href="###" th:text="${recommend.plname}"></a></h5>
+                                        <p class='user_maincom' th:text="${recommend.content}"></p>
+                                        <p class='operation'>
+                                            <span class='time' th:text="${recommend.time}"></span>
+                                            <span><a href='###' class='like' value='409' th:text="${recommend.likeNum}"></a></span>
+                                            <span><a href='###' class='unlike'></a></span>
+                                            <span><a href="###" class='reply main_reply'
+                                                     >参与回复</a></span>
+                                            <!--<span><a href="###" class='report'>举报</a></span>-->
+                                            <!--<span><a href="###" class='backlist'>加入黑名单</a></span>-->
+                                        </p>
+                                    </div>
+                                    <div class="reply_com">
+                                        <ul id='replyUl'>
+                                            <li class='clearfix other' th:each="reply:${recommend.list}">
+                                                <div class="reply_face"><a href="###"><img
+                                                        th:src="@{'../assets/image/user/'+${reply.picture}}"></a></div>
+                                                <div class="reply_con">
+                                                    <p class='reply_txt'>
+                                                        <a href="###" class='userid' th:text="${reply.plname}"></a>
+                                                       <p th:text="${reply.content}"></p>
+                                                    </p>
+                                                    <p class='operation'>
+                                                        <span class='replytime' th:text="${reply.time}"></span>
+                                                        <span><a href="###" class='like' value='0' th:text="${reply.likeNum}"></a></span>
+                                                        <span><a href="###" class='reply minor_reply'>回复</a></span>
+                                                        <!--<span><a href="###" class='report'>举报</a></span>-->
+                                                        <!--<span><a href="###" class='backlist'>加入黑名单</a></span>-->
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
-
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -283,12 +277,13 @@
         <div class="col-4  mt-5 p-0 recommend" style="margin-left: 48px;">
             <h5>相关推荐</h5>
             <div class="mt-5 hotvideo">
-                <div class="row mt-3 recommend2" v-for="hot in rows4">
+                <div class="row mt-3 recommend2" th:each="news:${video2}">
                     <div class="col-6">
                         <a href="">
                             <div class="box">
                                 <img style="height:128px;" class="img-fluid rounded"
-                                v-bind:src="'assets/image/video/'+hot.picture" >
+
+                                     th:src="@{'../assets/image/video/'+${news.picture}}">
                                 <div class="box-content" style="padding: 5px 18px;">
                                     <span class="title fa fa-play-circle-o"
                                           style="color: white;font-size: 55px;"></span>
@@ -298,11 +293,11 @@
                     </div>
                     <div class="col-6 info">
                         <a href="" class="nav-link text-muted p-0">
-                            <p class="title">{{hot.title}}</p>
+                            <p class="title" th:text="${news.title}"></p>
                         </a>
                         <small>admin</small>
                         <br>
-                        <small>{{hot.playNum}}</small>
+                        <small th:text="${news.playNum}"></small>
                         <small>万播放</small>
                     </div>
                 </div>
@@ -312,42 +307,15 @@
     </div>
 </div>
 
-<script src="assets/js/jquery.min.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
 
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/popper.min.js"></script>
 <script src="https://s3.ssl.qhres.com/!fd546749/chimee-player.browser.js" type="text/javascript"></script>
-<script src="assets/js/vue.js"></script>
-<script src="assets/js/mustache.js"></script>
-<script src="assets/js/video.js"></script>
+<!--<script src="../assets/js/vue.js"></script>-->
+<!--<script src="../assets/js/mustache.js"></script>-->
+<!--<script src="../assets/js/video.js"></script>-->
 <script>
-
-
-
-    var path = "http://47.95.218.93:8090";
-    // var path = "http://192.168.43.233:8080";
-    var hotvideo=new Vue({
-        el: '.hotvideo',
-        data: {
-            rows4:{},
-        }
-    });
-    $.ajax({
-        type: "POST",
-        url: path +"/video/hot?kind=15",
-        data: '',
-        xhrFields: {
-            withCredentials: true
-        },
-        contentType: "application/json",
-        dataType: "json",
-        success: function (msg) {
-            hotvideo.rows4=msg;
-        },
-        error: function (err) {
-            alert("request failed！");
-        }
-    });
     $('.shareqq').hover(function () {
         $('.shareqq span').css("background-position", "0 0");
     }, function () {
@@ -371,24 +339,8 @@
         $('.share-box').css("display", "none");
     });
 
-    var videoplay = new Vue({
-        el: '.videoplay',
-        data: {
-            rows: {},
-        }
-    });
-    var userRecommend2=new Vue({
-        el: '.userRecommend',
-        data: {
-            rows2:{},
-        }
-    });
-    // var allRecommend2=new Vue({
-    //     el: '.allRecommend',
-    //     data: {
-    //         rows3:{},
-    //     }
-    // });
+
+    //视频显示
     $(function () {
         (function ($) {
             $.getUrlParam = function (name) {
@@ -402,13 +354,13 @@
         var currentpage = $.getUrlParam('id');
         $.ajax({
             type: "POST",
-            url: path + "/video/selectone?id=" + currentpage,
+            url: "/video/selectone2?id=" + currentpage,
             data: '',
             contentType: "application/json",
             dataType: "json",
             success: function (msg) {
-                videoplay.rows = msg;
-                var te = videoplay.rows.url;
+
+                var te = msg.url;
                 var aggdPlugin = ChimeePlayer.popupFactory({
                     name: 'time-ad',
                     className: 'time-ad',
@@ -421,7 +373,7 @@
                 var player = new ChimeePlayer({
                     box: 'native',
                     wrapper: '.chimee-container',
-                    src: '../video/' + te,
+                    src: 'http://120.79.217.195:8080/video/' + te,
                     isLive: false,
                     autoplay: true,
                     controls: true,
@@ -429,103 +381,10 @@
                 });
             },
             error: function (err) {
-                alert("request failed！");
+
             }
         });
-        $.ajax({
-            type: "POST",
-            url: path +"/user/userinfo",
-            data: '',
-            xhrFields: {
-                withCredentials: true
-            },
-            contentType: "application/json",
-            dataType: "json",
-            success: function (msg) {
-                $('.userimg').attr('src','assets/image/user/'+msg.picture);
-                $('.repleyimg').attr('src','assets/image/user/'+msg.picture);
-            },
-            error: function (err) {
-                alert("request failed！");
-            }
-        });
-
-        $.ajax({
-            type: "POST",
-            url: path +"/review/show?id="+currentpage,
-            data: '',
-            xhrFields: {
-                withCredentials: true
-            },
-            contentType: "application/json",
-            dataType: "json",
-            success: function (msg) {
-                userRecommend2.rows2=msg;
-            },
-            error: function (err) {
-                alert("request failed！");
-            }
-        });
-
-
     });
-    // function publish() {
-    //     $.ajax({
-    //         type: "POST",
-    //         url: path +"/user/userinfo",
-    //         data: '',
-    //         xhrFields: {
-    //             withCredentials: true
-    //         },
-    //         contentType: "application/json",
-    //         dataType: "json",
-    //         success: function (msg) {
-    //             $('.userFaceImg').attr('src','assets/image/user/'+msg.picture);
-    //         },
-    //         error: function (err) {
-    //             alert("request failed！");
-    //         }
-    //     });
-    // }
-    function test() {
-        $.ajax({
-            type: "POST",
-            url: path +"/user/userinfo",
-            data: '',
-            xhrFields: {
-                withCredentials: true
-            },
-            contentType: "application/json",
-            dataType: "json",
-            success: function (msg) {
-                $('.repleyimg').attr('src','assets/image/user/'+msg.picture);
-            },
-            error: function (err) {
-                alert("request failed！");
-            }
-        });
-    }
-
-    // $.ajax({
-    //     type: "POST",
-    //     url: path + "/review/publish",
-    //     data: {
-    //         vid:1,
-    //         content:'xxx'
-    //     },
-    //     contentType: "application/x-www-form-urlencoded",
-    //     crossDomain: true,
-    //     xhrFields: {
-    //         withCredentials: true
-    //     },
-    //     dataType: "json",
-    //     success: function (msg) {
-    //         $recommend.append(Mustache.render(temp,msg));
-    //     },
-    //     error: function (err) {
-    //         alert("request failed！");
-    //     }
-    // });
 
 </script>
 <script type="text/javascript">
@@ -599,29 +458,919 @@
 
 </script>
 <script>
-    $(function(){
-        $("#praise").click(function(){
+    $(function () {
+        $("#praise").click(function () {
             var praise_img = $("#praise-img");
             var text_box = $("#add-num");
             var praise_txt = $("#praise-txt");
-            var num=parseInt(praise_txt.text());
-            if(praise_img.attr("src") == ("assets/image/yizan.png")){
+            var num = parseInt(praise_txt.text());
+            if (praise_img.attr("src") == ("assets/image/yizan.png")) {
                 $(this).html("<img src='assets/image/zan.png' id='praise-img' class='animation' />");
                 praise_txt.removeClass("hover");
                 text_box.show().html("<em class='add-animation'>-1</em>");
                 $(".add-animation").removeClass("hover");
-                num -=1;
+                num -= 1;
                 praise_txt.text(num)
-            }else{
+            } else {
                 $(this).html("<img src='assets/image/yizan.png' id='praise-img' class='animation' />");
                 praise_txt.addClass("hover");
                 text_box.show().html("<em class='add-animation'>+1</em>");
                 $(".add-animation").addClass("hover");
-                num +=1;
+                num += 1;
                 praise_txt.text(num)
             }
         });
     })
+</script>
+<script th:inline="javascript">
+    var userimg,nickname;
+    if([[${session.user_id}]]==null){
+        userimg='imlogin.jpg';
+        nickname='游客1';
+    }else{
+        userimg=[[${session.picture}]];
+        nickname=[[${session.nickname}]];
+    }
+    ! function(window, document, $, undefined) {
+
+
+        // 通过ID获取元素
+        function getId(id) {
+            return typeof id == 'string' ? document.getElementById(id) : id;
+        }
+
+        // 通过Class获取元素
+        function getByClass(obj, cls) {
+            var reArr = [],
+                els = obj.getElementsByTagName('*');
+
+            for (var i = 0, len = els.length; i < len; i++) {
+                if (els[i].className === cls || els[i].className.indexOf(cls + ' ') >= 0 || els[i].className.indexOf(' ' + cls + ' ') >= 0 || els[i].className.indexOf(' ' + cls) >= 0) {
+                    reArr.push(els[i]);
+                }
+            }
+
+            return reArr;
+        }
+
+        // // 获取元素样式
+        // function getStyle(obj, attrname) {
+        // 	if (obj.currentStyle) {
+        // 		return obj.currentStyle[attrname];
+        // 	} else {
+        // 		return getComputedStyle(obj, false)[attrname];
+        // 	}
+        // }
+
+        //删除节点
+        function removeNode(node) {
+            node.parentNode.removeChild(node);
+        }
+
+        // 获取当前元素的同胞元素
+        function siblings(elm) {
+            var a = [];
+            var p = elm.parentNode.children;
+            for (var i = 0, pl = p.length; i < pl; i++) {
+                if (p[i] !== elm) {
+                    a.push(p[i]);
+                }
+            }
+            return a;
+        }
+
+
+
+        var userID = 'tracyTeng',
+            // historySearch = getId('historySearch'),
+            // historyUl = historySearch.getElementsByTagName('ul')[0],
+            // inputWp = getId('inputWp'),
+            //
+            // dialog = getId('dialog'),
+            // dialog_bar = getId('dialog_bar'),
+            // distX = 0,
+            // distY = 0,
+            // switchUser = getId('switchUser'),
+            // switchMask = getId('switchMask'),
+            //
+            // textInput = getId('textInput'),
+            // pswdInput = getId('pswdInput'),
+            // userCheck = getId('userCheck'),
+            // pswdCheck = getId('pswdCheck'),
+            // login = getId('login'),
+            //
+            // authorIntro = getId('authorIntro'),
+            // txtIntro = getId('txtIntro'),
+            // txtBefore = txtIntro.innerHTML,
+            // txtAfter = txtBefore.slice(0, 33),
+            // onBtn = authorIntro.getElementsByTagName('a')[0],
+            //
+            // listUl = getId('listUl'),
+            // listLis = listUl.getElementsByTagName('li'),
+            // ulHeight = listUl.offsetHeight,
+            // liHeight = listLis[0].offsetHeight,
+            // cBtn = getId('c_btn'),
+            //
+            // shareBox = getId('shareBox'),
+            // shareLink = getId('shareLink'),
+            // maxH = parseInt(getStyle(shareLink, 'height')),
+            // h = 0,
+            // step = 30,
+            // timer,
+            // timer2,
+            //
+            // anotherBox = getId('anotherBox'),
+            // prevBtn = getByClass(anotherBox, 'prev')[0],
+            // nextBtn = getByClass(anotherBox, 'next')[0],
+            // anotherList = getId('anotherList'),
+            // aVideos = anotherList.getElementsByTagName('div'),
+            // len = aVideos.length,
+            // clkNum = 0,
+            //
+            // comEnter = getId('comEnter'),
+            txtArea = getByClass(comEnter, 'com_area')[0],
+            enterBtn = getByClass(comEnter, 'enter_btn')[0],
+
+            comContent = getId('comContent'),
+            userComments = getByClass(comContent, 'user_comment'),
+            // userContxts = getByClass(comContent, 'user_contxt'),
+            userTxts = getByClass(comContent, 'user_txt'),
+            replyComs = getByClass(comContent, 'reply_com'),
+
+            enterBtn = getId('enterBtn'),
+            comArea = getId('comArea'),
+            isExist = false,
+            isCreate = false,
+            isCreate2 = false,
+
+            toTop = getId('toTop'),
+            timer3,
+            timer4;
+
+
+
+        // // 历史搜索框
+        // inputWp.onfocus = function() {
+        // 	historySearch.style.display = 'block';
+        // }
+        //
+        // inputWp.onblur = function() {
+        // 	historySearch.style.display = 'none';
+        // }
+        //
+        // var data = ['数据1', '数据2', '数据3']; //模拟数据
+        //
+        // for (var i = 0; i < data.length; i++) {
+        // 	historyUl.innerHTML += '<li><a href="###">' + data[i] + '</a></li>';
+        // }
+
+        // //点击弹出遮罩层和登录对话框
+        // switchUser.onclick = function() {
+        // 	dialog.style.display = 'block';
+        // 	switchMask.style.display = 'block';
+        // 	autoCenter(dialog);
+        // }
+        //
+        // switchMask.onclick = function() {
+        // 	dialog.style.display = 'none';
+        // 	switchMask.style.display = 'none';
+        // }
+        //
+        //
+        // //切换用户对话框拖拽&&居中
+        // function autoCenter(obj) {
+        // 	var winWidth = document.documentElement.clientWidth || document.body.clientWidth,
+        // 		winHeight = document.documentElement.clientHeight || document.body.clientHeight,
+        // 		objWidth = obj.offsetWidth,
+        // 		objHeight = obj.offsetHeight;
+        //
+        // 	obj.style.left = (winWidth - objWidth) / 2 + 'px';
+        // 	obj.style.top = (winHeight - objHeight) / 2 + 'px';
+        // }
+        //
+        // autoCenter(dialog);
+        //
+        // window.onresize = function() {
+        // 	autoCenter(dialog);
+        // }
+        //
+        // dialog_bar.onmousedown = function(e) {
+        // 	var evt = e || window.event;
+        // 	distX = evt.clientX - dialog.offsetLeft; //获取边界到鼠标的距离
+        // 	distY = evt.clientY - dialog.offsetTop;
+        //
+        // 	document.onmousemove = function(e) {
+        // 		var evt = e || window.event,
+        // 			winWidth = document.documentElement.clientWidth || document.body.clientWidth,
+        // 			winHeight = document.documentElement.clientHeight || document.body.clientHeight,
+        // 			x = evt.clientX - distX,
+        // 			y = evt.clientY - distY;
+        //
+        // 		document.onselectstart = function() {
+        // 			return false;
+        // 		}
+        //
+        //
+        // 		x = Math.min(winWidth - dialog.offsetWidth, Math.max(0, x));
+        // 		y = Math.min(winHeight - dialog.offsetHeight, Math.max(0, y));
+        //
+        // 		dialog.style.left = x + 'px';
+        // 		dialog.style.top = y + 'px';
+        // 	}
+        //
+        // 	document.onmouseup = function() {
+        // 		document.onmousemove = null;
+        // 		document.onmouseup = null;
+        // 	}
+        // }
+        //
+        //
+        // //登录对话框表单验证
+        // textInput.onfocus = function() {
+        // 	userCheck.style.display = 'none';
+        // }
+        //
+        // pswdInput.onfocus = function() {
+        // 	pswdCheck.style.display = 'none';
+        // }
+        //
+        // textInput.onblur = function() {
+        // 	var txt = this.value;
+        // 	if (txt == '') {
+        // 		userCheck.style.display = 'block';
+        // 		userCheck.innerHTML = '您的用户名不能为空!';
+        // 		return;
+        // 	}
+        // }
+        //
+        // pswdInput.onblur = function() {
+        // 	var txt = this.value;
+        // 	if (txt == '') {
+        // 		pswdCheck.style.display = 'block';
+        // 		pswdCheck.innerHTML = '您的密码不能为空!';
+        // 		return;
+        // 	}
+        // }
+        //
+        // login.onclick = function() {
+        // 	textInput.onblur();
+        // 	pswdInput.onblur();
+        // }
+
+
+        // //视频作者介绍的展开和收起
+        // txtIntro.innerHTML = txtAfter;
+        // onBtn.onclick = function() {
+        // 	if (this.innerHTML == '展开') {
+        // 		this.innerHTML = '收起';
+        // 		txtIntro.innerHTML = txtBefore;
+        // 	} else {
+        // 		this.innerHTML = '展开';
+        // 		txtIntro.innerHTML = txtAfter;
+        // 	}
+        // }
+        //
+        // if (txtIntro.innerHTML.length > 30) {
+        // 	onBtn.style.display = 'inline-block';
+        // }
+        //
+        // //多part
+        // if (listLis.length > 4) {
+        // 	listUl.style.height = liHeight + 'px';
+        // 	cBtn.style.display = 'block';
+        // }
+        //
+        // cBtn.onclick = function() {
+        // 	if (this.innerHTML == '展开') {
+        // 		this.innerHTML = '收起';
+        // 		listUl.style.height = ulHeight + 'px';
+        // 	} else {
+        // 		this.innerHTML = '展开';
+        // 		listUl.style.height = liHeight + 'px';
+        // 	}
+        //
+        // }
+        //
+        // //分享
+        // shareBox.onmouseenter = function() {
+        // 	timer2 = setTimeout(slideDown, 300);
+        // }
+        //
+        // function slideDown() {
+        // 	shareLink.style.display = 'block';
+        // 	shareLink.style.height = h + 'px';
+        // 	clearInterval(timer);
+        // 	timer = setInterval(function() {
+        // 		if (h < maxH) {
+        // 			h += step;
+        // 			shareLink.style.height = h + 'px';
+        // 		} else {
+        // 			clearInterval(timer);
+        // 		}
+        // 	}, 30)
+        // }
+        //
+        // shareBox.onmouseleave = function() {
+        // 	clearInterval(timer2);
+        // 	timer2 = setTimeout(slideUp, 300);
+        // }
+        //
+        // function slideUp() {
+        // 	shareBox.style.borderBottom = '1px solid #ccc';
+        // 	clearInterval(timer);
+        // 	timer = setInterval(function() {
+        // 		shareLink.style.height = h + 'px';
+        // 		if (h > 0) {
+        // 			h -= step;
+        // 		} else {
+        // 			clearInterval(timer);
+        // 			shareLink.style.display = 'none';
+        // 		}
+        // 	}, 30)
+        // }
+        //
+        // //视频切换
+        // // anotherBox prevBtn nextBtn
+        // anotherBox.onmouseover = function() {
+        // 	prevBtn.style.display = 'block';
+        // 	nextBtn.style.display = 'block';
+        // }
+        //
+        // anotherBox.onmouseout = function() {
+        // 	prevBtn.style.display = 'none';
+        // 	nextBtn.style.display = 'none';
+        // }
+        //
+        // function fadeOp() {
+        // 	for (var i = 0; i < aVideos.length; i++) {
+        // 		aVideos[i].className = 'avideo clearfix';
+        // 	}
+        // 	aVideos[clkNum].className += ' full_op';
+        // }
+        //
+        // nextBtn.onclick = function() {
+        // 	clkNum++;
+        // 	if (clkNum > len - 1) {
+        // 		clkNum = 0;
+        // 	}
+        // 	fadeOp();
+        // }
+        //
+        // prevBtn.onclick = function() {
+        // 	clkNum--;
+        // 	if (clkNum < 0) {
+        // 		clkNum = len - 1;
+        // 	}
+        // 	fadeOp();
+        // }
+
+        //评论点赞回复--自己输入评论框和按钮
+        txtArea.onmouseover = function() {
+            this.className = 'com_area mover';
+        }
+
+        txtArea.onmouseout = function() {
+            txtArea.className = 'com_area';
+        }
+
+        enterBtn.onmouseover = function() {
+            this.className = 'enter_btn mover';
+            txtArea.className = 'com_area mover';
+        }
+
+        enterBtn.onmouseout = function() {
+            txtArea.className = 'com_area';
+            enterBtn.className = 'enter_btn';
+        }
+
+        //评论点赞回复--点赞点反对，举报和黑名单显示隐藏
+        function creatReInput() {
+            var replyInput = document.createElement('div');
+            replyInput.className = 'com_self clearfix reply_input';
+            replyInput.innerHTML =
+                '<div class="my_face"><img class="repleyimg" src="../assets/image/user/'+userimg+'"></div>' +
+                '<div class="com_enter" id="comEnter">' +
+                '<textarea class="com_area" id="replyArea" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"></textarea>' +
+                '<button class="enter_btn" id="replyBtn" >发表<br>评论</button>' +
+                '</div>';
+            return replyInput;
+        }
+
+        for (var i = 0; i < userTxts.length; i++) {
+            userTxts[i].onclick = function(e) {
+                var evt = e || window.event,
+                    target = evt.target || evt.srcElement;
+
+                switch (target.className) {
+                    case 'like':
+                        var oldValue = parseInt(target.getAttribute('value')),
+                            newValue;
+                        target.className = 'like onlike';
+                        target.innerHTML = '(' + (oldValue + 1) + ')';
+                        newValue = oldValue + 1;
+                        target.setAttribute('value', newValue);
+                        evt.stopPropagation();
+                        evt.cancelBubble = true;
+                        break;
+
+                    case 'unlike':
+                        target.className = 'unlike light';
+                        evt.stopPropagation();
+                        evt.cancelBubble = true;
+                        break;
+
+                    case 'like onlike':
+                        var oldValue = parseInt(target.getAttribute('value')),
+                            newValue;
+                        target.className = 'like';
+                        target.innerHTML = '(' + (oldValue - 1) + ')';
+                        newValue = oldValue - 1;
+                        target.setAttribute('value', newValue);
+                        evt.stopPropagation();
+                        evt.cancelBubble = true;
+                        break;
+
+                    case 'unlike light':
+                        target.className = 'unlike';
+                        evt.stopPropagation();
+                        evt.cancelBubble = true;
+                        break;
+
+                    case 'reply main_reply':
+                        isCreate2 = true;
+                        if (this.parentNode.children[2]) {
+                            removeNode(this.parentNode.children[2]);
+                            return;
+                        } else {
+                            var sibs = siblings(this.parentNode.parentNode);
+                            for (var i = 0; i < sibs.length; i++) {
+                                if (sibs[i].children[1].children[2]) {
+                                    removeNode(sibs[i].children[1].children[2]);
+                                }
+                            }
+                            this.parentNode.appendChild(creatReInput());
+                            var replyArea = getId('replyArea');
+
+                            replyArea.focus();
+
+                        }
+                        evt.stopPropagation();
+                        evt.cancelBubble = true;
+                        break;
+                }
+
+                if (isCreate2) {
+                    var replyBtn = getId('replyBtn');
+                    replyBtn.onmouseenter = function() {
+                        this.style.backgroundColor = '#00ADDA';
+                    }
+                    replyBtn.onmouseleave = function() {
+                        this.style.backgroundColor = '#00A1D6';
+                    }
+
+                    replyBtn.onclick = function(e) {
+                        if([[${session.user_id}]]==null){
+                            alert("未登录");
+                            return;
+                        }
+
+                        var evt = e || window.event,
+                            target = evt.target || evt.srcElement;
+                        evt.stopPropagation();
+                        evt.cancelBubble = true;
+                        // console.log(this.parentNode.parentNode.parentNode.parentNode);这种也可以，获取到当前的userComment；
+                        var replyVal = replyArea.value,
+                            replyCom = siblings(this.parentNode.parentNode)[1];
+                        if (replyVal == '') {
+                            alert("评论内容不能为空");
+                            return;
+                        } else {
+                            var reLi = document.createElement('li');
+                            reLi.className = 'clearfix self';
+                            reLi.innerHTML =
+                                '<div class="reply_face"><a href="###"><img src="../assets/image/user/'+userimg+'"></a></div>' +
+                                '<div class="reply_con">' +
+                                '<p class="reply_txt">' +
+                                '<a href="###" class="userid">' + nickname + '：' + '</a>' +
+                                replyVal +
+                                '</p>' +
+                                '<p class="operation">' +
+                                '<span class="replytime">' + filterTime(new Date()) + '</span>' +
+                                '<span><a href="###" class="like" value="0">0</a></span>' +
+                                '<span><a href="###" class="reply minor_reply">回复</a></span>' +
+                                // '<span><a href="###" class="del" id="replyDelBtn">删除</a></span>' +
+                                '</p>' +
+                                '</div>'
+                            // var replyUl = target.children[1].children[1].children[0];这种也可以，获取到当前的ul；
+                            var replyUl = replyCom.children[0];
+                            replyUl.appendChild(reLi);
+                            replyArea.value = '';
+                        }
+                        var replyid=$(this).parent().parent().parent().parent().children('i').html()
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/review/reply?id="+replyid+"&content="+replyVal,
+                            data: '',
+                            contentType: "application/x-www-form-urlencoded",
+                            success: function (msg) {
+                                // alert(msg);
+                            },
+                            error: function (err) {
+                                alert("request failed！");
+                            }
+                        });
+                    }
+                }
+            }
+        }
+
+        /*	for (var i = 0; i < replyComs.length; i++) {
+                var replyComLis = replyComs[i].getElementsByTagName('li');
+                for (var i = 0; i < replyComLis.length; i++) {
+                    replyComLis[i].index = i;
+                    if (replyComLis[i].index > 2) {
+                        replyComLis[i].style.display = "none";
+                    }
+                }
+            }
+        */
+
+        for (var i = 0; i < replyComs.length; i++) {
+            var lis = replyComs[i].getElementsByTagName('li');
+            if (lis.length > 3) {
+                var spanBox = document.createElement('span');
+                spanBox.className = 'check';
+                spanBox.innerHTML = '还有' + (lis.length - 3) + '条回复，<a href="###" style="color: #0092C2;">点击查看更多</a>';
+                replyComs[i].appendChild(spanBox);
+
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].index = i;
+                    if (lis[i].index > 2) {
+                        lis[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+
+        for (var i = 0; i < replyComs.length; i++) {
+            replyComs[i].index = i;
+            replyComs[i].onmouseenter = function() {
+                var replyComLis = this.getElementsByTagName('li');
+                for (var i = 0; i < replyComLis.length; i++) {
+                    replyComLis[i].index = i;
+                    replyComLis[i].onmouseenter = function() {
+                        var rePort_s = getByClass(this, 'report')[0],
+                            backList_s = getByClass(this, 'backlist')[0];
+
+                        if (this.className == 'clearfix self') {
+                            var replyDel = getByClass(this, 'del')[0];
+                            replyDel.style.visibility = 'visible';
+                            return;
+                        }
+                        rePort_s.style.visibility = 'visible';
+                        backList_s.style.visibility = 'visible';
+                    }
+
+                    replyComLis[i].onmouseleave = function() {
+                        var rePort_s = getByClass(this, 'report')[0],
+                            backList_s = getByClass(this, 'backlist')[0];
+                        if (this.className == 'clearfix self') {
+                            var replyDel = getByClass(this, 'del')[0];
+                            replyDel.style.visibility = 'hidden';
+                            return;
+                        }
+                        rePort_s.style.visibility = 'hidden';
+                        backList_s.style.visibility = 'hidden';
+                    }
+
+                    replyComLis[i].onclick = function(e) {
+                        var evt = e || window.event,
+                            target = evt.target || evt.srcElement;
+
+                        switch (target.className) {
+                            case 'reply minor_reply':
+                                var userContxt = this.parentNode.parentNode.parentNode,
+                                    replyArea;
+                                isCreate = true;
+                                if (userContxt.children[2]) {
+                                    replyArea = getId('replyArea');
+                                    replyArea.focus();
+                                    var nameID = getByClass(this, 'userid')[0].innerHTML;
+                                    replyArea.innerHTML = '回复 ' + '@' + nameID;
+                                    return;
+                                } else {
+                                    userContxt.appendChild(creatReInput());
+                                    var sibs = siblings(userContxt.parentNode);
+                                    for (var i = 0; i < sibs.length; i++) {
+                                        if (sibs[i].children[1].children[2]) {
+                                            removeNode(sibs[i].children[1].children[2]);
+                                        }
+                                    }
+                                    replyArea = getId('replyArea');
+
+                                    replyArea.focus();
+                                    var nameID = getByClass(this, 'userid')[0].innerHTML;
+                                    replyArea.innerHTML = '回复 ' + '@' + nameID;
+
+                                }
+                                break;
+
+                            case 'del':
+                                removeNode(this);
+                                break;
+
+                            case 'like':
+                                var oldValue = parseInt(target.getAttribute('value')),
+                                    newValue;
+                                target.className = 'like onlike';
+                                target.innerHTML = '(' + (oldValue + 1) + ')';
+                                newValue = oldValue + 1;
+                                target.setAttribute('value', newValue);
+                                evt.stopPropagation();
+                                evt.cancelBubble = true;
+                                break;
+
+                            case 'unlike':
+                                target.className = 'unlike light';
+                                evt.stopPropagation();
+                                evt.cancelBubble = true;
+                                break;
+
+                            case 'like onlike':
+                                var oldValue = parseInt(target.getAttribute('value')),
+                                    newValue;
+                                target.className = 'like';
+                                target.innerHTML = '(' + (oldValue - 1) + ')';
+                                newValue = oldValue - 1;
+                                target.setAttribute('value', newValue);
+                                evt.stopPropagation();
+                                evt.cancelBubble = true;
+                                break;
+
+                            case 'unlike light':
+                                target.className = 'unlike';
+                                evt.stopPropagation();
+                                evt.cancelBubble = true;
+                                break;
+
+                        }
+
+                        if (isCreate) {
+                            var replyBtn = getId('replyBtn');
+                            replyBtn.onmouseenter = function() {
+                                this.style.backgroundColor = '#00ADDA';
+                            }
+                            replyBtn.onmouseleave = function() {
+                                this.style.backgroundColor = '#00A1D6';
+                            }
+                            replyBtn.onclick = function() {
+                                if([[${session.user_id}]]==null){
+                                    alert("未登录");
+                                    return;
+                                }
+                                var replyVal = replyArea.value;
+                                if (replyVal == '回复 ' + '@' + nameID || replyVal == '') {
+                                    alert("评论内容不能为空");
+                                    return;
+                                } else {
+                                    var reLi = document.createElement('li'),
+                                        replyCom = siblings(this.parentNode.parentNode)[1];
+                                    reLi.className = 'clearfix self';
+                                    reLi.innerHTML =
+                                        '<div class="reply_face"><a href="###"><img src="../assets/image/user/'+userimg+'"></a></div>' +
+                                        '<div class="reply_con">' +
+                                        '<p class="reply_txt">' +
+                                        '<a href="###" class="userid">' + nickname + '：' + '</a>' +
+                                        replyVal +
+                                        '</p>' +
+                                        '<p class="operation">' +
+                                        '<span class="replytime">' + filterTime(new Date()) + '</span>' +
+                                        '<span><a href="###" class="like" value="0">(0)</a></span>' +
+                                        '<span><a href="###" class="reply minor_reply">回复</a></span>' +
+                                        // '<span><a href="###" class="del" id="replyDelBtn">删除</a></span>' +
+                                        '</p>' +
+                                        '</div>';
+
+                                    var replyUl = replyCom.children[0];
+                                    replyUl.appendChild(reLi);
+                                    replyArea.value = '';
+                                }
+                                var replyid=$(this).parent().parent().parent().parent().children('i').html()
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/review/reply?id="+replyid+"&content="+replyVal,
+                                    data: '',
+                                    contentType: "application/x-www-form-urlencoded",
+                                    success: function (msg) {
+                                        // alert(msg);
+                                    },
+                                    error: function (err) {
+                                        alert("request failed！");
+                                    }
+                                });
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+
+        for (var i = 0; i < userComments.length; i++) {
+            userComments[i].index = i;
+            userComments[i].onmouseenter = function() {
+                var rePort = getByClass(this.children[1], 'report')[0],
+                    backList = getByClass(this.children[1], 'backlist')[0];
+                rePort.style.visibility = 'visible';
+                backList.style.visibility = 'visible';
+            }
+
+            userComments[i].onmouseleave = function() {
+                var rePort = getByClass(this.children[1], 'report')[0],
+                    backList = getByClass(this.children[1], 'backlist')[0];
+                rePort.style.visibility = 'hidden';
+                backList.style.visibility = 'hidden';
+            }
+        }
+
+
+        //评论点赞回复--点击发表评论，评论显示到评论区；
+        function filterTime(date) {
+            var y = date.getFullYear(),
+                m = date.getMonth() + 1,
+                d = date.getDate(),
+                h = date.getHours(),
+                min = date.getMinutes();
+            m = checkDate(m);
+            d = checkDate(d);
+            h = checkDate(h);
+            min = checkDate(min);
+
+            return y + '-' + m + '-' + d + ' ' + h + ':' + min;
+        }
+
+        function checkDate(val) {
+            return val < 0 ? '0' + val : val;
+        }
+
+        enterBtn.onclick = function() {
+            if([[${session.user_id}]]==null){
+                alert("未登录");
+                return;
+            }
+            isExist = true;
+            if (comArea.value.length == 0) {
+                alert("评论不能为空");
+                return;
+            }
+
+            var areaTxt = comArea.value,
+                myComBox = document.createElement('div'),
+                childs = comContent.children.length,
+                floorNum;
+
+            if (childs > 0) {
+                floorNum = '#' + (childs + 1)
+                comContent.insertBefore(myComBox, comContent.children[0]);
+            } else {
+                comContent.appendChild(myComBox);
+            }
+
+            myComBox.className = 'user_comment clearfix';
+            myComBox.innerHTML =
+                '<div class="user_face"><a href="###"><img class="userFaceImg" src="../assets/image/user/'+userimg+'"></a></div>' +
+                '<div class="user_contxt">' +
+                '<div class="user_txt">' +
+                '<h5 class="userid"><a href="###">' + nickname + '</a></h5>' +
+                '<p class="user_maincom">' + areaTxt + '</p>' +
+                '<p class="operation">' +
+
+                '<span class="time">' + filterTime(new Date()) + '</span>' +
+                '<span><a href="###" class="like" value="0">0</a></span>' +
+                '<span><a href="###" class="unlike"></a></span>' +
+                // '<span><a href="###" class="del" id="delBtn">删除</a></span>' +
+                '</p>' +
+                '</div>' +
+                '</div>'
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "/review/publish?vid="+[[${video.id}]]+"&content="+areaTxt,
+                    data: '',
+                    contentType: "application/x-www-form-urlencoded",
+                    success: function (msg) {
+                        // alert(msg);
+                    },
+                    error: function (err) {
+                        alert("request failed！");
+                    }
+                });
+
+
+
+            comArea.value = '';
+
+            if (isExist) {
+                var delBtn = getId('delBtn');
+                myComBox.onmouseenter = function() {
+                    delBtn.style.visibility = 'visible';
+                }
+                myComBox.onmouseleave = function() {
+                    delBtn.style.visibility = 'hidden';
+                }
+                myComBox.onclick = function(e) {
+                    var evt = e || window.event,
+                        target = evt.target || evt.srcElement;
+
+                    switch (target.className) {
+                        case 'del':
+                            removeNode(myComBox);
+                            break;
+
+                        case 'like':
+                            var oldValue = parseInt(target.getAttribute('value')),
+                                newValue;
+                            target.className = 'like onlike';
+                            target.innerHTML = '(' + (oldValue + 1) + ')';
+                            newValue = oldValue + 1;
+                            target.setAttribute('value', newValue);
+                            break;
+
+                        case 'unlike':
+                            target.className = 'unlike light';
+                            break;
+
+                        case 'like onlike':
+                            target.className = 'like';
+                            var oldValue = parseInt(target.getAttribute('value')),
+                                newValue;
+                            target.className = 'like';
+                            target.innerHTML = '(' + (oldValue - 1) + ')';
+                            newValue = oldValue - 1;
+                            target.setAttribute('value', newValue);
+                            break;
+
+                        case 'unlike light':
+                            target.className = 'unlike';
+                            break;
+                    }
+                }
+            }
+
+        }
+
+        // // 返回顶部
+        // window.onscroll = function() {
+        // 	var scrollT = document.documentElement.scrollTop || document.body.scrollTop,
+        // 		clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+        //
+        // 	if (scrollT > clientHeight) {
+        // 		fullOp(100);
+        // 	} else {
+        // 		fullOp(0);
+        // 	}
+        //
+        // 	function fullOp(end) {
+        // 		clearInterval(timer4);
+        // 		timer4 = setInterval(function() {
+        // 			var opacityVal = Math.round(parseFloat(getStyle(toTop, 'opacity')) * 100);
+        // 			step = (end - opacityVal) / 2;
+        // 			step = step > 0 ? Math.ceil(step) : Math.floor(step);
+        //
+        // 			if (opacityVal == end) {
+        // 				clearInterval(timer4);
+        // 			} else {
+        // 				toTop.style.opacity = (opacityVal + step) / 100;
+        // 				toTop.style.filter = 'alpha(opacity=' + (opacityVal + step) + ')';
+        // 			}
+        // 		}, 10)
+        // 	}
+        // }
+
+        // toTop.onclick = function() {
+        // 	backTop();
+        // }
+
+        // function backTop() {
+        // 	clearInterval(timer3);
+        // 	timer3 = setInterval(function() {
+        // 		var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
+        // 		step = Math.floor(-scrollT / 5);
+        //
+        // 		if (scrollT == 0) {
+        // 			clearInterval(timer3);
+        // 		} else {
+        // 			document.documentElement.scrollTop = document.body.scrollTop = scrollT + step;
+        // 		}
+        // 	}, 30);
+        // }
+
+    }(window, document, jQuery)
 </script>
 </body>
 </html>

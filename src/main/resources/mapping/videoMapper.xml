@@ -27,7 +27,7 @@
     <include refid="Base_Column_List" />
     from video
     ORDER BY play_num DESC
-    LIMIT 8
+    LIMIT 6
   </select>
   <select id="hot" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select

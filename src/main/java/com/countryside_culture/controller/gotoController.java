@@ -41,5 +41,9 @@ public class gotoController {
     public String gotofamousPeople1Game(){
         return "famousPeopleGame";
     }
+    @RequestMapping("video")
+    public String gotovideo(){
+        return "video";
+    }
 
 }

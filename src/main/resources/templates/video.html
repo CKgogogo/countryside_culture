@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="shortcut icon" href="assets/image/logo/logo3.png"/>
+    <link rel="shortcut icon" href="../assets/image/logo/logo3.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
     <style>
         .nav .active{
             color: black;
@@ -18,52 +18,50 @@
         .nav a{
             color: #666;
         }
-
-
     </style>
 </head>
 <body class="animated fadeIn">
 <div class="container-fluid p-0 ">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
-        <a href="index.html" class="navbar-brand p-0" style="width: 88px;">
-            <img src="assets/image/logo/logo2.png" width="100%" alt="">
+        <a href="index" class="navbar-brand p-0" style="width: 88px;">
+            <img src="../assets/image/logo/logo2.png"  width="100%" alt="">
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav daohang">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link">首页</a>
+                    <a href="/index" class="nav-link  active">首页</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">知越
                     </a>
                     <div class="dropdown-menu text-center">
-                        <a href="famousPeople.html" class="dropdown-item ">越剧名人</a>
-                        <a href="active.html?pn=1" class="dropdown-item ">精彩活动</a>
-                        <a href="yueJuTown.html" class="dropdown-item">越剧小镇</a>
-                        <a href="costume.html" class="dropdown-item">戏服</a>
-                        <a href="prop.html" class="dropdown-item">表演道具</a>
+                        <a href="famousPeople" class="dropdown-item"  >越剧名人</a>
+                        <a href="/activity/showall?pn=1" class="dropdown-item ">精彩活动</a>
+                        <a href="/yueJuTown" class="dropdown-item">越剧小镇</a>
+                        <a href="/costume" class="dropdown-item">戏服</a>
+                        <a href="/prop" class="dropdown-item">表演道具</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="news.html?pn=1" class="nav-link">资讯</a>
+                    <a href="/news/showall?pn=1" class="nav-link">资讯</a>
                 </li>
                 <li class="nav-item">
-                    <a href="culture.html" class="nav-link">嵊州风情</a>
+                    <a href="culture" class="nav-link">嵊州风情</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="video.html" class="nav-link active">在线视频</a>
+                    <a href="/video" class="nav-link">在线视频</a>
                 </li>
                 <li class="nav-item">
-                    <a href="live.html" class="nav-link">直播</a>
+                    <a href="live" class="nav-link">直播</a>
                 </li>
             </ul>
-            <a href="" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+            <a href="login" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
         </div>
     </nav>
 </div>
 <div class="container-fluid p-0">
-    <img src="assets/image/video/video2.jpg" class="img-fluid " alt="">
+    <img src="../assets/image/video/video2.jpg" class="img-fluid " alt="">
 </div>
 <div class="container mt-5">
     <nav class="navbar navbar-expand-sm navbar-light bg-light .fixed-top col-10 offset-1">
@@ -87,7 +85,7 @@
         <div class="tab-pane fade show active " id="tab1">
             <div class="col-10 offset-1 p-0 mt-5 row jumu">
                 <div class="col-3" v-for="jumuinfo in rows.list">
-                    <a v-bind:href="'videoPlay.html?id='+jumuinfo.id">
+                    <a v-bind:href="'/video/selectone?id='+jumuinfo.id">
                         <div class="box">
                             <img style="width: 201px;height:151px;" class="img-fluid rounded"
                              v-bind:src="'assets/image/video/'+jumuinfo.picture" >
@@ -143,7 +141,7 @@
         <div class="tab-pane fade " id="tab2">
             <div class="col-10 offset-1 p-0 mt-5 row julu">
                 <div class="col-3" v-for="jiluinfo in rows.list">
-                    <a v-bind:href="'videoPlay.html?id='+jiluinfo.id">
+                    <a v-bind:href="'/video/selectone?id='+jiluinfo.id">
                         <div class="box">
                             <img style="width: 201px;height:151px;" class="img-fluid rounded"
                                  v-bind:src="'assets/image/video/'+jiluinfo.picture" >
@@ -199,7 +197,7 @@
         <div class="tab-pane fade" id="tab3">
             <div class="col-10 offset-1 p-0 mt-5 row jiaoxue">
                 <div class="col-3" v-for="jiaoxueinfo in rows.list">
-                    <a v-bind:href="'videoPlay.html?id='+jiaoxueinfo.id">
+                    <a v-bind:href="'/video/selectone?id='+jiaoxueinfo.id">
                         <div class="box">
                             <img style="width: 201px;height:151px;" class="img-fluid rounded"
                                  v-bind:src="'assets/image/video/'+jiaoxueinfo.picture" >
@@ -255,7 +253,7 @@
         <div class="tab-pane fade" id="tab4">
             <div class="col-10 offset-1 p-0 mt-5 row huodong">
                 <div class="col-3" v-for="huodonginfo in rows.list">
-                    <a v-bind:href="'videoPlay.html?id='+huodonginfo.id">
+                    <a v-bind:href="'/video/selectone?id='+huodonginfo.id">
                         <div class="box">
                             <img style="width: 201px;height:151px;" class="img-fluid rounded"
                                  v-bind:src="'assets/image/video/'+huodonginfo.picture">
@@ -310,12 +308,12 @@
     </div>
 </div>
 </div>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/vue.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/popper.min.js"></script>
+<script src="../assets/js/vue.js"></script>
 <script>
-    var path = "http://47.95.218.93:8090";
+    // var path = "http://47.95.218.93:8090";
     var jingdianjumu=new Vue({
         el: '.jumu',
         data: {
@@ -365,19 +363,19 @@
         }
     });
     $(function () {
-        (function ($) {
-            $.getUrlParam = function (name) {
-                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-                var r = window.location.search.substr(1).match(reg);
-                if (r != null) return unescape(r[2]); return null;
-            }
-        })(jQuery);
+        // (function ($) {
+        //     $.getUrlParam = function (name) {
+        //         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        //         var r = window.location.search.substr(1).match(reg);
+        //         if (r != null) return unescape(r[2]); return null;
+        //     }
+        // })(jQuery);
         // var currentpage = $.getUrlParam('pn');
         //alert(currentpage);
         //经典剧目
         $.ajax({
             type: "POST",
-            url: path + "/video/pkind?kind=15&pagesize=1&pn=1",
+            url: "/video/pkind?kind=15&pagesize=1&pn=1",
             data: '',
             contentType: "application/json",
             dataType: "json",
@@ -392,7 +390,7 @@
         //纪录片
         $.ajax({
             type: "POST",
-            url: path + "/video/pkind?kind=16&pagesize=1&pn=1",
+            url: "/video/pkind?kind=16&pagesize=1&pn=1",
             data: '',
             contentType: "application/json",
             dataType: "json",
@@ -407,7 +405,7 @@
         //教学
         $.ajax({
             type: "POST",
-            url: path + "/video/pkind?kind=17&pagesize=1&pn=1",
+            url: "/video/pkind?kind=17&pagesize=1&pn=1",
             data: '',
             contentType: "application/json",
             dataType: "json",
@@ -422,7 +420,7 @@
         // 活动
         $.ajax({
             type: "POST",
-            url: path + "/video/pkind?kind=18&pagesize=1&pn=1",
+            url: "/video/pkind?kind=18&pagesize=1&pn=1",
             data: '',
             contentType: "application/json",
             dataType: "json",
@@ -443,7 +441,7 @@
         var pagesize=$(e).text();
         $.ajax({
             type: "POST",
-            url: path + "/video/pkind?kind=15&pagesize=1&pn="+pagesize,
+            url: "/video/pkind?kind=15&pagesize=1&pn="+pagesize,
             data: '',
             contentType: "application/json",
             dataType: "json",
@@ -462,7 +460,7 @@
         var pagesize=$(e).children().next().text();
         $.ajax({
             type: "POST",
-            url: path + "/video/pkind?kind=15&pagesize=1&pn="+pagesize,
+            url: "/video/pkind?kind=15&pagesize=1&pn="+pagesize,
             data: '',
             contentType: "application/json",
             dataType: "json",
@@ -482,7 +480,7 @@
         var pagesize=$(e).text();
         $.ajax({
             type: "POST",
-            url: path + "/video/pkind?kind=16&pagesize=1&pn="+pagesize,
+            url: "/video/pkind?kind=16&pagesize=1&pn="+pagesize,
             data: '',
             contentType: "application/json",
             dataType: "json",
@@ -501,7 +499,7 @@
         var pagesize=$(e).children().next().text();
         $.ajax({
             type: "POST",
-            url: path + "/video/pkind?kind=16&pagesize=1&pn="+pagesize,
+            url: "/video/pkind?kind=16&pagesize=1&pn="+pagesize,
             data: '',
             contentType: "application/json",
             dataType: "json",
@@ -521,7 +519,7 @@
         var pagesize=$(e).text();
         $.ajax({
             type: "POST",
-            url: path + "/video/pkind?kind=17&pagesize=1&pn="+pagesize,
+            url: "/video/pkind?kind=17&pagesize=1&pn="+pagesize,
             data: '',
             contentType: "application/json",
             dataType: "json",
@@ -540,7 +538,7 @@
         var pagesize=$(e).children().next().text();
         $.ajax({
             type: "POST",
-            url: path + "/video/pkind?kind=17&pagesize=1&pn="+pagesize,
+            url: "/video/pkind?kind=17&pagesize=1&pn="+pagesize,
             data: '',
             contentType: "application/json",
             dataType: "json",
@@ -560,7 +558,7 @@
         var pagesize=$(e).text();
         $.ajax({
             type: "POST",
-            url: path + "/video/pkind?kind=18&pagesize=1&pn="+pagesize,
+            url: "/video/pkind?kind=18&pagesize=1&pn="+pagesize,
             data: '',
             contentType: "application/json",
             dataType: "json",
@@ -579,7 +577,7 @@
         var pagesize=$(e).children().next().text();
         $.ajax({
             type: "POST",
-            url: path + "/video/pkind?kind=18&pagesize=1&pn="+pagesize,
+            url: "/video/pkind?kind=18&pagesize=1&pn="+pagesize,
             data: '',
             contentType: "application/json",
             dataType: "json",
