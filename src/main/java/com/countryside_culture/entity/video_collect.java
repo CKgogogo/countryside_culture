@@ -11,7 +11,7 @@ public class video_collect {
 
     private String title;
 
-    private String pictue;
+    private String picture;
 
     private String url;
 
@@ -59,12 +59,12 @@ public class video_collect {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getPictue() {
-        return pictue;
+    public String getPicture() {
+        return picture;
     }
 
-    public void setPictue(String pictue) {
-        this.pictue = pictue == null ? null : pictue.trim();
+    public void setPicture(String picture) {
+        this.picture = picture == null ? null : picture.trim();
     }
 
     public String getUrl() {

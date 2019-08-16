@@ -7,17 +7,16 @@
     <result column="vid" property="vid" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="pictue" property="pictue" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="play_num" property="playNum" jdbcType="INTEGER" />
     <result column="collect_num" property="collectNum" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, uid, vid, status, title, pictue, url, play_num, collect_num
+    id, uid, vid, status, title, picture, url, play_num, collect_num
   </sql>
   <select id="select" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-    select
-    <include refid="Base_Column_List" />
+    select *
     from video_collect
     where uid = #{uid} and vid=#{vid}
   </select>
@@ -34,7 +33,7 @@
       vid = #{vid,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
-      pictue = #{pictue,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
       play_num = #{playNum,jdbcType=INTEGER},
       collect_num = #{collectNum,jdbcType=INTEGER}
@@ -42,11 +41,11 @@
   </update>
   <insert id="collect" parameterType="com.countryside_culture.entity.video_collect" >
     insert into video_collect (id, uid, vid,
-      status, title, pictue,
+      status, title, picture,
       url, play_num, collect_num
       )
     values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{vid,jdbcType=INTEGER},
-      #{status,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{pictue,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR},
       #{url,jdbcType=VARCHAR}, #{playNum,jdbcType=INTEGER}, #{collectNum,jdbcType=INTEGER}
       )
   </insert>
@@ -78,8 +77,8 @@
       <if test="title != null" >
         title,
       </if>
-      <if test="pictue != null" >
-        pictue,
+      <if test="picture != null" >
+        picture,
       </if>
       <if test="url != null" >
         url,
@@ -107,8 +106,8 @@
       <if test="title != null" >
         #{title,jdbcType=VARCHAR},
       </if>
-      <if test="pictue != null" >
-        #{pictue,jdbcType=VARCHAR},
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
       </if>
       <if test="url != null" >
         #{url,jdbcType=VARCHAR},
@@ -136,8 +135,8 @@
       <if test="title != null" >
         title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="pictue != null" >
-        pictue = #{pictue,jdbcType=VARCHAR},
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
       </if>
       <if test="url != null" >
         url = #{url,jdbcType=VARCHAR},
@@ -157,7 +156,7 @@
       vid = #{vid,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
-      pictue = #{pictue,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
       play_num = #{playNum,jdbcType=INTEGER},
       collect_num = #{collectNum,jdbcType=INTEGER}

@@ -3,14 +3,8 @@ package com.countryside_culture.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.countryside_culture.entity.focus;
-import com.countryside_culture.entity.museum;
-import com.countryside_culture.entity.video;
-import com.countryside_culture.entity.video_collect;
-import com.countryside_culture.service.focusService;
-import com.countryside_culture.service.history;
-import com.countryside_culture.service.museumService;
-import com.countryside_culture.service.videoService;
+import com.countryside_culture.entity.*;
+import com.countryside_culture.service.*;
 import com.countryside_culture.util.RedisUtil;
 import com.countryside_culture.util.SpringUtil;
 import com.github.pagehelper.PageHelper;
@@ -18,10 +12,8 @@ import com.github.pagehelper.PageInfo;
 import com.zlzkj.core.util.Fn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,6 +32,9 @@ public class videoControlle {
     private museumService museumservice;
     @Autowired
     private focusService focusservice;
+    @Autowired
+    private reviewService reviewservice;
+
     //所有视频中热门的6个
     @RequestMapping("/allhot")
     public String showAllhot(HttpServletResponse response){
@@ -89,10 +84,9 @@ public class videoControlle {
         Fn.ajaxReturn(response,pageInfo);
         return "";
     }
-
     //某个视频
-    @RequestMapping("/selectone")
-    public String showSelectone(HttpServletResponse response,HttpServletRequest request,int id){
+    @RequestMapping(value ="/selectone",method = RequestMethod.GET)
+    public String showSelectone(HttpServletResponse response, HttpServletRequest request, int id, Model model){
         video video = videoservice.selectone(id);
         video.setPlayNum(video.getPlayNum()+1);
         if(request.getSession().getAttribute("user_id")!=null){
@@ -102,9 +96,84 @@ public class videoControlle {
                 video.setIs_collect(ans.getStatus());
             }
         }
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
+        video.setHistorytime(sdf.format(d));
+        if(request.getSession().getAttribute("user_id")!=null){
+            String readhistoryValue = null;
+            RedisUtil redisUtil = null;
+            history readhistory=null;
+            redisUtil = (RedisUtil) SpringUtil.applicationContext.getBean("redisUtil");//从spring容器里面得到一个对象
+            readhistoryValue = redisUtil.get(request.getSession().getAttribute("user_id").toString());
+            if (readhistoryValue==null){
+                readhistory=new history();
+                readhistory.addItem(video);
+            }else {
+                readhistory = JSON.parseObject(readhistoryValue, new TypeReference<history>() {});
+                for (int i=0;i<readhistory.getItems().size();i++){
+                    if (id==readhistory.getItems().get(i).getId()) {
+                        readhistory.removeItem(i);
+                        readhistory.addItem(video);
+                        break;
+                    }else {
+                        readhistory.addItem(video);
+                    }
+                }
+            }
+            //序列化成字符串。
+            String fromObject = JSON.toJSONString(readhistory);
+            redisUtil.set(request.getSession().getAttribute("user_id").toString(), fromObject.toString());
+        }
+        videoservice.update(video);
+        List<video> video2 = videoservice.allhot();
 
-
-
+        //显示所有评论
+        List<review> ans=reviewservice.selectvid(id);
+        if (request.getSession().getAttribute("user_id")!=null){
+            int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
+            for (int i=0;i<ans.size();i++){
+                if (uid==ans.get(i).getUid())
+                    ans.get(i).setIs_delete(1);
+                userlike userlike=reviewservice.selectlike(uid,ans.get(i).getId());
+                if (userlike!=null)
+                    ans.get(i).setIs_like(userlike.getStatus());
+                //评论子内容的是否点赞删除处理
+                int pid=ans.get(i).getId();
+                List<review> reviewList=reviewservice.selectpid(pid);
+                for (int j=0;j<reviewList.size();j++){
+                    if (uid==reviewList.get(j).getUid())
+                        reviewList.get(j).setIs_delete(1);
+                    userlike userlike2=reviewservice.selectlike(uid,reviewList.get(j).getId());
+                    if (userlike!=null)
+                        reviewList.get(j).setIs_like(userlike2.getStatus());
+                }
+                ans.get(i).setList(reviewList);
+            }
+        }else{
+            for (int i=0;i<ans.size();i++){
+                int pid=ans.get(i).getId();
+                List<review> reviewList=reviewservice.selectpid(pid);
+                ans.get(i).setList(reviewList);
+            }
+        }
+        model.addAttribute("review",ans);
+        model.addAttribute("video2",video2);
+        model.addAttribute("video",video);
+//        Fn.ajaxReturn(response,video);
+        return "videoPlay";
+    }
+    //某个视频 返回json格式
+    @RequestMapping(value ="/selectone2")
+    public String showSelectone2(HttpServletResponse response, HttpServletRequest request, int id){
+        video video = videoservice.selectone(id);
+        video.setPlayNum(video.getPlayNum()+1);
+        if(request.getSession().getAttribute("user_id")!=null){
+            int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
+            video_collect ans=videoservice.select(uid,id);
+            if(ans!=null) {
+                video.setIs_collect(ans.getStatus());
+            }
+        }
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
         video.setHistorytime(sdf.format(d));
@@ -156,7 +225,7 @@ public class videoControlle {
             ans.setUid(uid);
             ans.setStatus(status);
             ans.setCollectNum(video.getCollectNum());
-            ans.setPictue(video.getPicture());
+            ans.setPicture(video.getPicture());
             ans.setPlayNum(video.getPlayNum());
             ans.setTitle(video.getTitle());
             ans.setUrl(video.getUrl());
