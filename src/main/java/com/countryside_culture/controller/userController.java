@@ -3,12 +3,10 @@ package com.countryside_culture.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.countryside_culture.entity.focus;
+import com.countryside_culture.entity.review;
 import com.countryside_culture.entity.userinfo;
 import com.countryside_culture.entity.video_collect;
-import com.countryside_culture.service.focusService;
-import com.countryside_culture.service.history;
-import com.countryside_culture.service.userinfoService;
-import com.countryside_culture.service.videoService;
+import com.countryside_culture.service.*;
 import com.countryside_culture.util.IpUtil;
 import com.countryside_culture.util.RedisUtil;
 import com.countryside_culture.util.SpringUtil;
@@ -37,10 +35,13 @@ public class userController {
     private videoService videoservice;
     @Autowired
     private focusService focusservice;
+    @Autowired
+    private reviewService reviewservice;
     //    用户登录
     @ResponseBody
     @RequestMapping(value = "/login")
-    public String checkLogin(HttpServletRequest request){
+    public String checkLogin(HttpServletRequest request,
+                             @RequestParam(required = false,defaultValue = "index",value = "url")String url){
         String username=request.getParameter("username").toString();
         String password=request.getParameter("password").toString();
         userinfo  userinfo = userinfoservice.checkLogin(username,password);
@@ -57,7 +58,7 @@ public class userController {
             request.getSession().setAttribute("picture", userinfo.getPicture());
             request.getSession().setAttribute("user_id", userinfo.getUserId());
             request.getSession().setAttribute("nickname",userinfo.getNickname());
-            return "ok";
+            return url;
         }
         else
             return "no";
@@ -94,7 +95,41 @@ public class userController {
         }
         return "no";
     }
+    //修改资料
+    @ResponseBody
+    @RequestMapping("update")
+    public String Update(HttpServletRequest request,String nickname,String phone,String email){
+        int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
+        String oldnickname=request.getSession().getAttribute("nickname").toString();
+        List<userinfo> ans=userinfoservice.all(oldnickname);
+        Boolean pd=false;
+        if (!oldnickname.equals(nickname))
+            pd=true;
+        for (int i=0;i<ans.size();i++){
+            if (ans.get(i).getNickname().equals(nickname))
+                return "no";
+        }
+        userinfo userinfo=userinfoservice.select(uid);
+        userinfo.setNickname(nickname);
+        userinfo.setEmail(email);
+        userinfo.setPhone(phone);
+        userinfoservice.update(userinfo);
+        request.getSession().setAttribute("user",userinfo);
+        request.getSession().setAttribute("nickname",userinfo.getNickname());
 
+        if (pd){
+            List<review> reviews=reviewservice.all();
+            for (int k=0;k<reviews.size();k++){
+                if (reviews.get(k).getPlname().equals(oldnickname)){
+                    reviews.get(k).setPlname(nickname);
+                }
+                if (reviews.get(k).getRname().equals(oldnickname)){
+                    reviews.get(k).setRname(nickname);
+                }
+            }
+        }
+        return "ok";
+    }
 
     @RequestMapping("/show")
     public String show(HttpServletRequest request, Model model

@@ -26,7 +26,7 @@
                     </a>
                     <div class="dropdown-menu text-center">
                         <a href="/famousPeople" class="dropdown-item"  >越剧名人</a>
-                        <a href="active.html?pn=1" class="dropdown-item ">精彩活动</a>
+                        <a href="/activity/showall?pn=1" class="dropdown-item ">精彩活动</a>
                         <a href="/yueJuTown" class="dropdown-item">越剧小镇</a>
                         <a href="/costume" class="dropdown-item">戏服</a>
                         <a href="/prop" class="dropdown-item">表演道具</a>
@@ -40,16 +40,17 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="video.html" class="nav-link">在线视频</a>
+                    <a href="/video" class="nav-link">在线视频</a>
                 </li>
                 <li class="nav-item">
                     <a href="/live" class="nav-link">直播</a>
                 </li>
             </ul>
-            <a href="/login" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+            <a  th:if="${session.user_id}== null" th:href="'/login?url=news/selectone?id='+${news.id}" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+            <a th:if="${session.user_id}!= null" href="/user/show" class=" nav-link ml-auto" style="font-size: 24px;color:white;width: 75px;">
+                <img th:src="@{'../assets/image/user/'+${session.picture}}" width="100%" class="rounded-circle" alt=""></a>
         </div>
     </nav>
-
 </div>
 <div class="container-fluid p-0">
     <img src="../assets/image/t1.jpg" alt="" class="img-fluid">
@@ -66,24 +67,7 @@
                 <small th:text="${news.publishTime}"></small>
             </div>
             <div class="mt-2 newscontent ">
-                <div th:utext="${news.content}">
-
-                    <!--<p style="">-->
-                    <!--雅歌春韵，芬芳四季。80年来，已故越剧名家毕春芳所创的毕派艺术为越剧贡献了独树一帜的喜剧表演风格和美学价值。为纪念这样一位德艺双馨的艺术家，今天起，纪念毕春芳先生舞台艺术80周年“-->
-                    <!--深入基层、扎根人民”系列活动在静安区文化馆拉开帷幕，而这里也正是当年戚雅仙、毕春芳携手重建静安越剧团的起点。</p>-->
-                    <!--<p style="">-->
-                        <!--雅歌春韵，芬芳四季。80年来，已故越剧名家毕春芳所创的毕派艺术为越剧贡献了独树一帜的喜剧表演风格和美学价值。为纪念这样一位德艺双馨的艺术家，今天起，纪念毕春芳先生舞台艺术80周年“-->
-                        <!--深入基层、扎根人民”系列活动在静安区文化馆拉开帷幕，而这里也正是当年戚雅仙、毕春芳携手重建静安越剧团的起点。</p>-->
-
-                    <!--&lt;!&ndash;<div class="text-center img">&ndash;&gt;-->
-                        <!--<img style="display: block; margin-left: auto; margin-right: auto;" src="assets/image/active/active1.jpg" class="img-fluid " alt="">-->
-                        <!--<p class="text-center">图片1</p>-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                    <!--<p>雅歌春韵，芬芳四季。80年来，已故越剧名家毕春芳所创的毕派艺术为越剧贡献了独树一帜的喜剧表演风格和美学价值。为纪念这样一位德艺双馨的艺术家，今天起，纪念毕春芳先生舞台艺术80周年“-->
-                        <!--深入基层、扎根人民”系列活动在静安区文化馆拉开帷幕，而这里也正是当年戚雅仙、-->
-                        <!--毕春芳携手重建静安越剧团的起点。</p>-->
-                </div>
+                <div th:utext="${news.content}"></div>
                 <div class="text-right">
                     <small style="" class="newskey">来源：</small>
                     <small th:text="${news.source}"></small>
@@ -120,11 +104,11 @@
     </div>
 
 </div>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/style.js"></script>
-<script src="assets/js/vue.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/popper.min.js"></script>
+<script src="../assets/js/style.js"></script>
+<script src="../assets/js/vue.js"></script>
 
 </body>
 </html>

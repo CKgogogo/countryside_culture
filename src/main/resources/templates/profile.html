@@ -48,14 +48,14 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="video.html" class="nav-link">在线视频</a>
+                    <a href="/video" class="nav-link">在线视频</a>
                 </li>
                 <li class="nav-item">
-                    <a href="live" class="nav-link">直播</a>
+                    <a href="/live" class="nav-link">直播</a>
                 </li>
             </ul>
             <a  th:if="${session.user_id}== null" href="/login" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
-            <a th:if="${session.user_id}!= null" href="/profile" class=" nav-link ml-auto" style="font-size: 24px;color:white;width: 75px;">
+            <a th:if="${session.user_id}!= null" href="/user/show" class=" nav-link ml-auto" style="font-size: 24px;color:white;width: 75px;">
                 <img th:src="@{'../assets/image/user/'+${session.picture}}" width="100%" class="rounded-circle" alt=""></a>
         </div>
     </nav>
@@ -295,7 +295,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="tab-pane fade" id="tab2">
                     <div class="col-12 text-center">
                         <h4>我的收藏</h4>
@@ -319,7 +318,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="tab-pane fade" id="tab3">
                     <div class="col-12 text-center">
                         <h4>我的关注</h4>
@@ -327,7 +325,7 @@
                     <br>
                     <div class="col-12 row" >
                         <div class="col-4" th:each="a3:${focus}">
-                            <a th:href="'/video/actorplay?id='+${a3.mid}+'&pn=1'">
+                            <a th:href="'/video/actorplay?id='+${a3.mid}">
                             <img th:src="@{'../assets/image/people/'+${a3.picture}}" class="img-fluid rounded-circle" alt="">
                             </a>
                             <p class="mt-4 font-weight-bold" style="text-align: center" th:text="${a3.name}"></p>
@@ -335,40 +333,36 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="tab-pane fade" id="tab4">
                     <div class="col-12 text-center">
                         <h5>个人资料</h5>
                     </div>
                     <div class="col-12">
-                        <div class="col-3 m-auto">
-                            <img src="assets/image/test.jpg" class="img-fluid rounded-circle" alt="">
-                        </div>
                         <div class="col-7 offset-2">
                             <form action="" class="mt-5">
                                 <div class="form-group row">
-                                    <label for="inputPassword" class="col-3 col-form-label">昵称</label>
+                                    <label for="nickname" class="col-3 col-form-label">昵称</label>
                                     <div class="col-9">
-                                        <input type="password" class="form-control" id="nikename"
+                                        <input type="text" class="form-control" id="nickname"
                                                th:placeholder="${session.nickname}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="inputPassword" class="col-3 col-form-label">手机</label>
+                                    <label for="phone" class="col-3 col-form-label">手机</label>
                                     <div class="col-9">
-                                        <input type="password" class="form-control" id="phone"
+                                        <input type="text" class="form-control" id="phone"
                                                th:placeholder="${session.user.phone}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="inputPassword" class="col-3 col-form-label">邮箱</label>
+                                    <label for="email" class="col-3 col-form-label">邮箱</label>
                                     <div class="col-9">
-                                        <input type="password" class="form-control" id="email"
+                                        <input type="text" class="form-control" id="email"
                                                th:placeholder="${session.user.email}">
                                     </div>
                                 </div>
                                 <div class="col-12 text-center">
-                                    <button type="button" class="btn btn-light">修改</button>
+                                    <button type="button" onclick="check1()" class="btn btn-light">修改</button>
                                 </div>
                             </form>
 
@@ -400,7 +394,7 @@
                                 </div>
                             </div>
                             <div class="col-12 text-center">
-                                <button type="button" onclick="check()" class="btn btn-light">确认修改</button>
+                                <button type="button" onclick="check2()" class="btn btn-light">确认修改</button>
                             </div>
                         </form>
 
@@ -414,35 +408,85 @@
 <script src="../assets/js/jquery-2.2.4.js"></script>
 <script src="../assets/js/bootstrap.bundle.js"></script>
 <script th:inline="javascript" >
-    function check() {
+    function check1() {
+        var myreg=/^[1][3,4,5,6,7,8,9][0-9]{9}$/;
+        var re=/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/;
+        var a=false;
+        var nickname=$('#nickname').val();
+        var phone=$('#phone').val();
+        var email=$('#email').val();
+        if (nickname=='') {
+            alert("昵称不能为空");
+        }else if (phone!=''){
+            if (!myreg.test(phone)) {
+                alert("请输入正确的手机号")
+            }else {
+                a=true;
+            }
+        }else if(email=='') {
+                alert("邮箱不能为空");
+        }else if (email!='') {
+            if (!re.test(email)) {
+                alert("请输入正确的邮箱")
+            }else {
+                a=true;
+            }
+        }else {
+            a=true;
+        }
+        if (a) {
+            $.ajax({
+                url: "/user/update",
+                data: {
+                    nickname: nickname,
+                    phone: phone,
+                    email: email
+                },
+                type: 'post',
+                success: function (str) {
+                    if (str == 'ok') {
+                        alert("修改成功！")
+                        window.location.reload();
+                    } else if (str == 'no') {
+                        alert("昵称已经存在")
+                    }
+                },
+                error: function (err) {
+                    // alert(err);
+                }
+            });
+        }
+    }
+
+    function check2() {
         var oldpassword=$('#oldpassword').val();
         var newpassword=$('#newpassword').val();
         var newpassword2=$('#newpassword2').val();
         if (oldpassword==''||newpassword==''||newpassword2=='') {
             alert("不能为空");
-        }
-        if(newpassword!=newpassword2){
+        }else if(newpassword!=newpassword2){
             alert("密码不一致");
-        }
-        $.ajax({
-            url:"/user/modifypwd",
-            data:{
-                oldpassword:oldpassword,
-                newpassword:newpassword
-            },
-            type:'post',
-            success:function (str) {
-                if (str=='ok'){
-                    alert("修改成功，请重新登录！")
-                    window.location.href="/login";
-                }else if (str=='no') {
-                    alert("原密码错误！")
+        }else {
+            $.ajax({
+                url: "/user/modifypwd",
+                data: {
+                    oldpassword: oldpassword,
+                    newpassword: newpassword
+                },
+                type: 'post',
+                success: function (str) {
+                    if (str == 'ok') {
+                        alert("修改成功，请重新登录！")
+                        window.location.href = "/login";
+                    } else if (str == 'no') {
+                        alert("原密码错误！")
+                    }
+                },
+                error: function (err) {
+                    // alert(err);
                 }
-            },
-            error:function (err) {
-                 // alert(err);
-            }
-        });
+            });
+        }
     }
 
 

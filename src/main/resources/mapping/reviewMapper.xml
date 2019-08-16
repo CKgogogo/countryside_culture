@@ -34,6 +34,11 @@
     where pid = #{pid,jdbcType=INTEGER} and status=1
     ORDER BY time DESC
   </select>
+  <select id="all" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select *
+    from review
+    where status=1
+  </select>
   <select id="selectid" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *
     from review

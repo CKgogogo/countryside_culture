@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -322,76 +322,77 @@
 <body>
 <div class="container-fluid p-0 ">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
-        <a href="index" class="navbar-brand p-0" style="width: 88px;">
+        <a href="/index" class="navbar-brand p-0" style="width: 88px;">
             <img src="../assets/image/logo/logo2.png"  width="100%" alt="">
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav daohang">
                 <li class="nav-item">
-                    <a href="index" class="nav-link  active">首页</a>
+                    <a href="/index" class="nav-link  active">首页</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">知越
                     </a>
                     <div class="dropdown-menu text-center">
-                        <a href="famousPeople" class="dropdown-item"  >越剧名人</a>
+                        <a href="/famousPeople" class="dropdown-item"  >越剧名人</a>
                         <a href="/activity/showall?pn=1" class="dropdown-item ">精彩活动</a>
-                        <a href="yueJuTown" class="dropdown-item">越剧小镇</a>
-                        <a href="costume" class="dropdown-item">戏服</a>
-                        <a href="prop" class="dropdown-item">表演道具</a>
+                        <a href="/yueJuTown" class="dropdown-item">越剧小镇</a>
+                        <a href="/costume" class="dropdown-item">戏服</a>
+                        <a href="/prop" class="dropdown-item">表演道具</a>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a href="/news/showall?pn=1" class="nav-link">资讯</a>
                 </li>
                 <li class="nav-item">
-                    <a href="culture" class="nav-link">嵊州风情</a>
+                    <a href="/culture" class="nav-link">嵊州风情</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="video.html" class="nav-link">在线视频</a>
+                    <a href="/video" class="nav-link">在线视频</a>
                 </li>
                 <li class="nav-item">
-                    <a href="live" class="nav-link">直播</a>
+                    <a href="/live" class="nav-link">直播</a>
                 </li>
             </ul>
-            <a href="login" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+            <a  th:if="${session.user_id}== null" href="/login?url=costume" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+            <a th:if="${session.user_id}!= null" href="/user/show" class=" nav-link ml-auto" style="font-size: 24px;color:white;width: 75px;">
+                <img th:src="@{'../assets/image/user/'+${session.picture}}" width="100%" class="rounded-circle" alt=""></a>
         </div>
     </nav>
-
 </div>
 <div class="content" >
     <a class="elem" href="../assets/image/costume/costume1.jpg" title="花旦戏服"
        data-lcl-txt="越剧戏服水袖"
-       data-lcl-thumb="assets/image/costume/costume1.jpg">
+       data-lcl-thumb="../assets/image/costume/costume1.jpg">
         <span style="background-image: url(assets/image/costume/costume1.jpg);"></span>
     </a>
     <a class="elem" href="../assets/image/costume/costume2.jpg" title="花旦戏服"
        data-lcl-txt="古装女越剧服装花旦戏服水袖"
-       data-lcl-thumb="assets/image/costume/costume2.jpg">
+       data-lcl-thumb="../assets/image/costume/costume2.jpg">
         <span style="background-image: url(assets/image/costume/costume2.jpg)"></span>
     </a>
 
 
     <a class="elem" href="../assets/image/costume/costume3.jpg" title="老生戏服"
        data-lcl-txt="老生丞相男蟒袍"
-       data-lcl-thumb="assets/image/costume/costume3.jpg">
+       data-lcl-thumb="../assets/image/costume/costume3.jpg">
         <span style="background-image: url(assets/image/costume/costume3.jpg)"></span>
     </a>
     <a class="elem" href="../assets/image/costume/costume4.jpg" title="老旦戏服"
        data-lcl-txt="老旦素短道袍素褶子"
-       data-lcl-thumb="assets/image/costume/costume4.jpg">
+       data-lcl-thumb="../assets/image/costume/costume4.jpg">
         <span style="background-image: url(assets/image/costume/costume4.jpg);"></span>
     </a>
     <a class="elem" href="../assets/image/costume/costume5.jpg" title="小丑戏服"
        data-lcl-txt="小丑角书童杂役家丁茶衣裙"
-       data-lcl-thumb="assets/image/costume/costume5.jpg">
+       data-lcl-thumb="../assets/image/costume/costume5.jpg">
         <span style="background-image: url(assets/image/costume/costume5.jpg);"></span>
     </a>
 <!--    data-lcl-author="admin"-->
     <a class="elem" href="../assets/image/costume/costume6.jpg" title="小生戏服"
        data-lcl-txt="小生褶子才子装"
-       data-lcl-thumb="assets/image/costume/costume6.jpg">
+       data-lcl-thumb="../assets/image/costume/costume6.jpg">
         <span style="background-image: url(assets/image/costume/costume6.jpg);"></span>
     </a>
 

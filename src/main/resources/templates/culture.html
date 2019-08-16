@@ -1,63 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="shortcut icon" href="assets/image/logo/logo3.png"  />
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="shortcut icon" href="../assets/image/logo/logo3.png"  />
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/effects.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/component.css">
-    <link rel="stylesheet" href="assets/css/default.css">
-    <link rel="stylesheet" href="assets/css/set2.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/effects.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/component.css">
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link rel="stylesheet" href="../assets/css/set2.css">
 </head>
 <body class="animated fadeIn">
 <div class="container-fluid p-0 ">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
-        <a href="index.html" class="navbar-brand p-0" style="width: 88px;">
-            <img src="assets/image/logo/logo2.png"  width="100%" alt="">
+        <a href="/index" class="navbar-brand p-0" style="width: 88px;">
+            <img src="../assets/image/logo/logo2.png"  width="100%" alt="">
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav daohang">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link ">首页</a>
+                    <a href="/index" class="nav-link  active">首页</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">知越
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">知越
                     </a>
                     <div class="dropdown-menu text-center">
-                        <a href="famousPeople.html" class="dropdown-item ">越剧名人</a>
-                        <a href="active.html?pn=1" class="dropdown-item ">精彩活动</a>
-                        <a href="yueJuTown.html" class="dropdown-item">越剧小镇</a>
-                        <a href="costume.html" class="dropdown-item">戏服</a>
-                        <a href="prop.html" class="dropdown-item">表演道具</a>
+                        <a href="/famousPeople" class="dropdown-item"  >越剧名人</a>
+                        <a href="/activity/showall?pn=1" class="dropdown-item ">精彩活动</a>
+                        <a href="/yueJuTown" class="dropdown-item">越剧小镇</a>
+                        <a href="/costume" class="dropdown-item">戏服</a>
+                        <a href="/prop" class="dropdown-item">表演道具</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="news.html?pn=1" class="nav-link">资讯</a>
+                    <a href="/news/showall?pn=1" class="nav-link">资讯</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/culture" class="nav-link">嵊州风情</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="culture.html" class="nav-link active">嵊州风情</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="video.html" class="nav-link">在线视频</a>
+                    <a href="/video" class="nav-link">在线视频</a>
                 </li>
                 <li class="nav-item">
-                    <a href="live.html" class="nav-link">直播</a>
+                    <a href="/live" class="nav-link">直播</a>
                 </li>
-
             </ul>
-            <a href="" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+            <a  th:if="${session.user_id}== null" href="/login?url=culture" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+            <a th:if="${session.user_id}!= null" href="/user/show" class=" nav-link ml-auto" style="font-size: 24px;color:white;width: 75px;">
+                <img th:src="@{'../assets/image/user/'+${session.picture}}" width="100%" class="rounded-circle" alt=""></a>
         </div>
     </nav>
 </div>
 <div class="container-fluid  p-0">
-    <img src="assets/image/town/town2.jpg" alt="" class="img-fluid">
+    <img src="../assets/image/town/town2.jpg" alt="" class="img-fluid">
 </div>
 
 <div class="container-fluid p-0 eavesdrop group1block" id="one" style="background-color: #dae0e5">
@@ -65,7 +65,7 @@
     <div class="row col-12" style="">
         <div class="col-5 offset-1 group1block1">
             <p style="font-family: MyNewFont;font-size:80px;" class="text-center mb-0 ">嵊州回忆</p>
-            <img src="assets/image/logo/line.jpg" class="col-8 offset-4" height="70px" alt="">
+            <img src="../assets/image/logo/line.jpg" class="col-8 offset-4" height="70px" alt="">
             <p style="font-size:14px;letter-spacing: 5px;font-family: SimSun;">现存马寅初故居、王金发故居、王晓籁故居、张伯岐
                 故居、竺绍康故居、金声故居、苍岩老街、始宁街、崇仁老街、中山路、华堂老街、民
                 族号手诞生地东前街、马寅初故里名人街、应天塔、艇湖塔、天章塔、越乡古戏台、绳武
@@ -77,7 +77,7 @@
         <div class="col-5  row ml-4" style="">
             <div class="row">
                 <div class="col-5 hovereffect group1block2" style="margin-left: -13px;">
-                    <img src="assets/image/historical/崇仁老街.png" class="img-fluid img-thumbnail" alt=""
+                    <img src="../assets/image/historical/崇仁老街.png" class="img-fluid img-thumbnail" alt=""
                          style="margin-top: -1px;">
                     <div class="overlay">
                         <h2>历史遗迹</h2>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="col-5 hovereffect group1block3" style="margin-left: -13px;margin-top: -115px;">
-                    <img src="assets/image/historical/应天塔.png" class="img-fluid img-thumbnail" alt=""
+                    <img src="../assets/image/historical/应天塔.png" class="img-fluid img-thumbnail" alt=""
                          style="margin-top: 1px;margin-left: 1px;">
                     <div class="overlay">
                         <h2>历史遗迹</h2>
@@ -99,7 +99,7 @@
             </div>
             <div class="row">
                 <div class="col-5 hovereffect group1block4" style="margin-left: -12px;margin-top: 10px;">
-                    <img src="assets/image/historical/张伯歧故居.png" class="img-fluid img-thumbnail" alt=""
+                    <img src="../assets/image/historical/张伯歧故居.png" class="img-fluid img-thumbnail" alt=""
                          style="margin-top: 0px;">
                     <div class="overlay">
                         <h2>历史遗迹</h2>
@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 <div class="col-5 hovereffect group1block5" style="margin-top: -102px;margin-left: -12px;">
-                    <img src="assets/image/historical/玉山公祠.png" class="img-fluid img-thumbnail" alt=""
+                    <img src="../assets/image/historical/玉山公祠.png" class="img-fluid img-thumbnail" alt=""
                          style="margin-top:0px;margin-left: 0px;">
                     <div class="overlay">
                         <h2>历史遗迹</h2>
@@ -124,7 +124,7 @@
     <div class="btn2 group1block6">
         <div class="color-1 btn3">
             <div>
-                <a href="historicalSite2.html" style="color:white;">
+                <a href="/historicalSite2" style="color:white;">
                     <button class="btn btn-1 btn-1e">
                         了解更多
                     </button>
@@ -147,7 +147,7 @@
                         <div class="grid">
                             <!--<img src="assets/image/custom/custom1.jpg" class="img-fluid" alt="">-->
                             <figure class="effect-jazz">
-                                <img src="assets/image/custom/custom1.jpg" class="img-fluid" alt="img25"/>
+                                <img src="../assets/image/custom/custom1.jpg" class="img-fluid" alt="img25"/>
                                 <figcaption>
                                     <p>立夏撞鸡蛋</p>
                                 </figcaption>
@@ -158,7 +158,7 @@
                         <div class="grid">
                             <!--<img src="assets/image/custom/custom1.jpg" class="img-fluid" alt="">-->
                             <figure class="effect-jazz">
-                                <img src="assets/image/custom/七月半中元节.png" class="img-fluid" alt="img25"/>
+                                <img src="../assets/image/custom/七月半中元节.png" class="img-fluid" alt="img25"/>
                                 <figcaption>
                                     <p>七月半中元节</p>
                                 </figcaption>
@@ -172,7 +172,7 @@
                         <div class="grid">
                             <!--<img src="assets/image/custom/custom1.jpg" class="img-fluid" alt="">-->
                             <figure class="effect-jazz">
-                                <img src="assets/image/custom/鸡蛋婚俗.png" class="img-fluid" alt="img25"/>
+                                <img src="../assets/image/custom/鸡蛋婚俗.png" class="img-fluid" alt="img25"/>
                                 <figcaption>
                                     <p>鸡蛋婚俗</p>
                                 </figcaption>
@@ -180,7 +180,7 @@
                         </div>
                     </div>
                     <div class="col-6" style="margin-left: -20px;">
-                        <img src="assets/image/custom/custom2.jpg" class="img-fluid" alt="">
+                        <img src="../assets/image/custom/custom2.jpg" class="img-fluid" alt="">
                     </div>
                 </div>
             </div>
@@ -220,7 +220,7 @@
             <div class="grid">
                 <figure class="effect-moses">
                     <!--<img src="assets/image/logo/line.jpg" class="col-8 offset-4" height="70px" alt="">-->
-                    <img src="assets/image/scenery/scen8.jpg" class="img-fluid img-thumbnail" alt="">
+                    <img src="../assets/image/scenery/scen8.jpg" class="img-fluid img-thumbnail" alt="">
                     <figcaption>
                         <h2> <span>魅力</span>嵊州</h2>
                         <p>绍兴温泉</p>
@@ -233,7 +233,7 @@
         <div class="col-5 group3block2">
             <p style="font-family: MyNewFont;font-size:80px;" class="text-right mb-0">嵊州魅力</p>
 
-            <img src="assets/image/logo/line.jpg" class="col-8 offset-4" height="70px" alt="">
+            <img src="../assets/image/logo/line.jpg" class="col-8 offset-4" height="70px" alt="">
             <p style="font-size:14px;letter-spacing: 5px;font-family: SimSun;">现存马寅初故居、王金发故居、王晓籁故居、张伯岐
                 故居、竺绍康故居、金声故居、苍岩老街、始宁街、崇仁老街、中山路、华堂老街、民
                 族号手诞生地东前街、马寅初故里名人街、应天塔、艇湖塔、天章塔、越乡古戏台、绳武
@@ -245,7 +245,7 @@
     <div class="btn2 group3block3">
         <div class="color-1 btn3">
             <div>
-                <a href="scenery.html" style="color:white;">
+                <a href="/scenery" style="color:white;">
                     <button class="btn btn-1 btn-1e">
                         了解更多
                     </button>
@@ -261,10 +261,10 @@
     <div class="col-10 offset-1 mt-5">
         <div class="row">
             <div class="col-3 group4block2">
-                <a href="famousPeopleDetails4.html">
+                <a href="/famousPeopleDetails4">
                     <div class="grid" style="font-family: SimSun">
                         <figure class="effect-goliath">
-                            <img src="assets/image/people/傅全香.png" alt="img23" class="img-fluid"/>
+                            <img src="../assets/image/people/傅全香.png" alt="img23" class="img-fluid"/>
                             <figcaption>
                                 <h2 class="text-center">傅全香</h2>
                                 <p>国家一级演员，中国戏剧家协会理事</p>
@@ -274,10 +274,10 @@
                 </a>
             </div>
             <div class="col-3 group4block3">
-                <a href="famousPeopleDetails3.html">
+                <a href="/famousPeopleDetails3">
                     <div class="grid" style="font-family: SimSun">
                         <figure class="effect-goliath">
-                            <img src="assets/image/people/马晓春.png" alt="img23" class="img-fluid"/>
+                            <img src="../assets/image/people/马晓春.png" alt="img23" class="img-fluid"/>
                             <figcaption>
                                 <h2 class="text-center">马晓春</h2>
                                 <p>中国围棋职业九段棋手，中国首位围棋世界冠军</p>
@@ -287,10 +287,10 @@
                 </a>
             </div>
             <div class="col-3 group4block4">
-                <a href="famousPeopleDetails2.html">
+                <a href="/famousPeopleDetails2">
                     <div class="grid" style="font-family: SimSun">
                         <figure class="effect-goliath">
-                            <img src="assets/image/people/马寅初.jpg" alt="img23" class="img-fluid"/>
+                            <img src="../assets/image/people/马寅初.jpg" alt="img23" class="img-fluid"/>
                             <figcaption>
                                 <h2 class="text-center">马寅初</h2>
                                 <p>中国当代经济学家、教育学家、人口学家</p>
@@ -301,10 +301,10 @@
                 </a>
             </div>
             <div class="col-3 group4block5">
-                <a href="famousPeopleDetails1.html">
+                <a href="/famousPeopleDetails1">
                     <div class="grid" style="font-family: SimSun">
                         <figure class="effect-goliath">
-                            <img src="assets/image/people/马云.png" alt="img23" class="img-fluid"/>
+                            <img src="../assets/image/people/马云.png" alt="img23" class="img-fluid"/>
                             <figcaption>
                                 <h2 class="text-center">马云</h2>
                                 <p>阿里巴巴集团董事局主席、日本软银董事</p>
@@ -324,25 +324,25 @@
         <ul id="da-thumbs" class="da-thumbs">
             <li class="group5block2">
                 <a href="http://dribbble.com/shots/505046-Menu">
-                    <img src="assets/image/food/food10.jpg"/>
+                    <img src="../assets/image/food/food10.jpg"/>
                     <div><span>观音豆腐</span></div>
                 </a>
             </li>
             <li class="group5block3">
                 <a href="http://dribbble.com/shots/505046-Menu">
-                    <img src="assets/image/food/food7.jpg"/>
+                    <img src="../assets/image/food/food7.jpg"/>
                     <div><span>南瓜饼</span></div>
                 </a>
             </li>
             <li class="group5block4">
                 <a href="http://dribbble.com/shots/505046-Menu">
-                    <img src="assets/image/food/food8.jpg"/>
+                    <img src="../assets/image/food/food8.jpg"/>
                     <div><span>春饼</span></div>
                 </a>
             </li>
             <li class="group5block5">
                 <a href="http://dribbble.com/shots/505046-Menu">
-                    <img src="assets/image/food/food9.jpg"/>
+                    <img src="../assets/image/food/food9.jpg"/>
                     <div><span>窝窝头</span></div>
                 </a>
             </li>
@@ -351,7 +351,7 @@
     <div class="btn2 group5block6">
         <div class="color-1 btn3">
             <div>
-                <a href="deliciousFood.html" style="color:white;">
+                <a href="/deliciousFood" style="color:white;">
                     <button class="btn btn-1 btn-1e">
                         了解更多
                     </button>
@@ -367,7 +367,7 @@
     <br>
 
     <div class="text-center group6block1">
-        <iframe src="mapDemo.html" width="718px " height="458px" frameborder="0"></iframe>
+        <iframe src="/mapDemo" width="718px " height="458px" frameborder="0"></iframe>
     </div>
 </div>
 <ul class="nav-fixed">
@@ -379,12 +379,12 @@
 
 
 </ul>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/culture.js"></script>
-<script src="assets/js/jquery.eavesdrop.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/jquery.hoverdir.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/culture.js"></script>
+<script src="../assets/js/jquery.eavesdrop.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/popper.min.js"></script>
+<script src="../assets/js/jquery.hoverdir.js"></script>
 
 
 

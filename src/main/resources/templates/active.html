@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>精彩活动</title>
@@ -16,7 +16,7 @@
     </style>
 </head>
 <body class="animated fadeIn ">
-<div class="container-fluid p-0">
+<div class="container-fluid p-0 ">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
         <a href="/index" class="navbar-brand p-0" style="width: 88px;">
             <img src="../assets/image/logo/logo2.png"  width="100%" alt="">
@@ -45,18 +45,19 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="video.html" class="nav-link">在线视频</a>
+                    <a href="/video" class="nav-link">在线视频</a>
                 </li>
                 <li class="nav-item">
                     <a href="/live" class="nav-link">直播</a>
                 </li>
             </ul>
-            <a  th:if="${session.user_id}== null" href="/login" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
-            <a th:if="${session.user_id}!= null" href="/profile" class=" nav-link ml-auto" style="font-size: 24px;color:white;width: 75px;">
+            <a  th:if="${session.user_id}== null" href="/login?url=activity/showall?pn=1" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+            <a th:if="${session.user_id}!= null" href="/user/show" class=" nav-link ml-auto" style="font-size: 24px;color:white;width: 75px;">
                 <img th:src="@{'../assets/image/user/'+${session.picture}}" width="100%" class="rounded-circle" alt=""></a>
         </div>
     </nav>
 </div>
+
 <div class="container-fluid p-0">
     <img src="../assets/image/t1.jpg" alt="" class="img-fluid">
 </div>
