@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>名家作品</title>
+    <link rel="shortcut icon" href="../assets/image/logo/logo3.png"  />
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/effects.css">
+
+</head>
+<body>
+<div class="container-fluid p-0 ">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
+        <a href="index2.html" class="navbar-brand p-0" style="width: 88px;">
+            <img src="assets/image/logo/logo2.png"  width="100%" alt="">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav daohang">
+                <li class="nav-item">
+                    <a href="index2.html" class="nav-link ">首页</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">知越
+                    </a>
+                    <div class="dropdown-menu text-center">
+                        <a href="famousPeople.html" class="dropdown-item ">越剧名人</a>
+                        <a href="active.html" class="dropdown-item ">精彩活动</a>
+                        <a href="yueJuTown.html" class="dropdown-item">越剧小镇</a>
+                        <a href="costume3.html" class="dropdown-item">戏服</a>
+                        <a href="prop.html" class="dropdown-item">表演道具</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link">资讯</a>
+                </li>
+                <li class="nav-item">
+                    <a href="culture.html" class="nav-link">嵊州风情</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="video.html" class="nav-link">在线视频</a>
+                </li>
+                <li class="nav-item">
+                    <a href="live.html" class="nav-link">直播</a>
+                </li>
+            </ul>
+            <a href=""  class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white" ></a>
+        </div>
+    </nav>
+</div>
+
+<div class="row famouspeople mt-5">
+    <div class="col-2 offset-2 mt-3 ">
+        <div class="col-8 ml-5 m-auto">
+            <img th:src="@{'../assets/image/people/'+${actor.picture}}" class="img-fluid rounded-circle mt-5" alt="">
+        </div>
+    </div>
+    <div class="col-5">
+        <br>  <br>
+        <h5 class="mb-4" th:text="${actor.title}"></h5>
+        <p class="mb-0" th:text="${actor.remark}"></p>
+    </div>
+</div>
+<br>
+<div class="container ">
+    <div class="col-10 offset-1 p-0 mt-5 row">
+        <div class="col-3" th:each="a:${video}">
+            <a th:href="'/video/selectone?id='+${a.id}">
+                <div class="box">
+                    <img style="" class="img-fluid rounded"
+                         th:src="@{'../assets/image/video/'+${a.picture}}">
+                    <div class="box-content">
+                        <span class="title fa fa-play-circle-o" style="color: white;font-size: 55px;"></span>
+                    </div>
+                </div>
+            </a>
+            <a href="videoPlay.html" class="text-muted nav-link">
+                <p class="text-break text-left videoTitle" style="" th:text="${a.title}"></p>
+            </a>
+        </div>
+    <!--</div>-->
+    <!--<div class="col-12">-->
+        <!--<nav aria-label="Page navigation example " class="col-5 m-auto ">-->
+            <!--<ul class="pagination col-5 m-auto fenye paging" id="">-->
+                <!--<li class="page-item">-->
+                    <!--<a class="page-link" th:href="'/video/actorplay?id='+${actor.id}+'&pn=1'">top</a>-->
+                <!--</li>-->
+                <!--<li class="page-item " th:if="${pageInfo.hasPreviousPage}">-->
+                    <!--<a class="page-link" aria-label="Previous" th:href="@{/video/actorplay(pn=${pageInfo.pageNum}-1,id=${actor.id})}">-->
+                        <!--<span aria-hidden="true">&laquo;</span>-->
+                        <!--<span class="sr-only">Previous</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="page-item" th:each="page_num:${pageInfo.navigatepageNums}">-->
+                    <!--<a class="page-link " th:if="${page_num == pageInfo.pageNum}" style="background-color: #dae0e5;" th:text="${page_num}"-->
+                       <!--th:href="'/video/actorplay?pn='+${page_num}+'&id='+${actor.id}"></a>-->
+                    <!--<a class="page-link " th:if="${page_num != pageInfo.pageNum}" th:text="${page_num}"-->
+                       <!--th:href="'/video/actorplay?pn='+${page_num}+'&id='+${actor.id}"></a>-->
+                <!--</li>-->
+                <!--&lt;!&ndash;<li class="page-item"><a class="page-link" href="#">2</a></li>&ndash;&gt;-->
+                <!--<li class="page-item" th:if="${pageInfo.hasNextPage}">-->
+                    <!--<a class="page-link" aria-label="Next" th:href="@{/video/actorplay(pn=${pageInfo.pageNum}+1,id=${actor.id})}">-->
+                        <!--<span aria-hidden="true">&raquo;</span>-->
+                        <!--<span class="sr-only">Next</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="page-item">-->
+                    <!--<a class="page-link" th:href="@{'/video/actorplay?pn='+${pageInfo.pages}+'&id='+${actor.id}}">tail</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</nav>-->
+        <!---->
+    <!--</div>-->
+</div>
+</body>
+</html>

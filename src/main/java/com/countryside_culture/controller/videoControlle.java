@@ -18,6 +18,7 @@ import com.github.pagehelper.PageInfo;
 import com.zlzkj.core.util.Fn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @CrossOrigin(origins = "*",maxAge = 3600,allowCredentials = "true",allowedHeaders = "*")
@@ -156,7 +158,7 @@ public class videoControlle {
             ans.setUid(uid);
             ans.setStatus(status);
             ans.setCollectNum(video.getCollectNum());
-            ans.setPictue(video.getPicture());
+            ans.setPicture(video.getPicture());
             ans.setPlayNum(video.getPlayNum());
             ans.setTitle(video.getTitle());
             ans.setUrl(video.getUrl());
@@ -213,11 +215,11 @@ public class videoControlle {
 
     //显示某个演员参演的所有视频
     @RequestMapping("/actorplay")
-    public String showAllFocus(int id, HttpServletResponse response
+    public String showAllFocus(int id, Map<String,Object> map, Model model
             , @RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn
             , @RequestParam(required = false,defaultValue = "8",value = "pagesize")Integer pagesize){
-        PageHelper.startPage(pn,pagesize);//第pn页，每页pagesize记录
         List<video> videos=videoservice.selectall();
+//        PageHelper.startPage(pn,pagesize);//第pn页，每页pagesize记录
         List<video> ans=new ArrayList<>();
         for (int i=0;i<videos.size();i++){
             String[] actor=videos.get(i).getActor().split("-");
@@ -227,9 +229,14 @@ public class videoControlle {
                 }
             }
         }
-        PageInfo pageInfo = new PageInfo<>(ans,5);
-        Fn.ajaxReturn(response,pageInfo);
-        return "";
+
+//        PageInfo pageInfo = new PageInfo<>(ans,5);
+        model.addAttribute("video",ans);
+//        map.put("pageInfo",pageInfo);
+
+        museum actor=museumservice.selectOne(id);
+        model.addAttribute("actor",actor);
+        return "famousPeopleView";
     }
 
 

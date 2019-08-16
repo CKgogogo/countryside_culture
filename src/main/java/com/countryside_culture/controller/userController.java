@@ -12,11 +12,14 @@ import com.countryside_culture.service.videoService;
 import com.countryside_culture.util.IpUtil;
 import com.countryside_culture.util.RedisUtil;
 import com.countryside_culture.util.SpringUtil;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.zlzkj.core.util.Fn;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-@RestController
+@Controller
 @CrossOrigin(origins = "*",maxAge = 3600,allowCredentials = "true",allowedHeaders = "*")
 @RequestMapping("user")
 public class userController {
@@ -82,9 +85,9 @@ public class userController {
     @ResponseBody
     @RequestMapping("modifypwd")
     public String Modifypwd(HttpServletRequest request,String oldpassword,String newpassword){
-        String username=request.getSession().getAttribute("username").toString();
-        userinfo userinfo=userinfoservice.checkLogin(username,oldpassword);
-        if (userinfo!=null){
+        int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
+        userinfo userinfo=userinfoservice.select(uid);
+        if (userinfo.getPassword().equals(oldpassword)){
             userinfo.setPassword(newpassword);
             userinfoservice.update(userinfo);
             return "ok";
@@ -92,30 +95,24 @@ public class userController {
         return "no";
     }
 
-        //查看当前用户所有收藏视频
-    @RequestMapping("/showcollect")
-    public String showAllCollect(HttpServletRequest request, HttpServletResponse response
-            , @RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn
-            , @RequestParam(required = false,defaultValue = "8",value = "pagesize")Integer pagesize){
-        int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
-        PageHelper.startPage(pn,pagesize);//第pn页，每页pagesize记录
-        List<video_collect> video_collect=videoservice.showcollect(uid);
-        PageInfo pageInfo = new PageInfo<>(video_collect,5);
-        Fn.ajaxReturn(response,pageInfo);
-        return "";
-    }
 
-    //查看当前用户所关注的所有演员
-    @RequestMapping("/showfocus")
-    public String showAllFocus(HttpServletRequest request, HttpServletResponse response
+    @RequestMapping("/show")
+    public String show(HttpServletRequest request, Model model
             , @RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn
             , @RequestParam(required = false,defaultValue = "8",value = "pagesize")Integer pagesize){
         int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
-        PageHelper.startPage(pn,pagesize);//第pn页，每页pagesize记录
+//        PageHelper.startPage(pn,pagesize);//第pn页，每页pagesize记录
+        //查看当前用户所有收藏视频
+        List<video_collect> video_collect=videoservice.showcollect(uid);
+//        PageInfo pageInfo = new PageInfo<>(video_collect,5);
+//        Fn.ajaxReturn(response,pageInfo);
+        model.addAttribute("collect",video_collect);
+
+
+        //查看当前用户所关注的所有演员
         List<focus> focus=focusservice.showfocus(uid);
-        PageInfo pageInfo = new PageInfo<>(focus,5);
-        Fn.ajaxReturn(response,pageInfo);
-        return "";
+        model.addAttribute("focus",focus);
+        return "profile";
     }
 
     //历史记录
@@ -137,12 +134,11 @@ public class userController {
         return "";
     }
 
-    //用户信息
-    @RequestMapping("/userinfo")
-    public String  Userinfo(HttpServletRequest request, HttpServletResponse response) {
-        int id=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
-        userinfo userinfo=userinfoservice.select(id);
-        Fn.ajaxReturn(response,userinfo);
-        return "";
+    //用户退出
+    @ResponseBody
+    @RequestMapping("/logout")
+    public String  Logout(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return "ok";
     }
 }
