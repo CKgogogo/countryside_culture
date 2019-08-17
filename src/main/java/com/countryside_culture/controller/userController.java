@@ -2,15 +2,11 @@ package com.countryside_culture.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.countryside_culture.entity.focus;
-import com.countryside_culture.entity.review;
-import com.countryside_culture.entity.userinfo;
-import com.countryside_culture.entity.video_collect;
+import com.countryside_culture.entity.*;
 import com.countryside_culture.service.*;
 import com.countryside_culture.util.IpUtil;
 import com.countryside_culture.util.RedisUtil;
 import com.countryside_culture.util.SpringUtil;
-import com.zlzkj.core.util.Fn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -134,7 +131,7 @@ public class userController {
     @RequestMapping("/show")
     public String show(HttpServletRequest request, Model model
             , @RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn
-            , @RequestParam(required = false,defaultValue = "8",value = "pagesize")Integer pagesize){
+            , @RequestParam(required = false,defaultValue = "8",value = "pagesize")Integer pagesize) throws ParseException {
         int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
 //        PageHelper.startPage(pn,pagesize);//第pn页，每页pagesize记录
         //查看当前用户所有收藏视频
@@ -147,26 +144,49 @@ public class userController {
         //查看当前用户所关注的所有演员
         List<focus> focus=focusservice.showfocus(uid);
         model.addAttribute("focus",focus);
-        return "profile";
-    }
 
-    //历史记录
-    @RequestMapping("/history")
-    public String  History(HttpServletRequest request, HttpServletResponse response) {
-        history history = null;
+        //历史记录
+        history history=null;
+        List<video> today = new ArrayList<video>();
+        List<video> tomorrow = new ArrayList<video>();
+        List<video> earlier = new ArrayList<video>();
+        List<video> earlier1 = new ArrayList<video>();
         String historyValue = null;
         RedisUtil redisUtil = null;
         redisUtil = (RedisUtil) SpringUtil.applicationContext.getBean("redisUtil");//从spring容器里面得到一个对象
-        historyValue = redisUtil.get(request.getAttribute("user_id").toString());
-        if(historyValue == null){//需要测试一下哪个不出错。
-            history = new history();
+        historyValue = redisUtil.get(request.getSession().getAttribute("user_id").toString());
+        if(historyValue == null){
+             history=new history();
+        }else {
+            history = JSON.parseObject(historyValue, new TypeReference<history>() {});
+            Date now = new Date();
+            SimpleDateFormat a = new SimpleDateFormat("yyyy/MM/dd");
+            for (int i = 0; i < history.getItems().size(); i++) {
+                Long xc = a.parse(a.format(now)).getTime() - a.parse(history.getItems().get(i).getHistorytime()).getTime();
+                if (xc == 0) {
+                    today.add(history.getItems().get(i));
+                } else if ((xc > 86400000||xc==86400000) && (xc < 172800000||xc==172800000)) {
+                    tomorrow.add(history.getItems().get(i));
+                } else {
+                    earlier1.add(history.getItems().get(i));
+                }
+            }
+            for (int k = 0; k < earlier1.size(); k++) {
+                if (earlier.size() == 0) {
+                    earlier.add(earlier1.get(k));
+                } else {
+                    for (int j = 0; j < earlier.size(); j++) {
+                        if (earlier1.get(k).getId() == earlier.get(j).getId())
+                            break;
+                        earlier.add(earlier1.get(k));
+                    }
+                }
+            }
         }
-        else{
-            history = JSON.parseObject(historyValue, new TypeReference<history>(){});
-        }
-       // model.addAttribute("history", history);
-        Fn.ajaxReturn(response,history);
-        return "";
+        model.addAttribute("today",today);
+        model.addAttribute("tomorrow",tomorrow);
+        model.addAttribute("earlier",earlier);
+        return "profile";
     }
 
     //用户退出

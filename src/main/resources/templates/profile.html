@@ -86,215 +86,67 @@
                         <div class="col-12">
                             <p style="font-size: 23px;font-weight: 900;">今天</p>
                         </div>
-                        <div class="col-4 pl-0">
-                            <a href="videoPlay.html">
+                        <div class="col-4 pl-0" th:each="v1:${today}">
+                            <a th:href="'/video/selectone?id='+${v1.id}">
                                 <div class="box">
                                     <img style="" class="img-fluid rounded"
-                                         src="../assets/image/video/video3.jpg">
+                                         th:src="@{'../assets/image/video/'+${v1.picture}}">
                                     <div class="box-content">
                                         <span class="title fa fa-play-circle-o"
                                               style="color: white;font-size: 55px;"></span>
                                     </div>
                                 </div>
                             </a>
-                            <a href="videoPlay.html" class="text-muted nav-link">
-                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
-                            </a>
-                        </div>
-                        <div class="col-4 pl-0">
-                            <a href="videoPlay.html">
-                                <div class="box">
-                                    <img style="" class="img-fluid rounded"
-                                         src="../assets/image/video/video3.jpg">
-                                    <div class="box-content">
-                                        <span class="title fa fa-play-circle-o"
-                                              style="color: white;font-size: 55px;"></span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="videoPlay.html" class="text-muted nav-link">
-                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            <a th:href="'/video/selectone?id='+${v1.id}" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="" th:text="${v1.title}"></p>
                             </a>
                         </div>
                     </div>
-<br>
+
                     <div class="col-12 row ml-1">
                         <div class="col-12">
                             <p style="font-size: 23px;font-weight: 900;">昨天</p>
                         </div>
-                        <div class="col-4 pl-0">
-                            <a href="videoPlay.html">
+                        <div class="col-4 pl-0" th:each="v2:${tomorrow}">
+                            <a th:href="'/video/selectone?id='+${v2.id}">
                                 <div class="box">
                                     <img style="" class="img-fluid rounded"
-                                         src="../assets/image/video/video3.jpg">
+                                         th:src="@{'../assets/image/video/'+${v2.picture}}">
                                     <div class="box-content">
                                         <span class="title fa fa-play-circle-o"
                                               style="color: white;font-size: 55px;"></span>
                                     </div>
                                 </div>
                             </a>
-                            <a href="videoPlay.html" class="text-muted nav-link">
-                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
-                            </a>
-                        </div>
-                        <div class="col-4 pl-0">
-                            <a href="videoPlay.html">
-                                <div class="box">
-                                    <img style="" class="img-fluid rounded"
-                                         src="../assets/image/video/video3.jpg">
-                                    <div class="box-content">
-                                        <span class="title fa fa-play-circle-o"
-                                              style="color: white;font-size: 55px;"></span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="videoPlay.html" class="text-muted nav-link">
-                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
-                            </a>
-                        </div>
-                        <div class="col-4 pl-0">
-                            <a href="videoPlay.html">
-                                <div class="box">
-                                    <img style="" class="img-fluid rounded"
-                                         src="../assets/image/video/video3.jpg">
-                                    <div class="box-content">
-                                        <span class="title fa fa-play-circle-o"
-                                              style="color: white;font-size: 55px;"></span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="videoPlay.html" class="text-muted nav-link">
-                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
-                            </a>
-                        </div>
-                        <div class="col-4 pl-0">
-                            <a href="videoPlay.html">
-                                <div class="box">
-                                    <img style="" class="img-fluid rounded"
-                                         src="../assets/image/video/video3.jpg">
-                                    <div class="box-content">
-                                        <span class="title fa fa-play-circle-o"
-                                              style="color: white;font-size: 55px;"></span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="videoPlay.html" class="text-muted nav-link">
-                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            <a th:href="'/video/selectone?id='+${v2.id}" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="" th:text="${v2.title}"></p>
                             </a>
                         </div>
                     </div>
-<br>
+
                     <div class="col-12 row ml-1">
                         <div class="col-12">
                             <p style="font-size: 23px;font-weight: 900;">更早</p>
                         </div>
-                        <div class="col-4 pl-0">
-                            <a href="videoPlay.html">
+                        <div class="col-4 pl-0" th:each="v3:${earlier}">
+                            <a th:href="'/video/selectone?id='+${v3.id}">
                                 <div class="box">
                                     <img style="" class="img-fluid rounded"
-                                         src="../assets/image/video/video3.jpg">
+                                         th:src="@{'../assets/image/video/'+${v3.picture}}">
                                     <div class="box-content">
                                         <span class="title fa fa-play-circle-o"
                                               style="color: white;font-size: 55px;"></span>
                                     </div>
                                 </div>
                             </a>
-                            <a href="videoPlay.html" class="text-muted nav-link">
-                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
-                            </a>
-                        </div>
-                        <div class="col-4 pl-0">
-                            <a href="videoPlay.html">
-                                <div class="box">
-                                    <img style="" class="img-fluid rounded"
-                                         src="../assets/image/video/video3.jpg">
-                                    <div class="box-content">
-                                        <span class="title fa fa-play-circle-o"
-                                              style="color: white;font-size: 55px;"></span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="videoPlay.html" class="text-muted nav-link">
-                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
-                            </a>
-                        </div>
-                        <div class="col-4 pl-0">
-                            <a href="videoPlay.html">
-                                <div class="box">
-                                    <img style="" class="img-fluid rounded"
-                                         src="../assets/image/video/video3.jpg">
-                                    <div class="box-content">
-                                        <span class="title fa fa-play-circle-o"
-                                              style="color: white;font-size: 55px;"></span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="videoPlay.html" class="text-muted nav-link">
-                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
-                            </a>
-                        </div>
-                        <div class="col-4 pl-0">
-                            <a href="videoPlay.html">
-                                <div class="box">
-                                    <img style="" class="img-fluid rounded"
-                                         src="../assets/image/video/video3.jpg">
-                                    <div class="box-content">
-                                        <span class="title fa fa-play-circle-o"
-                                              style="color: white;font-size: 55px;"></span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="videoPlay.html" class="text-muted nav-link">
-                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
-                            </a>
-                        </div>
-                        <div class="col-4 pl-0">
-                            <a href="videoPlay.html">
-                                <div class="box">
-                                    <img style="" class="img-fluid rounded"
-                                         src="../assets/image/video/video3.jpg">
-                                    <div class="box-content">
-                                        <span class="title fa fa-play-circle-o"
-                                              style="color: white;font-size: 55px;"></span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="videoPlay.html" class="text-muted nav-link">
-                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
-                            </a>
-                        </div>
-                        <div class="col-4 pl-0">
-                            <a href="videoPlay.html">
-                                <div class="box">
-                                    <img style="" class="img-fluid rounded"
-                                         src="../assets/image/video/video3.jpg">
-                                    <div class="box-content">
-                                        <span class="title fa fa-play-circle-o"
-                                              style="color: white;font-size: 55px;"></span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="videoPlay.html" class="text-muted nav-link">
-                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
-                            </a>
-                        </div>
-                        <div class="col-4 pl-0">
-                            <a href="videoPlay.html">
-                                <div class="box">
-                                    <img style="" class="img-fluid rounded"
-                                         src="../assets/image/video/video3.jpg">
-                                    <div class="box-content">
-                                        <span class="title fa fa-play-circle-o"
-                                              style="color: white;font-size: 55px;"></span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="videoPlay.html" class="text-muted nav-link">
-                                <p class="text-break text-left videoTitle" style="">玉蜻蜓</p>
+                            <a th:href="'/video/selectone?id='+${v3.id}" class="text-muted nav-link">
+                                <p class="text-break text-left videoTitle" style="" th:text="${v3.title}"></p>
                             </a>
                         </div>
                     </div>
                 </div>
+
+
                 <div class="tab-pane fade" id="tab2">
                     <div class="col-12 text-center">
                         <h4>我的收藏</h4>

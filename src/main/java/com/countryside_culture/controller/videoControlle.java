@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -87,7 +88,7 @@ public class videoControlle {
     }
     //某个视频
     @RequestMapping(value ="/selectone",method = RequestMethod.GET)
-    public String showSelectone(HttpServletResponse response, HttpServletRequest request, int id, Model model){
+    public String showSelectone(HttpServletResponse response, HttpServletRequest request, int id, Model model) throws ParseException {
         video video = videoservice.selectone(id);
         video.setPlayNum(video.getPlayNum()+1);
         if(request.getSession().getAttribute("user_id")!=null){
@@ -98,8 +99,8 @@ public class videoControlle {
             }
         }
         Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
-        video.setHistorytime(sdf.format(d));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        video.setHistorytime(simpleDateFormat.format(d));
         if(request.getSession().getAttribute("user_id")!=null){
             String readhistoryValue = null;
             RedisUtil redisUtil = null;
@@ -110,14 +111,19 @@ public class videoControlle {
                 readhistory=new history();
                 readhistory.addItem(video);
             }else {
-                readhistory = JSON.parseObject(readhistoryValue, new TypeReference<history>() {});
-                for (int i=0;i<readhistory.getItems().size();i++){
-                    if (id==readhistory.getItems().get(i).getId()) {
-                        readhistory.removeItem(i);
+                    readhistory = JSON.parseObject(readhistoryValue, new TypeReference<history>() {});
+                    for (int i=readhistory.getItems().size()-1;i>=0;i--){
+                    Date date =simpleDateFormat.parse(readhistory.getItems().get(i).getHistorytime());
+                    if (d.getTime()-date.getTime()>86400000) {
                         readhistory.addItem(video);
                         break;
                     }else {
-                        readhistory.addItem(video);
+                        if (video.getId()==readhistory.getItems().get(i).getId()){
+                            break;
+                        }else {
+                            readhistory.addItem(video);
+                            break;
+                        }
                     }
                 }
             }
@@ -165,7 +171,7 @@ public class videoControlle {
     }
     //某个视频 返回json格式
     @RequestMapping(value ="/selectone2")
-    public String showSelectone2(HttpServletResponse response, HttpServletRequest request, int id){
+    public String showSelectone2(HttpServletResponse response, HttpServletRequest request, int id) throws ParseException {
         video video = videoservice.selectone(id);
         video.setPlayNum(video.getPlayNum()+1);
         if(request.getSession().getAttribute("user_id")!=null){
@@ -176,8 +182,8 @@ public class videoControlle {
             }
         }
         Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
-        video.setHistorytime(sdf.format(d));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        video.setHistorytime(simpleDateFormat.format(d));
         if(request.getSession().getAttribute("user_id")!=null){
             String readhistoryValue = null;
             RedisUtil redisUtil = null;
@@ -189,13 +195,18 @@ public class videoControlle {
                 readhistory.addItem(video);
             }else {
                 readhistory = JSON.parseObject(readhistoryValue, new TypeReference<history>() {});
-                for (int i=0;i<readhistory.getItems().size();i++){
-                    if (id==readhistory.getItems().get(i).getId()) {
-                        readhistory.removeItem(i);
+                for (int i=readhistory.getItems().size()-1;i>=0;i--){
+                    Date date =simpleDateFormat.parse(readhistory.getItems().get(i).getHistorytime());
+                    if (d.getTime()-date.getTime()>86400000) {
                         readhistory.addItem(video);
                         break;
                     }else {
-                        readhistory.addItem(video);
+                        if (video.getId()==readhistory.getItems().get(i).getId()){
+                            break;
+                        }else {
+                            readhistory.addItem(video);
+                            break;
+                        }
                     }
                 }
             }
