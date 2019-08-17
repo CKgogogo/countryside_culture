@@ -71,19 +71,25 @@
                 </div>
                 <div class="col-12 save">
                     <div style="height: 55px;width: 640px;background: #fff;margin-top: 25px;">
-                        <div style="position: relative;width:100px;" class="opera">
-                            <span id="btn1">
-                                <img src="../assets/image/logo/unlikes.png" alt="" width="28px" height="28px">
-                                </span>
-                            <span style="position: relative;top: 4px;" th:text="${video.likeNum}"></span>
-                        </div>
-                        <div style="position: relative;top: -28px;left: 100px;width: 100px;">
-                            <span  value="1" onclick="collect(this)">
+
+                        <div style="position: relative;top: 3px;left: 14px;width: 100px;"
+                             th:if="${session.user_id}== null">
+                            <span value="1" onclick="collect(this)">
                                 <img src="../assets/image/logo/collect.png" alt="" width="28px" height="28px">
                                 </span>
                             <span style="position: relative;top: 4px;" class="collectnum" th:text="${video.collectNum}"> <span></span></span>
                         </div>
-                        <div style="position: relative;top: -56px;left: 200px;width: 100px;">
+                        <div style="position: relative;top: 3px;left: 14px;width: 100px;"
+                             th:if="${session.user_id}!= null">
+                            <span value="1" onclick="collect(this)" th:if="${video.is_collect}==0">
+                                <img src="../assets/image/logo/collect.png" alt="" width="28px" height="28px">
+                                </span>
+                            <span value="0" onclick="collect(this)" th:if="${video.is_collect}==1">
+                                <img src="../assets/image/logo/collected.png" alt="" width="28px" height="28px">
+                                </span>
+                            <span style="position: relative;top: 4px;" class="collectnum" th:text="${video.collectNum}"> <span></span></span>
+                        </div>
+                        <div style="position: relative;top: -25px;left: 117px;width: 100px;">
                             <a class="share text-muted" href="" style="text-decoration: none;">
                                 <img src="../assets/image/logo/share.png" alt="" width="28px" height="28px">
                                 <span style="position: relative;top: 4px;">分享</span>
@@ -92,6 +98,7 @@
                         <div style="position: relative;top: -76px;left:508px;color: #999;width: 100px;">
                             <!--                        <p><a href="" class="nav-link text-muted"><span>稿件投诉</span></a></p>-->
                         </div>
+
                         <div class="share-box">
                             <div class="share-pos">
                                 <div class="box-a">
@@ -140,51 +147,35 @@
             </div>
             <hr style="margin-top: -10px;" class="col-11">
             <!--关注-->
-            <h6>著名演员</h6>
+            <h6 style="color: #6c757d;">著名演员</h6>
             <br>
-            <div class="col-12 container">
-                <div>
-                    <div class="people"
-                         style="position: relative;float: left;width: 110px;height: 96px;margin-left:87px;">
-                        <img src="../assets/image/people/pe5.jpg" alt="" width="60px;" height="60px;"
-                             class="rounded-circle">
-                        <div style="position: relative;top:13px;left: -23px;width: 106px;height: 20px;text-align: center;">
-                            <span class="text-muted">大大大灯泡</span>
-                        </div>
-                        <div style="width: 20px;height: 20px;background: red;position: relative;left: 21px;top: -31px;border-radius: 60px;">
-                            <img src="../assets/image/logo/follow.png" alt="" width="10px" height="10px"
-                                 style="position: relative;top: -4px;left: 5px;">
-                        </div>
+            <div class="col-12 container row">
+                <div class="cont"></div>
+                <p th:if="${actor}==null">暂无</p>
+                <div class="people" th:each="news:${actor}" th:if="${actor}!=null"
+                     style="position: relative;float: left;width: 110px;height: 96px;margin-left:87px;">
+                    <i style="visibility: hidden;font-size: 1px;" th:text="${news.id}"></i>
+                    <img th:src="@{'../assets/image/people/'+${news.picture}}"  alt="" width="60px;" height="60px;"
+                         class="rounded-circle">
+                    <div style="position: relative;top:13px;left: -13px;width: 106px;height: 20px;text-align: center;">
+                        <span class="text-muted" th:text="${news.title}"></span>
                     </div>
-                    <div class="people"
-                         style="position: relative;float: left;width: 110px;height: 96px;margin-left:87px;">
-                        <img src="../assets/image/people/pe1.jpg" alt="" width="60px;" height="60px;"
-                             class="rounded-circle">
-                        <div style="position: relative;top:13px;left: -23px;width: 106px;height: 20px;text-align: center;">
-                            <span class="text-muted">大大大灯泡</span>
-                        </div>
-                        <div style="width: 20px;height: 20px;background: red;position: relative;left: 21px;top: -31px;border-radius: 60px;">
-                            <img src="../assets/image/logo/follow.png" alt="" width="10px" height="10px"
-                                 style="position: relative;top: -4px;left: 5px;">
-                        </div>
+
+                    <div value="1" th:if="${news.is_focus}==0" style="width: 20px;height: 20px;background:
+                     red;position: relative;left: 28px;top: -31px;border-radius: 60px;" onclick="focu(this)">
+                        <img  src="../assets/image/logo/follow.png" alt="" width="10px" height="10px"
+                             style="position: relative;top: -4px;left: 5px;">
                     </div>
-                    <div class="people"
-                         style="position: relative;float: left;width: 110px;height: 96px;margin-left:87px;">
-                        <img src="../assets/image/people/pe1.jpg" alt="" width="60px;" height="60px;"
-                             class="rounded-circle">
-                        <div style="position: relative;top:13px;left: -23px;width: 106px;height: 20px;text-align: center;">
-                            <span class="text-muted">大大大灯泡</span>
-                        </div>
-                        <div style="width: 20px;height: 20px;background: red;position: relative;left: 21px;top: -31px;border-radius: 60px;">
-                            <img src="../assets/image/logo/follow.png" alt="" width="10px" height="10px"
-                                 style="position: relative;top: -4px;left: 5px;">
-                        </div>
+                    <div value="0" th:if="${news.is_focus}==1" style="width: 20px;height: 20px;background:
+                    red;position: relative;left: 28px;top: -31px;border-radius: 60px;" onclick="focu(this)">
+                        <img  src="../assets/image/logo/unfollow.png" alt="" width="10px" height="10px"
+                             style="position: relative;top: -4px;left: 5px;" >
                     </div>
                 </div>
             </div>
             <hr style="position: relative;top: 103px;" class="col-11">
             <!--            视频简介-->
-            <div style="width: 640px;margin-top: 102px;margin-left: 0px;">
+            <div style="width: 640px;margin-left: 0px;">
                 <a data-toggle="collapse" href="#collapseExample" class="text-muted">关于视频</a>
                 <div class="collapse show " id="collapseExample">
                     <div class="card card-body border-0" style="color: #888;" th:text="${video.remark}">
@@ -252,7 +243,8 @@
                                                     <p class='operation'>
                                                         <span class='replytime' th:text="${reply.time}"></span>
                                                         <span><a href="###" onclick="like(this)" class='like' value='0'
-                                                                 th:value="${reply.likeNum}" th:text="${reply.likeNum}"></a></span>
+                                                                 th:value="${reply.likeNum}"
+                                                                 th:text="${reply.likeNum}"></a></span>
                                                         <span><a href="###" class='reply minor_reply'>回复</a></span>
                                                         <span>
                                                             <a href="###" class=''
@@ -313,29 +305,89 @@
 <script src="../assets/js/popper.min.js"></script>
 <script src="https://s3.ssl.qhres.com/!fd546749/chimee-player.browser.js" type="text/javascript"></script>
 <!--<script src="../assets/js/vue.js"></script>-->
-<!--<script src="../assets/js/mustache.js"></script>-->
+<script src="../assets/js/mustache.js"></script>
 <!--<script src="../assets/js/video.js"></script>-->
 <script th:inline="javascript">
+    //显示所有演员
+    // $.ajax({
+    //     type: "POST",
+    //     url: "http://localhost:8080/video/actor?actor=" + [[${video.actor}]],
+    //     data: '',
+    //     contentType: "application/json",
+    //     dataType: "json",
+    //     success: function (msg) {
+    //         // alert(msg.length);
+    //
+    //     },
+    //     error: function (err) {
+    //         alert("request failed！");
+    //     }
+    // });
+    //关注演员
+    function focu(a) {
+        var status = $(a).attr('value');
+        var id=$(a).parent().children('i').html();
+        //关注
+       if(status=='1'){
+           $.ajax({
+               type: "POST",
+               url: "http://localhost:8080/video/focus?id=" +id+"&status=1",
+               data: '',
+               contentType: "application/x-www-form-urlencoded",
+               success: function (msg) {
+                   if (msg == 'no') {
+                       alert("请先登录");
+                   } else {
+                       $(a).attr('value', '0');
+                       $(a).children('img').attr('src', '../assets/image/logo/unfollow.png');
+                   }
+               },
+               error: function (err) {
+                   alert("request failed！");
+               }
+           });
+       }else{
+           //取消关注
+           $.ajax({
+               type: "POST",
+               url: "http://localhost:8080/video/focus?id=" +id+"&status=0",
+               data: '',
+               contentType: "application/x-www-form-urlencoded",
+               success: function (msg) {
+                   if (msg == 'no') {
+                       alert("请先登录");
+                   } else {
+                       $(a).attr('value', '1');
+                       $(a).children('img').attr('src', '../assets/image/logo/follow.png');
+                   }
+               },
+               error: function (err) {
+                   alert("request failed！");
+               }
+           });
+       }
+    }
+
     //收藏视频
-    function collect(a){
-        var id=[[${video.id}]];
-        var url=$(a).children('img').attr('src');
-        var status=$(a).attr('value');
-        if(status=='1'){
+    function collect(a) {
+        var id = [[${video.id}]];
+        var url = $(a).children('img').attr('src');
+        var status = $(a).attr('value');
+        if (status == '1') {
             //收藏
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/video/collect?id=" + id+"&status="+status,
+                url: "http://localhost:8080/video/collect?id=" + id + "&status=" + status,
                 data: '',
                 contentType: "application/x-www-form-urlencoded",
                 success: function (msg) {
-                    if(msg=='no'){
+                    if (msg == 'no') {
                         alert("请先登录");
-                    }else{
-                        $(a).attr('value','0');
-                        $(a).children('img').attr('src','../assets/image/logo/collected.png');
-                        var num=$('.collectnum').text();
-                        num=Number(num) + Number(1);
+                    } else {
+                        $(a).attr('value', '0');
+                        $(a).children('img').attr('src', '../assets/image/logo/collected.png');
+                        var num = $('.collectnum').text();
+                        num = Number(num) + Number(1);
                         $('.collectnum').text(num);
                     }
                 },
@@ -343,20 +395,20 @@
                     alert("request failed！");
                 }
             });
-        }else{
+        } else {
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/video/collect?id=" + id+"&status="+status,
+                url: "http://localhost:8080/video/collect?id=" + id + "&status=" + status,
                 data: '',
                 contentType: "application/x-www-form-urlencoded",
                 success: function (msg) {
-                    if(msg=='no'){
+                    if (msg == 'no') {
                         alert("请先登录");
-                    }else{
-                        $(a).attr('value','1');
-                        $(a).children('img').attr('src','../assets/image/logo/collect.png');
-                        var num=$('.collectnum').text();
-                        num=Number(num) - Number(1);
+                    } else {
+                        $(a).attr('value', '1');
+                        $(a).children('img').attr('src', '../assets/image/logo/collect.png');
+                        var num = $('.collectnum').text();
+                        num = Number(num) - Number(1);
                         $('.collectnum').text(num);
                     }
                 },
@@ -393,36 +445,36 @@
 
     //点赞
     function like(a) {
-        var id=$(a).parent().parent().parent().parent().parent().children('i').html();
-        var num=$(a).html();
-        var cls=$(a).attr('class');
-        if(cls=='like'){
+        var id = $(a).parent().parent().parent().parent().parent().children('i').html();
+        var num = $(a).html();
+        var cls = $(a).attr('class');
+        if (cls == 'like') {
             //点赞
-            num=Number(num) + Number(1);
+            num = Number(num) + Number(1);
             $.ajax({
                 type: "POST",
-                url: "/review/like?id=" + id+"&status=1&likenum="+num,
+                url: "/review/like?id=" + id + "&status=1&likenum=" + num,
                 data: '',
                 contentType: "application/x-www-form-urlencoded",
                 success: function (msg) {
-                   if(msg=='no'){
-                       alert("请先登录");
-                   }
+                    if (msg == 'no') {
+                        alert("请先登录");
+                    }
                 },
                 error: function (err) {
                     alert("request failed！");
                 }
             });
-        }else{
+        } else {
             //取消点赞
-            num=Number(num) - Number(1);
+            num = Number(num) - Number(1);
             $.ajax({
                 type: "POST",
-                url: "/review/like?id=" + id+"&status=1&likenum="+num,
+                url: "/review/like?id=" + id + "&status=1&likenum=" + num,
                 data: '',
                 contentType: "application/x-www-form-urlencoded",
                 success: function (msg) {
-                    if(msg=='no'){
+                    if (msg == 'no') {
                         alert("请先登录");
                     }
 
@@ -481,7 +533,7 @@
         operable: false
     });
     ChimeePlayer.install(aggdPlugin);
-    var te=[[${video.url}]]
+    var te = [[${video.url}]]
     var player = new ChimeePlayer({
         box: 'native',
         wrapper: '.chimee-container',
@@ -970,7 +1022,7 @@
                         var oldValue = parseInt(target.getAttribute('value')),
                             newValue;
                         target.className = 'like onlike';
-                        target.innerHTML =   (oldValue + 1) ;
+                        target.innerHTML = (oldValue + 1);
                         newValue = oldValue + 1;
                         target.setAttribute('value', newValue);
                         evt.stopPropagation();
@@ -988,7 +1040,7 @@
                         var oldValue = parseInt(target.getAttribute('value')),
                             newValue;
                         target.className = 'like';
-                        target.innerHTML =  (oldValue - 1) ;
+                        target.innerHTML = (oldValue - 1);
                         newValue = oldValue - 1;
                         target.setAttribute('value', newValue);
                         evt.stopPropagation();
@@ -1226,7 +1278,7 @@
                                 target.setAttribute('value', newValue);
                                 evt.stopPropagation();
                                 evt.cancelBubble = true;
-                                var newvalue=oldValue-1;
+                                var newvalue = oldValue - 1;
                                 // $.ajax({
                                 //     type: "POST",
                                 //     url: "/review/like?id=" + replyid + "&content=" + replyVal,
