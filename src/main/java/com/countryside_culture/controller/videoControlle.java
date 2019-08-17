@@ -163,9 +163,25 @@ public class videoControlle {
                 ans.get(i).setList(reviewList);
             }
         }
+
+        //显示所有演员
+        String[] a=video.getActor().split("-");
+        List<museum> museums=new ArrayList<>();
+        for(int i=0;i<a.length;i++){
+            museum ans2=museumservice.selectOne(Integer.parseInt(a[i]));
+            if(request.getSession().getAttribute("user_id")!=null){
+                int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
+                focus focus=focusservice.select(uid,Integer.parseInt(a[i]));
+                if(focus!=null){
+                    ans2.setIs_focus(focus.getStatus());
+                }
+            }
+            museums.add(ans2);
+        }
         model.addAttribute("review",ans);
         model.addAttribute("video2",video2);
         model.addAttribute("video",video);
+        model.addAttribute("actor",museums);
 //        Fn.ajaxReturn(response,video);
         return "videoPlay";
     }

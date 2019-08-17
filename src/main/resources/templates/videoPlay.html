@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link type="text/css" rel="stylesheet" href="../assets/css/demo.css"/>
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
 
 </head>
 <body class="animated fadeIn">
@@ -71,27 +72,27 @@
                         </div>
                     </div>
                 </div>
-                <!--点赞收藏分享-->
-                <!--            <div class="praise">-->
-                <!--                <span id="praise"><img src="../assets/image/zan.png" id="praise-img" /></span>-->
-                <!--                <span id="praise-txt">1455</span>-->
-                <!--                <span id="add-num"><em>+1</em></span>-->
-                <!--            </div>-->
                 <div class="col-12 save">
                     <div style="height: 55px;width: 640px;background: #fff;margin-top: 25px;">
-                        <div style="position: relative;width:100px;" class="opera">
-                            <span id="btn1">
-                                <img src="../assets/image/logo/unlikes.png" alt="" width="28px" height="28px">
-                                </span>
-                            <span style="position: relative;top: 4px;" th:text="${video.likeNum}"></span>
-                        </div>
-                        <div style="position: relative;top: -28px;left: 100px;width: 100px;">
-                        <span id="btn2">
+
+                        <div style="position: relative;top: 3px;left: 14px;width: 100px;"
+                             th:if="${session.user_id}== null">
+                            <span value="1" onclick="collect(this)">
                                 <img src="../assets/image/logo/collect.png" alt="" width="28px" height="28px">
                                 </span>
-                            <span style="position: relative;top: 4px;">6 <span></span></span>
+                            <span style="position: relative;top: 4px;" class="collectnum" th:text="${video.collectNum}"> <span></span></span>
                         </div>
-                        <div style="position: relative;top: -56px;left: 200px;width: 100px;">
+                        <div style="position: relative;top: 3px;left: 14px;width: 100px;"
+                             th:if="${session.user_id}!= null">
+                            <span value="1" onclick="collect(this)" th:if="${video.is_collect}==0">
+                                <img src="../assets/image/logo/collect.png" alt="" width="28px" height="28px">
+                                </span>
+                            <span value="0" onclick="collect(this)" th:if="${video.is_collect}==1">
+                                <img src="../assets/image/logo/collected.png" alt="" width="28px" height="28px">
+                                </span>
+                            <span style="position: relative;top: 4px;" class="collectnum" th:text="${video.collectNum}"> <span></span></span>
+                        </div>
+                        <div style="position: relative;top: -25px;left: 117px;width: 100px;">
                             <a class="share text-muted" href="" style="text-decoration: none;">
                                 <img src="../assets/image/logo/share.png" alt="" width="28px" height="28px">
                                 <span style="position: relative;top: 4px;">分享</span>
@@ -100,6 +101,7 @@
                         <div style="position: relative;top: -76px;left:508px;color: #999;width: 100px;">
                             <!--                        <p><a href="" class="nav-link text-muted"><span>稿件投诉</span></a></p>-->
                         </div>
+
                         <div class="share-box">
                             <div class="share-pos">
                                 <div class="box-a">
@@ -110,14 +112,10 @@
                                                 <a href="">
                                         <span style="background: url('../assets/image/logo/QQ.png');width: 32px;
                                         height: 32px;display: inline-block;">
-
                                         </span>
                                                 </a>
                                             </div>
-
-
                                         </div>
-
                                     </div>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <div class="share-address">
@@ -126,14 +124,10 @@
                                                 <a href="">
                                         <span style="background: url('../assets/image/logo/微信.png');width: 32px;
                                         height: 32px;display: inline-block;">
-
                                         </span>
                                                 </a>
                                             </div>
-
-
                                         </div>
-
                                     </div>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -156,57 +150,39 @@
             </div>
             <hr style="margin-top: -10px;" class="col-11">
             <!--关注-->
-            <h6>著名演员</h6>
+            <h6 style="color: #6c757d;">著名演员</h6>
             <br>
-            <div class="col-12 container">
-                <div>
-                    <div class="people"
-                         style="position: relative;float: left;width: 110px;height: 96px;margin-left:87px;">
-                        <img src="../assets/image/people/pe5.jpg" alt="" width="60px;" height="60px;"
-                             class="rounded-circle">
-                        <div style="position: relative;top:13px;left: -23px;width: 106px;height: 20px;text-align: center;">
-                            <span class="text-muted">大大大灯泡</span>
-                        </div>
-                        <div style="width: 20px;height: 20px;background: red;position: relative;left: 21px;top: -31px;border-radius: 60px;">
-                            <img src="../assets/image/logo/follow.png" alt="" width="10px" height="10px"
-                                 style="position: relative;top: -4px;left: 5px;">
-                        </div>
+            <div class="col-12 container row">
+                <div class="cont"></div>
+                <p th:if="${actor}==null">暂无</p>
+                <div class="people" th:each="news:${actor}" th:if="${actor}!=null"
+                     style="position: relative;float: left;width: 110px;height: 96px;margin-left:87px;">
+                    <i style="visibility: hidden;font-size: 1px;" th:text="${news.id}"></i>
+                    <img th:src="@{'../assets/image/people/'+${news.picture}}"  alt="" width="60px;" height="60px;"
+                         class="rounded-circle">
+                    <div style="position: relative;top:13px;left: -13px;width: 106px;height: 20px;text-align: center;">
+                        <span class="text-muted" th:text="${news.title}"></span>
                     </div>
-                    <div class="people"
-                         style="position: relative;float: left;width: 110px;height: 96px;margin-left:87px;">
-                        <img src="../assets/image/people/pe1.jpg" alt="" width="60px;" height="60px;"
-                             class="rounded-circle">
-                        <div style="position: relative;top:13px;left: -23px;width: 106px;height: 20px;text-align: center;">
-                            <span class="text-muted">大大大灯泡</span>
-                        </div>
-                        <div style="width: 20px;height: 20px;background: red;position: relative;left: 21px;top: -31px;border-radius: 60px;">
-                            <img src="../assets/image/logo/follow.png" alt="" width="10px" height="10px"
-                                 style="position: relative;top: -4px;left: 5px;">
-                        </div>
+
+                    <div value="1" th:if="${news.is_focus}==0" style="width: 20px;height: 20px;background:
+                     red;position: relative;left: 28px;top: -31px;border-radius: 60px;" onclick="focu(this)">
+                        <img  src="../assets/image/logo/follow.png" alt="" width="10px" height="10px"
+                             style="position: relative;top: -4px;left: 5px;">
                     </div>
-                    <div class="people"
-                         style="position: relative;float: left;width: 110px;height: 96px;margin-left:87px;">
-                        <img src="../assets/image/people/pe1.jpg" alt="" width="60px;" height="60px;"
-                             class="rounded-circle">
-                        <div style="position: relative;top:13px;left: -23px;width: 106px;height: 20px;text-align: center;">
-                            <span class="text-muted">大大大灯泡</span>
-                        </div>
-                        <div style="width: 20px;height: 20px;background: red;position: relative;left: 21px;top: -31px;border-radius: 60px;">
-                            <img src="../assets/image/logo/follow.png" alt="" width="10px" height="10px"
-                                 style="position: relative;top: -4px;left: 5px;">
-                        </div>
+                    <div value="0" th:if="${news.is_focus}==1" style="width: 20px;height: 20px;background:
+                    red;position: relative;left: 28px;top: -31px;border-radius: 60px;" onclick="focu(this)">
+                        <img  src="../assets/image/logo/unfollow.png" alt="" width="10px" height="10px"
+                             style="position: relative;top: -4px;left: 5px;" >
                     </div>
                 </div>
             </div>
             <hr style="position: relative;top: 103px;" class="col-11">
             <!--            视频简介-->
-            <div style="width: 640px;margin-top: 102px;margin-left: 0px;">
+            <div style="width: 640px;margin-left: 0px;">
                 <a data-toggle="collapse" href="#collapseExample" class="text-muted">关于视频</a>
                 <div class="collapse show " id="collapseExample">
-                    <div class="card card-body border-0" style="color: #888;">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                        Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
-                        proident.
+                    <div class="card card-body border-0" style="color: #888;" th:text="${video.remark}">
+
                     </div>
                 </div>
             </div>
@@ -218,8 +194,10 @@
                         <div class='com_title'><span>全部评论</span></div>
                         <div class='com_self clearfix'>
                             <div class="my_face">
-                                <img th:if="${session.user_id!=null}" class="userimg" th:src="@{'../assets/image/user/'+${session.picture}}">
-                                <img th:if="${session.user_id==null}" class="userimg" th:src="@{'../assets/image/user/imlogin.jpg'}">
+                                <img th:if="${session.user_id!=null}" class="userimg"
+                                     th:src="@{'../assets/image/user/'+${session.picture}}">
+                                <img th:if="${session.user_id==null}" class="userimg"
+                                     th:src="@{'../assets/image/user/imlogin.jpg'}">
                             </div>
                             <div class="com_enter" id='comEnter'>
                         <textarea class='com_area' id='comArea'
@@ -228,11 +206,11 @@
                             </div>
                         </div>
                         <div class='com_content recommend userRecommend' id='comContent'>
-                            <div class="user_comment clearfix " th:each="recommend:${review}" >
+                            <div class="user_comment clearfix " th:each="recommend:${review}">
                                 <i style="visibility: hidden;font-size: 1px;" th:text="${recommend.id}"></i>
                                 <div class="user_face"><a href="###">
                                     <img
-                                         th:src="@{'../assets/image/user/'+${recommend.picture}}"></a>
+                                            th:src="@{'../assets/image/user/'+${recommend.picture}}"></a>
                                 </div>
                                 <div class="user_contxt">
                                     <div class="user_txt">
@@ -240,29 +218,44 @@
                                         <p class='user_maincom' th:text="${recommend.content}"></p>
                                         <p class='operation'>
                                             <span class='time' th:text="${recommend.time}"></span>
-                                            <span><a href='###' class='like' value='409' th:text="${recommend.likeNum}"></a></span>
+                                            <span><a href='###' class='like' onclick="like(this)" value='0'
+                                                     th:value="${recommend.likeNum}" th:text="${recommend.likeNum}"></a></span>
                                             <span><a href='###' class='unlike'></a></span>
                                             <span><a href="###" class='reply main_reply'
-                                                     >参与回复</a></span>
-                                            <!--<span><a href="###" class='report'>举报</a></span>-->
+                                            >参与回复</a></span>
+                                            <span>
+                                                <a href="###" class='dele1' th:if="${session.user_id}==${recommend.uid}"
+                                                   onclick="dele1(this)">删除</a>
+                                                <a href="###" class='dele1'
+                                                   th:if="${session.user_id}!=${recommend.uid}"></a>
+                                            </span>
                                             <!--<span><a href="###" class='backlist'>加入黑名单</a></span>-->
                                         </p>
                                     </div>
                                     <div class="reply_com">
                                         <ul id='replyUl'>
                                             <li class='clearfix other' th:each="reply:${recommend.list}">
+                                                <i style="visibility: hidden;font-size: 1px;" th:text="${reply.id}"></i>
                                                 <div class="reply_face"><a href="###"><img
                                                         th:src="@{'../assets/image/user/'+${reply.picture}}"></a></div>
                                                 <div class="reply_con">
                                                     <p class='reply_txt'>
                                                         <a href="###" class='userid' th:text="${reply.plname}"></a>
-                                                       <p th:text="${reply.content}"></p>
+                                                    <p th:text="'回复 @'+${reply.rname}+':'+${reply.content}"></p>
                                                     </p>
                                                     <p class='operation'>
                                                         <span class='replytime' th:text="${reply.time}"></span>
-                                                        <span><a href="###" class='like' value='0' th:text="${reply.likeNum}"></a></span>
+                                                        <span><a href="###" onclick="like(this)" class='like' value='0'
+                                                                 th:value="${reply.likeNum}"
+                                                                 th:text="${reply.likeNum}"></a></span>
                                                         <span><a href="###" class='reply minor_reply'>回复</a></span>
-                                                        <!--<span><a href="###" class='report'>举报</a></span>-->
+                                                        <span>
+                                                            <a href="###" class=''
+                                                               th:if="${session.user_id}==${reply.uid}"
+                                                               onclick="dele2(this)">删除</a>
+                                                            <a href="###" class=''
+                                                               th:if="${session.user_id}!=${reply.uid}"></a>
+                                                        </span>
                                                         <!--<span><a href="###" class='backlist'>加入黑名单</a></span>-->
                                                     </p>
                                                 </div>
@@ -285,7 +278,6 @@
                         <a href="">
                             <div class="box">
                                 <img style="height:128px;" class="img-fluid rounded"
-
                                      th:src="@{'../assets/image/video/'+${news.picture}}">
                                 <div class="box-content" style="padding: 5px 18px;">
                                     <span class="title fa fa-play-circle-o"
@@ -316,9 +308,121 @@
 <script src="../assets/js/popper.min.js"></script>
 <script src="https://s3.ssl.qhres.com/!fd546749/chimee-player.browser.js" type="text/javascript"></script>
 <!--<script src="../assets/js/vue.js"></script>-->
-<!--<script src="../assets/js/mustache.js"></script>-->
+<script src="../assets/js/mustache.js"></script>
 <!--<script src="../assets/js/video.js"></script>-->
-<script>
+<script th:inline="javascript">
+    //显示所有演员
+    // $.ajax({
+    //     type: "POST",
+    //     url: "http://localhost:8080/video/actor?actor=" + [[${video.actor}]],
+    //     data: '',
+    //     contentType: "application/json",
+    //     dataType: "json",
+    //     success: function (msg) {
+    //         // alert(msg.length);
+    //
+    //     },
+    //     error: function (err) {
+    //         alert("request failed！");
+    //     }
+    // });
+    //关注演员y
+    function focu(a) {
+        var status = $(a).attr('value');
+        var id=$(a).parent().children('i').html();
+        //关注
+       if(status=='1'){
+           $.ajax({
+               type: "POST",
+               url: "http://localhost:8080/video/focus?id=" +id+"&status=1",
+               data: '',
+               contentType: "application/x-www-form-urlencoded",
+               success: function (msg) {
+                   if (msg == 'no') {
+                       alert("请先登录");
+                   } else {
+                       $(a).attr('value', '0');
+                       $(a).children('img').attr('src', '../assets/image/logo/unfollow.png');
+                   }
+               },
+               error: function (err) {
+                   alert("request failed！");
+               }
+           });
+       }else{
+           //取消关注
+           $.ajax({
+               type: "POST",
+               url: "http://localhost:8080/video/focus?id=" +id+"&status=0",
+               data: '',
+               contentType: "application/x-www-form-urlencoded",
+               success: function (msg) {
+                   if (msg == 'no') {
+                       alert("请先登录");
+                   } else {
+                       $(a).attr('value', '1');
+                       $(a).children('img').attr('src', '../assets/image/logo/follow.png');
+                   }
+               },
+               error: function (err) {
+                   alert("request failed！");
+               }
+           });
+       }
+    }
+
+    //收藏视频
+    function collect(a) {
+        var id = [[${video.id}]];
+        var url = $(a).children('img').attr('src');
+        var status = $(a).attr('value');
+        if (status == '1') {
+            //收藏
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/video/collect?id=" + id + "&status=" + status,
+                data: '',
+                contentType: "application/x-www-form-urlencoded",
+                success: function (msg) {
+                    if (msg == 'no') {
+                        alert("请先登录");
+                    } else {
+                        $(a).attr('value', '0');
+                        $(a).children('img').attr('src', '../assets/image/logo/collected.png');
+                        var num = $('.collectnum').text();
+                        num = Number(num) + Number(1);
+                        $('.collectnum').text(num);
+                    }
+                },
+                error: function (err) {
+                    alert("request failed！");
+                }
+            });
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/video/collect?id=" + id + "&status=" + status,
+                data: '',
+                contentType: "application/x-www-form-urlencoded",
+                success: function (msg) {
+                    if (msg == 'no') {
+                        alert("请先登录");
+                    } else {
+                        $(a).attr('value', '1');
+                        $(a).children('img').attr('src', '../assets/image/logo/collect.png');
+                        var num = $('.collectnum').text();
+                        num = Number(num) - Number(1);
+                        $('.collectnum').text(num);
+                    }
+                },
+                error: function (err) {
+                    alert("request failed！");
+                }
+            });
+        }
+
+    }
+
     $('.shareqq').hover(function () {
         $('.shareqq span').css("background-position", "0 0");
     }, function () {
@@ -342,51 +446,105 @@
         $('.share-box').css("display", "none");
     });
 
+    //点赞
+    function like(a) {
+        var id = $(a).parent().parent().parent().parent().parent().children('i').html();
+        var num = $(a).html();
+        var cls = $(a).attr('class');
+        if (cls == 'like') {
+            //点赞
+            num = Number(num) + Number(1);
+            $.ajax({
+                type: "POST",
+                url: "/review/like?id=" + id + "&status=1&likenum=" + num,
+                data: '',
+                contentType: "application/x-www-form-urlencoded",
+                success: function (msg) {
+                    if (msg == 'no') {
+                        alert("请先登录");
+                    }
+                },
+                error: function (err) {
+                    alert("request failed！");
+                }
+            });
+        } else {
+            //取消点赞
+            num = Number(num) - Number(1);
+            $.ajax({
+                type: "POST",
+                url: "/review/like?id=" + id + "&status=1&likenum=" + num,
+                data: '',
+                contentType: "application/x-www-form-urlencoded",
+                success: function (msg) {
+                    if (msg == 'no') {
+                        alert("请先登录");
+                    }
 
-    //视频显示
-    $(function () {
-        (function ($) {
-            $.getUrlParam = function (name) {
-                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-                var r = window.location.search.substr(1).match(reg);
-                if (r != null) return unescape(r[2]);
-                return null;
-            }
-        })(jQuery);
+                },
+                error: function (err) {
+                    alert("request failed！");
+                }
+            });
 
-        var currentpage = $.getUrlParam('id');
+        }
+    }
+
+    //删除主评论
+    function dele1(a) {
+        var id = $(a).parent().parent().parent().parent().parent().children('i').html();
         $.ajax({
             type: "POST",
-            url: "/video/selectone2?id=" + currentpage,
+            url: "/review/delete?id=" + id,
             data: '',
-            contentType: "application/json",
-            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
             success: function (msg) {
+                window.location.reload();
 
-                var te = msg.url;
-                var aggdPlugin = ChimeePlayer.popupFactory({
-                    name: 'time-ad',
-                    className: 'time-ad',
-                    title: false,
-                    body: '',
-                    offset: '0px 10px auto auto',
-                    operable: false
-                });
-                ChimeePlayer.install(aggdPlugin);
-                var player = new ChimeePlayer({
-                    box: 'native',
-                    wrapper: '.chimee-container',
-                    src: 'http://120.79.217.195:8080/video/' + te,
-                    isLive: false,
-                    autoplay: true,
-                    controls: true,
-                    plugin: [aggdPlugin.name]
-                });
             },
             error: function (err) {
-
+                alert("request failed！");
             }
         });
+    }
+
+    //删除回复的评论
+    function dele2(a) {
+        var id = $(a).parent().parent().parent().parent().children('i').html();
+        $.ajax({
+            type: "POST",
+            url: "/review/delete?id=" + id,
+            data: '',
+            contentType: "application/x-www-form-urlencoded",
+            success: function (msg) {
+                window.location.reload();
+            },
+            error: function (err) {
+                alert("request failed！");
+            }
+        });
+    }
+
+    //视频显示
+
+    var aggdPlugin = ChimeePlayer.popupFactory({
+        name: 'time-ad',
+        className: 'time-ad',
+        title: false,
+        body: '',
+        offset: '0px 10px auto auto',
+        operable: false
+    });
+    ChimeePlayer.install(aggdPlugin);
+    var te = [[${video.url}]]
+    var player = new ChimeePlayer({
+        box: 'native',
+        wrapper: '.chimee-container',
+        src: 'http://120.79.217.195:8080/video/' + te,
+        isLive: false,
+        autoplay: true,
+        controls: true,
+        plugin: [aggdPlugin.name]
     });
 
 </script>
@@ -447,17 +605,17 @@
             niceIn($(this));
         });
     });
-    $(function () {
-        $("#btn2").click(function () {
-            $.tipsBox({
-                obj: $(this),
-                str: "+1",
-                callback: function () {
-                }
-            });
-            niceIn($(this));
-        });
-    });
+    // $(function () {
+    //     $("#btn2").click(function () {
+    //         $.tipsBox({
+    //             obj: $(this),
+    //             str: "+1",
+    //             callback: function () {
+    //             }
+    //         });
+    //         niceIn($(this));
+    //     });
+    // });
 
 </script>
 <script>
@@ -486,15 +644,15 @@
     })
 </script>
 <script th:inline="javascript">
-    var userimg,nickname;
-    if([[${session.user_id}]]==null){
-        userimg='imlogin.jpg';
-        nickname='游客1';
-    }else{
-        userimg=[[${session.picture}]];
-        nickname=[[${session.nickname}]];
+    var userimg, nickname;
+    if ([[${session.user_id}]] == null) {
+        userimg = 'imlogin.jpg';
+        nickname = '游客1';
+    } else {
+        userimg = [[${session.picture}]];
+        nickname = [[${session.nickname}]];
     }
-    ! function(window, document, $, undefined) {
+    !function (window, document, $, undefined) {
 
 
         // 通过ID获取元素
@@ -541,7 +699,6 @@
             }
             return a;
         }
-
 
 
         var userID = 'tracyTeng',
@@ -609,7 +766,6 @@
             toTop = getId('toTop'),
             timer3,
             timer4;
-
 
 
         // // 历史搜索框
@@ -828,20 +984,20 @@
         // }
 
         //评论点赞回复--自己输入评论框和按钮
-        txtArea.onmouseover = function() {
+        txtArea.onmouseover = function () {
             this.className = 'com_area mover';
         }
 
-        txtArea.onmouseout = function() {
+        txtArea.onmouseout = function () {
             txtArea.className = 'com_area';
         }
 
-        enterBtn.onmouseover = function() {
+        enterBtn.onmouseover = function () {
             this.className = 'enter_btn mover';
             txtArea.className = 'com_area mover';
         }
 
-        enterBtn.onmouseout = function() {
+        enterBtn.onmouseout = function () {
             txtArea.className = 'com_area';
             enterBtn.className = 'enter_btn';
         }
@@ -851,7 +1007,7 @@
             var replyInput = document.createElement('div');
             replyInput.className = 'com_self clearfix reply_input';
             replyInput.innerHTML =
-                '<div class="my_face"><img class="repleyimg" src="../assets/image/user/'+userimg+'"></div>' +
+                '<div class="my_face"><img class="repleyimg" src="../assets/image/user/' + userimg + '"></div>' +
                 '<div class="com_enter" id="comEnter">' +
                 '<textarea class="com_area" id="replyArea" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"></textarea>' +
                 '<button class="enter_btn" id="replyBtn" >发表<br>评论</button>' +
@@ -860,7 +1016,7 @@
         }
 
         for (var i = 0; i < userTxts.length; i++) {
-            userTxts[i].onclick = function(e) {
+            userTxts[i].onclick = function (e) {
                 var evt = e || window.event,
                     target = evt.target || evt.srcElement;
 
@@ -869,11 +1025,12 @@
                         var oldValue = parseInt(target.getAttribute('value')),
                             newValue;
                         target.className = 'like onlike';
-                        target.innerHTML = '(' + (oldValue + 1) + ')';
+                        target.innerHTML = (oldValue + 1);
                         newValue = oldValue + 1;
                         target.setAttribute('value', newValue);
                         evt.stopPropagation();
                         evt.cancelBubble = true;
+
                         break;
 
                     case 'unlike':
@@ -886,11 +1043,12 @@
                         var oldValue = parseInt(target.getAttribute('value')),
                             newValue;
                         target.className = 'like';
-                        target.innerHTML = '(' + (oldValue - 1) + ')';
+                        target.innerHTML = (oldValue - 1);
                         newValue = oldValue - 1;
                         target.setAttribute('value', newValue);
                         evt.stopPropagation();
                         evt.cancelBubble = true;
+
                         break;
 
                     case 'unlike light':
@@ -924,15 +1082,15 @@
 
                 if (isCreate2) {
                     var replyBtn = getId('replyBtn');
-                    replyBtn.onmouseenter = function() {
+                    replyBtn.onmouseenter = function () {
                         this.style.backgroundColor = '#00ADDA';
                     }
-                    replyBtn.onmouseleave = function() {
+                    replyBtn.onmouseleave = function () {
                         this.style.backgroundColor = '#00A1D6';
                     }
 
-                    replyBtn.onclick = function(e) {
-                        if([[${session.user_id}]]==null){
+                    replyBtn.onclick = function (e) {
+                        if ([[${session.user_id}]] == null) {
                             alert("未登录");
                             return;
                         }
@@ -951,7 +1109,7 @@
                             var reLi = document.createElement('li');
                             reLi.className = 'clearfix self';
                             reLi.innerHTML =
-                                '<div class="reply_face"><a href="###"><img src="../assets/image/user/'+userimg+'"></a></div>' +
+                                '<div class="reply_face"><a href="###"><img src="../assets/image/user/' + userimg + '"></a></div>' +
                                 '<div class="reply_con">' +
                                 '<p class="reply_txt">' +
                                 '<a href="###" class="userid">' + nickname + '：' + '</a>' +
@@ -961,7 +1119,7 @@
                                 '<span class="replytime">' + filterTime(new Date()) + '</span>' +
                                 '<span><a href="###" class="like" value="0">0</a></span>' +
                                 '<span><a href="###" class="reply minor_reply">回复</a></span>' +
-                                // '<span><a href="###" class="del" id="replyDelBtn">删除</a></span>' +
+                                '<span><a href="###" class="del" id="replyDelBtn">删除</a></span>' +
                                 '</p>' +
                                 '</div>'
                             // var replyUl = target.children[1].children[1].children[0];这种也可以，获取到当前的ul；
@@ -969,11 +1127,11 @@
                             replyUl.appendChild(reLi);
                             replyArea.value = '';
                         }
-                        var replyid=$(this).parent().parent().parent().parent().children('i').html()
+                        var replyid = $(this).parent().parent().parent().parent().children('i').html();
 
                         $.ajax({
                             type: "POST",
-                            url: "/review/reply?id="+replyid+"&content="+replyVal,
+                            url: "/review/reply?id=" + replyid + "&content=" + replyVal,
                             data: '',
                             contentType: "application/x-www-form-urlencoded",
                             success: function (msg) {
@@ -1004,7 +1162,7 @@
             if (lis.length > 3) {
                 var spanBox = document.createElement('span');
                 spanBox.className = 'check';
-                spanBox.innerHTML = '还有' + (lis.length - 3) + '条回复，<a href="###" style="color: #0092C2;">点击查看更多</a>';
+                // spanBox.innerHTML = '还有' + (lis.length - 3) + '条回复，<a href="###" style="color: #0092C2;">点击查看更多</a>';
                 replyComs[i].appendChild(spanBox);
 
                 for (var i = 0; i < lis.length; i++) {
@@ -1019,11 +1177,11 @@
 
         for (var i = 0; i < replyComs.length; i++) {
             replyComs[i].index = i;
-            replyComs[i].onmouseenter = function() {
+            replyComs[i].onmouseenter = function () {
                 var replyComLis = this.getElementsByTagName('li');
                 for (var i = 0; i < replyComLis.length; i++) {
                     replyComLis[i].index = i;
-                    replyComLis[i].onmouseenter = function() {
+                    replyComLis[i].onmouseenter = function () {
                         var rePort_s = getByClass(this, 'report')[0],
                             backList_s = getByClass(this, 'backlist')[0];
 
@@ -1036,7 +1194,7 @@
                         backList_s.style.visibility = 'visible';
                     }
 
-                    replyComLis[i].onmouseleave = function() {
+                    replyComLis[i].onmouseleave = function () {
                         var rePort_s = getByClass(this, 'report')[0],
                             backList_s = getByClass(this, 'backlist')[0];
                         if (this.className == 'clearfix self') {
@@ -1048,7 +1206,7 @@
                         backList_s.style.visibility = 'hidden';
                     }
 
-                    replyComLis[i].onclick = function(e) {
+                    replyComLis[i].onclick = function (e) {
                         var evt = e || window.event,
                             target = evt.target || evt.srcElement;
 
@@ -1061,7 +1219,7 @@
                                     replyArea = getId('replyArea');
                                     replyArea.focus();
                                     var nameID = getByClass(this, 'userid')[0].innerHTML;
-                                    replyArea.innerHTML = '回复 ' + '@' + nameID;
+                                    // replyArea.innerHTML = '回复 ' + '@' + nameID;
                                     return;
                                 } else {
                                     userContxt.appendChild(creatReInput());
@@ -1075,13 +1233,26 @@
 
                                     replyArea.focus();
                                     var nameID = getByClass(this, 'userid')[0].innerHTML;
-                                    replyArea.innerHTML = '回复 ' + '@' + nameID;
+                                    // replyArea.innerHTML = '回复 ' + '@' + nameID;
 
                                 }
                                 break;
 
                             case 'del':
                                 removeNode(this);
+                                // var deleid=$(a).parent().parent().parent().parent().children('i').html();
+                                // $.ajax({
+                                //     type: "POST",
+                                //     url: "/review/delete?id="+id,
+                                //     data: '',
+                                //     contentType: "application/x-www-form-urlencoded",
+                                //     success: function (msg) {
+                                //         window.location.reload();
+                                //     },
+                                //     error: function (err) {
+                                //         alert("request failed！");
+                                //     }
+                                // });
                                 break;
 
                             case 'like':
@@ -1110,6 +1281,19 @@
                                 target.setAttribute('value', newValue);
                                 evt.stopPropagation();
                                 evt.cancelBubble = true;
+                                var newvalue = oldValue - 1;
+                                // $.ajax({
+                                //     type: "POST",
+                                //     url: "/review/like?id=" + replyid + "&content=" + replyVal,
+                                //     data: '',
+                                //     contentType: "application/x-www-form-urlencoded",
+                                //     success: function (msg) {
+                                //         // alert(msg);
+                                //     },
+                                //     error: function (err) {
+                                //         alert("request failed！");
+                                //     }
+                                // });
                                 break;
 
                             case 'unlike light':
@@ -1122,14 +1306,14 @@
 
                         if (isCreate) {
                             var replyBtn = getId('replyBtn');
-                            replyBtn.onmouseenter = function() {
+                            replyBtn.onmouseenter = function () {
                                 this.style.backgroundColor = '#00ADDA';
                             }
-                            replyBtn.onmouseleave = function() {
+                            replyBtn.onmouseleave = function () {
                                 this.style.backgroundColor = '#00A1D6';
                             }
-                            replyBtn.onclick = function() {
-                                if([[${session.user_id}]]==null){
+                            replyBtn.onclick = function () {
+                                if ([[${session.user_id}]] == null) {
                                     alert("未登录");
                                     return;
                                 }
@@ -1142,7 +1326,7 @@
                                         replyCom = siblings(this.parentNode.parentNode)[1];
                                     reLi.className = 'clearfix self';
                                     reLi.innerHTML =
-                                        '<div class="reply_face"><a href="###"><img src="../assets/image/user/'+userimg+'"></a></div>' +
+                                        '<div class="reply_face"><a href="###"><img src="../assets/image/user/' + userimg + '"></a></div>' +
                                         '<div class="reply_con">' +
                                         '<p class="reply_txt">' +
                                         '<a href="###" class="userid">' + nickname + '：' + '</a>' +
@@ -1152,7 +1336,7 @@
                                         '<span class="replytime">' + filterTime(new Date()) + '</span>' +
                                         '<span><a href="###" class="like" value="0">(0)</a></span>' +
                                         '<span><a href="###" class="reply minor_reply">回复</a></span>' +
-                                        // '<span><a href="###" class="del" id="replyDelBtn">删除</a></span>' +
+                                        '<span><a href="###" class="del" id="replyDelBtn">删除</a></span>' +
                                         '</p>' +
                                         '</div>';
 
@@ -1160,11 +1344,11 @@
                                     replyUl.appendChild(reLi);
                                     replyArea.value = '';
                                 }
-                                var replyid=$(this).parent().parent().parent().parent().children('i').html()
+                                var replyid = $(this).parent().parent().parent().parent().children('i').html()
 
                                 $.ajax({
                                     type: "POST",
-                                    url: "/review/reply?id="+replyid+"&content="+replyVal,
+                                    url: "/review/reply?id=" + replyid + "&content=" + replyVal,
                                     data: '',
                                     contentType: "application/x-www-form-urlencoded",
                                     success: function (msg) {
@@ -1185,14 +1369,14 @@
 
         for (var i = 0; i < userComments.length; i++) {
             userComments[i].index = i;
-            userComments[i].onmouseenter = function() {
+            userComments[i].onmouseenter = function () {
                 var rePort = getByClass(this.children[1], 'report')[0],
                     backList = getByClass(this.children[1], 'backlist')[0];
                 rePort.style.visibility = 'visible';
                 backList.style.visibility = 'visible';
             }
 
-            userComments[i].onmouseleave = function() {
+            userComments[i].onmouseleave = function () {
                 var rePort = getByClass(this.children[1], 'report')[0],
                     backList = getByClass(this.children[1], 'backlist')[0];
                 rePort.style.visibility = 'hidden';
@@ -1220,8 +1404,8 @@
             return val < 0 ? '0' + val : val;
         }
 
-        enterBtn.onclick = function() {
-            if([[${session.user_id}]]==null){
+        enterBtn.onclick = function () {
+            if ([[${session.user_id}]] == null) {
                 alert("未登录");
                 return;
             }
@@ -1245,7 +1429,7 @@
 
             myComBox.className = 'user_comment clearfix';
             myComBox.innerHTML =
-                '<div class="user_face"><a href="###"><img class="userFaceImg" src="../assets/image/user/'+userimg+'"></a></div>' +
+                '<div class="user_face"><a href="###"><img class="userFaceImg" src="../assets/image/user/' + userimg + '"></a></div>' +
                 '<div class="user_contxt">' +
                 '<div class="user_txt">' +
                 '<h5 class="userid"><a href="###">' + nickname + '</a></h5>' +
@@ -1255,38 +1439,37 @@
                 '<span class="time">' + filterTime(new Date()) + '</span>' +
                 '<span><a href="###" class="like" value="0">0</a></span>' +
                 '<span><a href="###" class="unlike"></a></span>' +
-                // '<span><a href="###" class="del" id="delBtn">删除</a></span>' +
+                '<span><a href="###" class="del" id="delBtn">删除</a></span>' +
                 '</p>' +
                 '</div>' +
                 '</div>'
 
 
-                $.ajax({
-                    type: "POST",
-                    url: "/review/publish?vid="+[[${video.id}]]+"&content="+areaTxt,
-                    data: '',
-                    contentType: "application/x-www-form-urlencoded",
-                    success: function (msg) {
-                        // alert(msg);
-                    },
-                    error: function (err) {
-                        alert("request failed！");
-                    }
-                });
-
+            $.ajax({
+                type: "POST",
+                url: "/review/publish?vid=" + [[${video.id}]] + "&content=" + areaTxt,
+                data: '',
+                contentType: "application/x-www-form-urlencoded",
+                success: function (msg) {
+                    // alert(msg);
+                },
+                error: function (err) {
+                    alert("request failed！");
+                }
+            });
 
 
             comArea.value = '';
 
             if (isExist) {
                 var delBtn = getId('delBtn');
-                myComBox.onmouseenter = function() {
+                myComBox.onmouseenter = function () {
                     delBtn.style.visibility = 'visible';
                 }
-                myComBox.onmouseleave = function() {
+                myComBox.onmouseleave = function () {
                     delBtn.style.visibility = 'hidden';
                 }
-                myComBox.onclick = function(e) {
+                myComBox.onclick = function (e) {
                     var evt = e || window.event,
                         target = evt.target || evt.srcElement;
 
