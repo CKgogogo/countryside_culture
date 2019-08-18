@@ -331,7 +331,7 @@
        if(status=='1'){
            $.ajax({
                type: "POST",
-               url: "http://localhost:8080/video/focus?id=" +id+"&status=1",
+               url: "/video/focus?id=" +id+"&status=1",
                data: '',
                contentType: "application/x-www-form-urlencoded",
                success: function (msg) {
@@ -350,7 +350,7 @@
            //取消关注
            $.ajax({
                type: "POST",
-               url: "http://localhost:8080/video/focus?id=" +id+"&status=0",
+               url: "/video/focus?id=" +id+"&status=0",
                data: '',
                contentType: "application/x-www-form-urlencoded",
                success: function (msg) {
@@ -377,7 +377,7 @@
             //收藏
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/video/collect?id=" + id + "&status=" + status,
+                url: "/video/collect?id=" + id + "&status=" + status,
                 data: '',
                 contentType: "application/x-www-form-urlencoded",
                 success: function (msg) {
@@ -398,7 +398,7 @@
         } else {
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/video/collect?id=" + id + "&status=" + status,
+                url: "/video/collect?id=" + id + "&status=" + status,
                 data: '',
                 contentType: "application/x-www-form-urlencoded",
                 success: function (msg) {
