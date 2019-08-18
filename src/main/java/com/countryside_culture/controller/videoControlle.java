@@ -243,11 +243,18 @@ public class videoControlle {
             return "no";
         int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
         video_collect a=videoservice.select(uid,id);
+        video video=videoservice.selectone(id);
+        if (status==1){
+            video.setCollectNum(video.getCollectNum()+1);
+        }else {
+            video.setCollectNum(video.getCollectNum()-1);
+        }
+        videoservice.update(video);
         if(a!=null){
             a.setStatus(status);
+            a.setCollectNum(video.getCollectNum());
             videoservice.updatecollect(a);
         }else{
-            video video=videoservice.selectone(id);
             video_collect ans=new video_collect();
             ans.setVid(id);
             ans.setUid(uid);
