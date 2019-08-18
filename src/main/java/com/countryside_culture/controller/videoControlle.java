@@ -297,11 +297,18 @@ public class videoControlle {
             return "no";
         int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
         focus a=focusservice.select(uid,id);
+        museum museum=museumservice.selectOne(id);
+        if (status==1){
+            museum.setNum(museum.getNum()+1);
+        }else {
+            museum.setNum(museum.getNum()-1);
+        }
+        museumservice.update(museum);
         if (a!=null){
             a.setStatus(status);
+            a.setNum(museum.getNum());
             focusservice.update(a);
         }else {
-            museum museum=museumservice.selectOne(id);
             focus ans=new focus();
             ans.setStatus(status);
             ans.setMid(id);

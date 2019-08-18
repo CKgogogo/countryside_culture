@@ -42,5 +42,15 @@
     from museum
     where id = #{id,jdbcType=INTEGER}
   </select>
-
+  <update id="update" parameterType="com.countryside_culture.entity.museum" >
+    update museum
+    set kind = #{kind},
+      title = #{title},
+      remark = #{remark},
+      source = #{source},
+      time = #{time},
+      picture = #{picture},
+      num = #{num}
+    where id = #{id}
+  </update>
 </mapper>
