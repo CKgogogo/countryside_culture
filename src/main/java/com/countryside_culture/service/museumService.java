@@ -22,4 +22,5 @@ public class museumService {
     public museum selectOne(int id){
         return museummapper.selectOne(id);
     }
+    public int update(museum museum){return museummapper.update(museum);}
 }

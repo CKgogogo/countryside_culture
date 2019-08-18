@@ -1,56 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>越剧艺术学院</title>
-    <link rel="shortcut icon" href="assets/image/logo/logo3.png"  />
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="shortcut icon" href="../assets/image/logo/logo3.png"  />
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
 </head>
 <body class="animated fadeIn">
 <div class="container-fluid p-0 ">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
-        <a href="index.html" class="navbar-brand p-0" style="width: 88px;">
-            <img src="assets/image/logo/logo2.png"  width="100%" alt="">
+        <a href="/index" class="navbar-brand p-0" style="width: 88px;">
+            <img src="../assets/image/logo/logo2.png"  width="100%" alt="">
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav daohang">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link ">首页</a>
+                    <a href="/index" class="nav-link  active">首页</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">知越
                     </a>
                     <div class="dropdown-menu text-center">
-                        <a href="famousPeople.html" class="dropdown-item ">越剧名人</a>
-                        <a href="active.html?pn=1" class="dropdown-item ">精彩活动</a>
-                        <a href="yueJuTown.html" class="dropdown-item">越剧小镇</a>
-                        <a href="costume.html" class="dropdown-item">戏服</a>
-                        <a href="prop.html" class="dropdown-item">表演道具</a>
+                        <a href="/famousPeople" class="dropdown-item"  >越剧名人</a>
+                        <a href="/activity/showall?pn=1" class="dropdown-item ">精彩活动</a>
+                        <a href="/yueJuTown" class="dropdown-item">越剧小镇</a>
+                        <a href="/costume" class="dropdown-item">戏服</a>
+                        <a href="/prop" class="dropdown-item">表演道具</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="news.html?pn=1" class="nav-link">资讯</a>
+                    <a href="/news/showall?pn=1" class="nav-link">资讯</a>
                 </li>
                 <li class="nav-item">
-                    <a href="culture.html" class="nav-link">嵊州风情</a>
+                    <a href="/culture" class="nav-link">嵊州风情</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="video.html" class="nav-link">在线视频</a>
+                    <a href="/video" class="nav-link">在线视频</a>
                 </li>
                 <li class="nav-item">
-                    <a href="live.html" class="nav-link">直播</a>
+                    <a href="/live" class="nav-link">直播</a>
                 </li>
             </ul>
-            <a href=""  class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white" ></a>
+            <a  th:if="${session.user_id}== null" href="/login?url=townIntroduce1" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+            <a th:if="${session.user_id}!= null" href="/user/show" class=" nav-link ml-auto" style="font-size: 24px;color:white;width: 75px;">
+                <img th:src="@{'../assets/image/user/'+${session.picture}}" width="100%" class="rounded-circle" alt=""></a>
         </div>
     </nav>
 </div>
 <div class="container-fluid p-0">
-    <img src="assets/image/t1.jpg" alt="" class="img-fluid">
+    <img src="../assets/image/t1.jpg" alt="" class="img-fluid">
 </div>
 
 <div class="container mt-5">
@@ -92,9 +94,9 @@
     </div>
 
 </div>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/style.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/popper.min.js"></script>
+<script src="../assets/js/style.js"></script>
 </body>
 </html>

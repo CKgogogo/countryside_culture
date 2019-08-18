@@ -20,37 +20,38 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav daohang">
                 <li class="nav-item">
-                    <a href="/index" class="nav-link  active">首页</a>
+                    <a href="/index" class="nav-link ">首页</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">知越
                     </a>
                     <div class="dropdown-menu text-center">
                         <a href="/famousPeople" class="dropdown-item"  >越剧名人</a>
-                        <a href="/active.html?pn=1" class="dropdown-item ">精彩活动</a>
+                        <a href="/activity/showall?pn=1" class="dropdown-item ">精彩活动</a>
                         <a href="/yueJuTown" class="dropdown-item">越剧小镇</a>
                         <a href="/costume" class="dropdown-item">戏服</a>
                         <a href="/prop" class="dropdown-item">表演道具</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="/news/showall?pn=1" class="nav-link">资讯</a>
+                    <a href="/news/showall?pn=1" class="nav-link active">资讯</a>
                 </li>
                 <li class="nav-item">
                     <a href="/culture" class="nav-link">嵊州风情</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="video.html" class="nav-link">在线视频</a>
+                    <a href="/video" class="nav-link">在线视频</a>
                 </li>
                 <li class="nav-item">
                     <a href="/live" class="nav-link">直播</a>
                 </li>
             </ul>
-            <a href="/login" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+            <a  th:if="${session.user_id}== null" href="/login?url=news/showall?pn=1" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+            <a th:if="${session.user_id}!= null" href="/user/show" class=" nav-link ml-auto" style="font-size: 24px;color:white;width: 75px;">
+                <img th:src="@{'../assets/image/user/'+${session.picture}}" width="100%" class="rounded-circle" alt=""></a>
         </div>
     </nav>
-
 </div>
 <div class="container-fluid p-0">
     <img src="../assets/image/t1.jpg" alt="" class="img-fluid">
@@ -100,10 +101,10 @@
 
 </div>
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/vue.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/popper.min.js"></script>
+<script src="../assets/js/vue.js"></script>
 <script>
 
     // var newspage=new Vue({

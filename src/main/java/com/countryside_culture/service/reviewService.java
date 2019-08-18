@@ -19,6 +19,7 @@ public class reviewService {
     public review selectid(int id){return reviewmapper.selectid(id);}
     public List<review> selectvid(int vid){return reviewmapper.selectvid(vid);}
     public List<review> selectpid(int pid){return reviewmapper.selectpid(pid);}
+    public List<review> all(){return reviewmapper.all();}
     public int updater(review review){return reviewmapper.update(review);}
     public int insertr(review review){return reviewmapper.insert(review);}
 

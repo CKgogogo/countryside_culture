@@ -10,6 +10,7 @@ public interface museumMapper {
     public List<museum> showtroupe(int amount);
     public List<museum> showkind(int kind);
     public museum selectOne(int id);
+    public int update(museum museum);
 
 
 

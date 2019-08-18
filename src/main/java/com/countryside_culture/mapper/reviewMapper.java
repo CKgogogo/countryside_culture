@@ -9,6 +9,7 @@ import java.util.List;
 public interface reviewMapper {
     public List<review> selectvid(int vid);
     public List<review> selectpid(int pid);
+    public List<review> all();
     public review selectid(int id);
     public int update(review review);
     public int insert(review review);

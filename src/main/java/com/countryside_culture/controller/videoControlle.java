@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -87,7 +88,7 @@ public class videoControlle {
     }
     //某个视频
     @RequestMapping(value ="/selectone",method = RequestMethod.GET)
-    public String showSelectone(HttpServletResponse response, HttpServletRequest request, int id, Model model){
+    public String showSelectone(HttpServletResponse response, HttpServletRequest request, int id, Model model) throws ParseException {
         video video = videoservice.selectone(id);
         video.setPlayNum(video.getPlayNum()+1);
         if(request.getSession().getAttribute("user_id")!=null){
@@ -98,8 +99,8 @@ public class videoControlle {
             }
         }
         Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
-        video.setHistorytime(sdf.format(d));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        video.setHistorytime(simpleDateFormat.format(d));
         if(request.getSession().getAttribute("user_id")!=null){
             String readhistoryValue = null;
             RedisUtil redisUtil = null;
@@ -110,14 +111,19 @@ public class videoControlle {
                 readhistory=new history();
                 readhistory.addItem(video);
             }else {
-                readhistory = JSON.parseObject(readhistoryValue, new TypeReference<history>() {});
-                for (int i=0;i<readhistory.getItems().size();i++){
-                    if (id==readhistory.getItems().get(i).getId()) {
-                        readhistory.removeItem(i);
+                    readhistory = JSON.parseObject(readhistoryValue, new TypeReference<history>() {});
+                    for (int i=readhistory.getItems().size()-1;i>=0;i--){
+                    Date date =simpleDateFormat.parse(readhistory.getItems().get(i).getHistorytime());
+                    if (d.getTime()-date.getTime()>86400000) {
                         readhistory.addItem(video);
                         break;
                     }else {
-                        readhistory.addItem(video);
+                        if (video.getId()==readhistory.getItems().get(i).getId()){
+                            break;
+                        }else {
+                            readhistory.addItem(video);
+                            break;
+                        }
                     }
                 }
             }
@@ -181,7 +187,7 @@ public class videoControlle {
     }
     //某个视频 返回json格式
     @RequestMapping(value ="/selectone2")
-    public String showSelectone2(HttpServletResponse response, HttpServletRequest request, int id){
+    public String showSelectone2(HttpServletResponse response, HttpServletRequest request, int id) throws ParseException {
         video video = videoservice.selectone(id);
         video.setPlayNum(video.getPlayNum()+1);
         if(request.getSession().getAttribute("user_id")!=null){
@@ -192,8 +198,8 @@ public class videoControlle {
             }
         }
         Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
-        video.setHistorytime(sdf.format(d));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        video.setHistorytime(simpleDateFormat.format(d));
         if(request.getSession().getAttribute("user_id")!=null){
             String readhistoryValue = null;
             RedisUtil redisUtil = null;
@@ -205,13 +211,18 @@ public class videoControlle {
                 readhistory.addItem(video);
             }else {
                 readhistory = JSON.parseObject(readhistoryValue, new TypeReference<history>() {});
-                for (int i=0;i<readhistory.getItems().size();i++){
-                    if (id==readhistory.getItems().get(i).getId()) {
-                        readhistory.removeItem(i);
+                for (int i=readhistory.getItems().size()-1;i>=0;i--){
+                    Date date =simpleDateFormat.parse(readhistory.getItems().get(i).getHistorytime());
+                    if (d.getTime()-date.getTime()>86400000) {
                         readhistory.addItem(video);
                         break;
                     }else {
-                        readhistory.addItem(video);
+                        if (video.getId()==readhistory.getItems().get(i).getId()){
+                            break;
+                        }else {
+                            readhistory.addItem(video);
+                            break;
+                        }
                     }
                 }
             }
@@ -232,11 +243,18 @@ public class videoControlle {
             return "no";
         int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
         video_collect a=videoservice.select(uid,id);
+        video video=videoservice.selectone(id);
+        if (status==1){
+            video.setCollectNum(video.getCollectNum()+1);
+        }else {
+            video.setCollectNum(video.getCollectNum()-1);
+        }
+        videoservice.update(video);
         if(a!=null){
             a.setStatus(status);
+            a.setCollectNum(video.getCollectNum());
             videoservice.updatecollect(a);
         }else{
-            video video=videoservice.selectone(id);
             video_collect ans=new video_collect();
             ans.setVid(id);
             ans.setUid(uid);
@@ -279,11 +297,18 @@ public class videoControlle {
             return "no";
         int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
         focus a=focusservice.select(uid,id);
+        museum museum=museumservice.selectOne(id);
+        if (status==1){
+            museum.setNum(museum.getNum()+1);
+        }else {
+            museum.setNum(museum.getNum()-1);
+        }
+        museumservice.update(museum);
         if (a!=null){
             a.setStatus(status);
+            a.setNum(museum.getNum());
             focusservice.update(a);
         }else {
-            museum museum=museumservice.selectOne(id);
             focus ans=new focus();
             ans.setStatus(status);
             ans.setMid(id);

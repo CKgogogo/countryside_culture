@@ -1,117 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>道具</title>
-    <link rel="shortcut icon" href="assets/image/logo/logo3.png"  />
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="shortcut icon" href="../assets/image/logo/logo3.png"  />
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/hexagons.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/hexagons.css">
 </head>
 <body class="animated fadeIn" style="background-color: #efefef;">
 <div class="container-fluid p-0 ">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark .fixed-top">
-        <a href="index.html" class="navbar-brand p-0" style="width: 88px;">
-            <img src="assets/image/logo/logo2.png"  width="100%" alt="">
+        <a href="/index" class="navbar-brand p-0" style="width: 88px;">
+            <img src="../assets/image/logo/logo2.png"  width="100%" alt="">
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav daohang">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link ">首页</a>
+                    <a href="/index" class="nav-link  active">首页</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">知越
                     </a>
                     <div class="dropdown-menu text-center">
-                        <a href="famousPeople.html" class="dropdown-item ">越剧名人</a>
-                        <a href="active.html?pn=1" class="dropdown-item ">精彩活动</a>
-                        <a href="yueJuTown.html" class="dropdown-item">越剧小镇</a>
-                        <a href="costume.html" class="dropdown-item">戏服</a>
-                        <a href="prop.html" class="dropdown-item">表演道具</a>
+                        <a href="/famousPeople" class="dropdown-item"  >越剧名人</a>
+                        <a href="/activity/showall?pn=1" class="dropdown-item ">精彩活动</a>
+                        <a href="/yueJuTown" class="dropdown-item">越剧小镇</a>
+                        <a href="/costume" class="dropdown-item">戏服</a>
+                        <a href="/prop" class="dropdown-item">表演道具</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="news.html?pn=1" class="nav-link">资讯</a>
+                    <a href="/news/showall?pn=1" class="nav-link">资讯</a>
                 </li>
                 <li class="nav-item">
-                    <a href="culture.html" class="nav-link">嵊州风情</a>
+                    <a href="/culture" class="nav-link">嵊州风情</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="video.html" class="nav-link">在线视频</a>
+                    <a href="/video" class="nav-link">在线视频</a>
                 </li>
                 <li class="nav-item">
-                    <a href="live.html" class="nav-link">直播</a>
+                    <a href="/live" class="nav-link">直播</a>
                 </li>
             </ul>
-            <a href="" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+            <a  th:if="${session.user_id}== null" href="/login?url=prop" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
+            <a th:if="${session.user_id}!= null" href="/user/show" class=" nav-link ml-auto" style="font-size: 24px;color:white;width: 75px;">
+                <img th:src="@{'../assets/image/user/'+${session.picture}}" width="100%" class="rounded-circle" alt=""></a>
         </div>
     </nav>
 </div>
 <ul id="hexGrid">
-    <li class="hex"><a class="hexIn"  style="color: white"> <img src="assets/image/prop/龙袍.jpg" alt=""/>
+    <li class="hex"><a class="hexIn"  style="color: white"> <img src="../assets/image/prop/龙袍.jpg" alt=""/>
         <h1>龙袍</h1>
         <p>表演道具</p>
     </a></li>
-    <li class="hex"><a class="hexIn"  style="color: white"> <img src="assets/image/prop/锣.jpg" alt=""/>
+    <li class="hex"><a class="hexIn"  style="color: white"> <img src="../assets/image/prop/锣.jpg" alt=""/>
         <h1>锣</h1>
         <p>表演道具</p>
     </a></li>
-    <li class="hex"><a class="hexIn"  style="color: white"> <img src="assets/image/prop/马鞭.jpg" alt=""/>
+    <li class="hex"><a class="hexIn"  style="color: white"> <img src="../assets/image/prop/马鞭.jpg" alt=""/>
         <h1>马鞭</h1>
         <p>表演道具</p>
     </a></li>
-    <li class="hex"><a class="hexIn"  style="color: white"> <img src="assets/image/prop/太子冠.jpg" alt=""/>
+    <li class="hex"><a class="hexIn"  style="color: white"> <img src="../assets/image/prop/太子冠.jpg" alt=""/>
         <h1>太子冠</h1>
         <p>表演道具</p>
     </a></li>
-    <li class="hex"><a class="hexIn"  style="color: white"> <img src="assets/image/prop/戏曲变脸道具.jpg" alt=""/>
+    <li class="hex"><a class="hexIn"  style="color: white"> <img src="../assets/image/prop/戏曲变脸道具.jpg" alt=""/>
         <h1>变脸</h1>
         <p>表演道具</p>
     </a></li>
-    <li class="hex"><a class="hexIn"  style="color: white"> <img src="assets/image/prop/椅子.jpg" alt=""/>
+    <li class="hex"><a class="hexIn"  style="color: white"> <img src="../assets/image/prop/椅子.jpg" alt=""/>
         <h1>椅子</h1>
         <p>表演道具</p>
     </a></li>
 
-    <li class="hex"><a class="hexIn" style="color: white"> <img src="assets/image/prop/金扇子.jpg" alt=""/>
+    <li class="hex"><a class="hexIn" style="color: white"> <img src="../assets/image/prop/金扇子.jpg" alt=""/>
         <h1>金扇子</h1>
         <p>表演道具</p>
     </a></li>
-    <li class="hex"><a class="hexIn"  style="color: white"> <img src="assets/image/prop/关公大刀.jpg" alt=""/>
+    <li class="hex"><a class="hexIn"  style="color: white"> <img src="../assets/image/prop/关公大刀.jpg" alt=""/>
         <h1>关公大刀</h1>
         <p>表演道具</p>
     </a></li>
-    <li class="hex"><a class="hexIn"  style="color: white"> <img src="assets/image/prop/变脸帽子.jpg" alt=""/>
+    <li class="hex"><a class="hexIn"  style="color: white"> <img src="../assets/image/prop/变脸帽子.jpg" alt=""/>
         <h1>变脸帽子</h1>
         <p>表演道具</p>
     </a></li>
-    <li class="hex"><a class="hexIn"  style="color: white"> <img src="assets/image/prop/圆扇.jpg" alt=""/>
+    <li class="hex"><a class="hexIn"  style="color: white"> <img src="../assets/image/prop/圆扇.jpg" alt=""/>
         <h1>圆扇</h1>
         <p>表演道具</p>
     </a></li>
-    <li class="hex"><a class="hexIn"  style="color: white"> <img src="assets/image/prop/令箭.png" alt=""/>
+    <li class="hex"><a class="hexIn"  style="color: white"> <img src="../assets/image/prop/令箭.png" alt=""/>
         <h1>令箭</h1>
         <p>表演道具</p>
     </a></li>
-    <li class="hex"><a class="hexIn"  style="color: white"> <img src="assets/image/prop/贵妃醉酒道具.jpg" alt=""/>
+    <li class="hex"><a class="hexIn"  style="color: white"> <img src="../assets/image/prop/贵妃醉酒道具.jpg" alt=""/>
         <h1>贵妃醉酒道具</h1>
         <p>表演道具</p>
     </a></li>
-    <li class="hex"><a class="hexIn"  style="color: white"> <img src="assets/image/prop/龙凤日月扇.png" alt=""/>
+    <li class="hex"><a class="hexIn"  style="color: white"> <img src="../assets/image/prop/龙凤日月扇.png" alt=""/>
         <h1>龙凤日月扇</h1>
         <p>表演道具</p>
     </a></li>
-    <li class="hex"><a class="hexIn"  style="color: white"> <img src="assets/image/prop/老太太假发.png" alt=""/>
+    <li class="hex"><a class="hexIn"  style="color: white"> <img src="../assets/image/prop/老太太假发.png" alt=""/>
         <h1>老太太假发</h1>
         <p>表演道具</p>
     </a></li>
 </ul>
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/popper.min.js"></script>
 </body>
 </html>

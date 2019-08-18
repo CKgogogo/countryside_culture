@@ -12,6 +12,7 @@
     <artifactId>countryside_culture</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>countryside_culture</name>
+    <packaging>war</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -117,29 +118,29 @@
         </dependency>
 
         <!-- RabbitMQ相关配置-->
-        <dependency>
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-core</artifactId>
-            <version>3.1.6.RELEASE</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>io.projectreactor</groupId>-->
+            <!--<artifactId>reactor-core</artifactId>-->
+            <!--<version>3.1.6.RELEASE</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-net</artifactId>
-            <version>2.0.8.RELEASE</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>io.projectreactor</groupId>-->
+            <!--<artifactId>reactor-net</artifactId>-->
+            <!--<version>2.0.8.RELEASE</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>io.projectreactor.netty</groupId>
-            <artifactId>reactor-netty</artifactId>
-            <version>0.8.2.RELEASE</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>io.projectreactor.netty</groupId>-->
+            <!--<artifactId>reactor-netty</artifactId>-->
+            <!--<version>0.8.2.RELEASE</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>4.1.6.Final</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>io.netty</groupId>-->
+            <!--<artifactId>netty-all</artifactId>-->
+            <!--<version>4.1.6.Final</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 
