@@ -119,7 +119,7 @@
                     <div th:each="guest : ${history_guests}">
                         <span style="color: cornflowerblue;" th:text="${guest.userEntity.nickname}"></span>
                         <span th:text="${guest.userEntity.lastLoginIp}"></span>
-                        <span th:text="${#calendars.format(guest.accessTime,'yyyy-MM-dd mm:ss')}"></span>
+                        <span th:text="${#calendars.format(guest.accessTime,'yyyy-MM-dd kk:mm:ss')}"></span>
                     </div>
                 </div>
             </div>
