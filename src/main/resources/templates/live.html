@@ -22,7 +22,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav daohang">
                 <li class="nav-item">
-                    <a href="/index" class="nav-link  active">首页</a>
+                    <a href="/index" class="nav-link">首页</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">知越
@@ -46,7 +46,7 @@
                     <a href="/video" class="nav-link">在线视频</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/live" class="nav-link">直播</a>
+                    <a href="/live" class="nav-link active">直播</a>
                 </li>
             </ul>
             <a  th:if="${session.user_id}== null" href="/login?url=live" class="fa fa-user-circle nav-link ml-auto" style="font-size: 24px;color:white"></a>
