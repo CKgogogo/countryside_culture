@@ -275,7 +275,7 @@
             <div class="mt-5 hotvideo">
                 <div class="row mt-3 recommend2" th:each="news:${video2}">
                     <div class="col-6">
-                        <a href="">
+                        <a th:href="'/video/selectone?id='+${news.id}">
                             <div class="box">
                                 <img style="height:128px;" class="img-fluid rounded"
                                      th:src="@{'../assets/image/video/'+${news.picture}}">
@@ -287,7 +287,7 @@
                         </a>
                     </div>
                     <div class="col-6 info">
-                        <a href="" class="nav-link text-muted p-0">
+                        <a th:href="'/video/selectone?id='+${news.id}" class="nav-link text-muted p-0">
                             <p class="title" th:text="${news.title}"></p>
                         </a>
 
