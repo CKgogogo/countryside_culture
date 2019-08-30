@@ -33,7 +33,7 @@
     select
     <include refid="Base_Column_List" />
     from video
-    where kind=#{kind,jdbcType=INTEGER} and status=1
+    where kind=#{kind,jdbcType=INTEGER} and status=2
     ORDER BY play_num DESC
     LIMIT #{amount}
   </select>
@@ -41,7 +41,7 @@
     select
     <include refid="Base_Column_List" />
     from video
-    where kind=#{kind,jdbcType=INTEGER} and status=1
+    where kind=#{kind,jdbcType=INTEGER} and status=2
     ORDER BY publish_time DESC
     LIMIT #{amount}
   </select>
@@ -49,14 +49,14 @@
     select
     <include refid="Base_Column_List" />
     from video
-    where kind=#{kind,jdbcType=INTEGER} and status=1
+    where kind=#{kind,jdbcType=INTEGER} and status=2
     ORDER BY publish_time DESC
   </select>
   <select id="pkind" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from video
-    where kind=#{kind,jdbcType=INTEGER} and status=1
+    where kind=#{kind,jdbcType=INTEGER} and status=2
     ORDER BY play_num DESC
   </select>
   <select id="selectone" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -69,7 +69,7 @@
     select
     <include refid="Base_Column_List" />
     from video
-    where status=1
+    where status=2
   </select>
   <update id="update" parameterType="com.countryside_culture.entity.video" >
     update video

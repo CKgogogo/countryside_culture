@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>在线视频</title>
@@ -74,10 +74,7 @@
                     <a href="#tab4" class="nav-link" data-toggle="tab" data-target="#tab4">活动</a>
             </div>
         </div>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+
     </nav>
 </div>
 <div class="container ">
@@ -89,7 +86,7 @@
                     <a v-bind:href="'/video/selectone?id='+jumuinfo.id">
                         <div class="box">
                             <img style="width: 201px;height:151px;" class="img-fluid rounded"
-                             v-bind:src="'assets/image/video/'+jumuinfo.picture" >
+                             v-bind:src="jumuinfo.picture" >
                             <div class="box-content">
                                 <span class="title fa fa-play-circle-o" style="color: white;font-size: 55px;"></span>
                             </div>
@@ -145,7 +142,7 @@
                     <a v-bind:href="'/video/selectone?id='+jiluinfo.id">
                         <div class="box">
                             <img style="width: 201px;height:151px;" class="img-fluid rounded"
-                                 v-bind:src="'assets/image/video/'+jiluinfo.picture" >
+                                 v-bind:src="jiluinfo.picture" >
                             <div class="box-content">
                                 <span class="title fa fa-play-circle-o" style="color: white;font-size: 55px;"></span>
                             </div>
@@ -201,7 +198,7 @@
                     <a v-bind:href="'/video/selectone?id='+jiaoxueinfo.id">
                         <div class="box">
                             <img style="width: 201px;height:151px;" class="img-fluid rounded"
-                                 v-bind:src="'assets/image/video/'+jiaoxueinfo.picture" >
+                                 v-bind:src="jiaoxueinfo.picture" >
                             <div class="box-content">
                                 <span class="title fa fa-play-circle-o" style="color: white;font-size: 55px;"></span>
                             </div>
@@ -257,7 +254,7 @@
                     <a v-bind:href="'/video/selectone?id='+huodonginfo.id">
                         <div class="box">
                             <img style="width: 201px;height:151px;" class="img-fluid rounded"
-                                 v-bind:src="'assets/image/video/'+huodonginfo.picture">
+                                 v-bind:src="huodonginfo.picture">
                             <div class="box-content">
                                 <span class="title fa fa-play-circle-o" style="color: white;font-size: 55px;"></span>
                             </div>

@@ -68,6 +68,7 @@ public class userController {
         userinfo userinfo = new userinfo();
         userinfo.setPassword(request.getParameter("password").toString());
         userinfo.setUsername(request.getParameter("username").toString());
+        userinfo.setNickname(request.getParameter("username").toString());
         userinfo.setEmail(request.getParameter("email").toString());
         userinfo.setPicture("default.jpg");
         userinfo.setStatus(1);

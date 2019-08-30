@@ -278,7 +278,7 @@
                         <a th:href="'/video/selectone?id='+${news.id}">
                             <div class="box">
                                 <img style="height:128px;" class="img-fluid rounded"
-                                     th:src="@{'../assets/image/video/'+${news.picture}}">
+                                     th:src="@{${news.picture}}">
                                 <div class="box-content" style="padding: 5px 18px;">
                                     <span class="title fa fa-play-circle-o"
                                           style="color: white;font-size: 55px;"></span>
@@ -540,7 +540,7 @@
     var player = new ChimeePlayer({
         box: 'native',
         wrapper: '.chimee-container',
-        src: 'http://120.79.217.195:8080/video/' + te,
+        src: 'http://120.79.217.195:8080/' + te,
         isLive: false,
         autoplay: true,
         controls: true,

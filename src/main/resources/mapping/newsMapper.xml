@@ -33,14 +33,14 @@
   <select id="show" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *
     from news
-    where is_publish=1
+    where exam_status=2
     ORDER BY publish_time DESC
     LIMIT #{amount}
   </select>
   <select id="showall" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select *
     from news
-    where is_publish=1
+    where exam_status=2
     ORDER BY publish_time DESC
   </select>
   <select id="selectOne" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >

@@ -73,7 +73,7 @@
             <a th:href="'/video/selectone?id='+${a.id}">
                 <div class="box">
                     <img style="" class="img-fluid rounded"
-                         th:src="@{'../assets/image/video/'+${a.picture}}">
+                         th:src="@{${a.picture}}">
                     <div class="box-content">
                         <span class="title fa fa-play-circle-o" style="color: white;font-size: 55px;"></span>
                     </div>
