@@ -151,7 +151,6 @@ public class userController {
         List<video> today = new ArrayList<video>();
         List<video> tomorrow = new ArrayList<video>();
         List<video> earlier = new ArrayList<video>();
-        List<video> earlier1 = new ArrayList<video>();
         String historyValue = null;
         RedisUtil redisUtil = null;
         redisUtil = (RedisUtil) SpringUtil.applicationContext.getBean("redisUtil");//从spring容器里面得到一个对象
@@ -162,28 +161,34 @@ public class userController {
             history = JSON.parseObject(historyValue, new TypeReference<history>() {});
             Date now = new Date();
             SimpleDateFormat a = new SimpleDateFormat("yyyy/MM/dd");
-            for (int i = 0; i < history.getItems().size(); i++) {
-                Long xc = a.parse(a.format(now)).getTime() - a.parse(history.getItems().get(i).getHistorytime()).getTime();
+            int index=0;
+            for (int i = 0; i+index < history.getItems().size(); i++) {
+                Long xc = a.parse(a.format(now)).getTime() - a.parse(history.getItems().get(i+index).getHistorytime()).getTime();
                 if (xc == 0) {
-                    today.add(history.getItems().get(i));
+                    today.add(history.getItems().get(i+index));
                 } else if ((xc > 86400000||xc==86400000) && (xc < 172800000||xc==172800000)) {
-                    tomorrow.add(history.getItems().get(i));
+                    tomorrow.add(history.getItems().get(i+index));
                 } else {
-                    earlier1.add(history.getItems().get(i));
-                }
-            }
-            for (int k = 0; k < earlier1.size(); k++) {
-                if (earlier.size() == 0) {
-                    earlier.add(earlier1.get(k));
-                } else {
-                    for (int j = 0; j < earlier.size(); j++) {
-                        if (earlier1.get(k).getId() == earlier.get(j).getId())
-                            break;
-                        earlier.add(earlier1.get(k));
+                    Boolean pd=false;
+                    if (earlier.size()==0) {
+                        earlier.add(history.getItems().get(i + index));
+                        continue;
                     }
+                    for (int k=0;k<earlier.size();k++){
+                        if (earlier.get(k).getId()==history.getItems().get(i+index).getId()){
+                            history.removeItem(i+index);
+                            index--;
+                            pd=true;
+                            break;
+                        }
+                    }
+                    if (pd==false)
+                        earlier.add(history.getItems().get(i+index));
                 }
             }
         }
+        String fromObject = JSON.toJSONString(history);
+        redisUtil.set(request.getSession().getAttribute("user_id").toString(), fromObject.toString());
         model.addAttribute("today",today);
         model.addAttribute("tomorrow",tomorrow);
         model.addAttribute("earlier",earlier);

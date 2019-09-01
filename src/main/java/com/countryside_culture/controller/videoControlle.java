@@ -99,6 +99,7 @@ public class videoControlle {
             }
         }
         Date d = new Date();
+        Boolean pd=false;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
         video.setHistorytime(simpleDateFormat.format(d));
         if(request.getSession().getAttribute("user_id")!=null){
@@ -114,17 +115,13 @@ public class videoControlle {
                     readhistory = JSON.parseObject(readhistoryValue, new TypeReference<history>() {});
                     for (int i=readhistory.getItems().size()-1;i>=0;i--){
                     Date date =simpleDateFormat.parse(readhistory.getItems().get(i).getHistorytime());
-                    if (d.getTime()-date.getTime()>86400000) {
-                        readhistory.addItem(video);
-                        break;
-                    }else {
-                        if (video.getId()==readhistory.getItems().get(i).getId()){
-                            break;
-                        }else {
-                            readhistory.addItem(video);
+                    if (video.getId() == readhistory.getItems().get(i).getId()&&d.getTime()-date.getTime()<86400000) {
+                            pd=true;
                             break;
                         }
-                    }
+                }
+                if (pd==false){
+                    readhistory.addItem(video);
                 }
             }
             //序列化成字符串。
@@ -198,6 +195,7 @@ public class videoControlle {
             }
         }
         Date d = new Date();
+        Boolean pd=false;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
         video.setHistorytime(simpleDateFormat.format(d));
         if(request.getSession().getAttribute("user_id")!=null){
@@ -213,17 +211,13 @@ public class videoControlle {
                 readhistory = JSON.parseObject(readhistoryValue, new TypeReference<history>() {});
                 for (int i=readhistory.getItems().size()-1;i>=0;i--){
                     Date date =simpleDateFormat.parse(readhistory.getItems().get(i).getHistorytime());
-                    if (d.getTime()-date.getTime()>86400000) {
-                        readhistory.addItem(video);
+                    if (video.getId() == readhistory.getItems().get(i).getId()&&d.getTime()-date.getTime()<86400000) {
+                        pd=true;
                         break;
-                    }else {
-                        if (video.getId()==readhistory.getItems().get(i).getId()){
-                            break;
-                        }else {
-                            readhistory.addItem(video);
-                            break;
-                        }
                     }
+                }
+                if (pd==false){
+                    readhistory.addItem(video);
                 }
             }
             //序列化成字符串。
