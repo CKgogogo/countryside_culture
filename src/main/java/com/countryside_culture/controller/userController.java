@@ -166,7 +166,7 @@ public class userController {
                 Long xc = a.parse(a.format(now)).getTime() - a.parse(history.getItems().get(i+index).getHistorytime()).getTime();
                 if (xc == 0) {
                     today.add(history.getItems().get(i+index));
-                } else if ((xc > 86400000||xc==86400000) && (xc < 172800000||xc==172800000)) {
+                } else if ((xc > 86400000||xc==86400000) && (xc < 172800000)) {
                     tomorrow.add(history.getItems().get(i+index));
                 } else {
                     Boolean pd=false;

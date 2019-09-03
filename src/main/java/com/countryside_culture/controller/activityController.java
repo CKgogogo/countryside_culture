@@ -35,7 +35,7 @@ public class activityController {
                               HttpServletResponse response, Map<String,Object> map, Model model) throws ParseException {
         PageHelper.startPage(pn,pagesize);//第pn页，6条记录
         List<activity> activity = activityservice.showall();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
         for (int i=0;i<activity.size();i++){
             Date date = simpleDateFormat.parse(activity.get(i).getEndtime());
             Date d = new Date();
@@ -62,7 +62,7 @@ public class activityController {
                               HttpServletResponse response,String status) throws ParseException {
         PageHelper.startPage(pn,pagesize);//第pn页，6条记录
         List<activity> activity = activityservice.showall();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
         for (int i=0;i<activity.size();i++){
             Date date = simpleDateFormat.parse(activity.get(i).getEndtime());
             Date d = new Date();

@@ -148,7 +148,7 @@ public class videoControlle {
                     if (uid==reviewList.get(j).getUid())
                         reviewList.get(j).setIs_delete(1);
                     userlike userlike2=reviewservice.selectlike(uid,reviewList.get(j).getId());
-                    if (userlike!=null)
+                    if (userlike2!=null)
                         reviewList.get(j).setIs_like(userlike2.getStatus());
                 }
                 ans.get(i).setList(reviewList);

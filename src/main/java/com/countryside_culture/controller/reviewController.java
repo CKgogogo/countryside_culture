@@ -111,7 +111,7 @@ public class reviewController {
         String plname=request.getSession().getAttribute("nickname").toString();
         String content=request.getParameter("content");
         Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
         review ans=new review();
         ans.setLikeNum(0);
         ans.setStatus(1);
