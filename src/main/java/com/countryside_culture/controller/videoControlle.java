@@ -36,7 +36,8 @@ public class videoControlle {
     private focusService focusservice;
     @Autowired
     private reviewService reviewservice;
-
+    @Autowired
+    private ratingService ratingservice;
     //所有视频中热门的6个
     @RequestMapping("/allhot")
     public String showAllhot(HttpServletResponse response){
@@ -165,6 +166,8 @@ public class videoControlle {
         String[] a=video.getActor().split("-");
         List<museum> museums=new ArrayList<>();
         for(int i=0;i<a.length;i++){
+            if(Integer.parseInt(a[i])==0)
+                break;
             museum ans2=museumservice.selectOne(Integer.parseInt(a[i]));
             if(request.getSession().getAttribute("user_id")!=null){
                 int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
@@ -174,6 +177,23 @@ public class videoControlle {
                 }
             }
             museums.add(ans2);
+        }
+
+        //rating
+        Date date=new Date();
+        int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
+        rating rating=ratingservice.select(uid,id);
+        if (rating!=null){
+                rating.setRating(rating.getRating()+0.1);
+                rating.setRateTime((int) date.getTime());
+                ratingservice.update(rating);
+        }else {
+            rating rating1=new rating();
+            rating1.setUserId(uid);
+            rating1.setItemId(id);
+            rating1.setRating(0.1);
+            rating1.setRateTime((int) date.getTime());
+            ratingservice.update(rating1);
         }
         model.addAttribute("review",ans);
         model.addAttribute("video2",video2);
@@ -259,6 +279,33 @@ public class videoControlle {
             ans.setTitle(video.getTitle());
             ans.setUrl(video.getUrl());
             videoservice.collect(ans);
+        }
+        //rating
+        Date date=new Date();
+        rating rating=ratingservice.select(uid,id);
+        if (rating!=null){
+            if (status==1){
+                rating.setRating(rating.getRating()+1);
+                rating.setRateTime((int) date.getTime());
+                ratingservice.update(rating);
+            }else {
+                rating.setRating(rating.getRating()-1);
+                rating.setRateTime((int) date.getTime());
+                ratingservice.update(rating);
+            }
+        }else {
+            rating rating1=new rating();
+            rating1.setUserId(uid);
+            rating1.setItemId(id);
+            if (status==1){
+                rating1.setRating(1.0);
+                rating1.setRateTime((int) date.getTime());
+                ratingservice.update(rating1);
+            }else {
+                rating1.setRating(0.0);
+                rating1.setRateTime((int) date.getTime());
+                ratingservice.update(rating1);
+            }
         }
         return "ok";
     }

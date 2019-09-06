@@ -38,11 +38,15 @@ public class activityController {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
         for (int i=0;i<activity.size();i++){
             Date date = simpleDateFormat.parse(activity.get(i).getEndtime());
+            Date date2 = simpleDateFormat.parse(activity.get(i).getStarttime());
             Date d = new Date();
-            if(date.getTime()>d.getTime()) {
+            if(date.getTime()>d.getTime()&&d.getTime()>date2.getTime()) {
                 activity.get(i).setStatus("正在进行");
                 activityservice.update(activity.get(i));
-            }else {
+            }else if (d.getTime()<date2.getTime()){
+                activity.get(i).setStatus("未开始");
+                activityservice.update(activity.get(i));
+            }else if(d.getTime()>date.getTime()){
                 activity.get(i).setStatus("已结束");
                 activityservice.update(activity.get(i));
             }
@@ -65,11 +69,15 @@ public class activityController {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
         for (int i=0;i<activity.size();i++){
             Date date = simpleDateFormat.parse(activity.get(i).getEndtime());
+            Date date2 = simpleDateFormat.parse(activity.get(i).getStarttime());
             Date d = new Date();
-            if(date.getTime()>d.getTime()) {
+            if(date.getTime()>d.getTime()&&d.getTime()>date2.getTime()) {
                 activity.get(i).setStatus("正在进行");
                 activityservice.update(activity.get(i));
-            }else {
+            }else if (d.getTime()<date2.getTime()){
+                activity.get(i).setStatus("未开始");
+                activityservice.update(activity.get(i));
+            }else if(d.getTime()>date.getTime()){
                 activity.get(i).setStatus("已结束");
                 activityservice.update(activity.get(i));
             }
