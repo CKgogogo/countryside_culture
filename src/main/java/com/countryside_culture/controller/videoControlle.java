@@ -180,20 +180,22 @@ public class videoControlle {
         }
 
         //rating
-        Date date=new Date();
-        int uid=Integer.parseInt(request.getSession().getAttribute("user_id").toString());
-        rating rating=ratingservice.select(uid,id);
-        if (rating!=null){
-                rating.setRating(rating.getRating()+0.1);
+        if(request.getSession().getAttribute("user_id")!=null) {
+            int uid = Integer.parseInt(request.getSession().getAttribute("user_id").toString());
+            Date date = new Date();
+            rating rating = ratingservice.select(uid, id);
+            if (rating != null) {
+                rating.setRating(rating.getRating() + 0.1);
                 rating.setRateTime((int) date.getTime());
                 ratingservice.update(rating);
-        }else {
-            rating rating1=new rating();
-            rating1.setUserId(uid);
-            rating1.setItemId(id);
-            rating1.setRating(0.1);
-            rating1.setRateTime((int) date.getTime());
-            ratingservice.update(rating1);
+            } else {
+                rating rating1 = new rating();
+                rating1.setUserId(uid);
+                rating1.setItemId(id);
+                rating1.setRating(0.1);
+                rating1.setRateTime((int) date.getTime());
+                ratingservice.insert(rating1);
+            }
         }
         model.addAttribute("review",ans);
         model.addAttribute("video2",video2);
