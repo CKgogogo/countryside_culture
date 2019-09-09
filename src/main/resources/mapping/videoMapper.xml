@@ -89,4 +89,17 @@
       like_num = #{likeNum,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="queryProductsBySql" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select m.* from rating r
+    left join product m on r.item_id=m.product_id
+    where r.user_id=#{userid,jdbcType=INTEGER}
+  </select>
+  <select id="queryProductsByIds" resultMap="BaseResultMap">
+    select * from product
+    where product_id in
+    <foreach collection="list" item="item" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
+  </select>
 </mapper>
