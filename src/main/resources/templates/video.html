@@ -101,33 +101,33 @@
                 <nav aria-label="Page navigation example " class="col-5 m-auto ">
                     <ul class="pagination col-5 m-auto fenye paging" >
                         <li class="page-item">
-                            <a class="page-link" onclick="page2(this)" style="color: #007bff;cursor:pointer;">
-                                <span aria-hidden="true">top</span>
+                            <a class="page-link" onclick="page2(this)" style="color: black;cursor:pointer;">
+                                <span aria-hidden="true"><<</span>
                                 <span class="sr-only">{{rows2.firstPage}}</span>
                             </a>
                         </li>
                         <li class="page-item " v-if="rows2.hasPreviousPage">
-                            <a class="page-link" onclick="page2(this)" aria-label="Previous" style="color: #007bff;cursor:pointer;">
-                                <span aria-hidden="true">&laquo;</span>
+                            <a class="page-link" onclick="page2(this)" aria-label="Previous" style="color: black;cursor:pointer;">
+                                <span aria-hidden="true"><</span>
                                 <span class="sr-only">{{rows2.prePage}}</span>
                             </a>
                         </li>
                         <li class="page-item" v-for="page_num in rows2.navigatepageNums">
-                            <a  class="page-link " style="color: #007bff;cursor:pointer;background-color: #dae0e5;" v-if="page_num==rows2.pageNum"  v-text="page_num"
+                            <a  class="page-link " style="color: black;cursor:pointer;background-color: #dae0e5;" v-if="page_num==rows2.pageNum"  v-text="page_num"
                                onclick="page1(this)"></a>
-                            <a class="page-link " style="color: #007bff;cursor:pointer;" v-if="page_num!=rows2.pageNum" v-text="page_num"
+                            <a class="page-link " style="color: black;cursor:pointer;" v-if="page_num!=rows2.pageNum" v-text="page_num"
                                onclick="page1(this)"></a>
                         </li>
                         <!--<li class="page-item"><a class="page-link" href="#">2</a></li>-->
                         <li class="page-item" v-if="rows2.hasNextPage">
-                            <a class="page-link" onclick="page2(this)" aria-label="Next" style="color: #007bff;cursor:pointer;">
-                                <span aria-hidden="true">&raquo;</span>
+                            <a class="page-link" onclick="page2(this)" aria-label="Next" style="color: black;cursor:pointer;">
+                                <span aria-hidden="true">> </span>
                                 <span class="sr-only">{{rows2.nextPage}}</span>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" onclick="page2(this)" style="color: #007bff;cursor:pointer;" >
-                                <span aria-hidden="true">tail</span>
+                            <a class="page-link" onclick="page2(this)" style="color: black;cursor:pointer;" >
+                                <span aria-hidden="true"> >></span>
                                 <span class="sr-only">{{rows2.lastPage}}</span>
                             </a>
                         </li>
@@ -157,33 +157,33 @@
                 <nav aria-label="Page navigation example" class="col-5 m-auto">
                     <ul class="pagination col-4 m-auto fenye julupage">
                         <li class="page-item">
-                            <a class="page-link" onclick="page4(this)" style="color: #007bff;cursor:pointer;">
-                                <span aria-hidden="true">top</span>
+                            <a class="page-link" onclick="page4(this)" style="color: black;cursor:pointer;">
+                                <span aria-hidden="true"><<</span>
                                 <span class="sr-only">{{rows2.firstPage}}</span>
                             </a>
                         </li>
                         <li class="page-item " v-if="rows2.hasPreviousPage">
-                            <a class="page-link" onclick="page4(this)" aria-label="Previous" style="color: #007bff;cursor:pointer;">
-                                <span aria-hidden="true">&laquo;</span>
+                            <a class="page-link" onclick="page4(this)" aria-label="Previous" style="color: black;cursor:pointer;">
+                                <span aria-hidden="true"><</span>
                                 <span class="sr-only">{{rows2.prePage}}</span>
                             </a>
                         </li>
                         <li class="page-item" v-for="page_num in rows2.navigatepageNums">
-                            <a  class="page-link " style="color: #007bff;cursor:pointer;background-color: #dae0e5;" v-if="page_num==rows2.pageNum"  v-text="page_num"
+                            <a  class="page-link " style="color: black;cursor:pointer;background-color: #dae0e5;" v-if="page_num==rows2.pageNum"  v-text="page_num"
                                 onclick="page3(this)"></a>
-                            <a class="page-link " style="color: #007bff;cursor:pointer;" v-if="page_num!=rows2.pageNum" v-text="page_num"
+                            <a class="page-link " style="color: black;cursor:pointer;" v-if="page_num!=rows2.pageNum" v-text="page_num"
                                onclick="page3(this)"></a>
                         </li>
                         <!--<li class="page-item"><a class="page-link" href="#">2</a></li>-->
                         <li class="page-item" v-if="rows2.hasNextPage">
-                            <a class="page-link" onclick="page4(this)" aria-label="Next" style="color: #007bff;cursor:pointer;">
-                                <span aria-hidden="true">&raquo;</span>
+                            <a class="page-link" onclick="page4(this)" aria-label="Next" style="color: black;cursor:pointer;">
+                                <span aria-hidden="true"> ></span>
                                 <span class="sr-only">{{rows2.nextPage}}</span>
                             </a>
                         </li>
                         <li class="page-item">
                             <a class="page-link" onclick="page4(this)" style="color: #007bff;cursor:pointer;" >
-                                <span aria-hidden="true">tail</span>
+                                <span aria-hidden="true"> >></span>
                                 <span class="sr-only">{{rows2.lastPage}}</span>
                             </a>
                         </li>
@@ -213,33 +213,33 @@
                 <nav aria-label="Page navigation example" class="col-5 m-auto">
                     <ul class="pagination col-4 m-auto fenye jiaoxuepage">
                         <li class="page-item">
-                            <a class="page-link" onclick="page6(this)" style="color: #007bff;cursor:pointer;">
-                                <span aria-hidden="true">top</span>
+                            <a class="page-link" onclick="page6(this)" style="color: black;cursor:pointer;">
+                                <span aria-hidden="true"><<</span>
                                 <span class="sr-only">{{rows2.firstPage}}</span>
                             </a>
                         </li>
                         <li class="page-item " v-if="rows2.hasPreviousPage">
-                            <a class="page-link" onclick="page6(this)" aria-label="Previous" style="color: #007bff;cursor:pointer;">
-                                <span aria-hidden="true">&laquo;</span>
+                            <a class="page-link" onclick="page6(this)" aria-label="Previous" style="color: black;cursor:pointer;">
+                                <span aria-hidden="true"><</span>
                                 <span class="sr-only">{{rows2.prePage}}</span>
                             </a>
                         </li>
                         <li class="page-item" v-for="page_num in rows2.navigatepageNums">
-                            <a  class="page-link " style="color: #007bff;cursor:pointer;background-color: #dae0e5;" v-if="page_num==rows2.pageNum"  v-text="page_num"
+                            <a  class="page-link " style="color: black;cursor:pointer;background-color: #dae0e5;" v-if="page_num==rows2.pageNum"  v-text="page_num"
                                 onclick="page5(this)"></a>
-                            <a class="page-link " style="color: #007bff;cursor:pointer;" v-if="page_num!=rows2.pageNum" v-text="page_num"
+                            <a class="page-link " style="color: black;cursor:pointer;" v-if="page_num!=rows2.pageNum" v-text="page_num"
                                onclick="page5(this)"></a>
                         </li>
                         <!--<li class="page-item"><a class="page-link" href="#">2</a></li>-->
                         <li class="page-item" v-if="rows2.hasNextPage">
-                            <a class="page-link" onclick="page6(this)" aria-label="Next" style="color: #007bff;cursor:pointer;">
-                                <span aria-hidden="true">&raquo;</span>
+                            <a class="page-link" onclick="page6(this)" aria-label="Next" style="color: black;cursor:pointer;">
+                                <span aria-hidden="true"> ></span>
                                 <span class="sr-only">{{rows2.nextPage}}</span>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" onclick="page6(this)" style="color: #007bff;cursor:pointer;" >
-                                <span aria-hidden="true">tail</span>
+                            <a class="page-link" onclick="page6(this)" style="color: black;cursor:pointer;" >
+                                <span aria-hidden="true"> >></span>
                                 <span class="sr-only">{{rows2.lastPage}}</span>
                             </a>
                         </li>
@@ -269,33 +269,33 @@
                 <nav aria-label="Page navigation example" class="col-5 m-auto">
                     <ul class="pagination col-4 m-auto fenye huodongpage">
                         <li class="page-item">
-                            <a class="page-link" onclick="page8(this)" style="color: #007bff;cursor:pointer;">
-                                <span aria-hidden="true">top</span>
+                            <a class="page-link" onclick="page8(this)" style="color: black;cursor:pointer;">
+                                <span aria-hidden="true"><<</span>
                                 <span class="sr-only">{{rows2.firstPage}}</span>
                             </a>
                         </li>
                         <li class="page-item " v-if="rows2.hasPreviousPage">
-                            <a class="page-link" onclick="page8(this)" aria-label="Previous" style="color: #007bff;cursor:pointer;">
-                                <span aria-hidden="true">&laquo;</span>
+                            <a class="page-link" onclick="page8(this)" aria-label="Previous" style="color: black;cursor:pointer;">
+                                <span aria-hidden="true"><</span>
                                 <span class="sr-only">{{rows2.prePage}}</span>
                             </a>
                         </li>
                         <li class="page-item" v-for="page_num in rows2.navigatepageNums">
-                            <a  class="page-link " style="color: #007bff;cursor:pointer;background-color: #dae0e5;" v-if="page_num==rows2.pageNum"  v-text="page_num"
+                            <a  class="page-link " style="color: black;cursor:pointer;background-color: #dae0e5;" v-if="page_num==rows2.pageNum"  v-text="page_num"
                                 onclick="page7(this)"></a>
-                            <a class="page-link " style="color: #007bff;cursor:pointer;" v-if="page_num!=rows2.pageNum" v-text="page_num"
+                            <a class="page-link " style="color: black;cursor:pointer;" v-if="page_num!=rows2.pageNum" v-text="page_num"
                                onclick="page7(this)"></a>
                         </li>
                         <!--<li class="page-item"><a class="page-link" href="#">2</a></li>-->
                         <li class="page-item" v-if="rows2.hasNextPage">
                             <a class="page-link" onclick="page8(this)" aria-label="Next" style="color: #007bff;cursor:pointer;">
-                                <span aria-hidden="true">&raquo;</span>
+                                <span aria-hidden="true"> ></span>
                                 <span class="sr-only">{{rows2.nextPage}}</span>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" onclick="page8(this)" style="color: #007bff;cursor:pointer;" >
-                                <span aria-hidden="true">tail</span>
+                            <a class="page-link" onclick="page8(this)" style="color: black;cursor:pointer;" >
+                                <span aria-hidden="true"> >></span>
                                 <span class="sr-only">{{rows2.lastPage}}</span>
                             </a>
                         </li>
